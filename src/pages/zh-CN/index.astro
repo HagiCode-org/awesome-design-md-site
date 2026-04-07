@@ -1,31 +1,8 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import HeroPanel from '@/components/sections/HeroPanel';
-import FeatureGrid from '@/components/sections/FeatureGrid.astro';
-import BlueprintStrip from '@/components/sections/BlueprintStrip.astro';
-import { homeContent } from '@/config/site';
+import GalleryHomePage from '@/components/gallery/GalleryHomePage.astro';
+import { getAwesomeDesignCatalog } from '@/lib/content/awesomeDesignCatalog';
 
-const content = homeContent['zh-CN'];
+const catalog = await getAwesomeDesignCatalog();
 ---
 
-<BaseLayout
-  title={content.title}
-  description={content.description}
-  lang={content.lang}
-  nav={content.nav}
-  currentPath="/zh-CN/"
->
-  <HeroPanel content={content} client:load />
-
-  <FeatureGrid
-    title="适合偏设计感内容站的起手模板"
-    lead="仓库很轻，但扩展点已预留。先写内容，不必先堆系统。"
-    items={content.features}
-  />
-
-  <BlueprintStrip
-    title="按三步使用此模板"
-    lead="先定元信息，再替换示例内容，最后扩展文档与内容层。"
-    items={content.steps}
-  />
-</BaseLayout>
+<GalleryHomePage locale="zh-CN" entries={catalog.entries} />

@@ -1,19 +1,56 @@
 ---
-import { siteMeta } from '@/config/site';
+import type { NavItem } from '@/config/site';
+
+interface Props {
+  copy: string;
+  links: NavItem[];
+  metaLinks: NavItem[];
+}
+
+const { copy, links, metaLinks } = Astro.props;
 ---
 
 <footer class="site-footer">
   <div class="container shell-panel footer-panel">
-    <div>
-      <p class="footer-title">{siteMeta.name}</p>
-      <p class="footer-copy">
-        Lightweight Astro starter extracted from the HagiCode site patterns.
-      </p>
+    <div class="footer-brand-column">
+      <p class="footer-title">Awesome Design MD Gallery</p>
+      <p class="footer-copy">{copy}</p>
+      <div class="footer-meta-links">
+        {metaLinks.map((item) => {
+          const external = item.href.startsWith('http');
+
+          return (
+            <a
+              class="footer-meta-link"
+              href={item.href}
+              target={external ? '_blank' : undefined}
+              rel={external ? 'noreferrer' : undefined}
+            >
+              {item.label}
+            </a>
+          );
+        })}
+      </div>
     </div>
-    <div class="footer-links">
-      <a href="/guide/getting-started">Guide</a>
-      <a href="/zh-CN/guide/getting-started">中文指南</a>
-      <a href={siteMeta.repository} target="_blank" rel="noreferrer">GitHub</a>
+    <div class="footer-directory">
+      <p class="footer-section-kicker">Related sites</p>
+      <div class="footer-site-grid">
+      {links.map((item) => {
+        const external = item.href.startsWith('http');
+
+        return (
+          <a
+            class="footer-site-card"
+            href={item.href}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noreferrer' : undefined}
+          >
+            <span class="footer-link-title">{item.label}</span>
+            {item.description ? <span class="footer-link-description">{item.description}</span> : null}
+          </a>
+        );
+      })}
+      </div>
     </div>
   </div>
 </footer>

@@ -1,31 +1,8 @@
 ---
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import HeroPanel from '@/components/sections/HeroPanel';
-import FeatureGrid from '@/components/sections/FeatureGrid.astro';
-import BlueprintStrip from '@/components/sections/BlueprintStrip.astro';
-import { homeContent } from '@/config/site';
+import GalleryHomePage from '@/components/gallery/GalleryHomePage.astro';
+import { getAwesomeDesignCatalog } from '@/lib/content/awesomeDesignCatalog';
 
-const content = homeContent.en;
+const catalog = await getAwesomeDesignCatalog();
 ---
 
-<BaseLayout
-  title={content.title}
-  description={content.description}
-  lang={content.lang}
-  nav={content.nav}
-  currentPath="/"
->
-  <HeroPanel content={content} client:load />
-
-  <FeatureGrid
-    title="A starter shaped for design-heavy content sites"
-    lead="The repo is intentionally small, but the extension points are already visible."
-    items={content.features}
-  />
-
-  <BlueprintStrip
-    title="Use the template in three passes"
-    lead="Do the low-risk setup first, then replace the content, and only after that scale the information architecture."
-    items={content.steps}
-  />
-</BaseLayout>
+<GalleryHomePage locale="en" entries={catalog.entries} />

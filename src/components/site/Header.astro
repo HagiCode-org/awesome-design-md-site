@@ -1,21 +1,31 @@
 ---
 import ThemeToggle from '@/components/theme/ThemeToggle';
+import {
+  getLocaleHomePath,
+  siteMeta,
+  type LanguageLink,
+  type SupportedLocale,
+} from '@/config/site';
 
 interface Props {
   nav: { label: string; href: string }[];
+  lang?: SupportedLocale;
   currentPath?: string;
+  brandSubtitle: string;
+  languageLinks: LanguageLink[];
 }
 
-const { nav, currentPath = '/' } = Astro.props;
+const { nav, lang = 'en', currentPath = '/', brandSubtitle, languageLinks } = Astro.props;
+const homeHref = getLocaleHomePath(lang);
 ---
 
 <header class="site-header">
   <div class="container shell-panel header-panel">
-    <a class="brand-mark" href="/">
-      <span class="brand-badge">ADMS</span>
+    <a class="brand-mark" href={homeHref}>
+      <img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32" />
       <span class="brand-copy">
-        <strong>Awesome Design MD Site</strong>
-        <small>Astro template</small>
+        <strong>{siteMeta.name}</strong>
+        <small>{brandSubtitle}</small>
       </span>
     </a>
 
@@ -37,6 +47,21 @@ const { nav, currentPath = '/' } = Astro.props;
       })}
     </nav>
 
-    <ThemeToggle client:load />
+    <div class="header-actions">
+      <div class="language-links" aria-label="Language switcher">
+        {languageLinks.map((item) => (
+          <a
+            href={item.href}
+            class:list={['language-link', { active: item.locale === lang }]}
+            hreflang={item.locale}
+            lang={item.locale}
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+
+      <ThemeToggle locale={lang} client:load />
+    </div>
   </div>
 </header>
