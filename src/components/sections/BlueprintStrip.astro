@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  lead: string;
+  items: { title: string; description: string }[];
+}
+
+const { title, lead, items } = Astro.props;
+---
+
+<section class="section-block">
+  <div class="section-heading">
+    <p class="section-kicker">Workflow</p>
+    <h2>{title}</h2>
+    <p>{lead}</p>
+  </div>
+
+  <div class="step-strip">
+    {items.map((item, index) => (
+      <article class="shell-panel step-card">
+        <div class="step-index">0{index + 1}</div>
+        <h3>{item.title}</h3>
+        <p>{item.description}</p>
+      </article>
+    ))}
+  </div>
+</section>

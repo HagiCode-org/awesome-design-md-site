@@ -1,0 +1,61 @@
+---
+import '@/styles/global.css';
+import Header from '@/components/site/Header.astro';
+import Footer from '@/components/site/Footer.astro';
+import { siteMeta, type SupportedLocale } from '@/config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  lang?: SupportedLocale;
+  nav?: { label: string; href: string }[];
+  currentPath?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'en',
+  nav = [],
+  currentPath = '/',
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL('https://example.com');
+const canonicalUrl = new URL(currentPath, siteUrl).toString();
+---
+
+<!doctype html>
+<html lang={lang} data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#101721" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteMeta.name} />
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="page-shell">
+      <Header nav={nav} currentPath={currentPath} />
+      <main id="main">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

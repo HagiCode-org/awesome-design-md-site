@@ -1,0 +1,42 @@
+---
+import ThemeToggle from '@/components/theme/ThemeToggle';
+
+interface Props {
+  nav: { label: string; href: string }[];
+  currentPath?: string;
+}
+
+const { nav, currentPath = '/' } = Astro.props;
+---
+
+<header class="site-header">
+  <div class="container shell-panel header-panel">
+    <a class="brand-mark" href="/">
+      <span class="brand-badge">ADMS</span>
+      <span class="brand-copy">
+        <strong>Awesome Design MD Site</strong>
+        <small>Astro template</small>
+      </span>
+    </a>
+
+    <nav class="site-nav" aria-label="Primary">
+      {nav.map((item) => {
+        const active = item.href === currentPath;
+        const external = item.href.startsWith('http');
+
+        return (
+          <a
+            href={item.href}
+            class:list={['site-nav-link', { active }]}
+            target={external ? '_blank' : undefined}
+            rel={external ? 'noreferrer' : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+    </nav>
+
+    <ThemeToggle client:load />
+  </div>
+</header>

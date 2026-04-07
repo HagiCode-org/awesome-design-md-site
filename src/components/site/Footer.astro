@@ -1,0 +1,19 @@
+---
+import { siteMeta } from '@/config/site';
+---
+
+<footer class="site-footer">
+  <div class="container shell-panel footer-panel">
+    <div>
+      <p class="footer-title">{siteMeta.name}</p>
+      <p class="footer-copy">
+        Lightweight Astro starter extracted from the HagiCode site patterns.
+      </p>
+    </div>
+    <div class="footer-links">
+      <a href="/guide/getting-started">Guide</a>
+      <a href="/zh-CN/guide/getting-started">中文指南</a>
+      <a href={siteMeta.repository} target="_blank" rel="noreferrer">GitHub</a>
+    </div>
+  </div>
+</footer>
