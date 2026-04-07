@@ -54,3 +54,151 @@ const { copy, links, metaLinks } = Astro.props;
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-panel {
+    display: grid;
+    grid-template-columns: minmax(18rem, 22rem) minmax(0, 1fr);
+    align-items: flex-start;
+    gap: 1.5rem 2rem;
+  }
+
+  .footer-brand-column,
+  .footer-directory {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .footer-title {
+    margin: 0 0 0.35rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .footer-copy {
+    max-width: 44ch;
+    margin: 0 0 1rem;
+  }
+
+  .footer-section-kicker {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .footer-meta-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .footer-meta-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0.65rem 0.9rem;
+    border: 1px solid var(--line-main);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--panel-bg) 92%, transparent);
+    color: var(--text-soft);
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition:
+      transform 180ms ease,
+      border-color 180ms ease,
+      background-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .footer-meta-link:hover {
+    color: var(--text-main);
+    border-color: color-mix(in srgb, var(--accent-primary) 45%, var(--line-main));
+    background: color-mix(in srgb, var(--accent-primary) 10%, var(--panel-bg));
+    transform: translateY(-1px);
+  }
+
+  .footer-site-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem 1.35rem;
+  }
+
+  .footer-site-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.3rem;
+    min-height: auto;
+    padding: 0.2rem 0 0.2rem 0.9rem;
+    border-left: 1px solid var(--line-main);
+    transition:
+      border-color 180ms ease,
+      color 180ms ease;
+  }
+
+  .footer-site-card:hover {
+    color: inherit;
+    border-left-color: var(--accent-primary);
+  }
+
+  .footer-link-title {
+    display: block;
+    color: var(--text-main);
+    font-size: 0.96rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+    text-wrap: balance;
+  }
+
+  .footer-link-description {
+    display: block;
+    color: var(--text-soft);
+    font-size: 0.82rem;
+    font-weight: 400;
+    line-height: 1.45;
+    letter-spacing: 0;
+    text-transform: none;
+    text-wrap: pretty;
+  }
+
+  .footer-site-card:hover .footer-link-title {
+    color: var(--accent-primary);
+  }
+
+  .footer-meta-link:focus-visible,
+  .footer-site-card:focus-visible {
+    outline: 2px solid var(--accent-primary);
+    outline-offset: 2px;
+  }
+
+  @media (max-width: 1080px) {
+    .footer-panel {
+      grid-template-columns: 1fr;
+    }
+
+    .footer-site-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .footer-meta-links {
+      width: 100%;
+    }
+
+    .footer-site-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .footer-site-card {
+      padding-left: 0.75rem;
+    }
+  }
+</style>

@@ -1069,8 +1069,8 @@ main {
 
 .footer-site-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.8rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem 1.35rem;
 }
 
 .footer-site-card {
@@ -1078,18 +1078,12 @@ main {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  gap: 0.42rem;
-  min-height: 7.5rem;
-  padding: 0.95rem 1rem 1rem;
-  border: 1px solid var(--line-main);
-  border-radius: 10px;
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--panel-bg) 96%, transparent), color-mix(in srgb, var(--page-bg-soft) 78%, transparent));
+  gap: 0.3rem;
+  min-height: auto;
+  padding: 0.2rem 0 0.2rem 0.9rem;
+  border-left: 1px solid var(--line-main);
   transition:
-    transform 180ms ease,
     border-color 180ms ease,
-    background-color 180ms ease,
-    box-shadow 180ms ease,
     color 180ms ease;
 }
 
@@ -1114,11 +1108,7 @@ main {
 
 .footer-site-card:hover {
   color: inherit;
-  border-color: color-mix(in srgb, var(--accent-primary) 55%, var(--line-main));
-  background:
-    linear-gradient(180deg, color-mix(in srgb, var(--accent-primary) 11%, var(--panel-bg)), color-mix(in srgb, var(--page-bg-soft) 86%, transparent));
-  box-shadow: 0 14px 32px -24px color-mix(in srgb, var(--accent-primary) 50%, transparent);
-  transform: translateY(-2px);
+  border-left-color: var(--accent-primary);
 }
 
 .footer-site-card:hover .footer-link-title {
@@ -1256,6 +1246,6 @@ main {
   }
 
   .footer-site-card {
-    min-height: auto;
+    padding-left: 0.75rem;
   }
 }
