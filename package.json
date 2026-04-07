@@ -1,0 +1,35 @@
+{
+  "name": "awesome-design-md-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.10.1",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
+    "start": "astro dev --host 0.0.0.0",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
+    "astro": "astro",
+    "typecheck": "astro check",
+    "clean": "rm -rf .astro dist"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.2",
+    "@astrojs/react": "^5.0.1",
+    "@astrojs/sitemap": "^3.7.1",
+    "astro": "^6.0.7",
+    "astro-robots-txt": "^1.0.0",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.8",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "typescript": "~5.3.0"
+  },
+  "engines": {
+    "node": ">=22.12.0",
+    "npm": ">=10.0.0"
+  }
+}
