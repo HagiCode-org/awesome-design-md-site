@@ -1,0 +1,94 @@
+---
+import { localeCopy, type SupportedLocale } from '@/config/site';
+
+interface Props {
+  title: string;
+  lightUrl: string;
+  darkUrl: string;
+  hasDedicatedDark: boolean;
+  locale?: SupportedLocale;
+}
+
+const { title, lightUrl, darkUrl, hasDedicatedDark, locale = 'en' } = Astro.props;
+const copy = localeCopy[locale].preview;
+---
+
+<section
+  class="preview-switcher shell-panel"
+  data-preview-switcher
+  data-light-url={lightUrl}
+  data-dark-url={darkUrl}
+>
+  <div class="preview-switcher-head">
+    <div>
+      <p class="detail-kicker">{copy.kicker}</p>
+      <h2>{copy.heading}</h2>
+    </div>
+    <div class="preview-switcher-controls" role="tablist" aria-label="Preview theme">
+      <button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-selected="true">
+        {copy.light}
+      </button>
+      <button
+        type="button"
+        class="preview-toggle"
+        data-preview-variant="dark"
+        aria-selected="false"
+        title={hasDedicatedDark ? copy.openDarkTitle : copy.fallbackDarkTitle}
+      >
+        {copy.dark}
+      </button>
+    </div>
+  </div>
+
+  <iframe
+    class="detail-preview-frame"
+    src={lightUrl}
+    title={`${title} live preview`}
+    loading="lazy"
+    sandbox="allow-same-origin allow-scripts"
+    data-preview-frame
+  />
+
+  <p class="preview-switcher-note">
+    {hasDedicatedDark
+      ? copy.bothAvailableNote
+      : copy.fallbackNote}
+  </p>
+</section>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll('[data-preview-switcher]').forEach((root) => {
+      const frame = root.querySelector('[data-preview-frame]');
+      const buttons = Array.from(root.querySelectorAll('[data-preview-variant]'));
+      const lightUrl = root.getAttribute('data-light-url') || '';
+      const darkUrl = root.getAttribute('data-dark-url') || lightUrl;
+
+      if (!frame || buttons.length === 0) {
+        return;
+      }
+
+      const activate = (variant) => {
+        const isDark = variant === 'dark';
+        frame.setAttribute('src', isDark ? darkUrl : lightUrl);
+
+        buttons.forEach((button) => {
+          const active = button.getAttribute('data-preview-variant') === variant;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      };
+
+      const initialVariant =
+        document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+
+      activate(initialVariant);
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          activate(button.getAttribute('data-preview-variant') || 'light');
+        });
+      });
+    });
+  })();
+</script>

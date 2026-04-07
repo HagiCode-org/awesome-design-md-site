@@ -1,0 +1,40 @@
+---
+import type { AwesomeDesignEntry } from '@/lib/content/awesomeDesignCatalog';
+import { toLocalePath, type SupportedLocale } from '@/config/site';
+
+interface Props {
+  entry: AwesomeDesignEntry;
+  locale?: SupportedLocale;
+}
+
+const { entry, locale = 'en' } = Astro.props;
+const href = toLocalePath(`/designs/${entry.slug}/`, locale);
+const ariaLabel =
+  locale === 'en' ? `Open ${entry.title} details` : `打开 ${entry.title} 的详情`;
+---
+
+<a
+  class="design-card shell-panel"
+  data-design-card
+  data-slug={entry.slug}
+  data-search-text={entry.searchText}
+  href={href}
+  aria-label={ariaLabel}
+>
+  <div class="design-card-preview">
+    <iframe
+      class="design-card-frame"
+      src="about:blank"
+      data-preview-frame
+      data-light-src={entry.preview.lightUrl}
+      data-dark-src={entry.preview.darkUrl}
+      title={`${entry.title} preview`}
+      loading="lazy"
+      sandbox="allow-same-origin allow-scripts"
+    />
+  </div>
+
+  <div class="design-card-body">
+    <h2>{entry.title}</h2>
+  </div>
+</a>

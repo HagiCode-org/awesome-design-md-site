@@ -1,0 +1,42 @@
+---
+import { localeCopy, type SupportedLocale } from '@/config/site';
+
+interface NavEntry {
+  slug: string;
+  title: string;
+  href?: string;
+}
+
+interface Props {
+  previous?: NavEntry;
+  next?: NavEntry;
+  locale?: SupportedLocale;
+}
+
+const { previous, next, locale = 'en' } = Astro.props;
+const copy = localeCopy[locale].adjacent;
+---
+
+<nav class="detail-adjacent-nav" aria-label="Adjacent designs">
+  {
+    previous ? (
+      <a class="detail-adjacent-link" href={previous.href ?? `/designs/${previous.slug}/`}>
+        <span>{copy.previous}</span>
+        <strong>{previous.title}</strong>
+      </a>
+    ) : (
+      <div class="detail-adjacent-link is-empty" aria-hidden="true" />
+    )
+  }
+
+  {
+    next ? (
+      <a class="detail-adjacent-link detail-adjacent-link-next" href={next.href ?? `/designs/${next.slug}/`}>
+        <span>{copy.next}</span>
+        <strong>{next.title}</strong>
+      </a>
+    ) : (
+      <div class="detail-adjacent-link is-empty" aria-hidden="true" />
+    )
+  }
+</nav>

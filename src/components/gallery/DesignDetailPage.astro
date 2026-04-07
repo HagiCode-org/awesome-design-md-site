@@ -1,0 +1,98 @@
+---
+import AdjacentNavigation from '@/components/gallery/AdjacentNavigation.astro';
+import DocumentTabs from '@/components/gallery/DocumentTabs.astro';
+import PreviewSwitcher from '@/components/gallery/PreviewSwitcher.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  getDetailDescription,
+  localeCopy,
+  toLocalePath,
+  toAbsoluteSiteUrl,
+  type SupportedLocale,
+} from '@/config/site';
+import type { AwesomeDesignEntry } from '@/lib/content/awesomeDesignCatalog';
+
+interface NavEntry {
+  slug: string;
+  title: string;
+}
+
+interface Props {
+  locale: SupportedLocale;
+  entry: AwesomeDesignEntry;
+  previous?: NavEntry;
+  next?: NavEntry;
+}
+
+const { locale, entry, previous, next } = Astro.props;
+const copy = localeCopy[locale];
+const currentPath = toLocalePath(`/designs/${entry.slug}/`, locale);
+const description = getDetailDescription(locale, entry.title);
+const previousEntry = previous
+  ? { ...previous, href: toLocalePath(`/designs/${previous.slug}/`, locale) }
+  : undefined;
+const nextEntry = next
+  ? { ...next, href: toLocalePath(`/designs/${next.slug}/`, locale) }
+  : undefined;
+const galleryHref = locale === 'en' ? '/' : '/zh-CN/';
+const pageUrl = toAbsoluteSiteUrl(currentPath, Astro.site);
+const galleryUrl = toAbsoluteSiteUrl(galleryHref, Astro.site);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: copy.home.title,
+      item: galleryUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: entry.title,
+      item: pageUrl,
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${entry.title} • ${copy.detail.pageTitleSuffix}`}
+  description={description}
+  lang={locale}
+  currentPath={currentPath}
+  structuredData={structuredData}
+>
+  <section class="container detail-shell">
+    <div class="detail-header shell-panel">
+      <div class="detail-header-copy">
+        <a class="detail-back-link" href={galleryHref}>
+          {copy.detail.backToGallery}
+        </a>
+        <p class="detail-kicker">{copy.detail.kicker}</p>
+        <h1>{entry.title}</h1>
+        <p class="detail-summary">{entry.summary}</p>
+      </div>
+    </div>
+
+    <div class="detail-grid">
+      <PreviewSwitcher
+        title={entry.title}
+        lightUrl={entry.preview.lightUrl}
+        darkUrl={entry.preview.darkUrl}
+        hasDedicatedDark={entry.preview.hasDedicatedDark}
+        locale={locale}
+      />
+
+      <DocumentTabs
+        readmeHtml={entry.readmeHtml}
+        designHtml={entry.designHtml}
+        designMarkdown={entry.designMarkdown}
+        locale={locale}
+      />
+    </div>
+
+    <AdjacentNavigation previous={previousEntry} next={nextEntry} locale={locale} />
+  </section>
+</BaseLayout>

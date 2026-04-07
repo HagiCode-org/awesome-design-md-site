@@ -1,0 +1,115 @@
+---
+import DesignCard from '@/components/gallery/DesignCard.astro';
+import GalleryPreviewThemeSync from '@/components/gallery/GalleryPreviewThemeSync';
+import HagiCodeShowcase from '@/components/gallery/HagiCodeShowcase';
+import SearchToolbar from '@/components/gallery/SearchToolbar';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import {
+  getHomeDescription,
+  getLocaleHomePath,
+  localeCopy,
+  siteMeta,
+  toAbsoluteSiteUrl,
+  type SupportedLocale,
+} from '@/config/site';
+import type { AwesomeDesignEntry } from '@/lib/content/awesomeDesignCatalog';
+
+interface Props {
+  locale: SupportedLocale;
+  entries: AwesomeDesignEntry[];
+}
+
+const { locale, entries } = Astro.props;
+const copy = localeCopy[locale];
+const searchEntries = entries.map(({ slug, title, summary, searchText }) => ({
+  slug,
+  title,
+  summary,
+  searchText,
+}));
+const description = getHomeDescription(locale, entries.length);
+const currentPath = getLocaleHomePath(locale);
+const homeUrl = toAbsoluteSiteUrl(currentPath, Astro.site);
+const rootUrl = toAbsoluteSiteUrl('/', Astro.site);
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: siteMeta.name,
+    url: rootUrl,
+    inLanguage: locale,
+    description,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: copy.home.title,
+    url: homeUrl,
+    inLanguage: locale,
+    description,
+    mainEntity: {
+      '@type': 'ItemList',
+      numberOfItems: entries.length,
+      itemListOrder: 'https://schema.org/ItemListOrderAscending',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title={copy.home.title}
+  description={description}
+  lang={locale}
+  currentPath={currentPath}
+  structuredData={structuredData}
+>
+  <section class="gallery-hero container">
+    <div class="gallery-hero-panel shell-panel">
+      <div class="gallery-copy">
+        <p class="gallery-eyebrow">{copy.home.heroEyebrow}</p>
+        <h1>{copy.home.heroTitle}</h1>
+        <p class="gallery-lead">{copy.home.heroLead}</p>
+        <div class="gallery-readme-notes">
+          <p class="gallery-readme-kicker">{copy.home.heroReadmeKicker}</p>
+          <div class="gallery-readme-list">
+            {copy.home.heroReadmeExcerpts.map((item) => (
+              <article class="gallery-readme-item">
+                <p class="gallery-readme-excerpt">
+                  {locale === 'zh-CN' ? item.translation ?? item.excerpt : item.excerpt}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <HagiCodeShowcase locale={locale} client:load />
+    </div>
+  </section>
+
+  {
+    entries.length > 0 ? (
+      <>
+        <GalleryPreviewThemeSync client:load />
+
+        <section class="container">
+          <SearchToolbar entries={searchEntries} totalCount={entries.length} locale={locale} client:load />
+        </section>
+
+        <section class="container gallery-grid" aria-label={copy.chrome.galleryLabel}>
+          {entries.map((entry) => (
+            <DesignCard entry={entry} locale={locale} />
+          ))}
+        </section>
+      </>
+    ) : (
+      <section class="container">
+        <div class="gallery-empty shell-panel">
+          <p class="gallery-empty-kicker">{copy.home.emptyKicker}</p>
+          <h2>{copy.home.emptyTitle}</h2>
+          <p>{copy.home.emptyCopy}</p>
+        </div>
+      </section>
+    )
+  }
+</BaseLayout>

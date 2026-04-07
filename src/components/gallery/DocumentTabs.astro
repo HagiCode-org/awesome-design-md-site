@@ -1,0 +1,110 @@
+---
+import { localeCopy, type SupportedLocale } from '@/config/site';
+
+interface Props {
+  readmeHtml: string;
+  designHtml: string;
+  designMarkdown: string;
+  locale?: SupportedLocale;
+}
+
+const { readmeHtml, designHtml, designMarkdown, locale = 'en' } = Astro.props;
+const copy = localeCopy[locale].documents;
+---
+
+<section class="detail-documents" data-document-tabs>
+  <div class="detail-documents-head">
+    <div>
+      <p class="detail-kicker">{copy.kicker}</p>
+      <h2>{copy.heading}</h2>
+    </div>
+    <div class="detail-doc-controls">
+      <div class="detail-tab-list" role="tablist" aria-label="Document view">
+        <button type="button" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">
+          {copy.readme}
+        </button>
+        <button type="button" class="detail-tab" data-doc-tab="design" aria-selected="false">
+          {copy.design}
+        </button>
+      </div>
+      <button
+        type="button"
+        class="detail-copy-button"
+        data-copy-design
+        disabled
+        aria-disabled="true"
+        title={copy.copyDesignTitle}
+      >
+        {copy.copyDesign}
+      </button>
+    </div>
+  </div>
+
+  <div class="detail-doc-panels">
+    <section class="detail-doc-panel is-active" data-doc-panel="readme">
+      <div class="markdown-shell document-copy" set:html={readmeHtml} />
+    </section>
+    <section class="detail-doc-panel" data-doc-panel="design" hidden>
+      <div class="markdown-shell document-copy" set:html={designHtml} />
+    </section>
+  </div>
+
+  <textarea hidden readonly data-design-markdown>{designMarkdown}</textarea>
+</section>
+
+<script is:inline define:vars={{ copyDesign: copy.copyDesign, copiedText: copy.copied, copyFailedText: copy.copyFailed }}>
+  (() => {
+    document.querySelectorAll('[data-document-tabs]').forEach((root) => {
+      const tabs = Array.from(root.querySelectorAll('[data-doc-tab]'));
+      const panels = Array.from(root.querySelectorAll('[data-doc-panel]'));
+      const copyButton = root.querySelector('[data-copy-design]');
+      const designMarkdown = root.querySelector('[data-design-markdown]');
+
+      const activate = (target) => {
+        tabs.forEach((tab) => {
+          const active = tab.getAttribute('data-doc-tab') === target;
+          tab.classList.toggle('is-active', active);
+          tab.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+
+        panels.forEach((panel) => {
+          const active = panel.getAttribute('data-doc-panel') === target;
+          panel.classList.toggle('is-active', active);
+          panel.toggleAttribute('hidden', !active);
+        });
+
+        if (copyButton instanceof HTMLButtonElement) {
+          const enabled = target === 'design';
+          copyButton.disabled = !enabled;
+          copyButton.setAttribute('aria-disabled', enabled ? 'false' : 'true');
+          copyButton.classList.toggle('is-visible', enabled);
+          copyButton.textContent = copyDesign;
+        }
+      };
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          activate(tab.getAttribute('data-doc-tab') || 'readme');
+        });
+      });
+
+      if (
+        copyButton instanceof HTMLButtonElement &&
+        designMarkdown instanceof HTMLTextAreaElement
+      ) {
+        copyButton.addEventListener('click', async () => {
+          if (copyButton.disabled) {
+            return;
+          }
+
+          try {
+            await navigator.clipboard.writeText(designMarkdown.value);
+            copyButton.textContent = copiedText;
+          } catch {
+            copyButton.textContent = copyFailedText;
+          }
+        });
+      }
+    });
+  })();
+</script>
