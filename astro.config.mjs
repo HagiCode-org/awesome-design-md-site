@@ -4,7 +4,7 @@ import react from '@astrojs/react';
 import mdx from '@astrojs/mdx';
 import robotsTxt from 'astro-robots-txt';
 
-const siteUrl = process.env.SITE_URL ?? 'https://example.com';
+const siteUrl = process.env.SITE_URL ?? 'https://design.hagicode.com';
 
 export default defineConfig({
   site: siteUrl,
