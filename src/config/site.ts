@@ -6,6 +6,8 @@ export interface NavItem {
   label: string;
   href: string;
   description?: string;
+  shortLabel?: string;
+  group?: 'primary' | 'repo';
 }
 
 export interface MetricItem {
@@ -48,15 +50,22 @@ export interface HeroReadmeExcerpt {
 export interface LocaleCopy {
   chrome: {
     brandSubtitle: string;
+    mobileBrandLabel: string;
     skipToContent: string;
     galleryLabel: string;
+    galleryCompactLabel: string;
     siteRepoLabel: string;
     sourceRepoLabel: string;
+    utilityLabel: string;
     footerCopy: string;
     languageEnglish: string;
+    languageEnglishCompact: string;
     languageChinese: string;
+    languageChineseCompact: string;
     themeLight: string;
+    themeLightCompact: string;
     themeDark: string;
+    themeDarkCompact: string;
     switchToLight: string;
     switchToDark: string;
   };
@@ -125,6 +134,8 @@ export interface LocaleCopy {
     design: string;
     copyDesign: string;
     copyDesignTitle: string;
+    downloadDesign: string;
+    downloadDesignTitle: string;
     copied: string;
     copyFailed: string;
   };
@@ -147,16 +158,23 @@ export const localeCopy: Record<SupportedLocale, LocaleCopy> = {
   en: {
     chrome: {
       brandSubtitle: 'Powered by HagiCode',
+      mobileBrandLabel: siteMeta.shortName,
       skipToContent: 'Skip to content',
       galleryLabel: 'Gallery',
+      galleryCompactLabel: 'Gallery',
       siteRepoLabel: 'Site Repo',
       sourceRepoLabel: 'Source Repo',
+      utilityLabel: 'Repository links',
       footerCopy:
         'Static gallery for README, DESIGN, and live preview assets from the upstream source.',
       languageEnglish: 'English',
+      languageEnglishCompact: 'EN',
       languageChinese: '简体中文',
+      languageChineseCompact: '中',
       themeLight: 'Light',
+      themeLightCompact: 'LT',
       themeDark: 'Dark',
+      themeDarkCompact: 'DK',
       switchToLight: 'Switch to light mode',
       switchToDark: 'Switch to dark mode',
     },
@@ -263,6 +281,8 @@ export const localeCopy: Record<SupportedLocale, LocaleCopy> = {
       design: 'DESIGN',
       copyDesign: 'Copy DESIGN.md',
       copyDesignTitle: 'Copy raw DESIGN.md markdown',
+      downloadDesign: 'Download DESIGN.md',
+      downloadDesignTitle: 'Download the canonical DESIGN.md file',
       copied: 'Copied',
       copyFailed: 'Copy failed',
     },
@@ -274,15 +294,22 @@ export const localeCopy: Record<SupportedLocale, LocaleCopy> = {
   'zh-CN': {
     chrome: {
       brandSubtitle: 'Powered by HagiCode',
+      mobileBrandLabel: siteMeta.shortName,
       skipToContent: '跳转到正文',
       galleryLabel: '画廊',
+      galleryCompactLabel: '画廊',
       siteRepoLabel: '站点仓库',
       sourceRepoLabel: '上游仓库',
+      utilityLabel: '仓库链接',
       footerCopy: '用于浏览上游 README、DESIGN 与实时预览资源的静态画廊站点。',
       languageEnglish: 'English',
+      languageEnglishCompact: 'EN',
       languageChinese: '简体中文',
+      languageChineseCompact: '中',
       themeLight: '浅色',
+      themeLightCompact: '浅',
       themeDark: '深色',
+      themeDarkCompact: '深',
       switchToLight: '切换到浅色模式',
       switchToDark: '切换到深色模式',
     },
@@ -391,6 +418,8 @@ export const localeCopy: Record<SupportedLocale, LocaleCopy> = {
       design: 'DESIGN',
       copyDesign: '复制 DESIGN.md',
       copyDesignTitle: '复制原始 DESIGN.md Markdown',
+      downloadDesign: '下载 DESIGN.md',
+      downloadDesignTitle: '下载站内 canonical 的 DESIGN.md 文件',
       copied: '已复制',
       copyFailed: '复制失败',
     },
@@ -405,9 +434,22 @@ export function getGalleryNav(locale: SupportedLocale): NavItem[] {
   const chrome = localeCopy[locale].chrome;
 
   return [
-    { label: chrome.galleryLabel, href: getLocaleHomePath(locale) },
-    { label: chrome.siteRepoLabel, href: siteMeta.repository },
-    { label: chrome.sourceRepoLabel, href: siteMeta.sourceRepository },
+    {
+      label: chrome.galleryLabel,
+      shortLabel: chrome.galleryCompactLabel,
+      href: getLocaleHomePath(locale),
+      group: 'primary',
+    },
+    {
+      label: chrome.siteRepoLabel,
+      href: siteMeta.repository,
+      group: 'repo',
+    },
+    {
+      label: chrome.sourceRepoLabel,
+      href: siteMeta.sourceRepository,
+      group: 'repo',
+    },
   ];
 }
 
@@ -429,11 +471,13 @@ export function getLanguageLinks(currentPath: string): LanguageLink[] {
   return [
     {
       label: localeCopy.en.chrome.languageEnglish,
+      shortLabel: localeCopy.en.chrome.languageEnglishCompact,
       href: toLocalePath(currentPath, 'en'),
       locale: 'en',
     },
     {
       label: localeCopy['zh-CN'].chrome.languageChinese,
+      shortLabel: localeCopy['zh-CN'].chrome.languageChineseCompact,
       href: toLocalePath(currentPath, 'zh-CN'),
       locale: 'zh-CN',
     },

@@ -2,13 +2,15 @@
 import ThemeToggle from '@/components/theme/ThemeToggle';
 import {
   getLocaleHomePath,
+  localeCopy,
   siteMeta,
   type LanguageLink,
+  type NavItem,
   type SupportedLocale,
 } from '@/config/site';
 
 interface Props {
-  nav: { label: string; href: string }[];
+  nav: NavItem[];
   lang?: SupportedLocale;
   currentPath?: string;
   brandSubtitle: string;
@@ -17,6 +19,9 @@ interface Props {
 
 const { nav, lang = 'en', currentPath = '/', brandSubtitle, languageLinks } = Astro.props;
 const homeHref = getLocaleHomePath(lang);
+const chromeCopy = localeCopy[lang].chrome;
+const primaryNav = nav.filter((item) => item.group !== 'repo');
+const repoNav = nav.filter((item) => item.group === 'repo');
 ---
 
 <header class="site-header">
@@ -24,13 +29,14 @@ const homeHref = getLocaleHomePath(lang);
     <a class="brand-mark" href={homeHref}>
       <img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32" />
       <span class="brand-copy">
-        <strong>{siteMeta.name}</strong>
+        <strong class="brand-copy-full">{siteMeta.name}</strong>
+        <strong class="brand-copy-compact">{chromeCopy.mobileBrandLabel}</strong>
         <small>{brandSubtitle}</small>
       </span>
     </a>
 
-    <nav class="site-nav" aria-label="Primary">
-      {nav.map((item) => {
+    <nav class="site-nav site-nav-primary" aria-label="Primary">
+      {primaryNav.map((item) => {
         const active = item.href === currentPath;
         const external = item.href.startsWith('http');
 
@@ -41,10 +47,21 @@ const homeHref = getLocaleHomePath(lang);
             target={external ? '_blank' : undefined}
             rel={external ? 'noreferrer' : undefined}
           >
-            {item.label}
+            <span class="site-nav-link-label site-nav-link-label-full">{item.label}</span>
+            <span class="site-nav-link-label site-nav-link-label-compact">
+              {item.shortLabel ?? item.label}
+            </span>
           </a>
         );
       })}
+    </nav>
+
+    <nav class="site-nav site-nav-repo" aria-label={chromeCopy.utilityLabel}>
+      {repoNav.map((item) => (
+        <a href={item.href} class="site-nav-link" target="_blank" rel="noreferrer">
+          <span class="site-nav-link-label site-nav-link-label-full">{item.label}</span>
+        </a>
+      ))}
     </nav>
 
     <div class="header-actions">
@@ -56,12 +73,30 @@ const homeHref = getLocaleHomePath(lang);
             hreflang={item.locale}
             lang={item.locale}
           >
-            {item.label}
+            <span class="language-link-label language-link-label-full">{item.label}</span>
+            <span class="language-link-label language-link-label-compact">
+              {item.shortLabel ?? item.label}
+            </span>
           </a>
         ))}
       </div>
 
       <ThemeToggle locale={lang} client:load />
     </div>
+
+    <details class="header-utility">
+      <summary class="header-utility-trigger" aria-label={chromeCopy.utilityLabel}>
+        <span class="header-utility-trigger-label" aria-hidden="true">
+          ≡
+        </span>
+      </summary>
+      <div class="header-utility-surface" aria-label={chromeCopy.utilityLabel}>
+        {repoNav.map((item) => (
+          <a href={item.href} class="site-nav-link header-utility-link" target="_blank" rel="noreferrer">
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </details>
   </div>
 </header>

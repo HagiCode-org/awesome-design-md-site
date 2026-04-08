@@ -32,15 +32,22 @@ export default function ThemeToggle({ locale = 'en' }: Props) {
     setTheme(resolved);
   }
 
+  const fullLabel = theme === 'dark' ? chromeCopy.themeDark : chromeCopy.themeLight;
+  const compactLabel = theme === 'dark' ? chromeCopy.themeDarkCompact : chromeCopy.themeLightCompact;
+
   return (
     <button
       type="button"
       className="theme-toggle"
+      data-theme-toggle
       onClick={toggleTheme}
       aria-label={nextTheme === 'dark' ? chromeCopy.switchToDark : chromeCopy.switchToLight}
     >
-      <span>{theme === 'dark' ? chromeCopy.themeDark : chromeCopy.themeLight}</span>
-      <span aria-hidden="true">{theme === 'dark' ? '◐' : '◑'}</span>
+      <span className="theme-toggle-label theme-toggle-label-full">{fullLabel}</span>
+      <span className="theme-toggle-label theme-toggle-label-compact">{compactLabel}</span>
+      <span className="theme-toggle-glyph" aria-hidden="true">
+        {theme === 'dark' ? '◐' : '◑'}
+      </span>
     </button>
   );
 }
