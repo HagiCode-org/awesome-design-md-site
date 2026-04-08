@@ -27,7 +27,18 @@ currentPath: /zh-CN/guide/getting-started
 - 局部 React islands
 - MDX / Markdown 内容支持
 - 中英双语路径
-- 一套可扩展的设计变量与首页结构
+- 由 `public/global.css` 提供的站点壳层样式
+
+## 壳层样式来源
+
+- 运行时页头与壳层样式应修改 `public/global.css`，因为 `BaseLayout.astro` 直接链接的是 `/global.css`。
+- `src/styles/global.css` 当前不是构建产物实际加载的样式文件；若布局导入方式不变，应将其视为参考副本。
+
+## 移动端页头约定
+
+- 窄屏使用紧凑品牌标签 `ADMG`，不再显示完整站点名。
+- 语言与主题切换继续直接留在 sticky 页头中。
+- 仓库链接在移动端收进 `details` 展开面板，平板与桌面仍保持内联展示。
 
 ## 建议先做
 
