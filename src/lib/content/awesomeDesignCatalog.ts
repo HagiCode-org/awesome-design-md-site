@@ -36,6 +36,7 @@ export interface AwesomeDesignEntry {
   summary: string;
   readmeMarkdown: string;
   designMarkdown: string;
+  designDownloadUrl: string;
   readmeHtml: string;
   designHtml: string;
   searchText: string;
@@ -117,6 +118,19 @@ export async function loadPublishedPreviewHtml(
   }
 
   return readFile(targetPath, 'utf8');
+}
+
+export async function loadPublishedDesignMarkdown(
+  slug: string,
+  options: AwesomeDesignCatalogOptions = {},
+): Promise<string> {
+  const entry = await getAwesomeDesignEntryBySlug(slug, options);
+
+  if (!entry) {
+    throw new Error(`Unknown design entry: ${slug}`);
+  }
+
+  return entry.designMarkdown;
 }
 
 async function loadAwesomeDesignCatalog(
@@ -215,6 +229,7 @@ async function loadCatalogEntry(input: {
     summary,
     readmeMarkdown,
     designMarkdown,
+    designDownloadUrl: getDesignDownloadPath(slug),
     readmeHtml: await renderMarkdownToHtml(readmeMarkdown),
     designHtml: await renderMarkdownToHtml(designMarkdown),
     searchText,
@@ -299,6 +314,10 @@ function startCase(value: string): string {
 
 function normalizeWhitespace(value: string): string {
   return value.replace(/\s+/g, ' ').trim();
+}
+
+function getDesignDownloadPath(slug: string): string {
+  return `/designs/${encodeURIComponent(slug)}/DESIGN.md`;
 }
 
 async function pathExists(filePath: string): Promise<boolean> {

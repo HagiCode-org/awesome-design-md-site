@@ -5,6 +5,7 @@ import { describe, expect, it, afterEach } from 'vitest';
 import {
   getAdjacentDesignEntries,
   getAwesomeDesignCatalog,
+  loadPublishedDesignMarkdown,
   loadPublishedPreviewHtml,
 } from '@/lib/content/awesomeDesignCatalog';
 
@@ -44,10 +45,14 @@ describe('awesomeDesignCatalog', () => {
     expect(entry.preview.hasDedicatedDark).toBe(false);
     expect(entry.preview.lightUrl).toBe('/previews/linear.app/light.html');
     expect(entry.preview.darkUrl).toBe('/previews/linear.app/dark.html');
+    expect(entry.designDownloadUrl).toBe('/designs/linear.app/DESIGN.md');
     expect(entry.searchText).toContain('fast workflows');
 
     const darkHtml = await loadPublishedPreviewHtml('linear.app', 'dark', { sourceRoot });
     expect(darkHtml).toContain('light preview');
+    await expect(loadPublishedDesignMarkdown('linear.app', { sourceRoot })).resolves.toContain(
+      'Shared notes for interface design.',
+    );
   });
 
   it('fails fast when required source files are missing', async () => {

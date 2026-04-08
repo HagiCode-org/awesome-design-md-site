@@ -5,14 +5,27 @@ interface Props {
   readmeHtml: string;
   designHtml: string;
   designMarkdown: string;
+  designDownloadUrl: string;
   locale?: SupportedLocale;
 }
 
-const { readmeHtml, designHtml, designMarkdown, locale = 'en' } = Astro.props;
+const {
+  readmeHtml,
+  designHtml,
+  designMarkdown,
+  designDownloadUrl,
+  locale = 'en',
+} = Astro.props;
 const copy = localeCopy[locale].documents;
 ---
 
-<section class="detail-documents" data-document-tabs>
+<section
+  class="detail-documents"
+  data-document-tabs
+  data-copy-design-label={copy.copyDesign}
+  data-copied-label={copy.copied}
+  data-copy-failed-label={copy.copyFailed}
+>
   <div class="detail-documents-head">
     <div>
       <p class="detail-kicker">{copy.kicker}</p>
@@ -37,6 +50,17 @@ const copy = localeCopy[locale].documents;
       >
         {copy.copyDesign}
       </button>
+      <a
+        class="detail-copy-button"
+        data-download-design
+        href={designDownloadUrl}
+        download="DESIGN.md"
+        title={copy.downloadDesignTitle}
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        {copy.downloadDesign}
+      </a>
     </div>
   </div>
 
@@ -52,59 +76,8 @@ const copy = localeCopy[locale].documents;
   <textarea hidden readonly data-design-markdown>{designMarkdown}</textarea>
 </section>
 
-<script is:inline define:vars={{ copyDesign: copy.copyDesign, copiedText: copy.copied, copyFailedText: copy.copyFailed }}>
-  (() => {
-    document.querySelectorAll('[data-document-tabs]').forEach((root) => {
-      const tabs = Array.from(root.querySelectorAll('[data-doc-tab]'));
-      const panels = Array.from(root.querySelectorAll('[data-doc-panel]'));
-      const copyButton = root.querySelector('[data-copy-design]');
-      const designMarkdown = root.querySelector('[data-design-markdown]');
+<script>
+  import { initializeDocumentTabs } from '@/components/gallery/document-tabs';
 
-      const activate = (target) => {
-        tabs.forEach((tab) => {
-          const active = tab.getAttribute('data-doc-tab') === target;
-          tab.classList.toggle('is-active', active);
-          tab.setAttribute('aria-selected', active ? 'true' : 'false');
-        });
-
-        panels.forEach((panel) => {
-          const active = panel.getAttribute('data-doc-panel') === target;
-          panel.classList.toggle('is-active', active);
-          panel.toggleAttribute('hidden', !active);
-        });
-
-        if (copyButton instanceof HTMLButtonElement) {
-          const enabled = target === 'design';
-          copyButton.disabled = !enabled;
-          copyButton.setAttribute('aria-disabled', enabled ? 'false' : 'true');
-          copyButton.classList.toggle('is-visible', enabled);
-          copyButton.textContent = copyDesign;
-        }
-      };
-
-      tabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-          activate(tab.getAttribute('data-doc-tab') || 'readme');
-        });
-      });
-
-      if (
-        copyButton instanceof HTMLButtonElement &&
-        designMarkdown instanceof HTMLTextAreaElement
-      ) {
-        copyButton.addEventListener('click', async () => {
-          if (copyButton.disabled) {
-            return;
-          }
-
-          try {
-            await navigator.clipboard.writeText(designMarkdown.value);
-            copyButton.textContent = copiedText;
-          } catch {
-            copyButton.textContent = copyFailedText;
-          }
-        });
-      }
-    });
-  })();
+  initializeDocumentTabs();
 </script>
