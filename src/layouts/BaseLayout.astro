@@ -2,6 +2,8 @@
 import Analytics51LA from '@/components/51LAAnalytics.astro';
 import Header from '@/components/site/Header.astro';
 import Footer from '@/components/site/Footer.astro';
+import { PromoteCard } from '@/components/promote/PromoteCard';
+import promoteCardStyles from '@/components/promote/PromoteCard.module.css';
 import {
   getFooterLinks,
   getFooterMetaLinks,
@@ -135,6 +137,7 @@ const pageStructuredData = {
       <main id="main">
         <slot />
       </main>
+      <PromoteCard locale={lang} className={promoteCardStyles.promoteCard} client:load />
       <Footer copy={chromeCopy.footerCopy} links={footerLinks} metaLinks={footerMetaLinks} />
     </div>
     <Analytics51LA />
