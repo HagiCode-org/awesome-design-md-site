@@ -7,11 +7,17 @@ type FetchLike = typeof fetch;
 type PromoteLocale = 'zh' | 'en';
 type JsonRecord = Record<string, unknown>;
 
-type PromoteFlag = { id: string; on: boolean };
+type PromoteFlag = {
+  id: string;
+  on: boolean;
+  startTime?: string;
+  endTime?: string;
+};
 type PromoteContent = {
   id: string;
   title: Record<string, string>;
   description: Record<string, string>;
+  cta?: Record<string, string>;
   link: string;
   targetPlatform?: string;
 };
@@ -20,6 +26,7 @@ export type ActivePromotion = {
   id: string;
   title: string;
   description: string;
+  ctaLabel: string;
   link: string;
   platform: string | null;
 };
@@ -48,20 +55,71 @@ function mapLocale(locale: string | null | undefined): PromoteLocale {
   return locale?.toLowerCase().startsWith('en') ? 'en' : 'zh';
 }
 
+function getLocalizedKeys(locale: PromoteLocale): string[] {
+  return locale === 'en' ? ['en', 'zh', 'zh-CN'] : ['zh', 'zh-CN', 'en'];
+}
+
 function pickLocalized(value: Record<string, string>, locale: PromoteLocale): string | null {
-  const keys = locale === 'en' ? ['en', 'zh', 'zh-CN'] : ['zh', 'zh-CN', 'en'];
-  for (const key of keys) {
+  for (const key of getLocalizedKeys(locale)) {
     const candidate = value[key];
     if (isNonEmptyString(candidate)) return candidate.trim();
   }
   return Object.values(value).find(isNonEmptyString)?.trim() ?? null;
 }
 
+function resolveCtaLabel(value: Record<string, string> | undefined, locale: PromoteLocale): string {
+  if (value) {
+    const localized = pickLocalized(value, locale);
+    if (localized) return localized;
+  }
+  return locale === 'zh' ? '立即前往' : 'GO';
+}
+
+function parseOptionalTimestamp(value: unknown): string | undefined {
+  return isNonEmptyString(value) ? value.trim() : undefined;
+}
+
+function parseTimestamp(value: string | undefined): number | null {
+  if (!value) return null;
+  const timestamp = Date.parse(value);
+  return Number.isFinite(timestamp) ? timestamp : Number.NaN;
+}
+
+function isPromoteFlagActive(flag: PromoteFlag, now = Date.now()): boolean {
+  if (!flag.on) return false;
+
+  const startTime = parseTimestamp(flag.startTime);
+  const endTime = parseTimestamp(flag.endTime);
+
+  if (Number.isNaN(startTime) || Number.isNaN(endTime)) {
+    return false;
+  }
+
+  if (startTime !== null && endTime !== null && startTime >= endTime) {
+    return false;
+  }
+
+  if (startTime !== null && now < startTime) {
+    return false;
+  }
+
+  if (endTime !== null && now >= endTime) {
+    return false;
+  }
+
+  return true;
+}
+
 function parseFlags(payload: unknown): PromoteFlag[] {
   if (!isRecord(payload) || !Array.isArray(payload.promotes)) return [];
   return payload.promotes.flatMap((entry) => {
     if (!isRecord(entry) || !isNonEmptyString(entry.id) || typeof entry.on !== 'boolean') return [];
-    return [{ id: entry.id, on: entry.on }];
+    return [{
+      id: entry.id,
+      on: entry.on,
+      startTime: parseOptionalTimestamp(entry.startTime),
+      endTime: parseOptionalTimestamp(entry.endTime),
+    }];
   });
 }
 
@@ -71,8 +129,18 @@ function parseContent(payload: unknown): PromoteContent[] {
     if (!isRecord(entry) || !isNonEmptyString(entry.id) || !isRecord(entry.title) || !isRecord(entry.description) || !isNonEmptyString(entry.link)) return [];
     const title = Object.fromEntries(Object.entries(entry.title).filter(([, value]) => isNonEmptyString(value))) as Record<string, string>;
     const description = Object.fromEntries(Object.entries(entry.description).filter(([, value]) => isNonEmptyString(value))) as Record<string, string>;
+    const cta = isRecord(entry.cta)
+      ? Object.fromEntries(Object.entries(entry.cta).filter(([, value]) => isNonEmptyString(value))) as Record<string, string>
+      : undefined;
     if (Object.keys(title).length === 0 || Object.keys(description).length === 0) return [];
-    return [{ id: entry.id, title, description, link: entry.link, targetPlatform: isNonEmptyString(entry.targetPlatform) ? entry.targetPlatform : undefined }];
+    return [{
+      id: entry.id,
+      title,
+      description,
+      cta: cta && Object.keys(cta).length > 0 ? cta : undefined,
+      link: entry.link,
+      targetPlatform: isNonEmptyString(entry.targetPlatform) ? entry.targetPlatform : undefined,
+    }];
   });
 }
 
@@ -96,32 +164,39 @@ export async function resolvePromoteUrls(fetchImpl: FetchLike = fetch): Promise<
   return { flagsUrl: FALLBACK_FLAGS_URL, contentUrl: FALLBACK_CONTENT_URL, source: 'fallback' };
 }
 
-export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteContent[], locale: string | null | undefined): ActivePromotion[] {
+export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteContent[], locale: string | null | undefined, now = Date.now()): ActivePromotion[] {
   const promoteLocale = mapLocale(locale);
   const contentById = new Map(contents.map((entry) => [entry.id, entry]));
 
   return flags.flatMap((flag) => {
-    if (!flag.on) return [];
+    if (!isPromoteFlagActive(flag, now)) return [];
     const content = contentById.get(flag.id);
     if (!content) return [];
     const title = pickLocalized(content.title, promoteLocale);
     const description = pickLocalized(content.description, promoteLocale);
     if (!title || !description) return [];
-    return [{ id: content.id, title, description, link: content.link, platform: content.targetPlatform?.trim() || null }];
+    return [{
+      id: content.id,
+      title,
+      description,
+      ctaLabel: resolveCtaLabel(content.cta, promoteLocale),
+      link: content.link,
+      platform: content.targetPlatform?.trim() || null,
+    }];
   });
 }
 
-export async function loadActivePromotions(options: { locale?: string | null; fetchImpl?: FetchLike } = {}): Promise<ActivePromotion[]> {
-  const { locale, fetchImpl = fetch } = options;
+export async function loadActivePromotions(options: { locale?: string | null; fetchImpl?: FetchLike; now?: number } = {}): Promise<ActivePromotion[]> {
+  const { locale, fetchImpl = fetch, now = Date.now() } = options;
   try {
     const urls = await resolvePromoteUrls(fetchImpl);
     const [flagsPayload, contentPayload] = await Promise.all([readJson(fetchImpl, urls.flagsUrl), readJson(fetchImpl, urls.contentUrl)]);
-    return selectActivePromotions(parseFlags(flagsPayload), parseContent(contentPayload), locale);
+    return selectActivePromotions(parseFlags(flagsPayload), parseContent(contentPayload), locale, now);
   } catch {
     return [];
   }
 }
 
-export async function loadFirstActivePromotion(options: { locale?: string | null; fetchImpl?: FetchLike } = {}): Promise<ActivePromotion | null> {
+export async function loadFirstActivePromotion(options: { locale?: string | null; fetchImpl?: FetchLike; now?: number } = {}): Promise<ActivePromotion | null> {
   return (await loadActivePromotions(options))[0] ?? null;
 }

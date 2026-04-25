@@ -1,21 +1,31 @@
 .promoteCard {
   position: fixed;
-  right: max(1rem, env(safe-area-inset-right));
+  inset-inline: 0;
   bottom: max(1rem, env(safe-area-inset-bottom));
   z-index: 70;
-  display: grid;
-  width: min(680px, calc(100vw - 2rem));
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 1rem;
+  pointer-events: none;
+}
+
+.promoteCard :global(.promote-card__inner) {
+  position: relative;
+  pointer-events: auto;
+  width: min(72rem, calc(100vw - 1rem));
+  margin-inline: auto;
+  overflow: hidden;
   border: 1px solid var(--adms-border-strong, rgba(148, 163, 184, 0.28));
   border-radius: 24px;
   background: color-mix(in oklab, var(--adms-surface, #111827) 88%, var(--adms-accent, #38bdf8) 12%);
-  padding: 1rem;
 }
+
+.promoteCard :global(.promote-card__surface) { appearance: none; display: grid; width: 100%; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1rem; border: 0; border-radius: inherit; background: transparent; color: inherit; cursor: pointer; padding: 1.1rem 3.8rem 0.95rem 1rem; text-align: left; }
+.promoteCard :global(.promote-card__surface:focus-visible),
+.promoteCard :global(.promote-card__close:focus-visible) { outline: 3px solid var(--adms-accent, #38bdf8); outline-offset: 4px; }
+.promoteCard :global(.promote-card__close) { position: absolute; inset-block-start: 0.7rem; inset-inline-end: 0.75rem; z-index: 2; display: inline-flex; align-items: center; justify-content: center; width: 2.2rem; height: 2.2rem; border: 1px solid var(--adms-border-strong, rgba(148, 163, 184, 0.28)); border-radius: 999px; background: rgba(15, 23, 42, 0.32); color: var(--adms-text, #f8fafc); cursor: pointer; }
 .promoteCard :global(.promote-card__badge) { border-radius: 999px; background: rgba(56, 189, 248, 0.14); color: var(--adms-accent, #38bdf8); font-weight: 700; padding: 0.45rem 0.75rem; }
-.promoteCard :global(.promote-card__title) { margin: 0; color: var(--adms-text, #f8fafc); font-size: 1.25rem; }
-.promoteCard :global(.promote-card__description) { margin: 0.25rem 0 0; color: var(--adms-muted, #94a3b8); line-height: 1.6; }
-.promoteCard :global(.promote-card__cta) { border-radius: 999px; border: 1px solid currentColor; color: var(--adms-text, #f8fafc); font-weight: 700; padding: 0.72rem 1rem; text-decoration: none; white-space: nowrap; }
-.promoteCard :global(.promote-card__cta:focus-visible) { outline: 3px solid var(--adms-accent, #38bdf8); outline-offset: 4px; }
-@media (max-width: 720px) { .promoteCard { right: 0.75rem; bottom: 0.75rem; width: calc(100vw - 1.5rem); grid-template-columns: 1fr; } .promoteCard :global(.promote-card__cta) { text-align: center; white-space: normal; } }
+.promoteCard :global(.promote-card__body) { min-width: 0; width: 100%; display: grid; grid-template-columns: auto minmax(13rem, 0.75fr) minmax(18rem, 1.15fr); align-items: center; gap: 1rem; }
+.promoteCard :global(.promote-card__title) { margin: 0; color: var(--adms-text, #f8fafc); font-size: 0.98rem; font-weight: 600; line-height: 1.34; }
+.promoteCard :global(.promote-card__description) { margin: 0; color: var(--adms-muted, #94a3b8); font-size: 0.98rem; font-weight: 600; line-height: 1.34; }
+.promoteCard :global(.promote-card__cta) { display: inline-flex; align-items: center; justify-content: center; min-height: 2.6rem; min-width: 7.5rem; border-radius: 999px; border: 1px solid currentColor; color: var(--adms-text, #f8fafc); font-size: 0.875rem; font-weight: 700; padding: 0 1rem; white-space: nowrap; }
+.promoteCard :global(.promote-card__surface:hover .promote-card__cta),
+.promoteCard :global(.promote-card__surface:focus-visible .promote-card__cta) { transform: translateX(2px); }
+@media (max-width: 720px) { .promoteCard :global(.promote-card__inner) { width: calc(100vw - 0.75rem); border-radius: 1rem; } .promoteCard :global(.promote-card__surface) { grid-template-columns: 1fr; padding: 1rem 3.45rem 0.85rem 0.85rem; } .promoteCard :global(.promote-card__body) { grid-template-columns: 1fr; } .promoteCard :global(.promote-card__cta) { text-align: center; white-space: normal; } }
