@@ -101,7 +101,7 @@ export function PromoteCard({
         <button type="button" className="promote-card__close" onClick={dismissPromotion} aria-label={closeLabel(locale)}>
           <span aria-hidden="true">×</span>
         </button>
-        <button type="button" className="promote-card__surface" onClick={openPromotion} aria-label={`${ctaLabel(locale)}: ${promotion.title}`}>
+        <button type="button" className="promote-card__surface" onClick={openPromotion} aria-label={`${promotion.ctaLabel}: ${promotion.title}`}>
           <span className="promote-card__body">
             <span className="promote-card__badge">{platformLabel(promotion.platform, locale)}</span>
             <span className="promote-card__title">{promotion.title}</span>
