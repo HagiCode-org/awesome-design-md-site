@@ -1,0 +1,53 @@
+---
+import DesignDetailPage from '@/components/gallery/DesignDetailPage.astro';
+import { supportedLocales, type SupportedLocale } from '@/config/site';
+import { getAwesomeDesignCatalog } from '@/lib/content/awesomeDesignCatalog';
+
+type LocalizedRouteLocale = Exclude<SupportedLocale, 'en'>;
+
+interface LocalizedDetailPageProps {
+  locale: LocalizedRouteLocale;
+  entry: Awaited<ReturnType<typeof getAwesomeDesignCatalog>>['entries'][number];
+  previous?: {
+    slug: string;
+    title: string;
+  };
+  next?: {
+    slug: string;
+    title: string;
+  };
+}
+
+export async function getStaticPaths() {
+  const catalog = await getAwesomeDesignCatalog();
+  const localizedLocales = supportedLocales.filter(
+    (locale): locale is LocalizedRouteLocale => locale !== 'en',
+  );
+
+  return localizedLocales.flatMap((locale) =>
+    catalog.entries.map((entry, index) => ({
+      params: { locale, slug: entry.slug },
+      props: {
+        locale,
+        entry,
+        previous: catalog.entries[index - 1]
+          ? {
+              slug: catalog.entries[index - 1].slug,
+              title: catalog.entries[index - 1].title,
+            }
+          : undefined,
+        next: catalog.entries[index + 1]
+          ? {
+              slug: catalog.entries[index + 1].slug,
+              title: catalog.entries[index + 1].title,
+            }
+          : undefined,
+      } satisfies LocalizedDetailPageProps,
+    })),
+  );
+}
+
+const { locale, entry, previous, next } = Astro.props as LocalizedDetailPageProps;
+---
+
+<DesignDetailPage locale={locale} entry={entry} previous={previous} next={next} />

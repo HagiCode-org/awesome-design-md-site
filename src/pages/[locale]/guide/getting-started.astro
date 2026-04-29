@@ -1,0 +1,47 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { supportedLocales, toLocalePath, type SupportedLocale } from '@/config/site';
+import { getGettingStartedGuideContent } from '@/lib/getting-started-guide';
+
+type LocalizedRouteLocale = Exclude<SupportedLocale, 'en'>;
+
+export function getStaticPaths() {
+  const localizedLocales = supportedLocales.filter(
+    (locale): locale is LocalizedRouteLocale => locale !== 'en',
+  );
+
+  return localizedLocales.map((locale) => ({
+    params: { locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props as { locale: LocalizedRouteLocale };
+const guide = getGettingStartedGuideContent(locale);
+---
+
+<BaseLayout
+  title={guide.title}
+  description={guide.description}
+  lang={locale}
+  currentPath={toLocalePath('/guide/getting-started', locale)}
+>
+  <div class="markdown-shell shell-panel">
+    <h1>{guide.heading}</h1>
+    <p>{guide.intro}</p>
+
+    {guide.sections.map((section) => (
+      <section>
+        <h2>{section.title}</h2>
+        <ul>
+          {section.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <h2>{guide.commandsTitle}</h2>
+    <pre><code>{guide.commands.join('\n')}</code></pre>
+  </div>
+</BaseLayout>

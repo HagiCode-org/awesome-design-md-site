@@ -1,8 +1,0 @@
----
-import GalleryHomePage from '@/components/gallery/GalleryHomePage.astro';
-import { getAwesomeDesignCatalog } from '@/lib/content/awesomeDesignCatalog';
-
-const catalog = await getAwesomeDesignCatalog();
----
-
-<GalleryHomePage locale="zh-CN" entries={catalog.entries} />

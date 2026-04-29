@@ -1,0 +1,32 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { getGettingStartedGuideContent } from '@/lib/getting-started-guide';
+
+const guide = getGettingStartedGuideContent('en');
+---
+
+<BaseLayout
+  title={guide.title}
+  description={guide.description}
+  lang="en"
+  currentPath="/guide/getting-started"
+>
+  <div class="markdown-shell shell-panel">
+    <h1>{guide.heading}</h1>
+    <p>{guide.intro}</p>
+
+    {guide.sections.map((section) => (
+      <section>
+        <h2>{section.title}</h2>
+        <ul>
+          {section.items.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </section>
+    ))}
+
+    <h2>{guide.commandsTitle}</h2>
+    <pre><code>{guide.commands.join('\n')}</code></pre>
+  </div>
+</BaseLayout>
