@@ -1,6 +1,16 @@
+import {
+  defaultLocale,
+  getLocaleResources,
+  getRouteLocaleMetadata,
+  interpolate,
+  isSupportedLocale,
+  supportedLocales,
+  type SupportedLocale,
+} from '@/i18n';
 import { resolveAwesomeDesignFooterSiteLinks } from '@/lib/footer-site-links';
 
-export type SupportedLocale = 'en' | 'zh-CN';
+export { defaultLocale, supportedLocales };
+export type { SupportedLocale };
 
 export interface NavItem {
   label: string;
@@ -33,6 +43,8 @@ export interface HomeContent {
 
 export interface LanguageLink extends NavItem {
   locale: SupportedLocale;
+  hreflang: string;
+  htmlLang: string;
 }
 
 export interface ShowcaseSlide {
@@ -44,391 +56,73 @@ export interface ShowcaseSlide {
 
 export interface HeroReadmeExcerpt {
   excerpt: string;
-  translation?: string;
+  translation: string;
 }
 
 export interface LocaleCopy {
-  chrome: {
-    brandSubtitle: string;
-    mobileBrandLabel: string;
-    skipToContent: string;
-    galleryLabel: string;
-    galleryCompactLabel: string;
-    siteRepoLabel: string;
-    sourceRepoLabel: string;
-    utilityLabel: string;
-    footerCopy: string;
-    languageEnglish: string;
-    languageEnglishCompact: string;
-    languageChinese: string;
-    languageChineseCompact: string;
-    themeLight: string;
-    themeLightCompact: string;
-    themeDark: string;
-    themeDarkCompact: string;
-    switchToLight: string;
-    switchToDark: string;
-  };
-  home: {
-    title: string;
-    heroEyebrow: string;
-    heroTitle: string;
-    heroLead: string;
-    heroReadmeKicker: string;
-    heroReadmeExcerpts: HeroReadmeExcerpt[];
-    showcaseEyebrow: string;
-    showcaseTitle: string;
-    showcaseLead: string;
-    showcaseCtaLabel: string;
-    showcaseCtaHref: string;
-    showcasePrev: string;
-    showcaseNext: string;
-    showcaseJumpLabel: string;
-    showcaseSlides: ShowcaseSlide[];
-    emptyKicker: string;
-    emptyTitle: string;
-    emptyCopy: string;
-  };
-  card: {
-    preview: string;
-    lightDark: string;
-    fallbackAware: string;
-  };
-  search: {
-    searchCatalog: string;
-    indexedNounSingular: string;
-    indexedNounPlural: string;
-    indexedSuffix: string;
-    resultNounSingular: string;
-    resultNounPlural: string;
-    resultPrefix: string;
-    note: string;
-    keywordLabel: string;
-    placeholder: string;
-    noMatchingTitle: string;
-    noMatchingCopy: string;
-    clearSearch: string;
-  };
-  detail: {
-    pageTitleSuffix: string;
-    backToGallery: string;
-    kicker: string;
-    slugPrefix: string;
-    readmeRendered: string;
-    designRendered: string;
-  };
-  preview: {
-    kicker: string;
-    heading: string;
-    light: string;
-    dark: string;
-    openDarkTitle: string;
-    fallbackDarkTitle: string;
-    bothAvailableNote: string;
-    fallbackNote: string;
-  };
-  documents: {
-    kicker: string;
-    heading: string;
-    readme: string;
-    design: string;
-    copyDesign: string;
-    copyDesignTitle: string;
-    downloadDesign: string;
-    downloadDesignTitle: string;
-    copied: string;
-    copyFailed: string;
-  };
-  adjacent: {
-    previous: string;
-    next: string;
+  chrome: ReturnType<typeof getLocaleResources>['chrome'];
+  common: ReturnType<typeof getLocaleResources>['common'];
+  home: ReturnType<typeof getLocaleResources>['gallery']['home'];
+  card: ReturnType<typeof getLocaleResources>['gallery']['card'];
+  search: ReturnType<typeof getLocaleResources>['gallery']['search'];
+  detail: ReturnType<typeof getLocaleResources>['gallery']['detail'];
+  preview: ReturnType<typeof getLocaleResources>['gallery']['preview'];
+  documents: ReturnType<typeof getLocaleResources>['gallery']['documents'];
+  adjacent: ReturnType<typeof getLocaleResources>['gallery']['adjacent'];
+  promotion: ReturnType<typeof getLocaleResources>['promotion'];
+}
+
+function buildLocaleCopy(locale: SupportedLocale): LocaleCopy {
+  const resources = getLocaleResources(locale);
+
+  return {
+    chrome: resources.chrome,
+    common: resources.common,
+    home: resources.gallery.home,
+    card: resources.gallery.card,
+    search: resources.gallery.search,
+    detail: resources.gallery.detail,
+    preview: resources.gallery.preview,
+    documents: resources.gallery.documents,
+    adjacent: resources.gallery.adjacent,
+    promotion: resources.promotion,
   };
 }
 
-export const siteMeta = {
-  name: 'Awesome Design MD Gallery',
-  shortName: 'ADMG',
-  repository: 'https://github.com/HagiCode-org/awesome-design-md-site',
-  sourceRepository: 'https://github.com/VoltAgent/awesome-design-md',
-  hagicodeWebsite: 'https://hagicode.com',
-  defaultSocialImagePath: '/img/hagicode/light-main.png',
-};
+export const localeCopy = Object.fromEntries(
+  supportedLocales.map((locale) => [locale, buildLocaleCopy(locale)]),
+) as Record<SupportedLocale, LocaleCopy>;
 
-export const localeCopy: Record<SupportedLocale, LocaleCopy> = {
-  en: {
-    chrome: {
-      brandSubtitle: 'Powered by HagiCode',
-      mobileBrandLabel: siteMeta.shortName,
-      skipToContent: 'Skip to content',
-      galleryLabel: 'Gallery',
-      galleryCompactLabel: 'Gallery',
-      siteRepoLabel: 'Site Repo',
-      sourceRepoLabel: 'Source Repo',
-      utilityLabel: 'Repository links',
-      footerCopy:
-        'Static gallery for README, DESIGN, and live preview assets from the upstream source.',
-      languageEnglish: 'English',
-      languageEnglishCompact: 'EN',
-      languageChinese: '简体中文',
-      languageChineseCompact: '中',
-      themeLight: 'Light',
-      themeLightCompact: 'LT',
-      themeDark: 'Dark',
-      themeDarkCompact: 'DK',
-      switchToLight: 'Switch to light mode',
-      switchToDark: 'Switch to dark mode',
-    },
-    home: {
-      title: 'Awesome Design MD Gallery',
-      heroEyebrow: 'Design system gallery',
-      heroTitle: 'Awesome Design',
-      heroLead:
-        'A gallery site for browsing design systems through live previews, README references, and DESIGN.md documentation. The experience and presentation of this site were designed and built with HagiCode.',
-      heroReadmeKicker: 'From the upstream README',
-      heroReadmeExcerpts: [
-        {
-          excerpt:
-            'Curated collection of DESIGN.md files inspired by developer focused websites.',
-        },
-        {
-          excerpt:
-            'Copy a DESIGN.md into your project, tell your AI agent "build me a page that looks like this" and get pixel-perfect UI that actually matches.',
-        },
-        {
-          excerpt:
-            "It's just a markdown file. No Figma exports, no JSON schemas, no special tooling.",
-        },
-      ],
-      showcaseEyebrow: 'Built with HagiCode',
-      showcaseTitle: 'Hagicode',
-      showcaseLead:
-        'OpenSpec workflow, multi-agent execution, and Hero Dungeon interfaces are the product ideas reused to build this gallery shell.',
-      showcaseCtaLabel: 'Visit HagiCode',
-      showcaseCtaHref: siteMeta.hagicodeWebsite,
-      showcasePrev: 'Previous slide',
-      showcaseNext: 'Next slide',
-      showcaseJumpLabel: 'Go to slide',
-      showcaseSlides: [
-        {
-          title: 'OpenSpec workflow',
-          description:
-            'Turn ideas into proposal, design, tasks, implementation, and archive in one continuous track.',
-          imageSrc: '/img/hagicode/light-main.png',
-          imageAlt: 'HagiCode light theme main interface screenshot',
-        },
-        {
-          title: 'Multi-agent workspace',
-          description:
-            'Different agents can draft, fix, and review in parallel instead of waiting on one serial thread.',
-          imageSrc: '/img/hagicode/multi-agent-workspace.svg',
-          imageAlt: 'HagiCode multi-agent workspace illustration',
-        },
-        {
-          title: 'Hero Dungeon view',
-          description:
-            'Dungeons, captains, and visual workspaces make long-running AI coding sessions easier to coordinate.',
-          imageSrc: '/img/hagicode/hero-dungeon-workspace.svg',
-          imageAlt: 'HagiCode Hero Dungeon workspace illustration',
-        },
-      ],
-      emptyKicker: 'No designs available',
-      emptyTitle: 'The gallery is ready, but the source content is missing.',
-      emptyCopy:
-        'Initialize the submodule with `git submodule update --init --recursive`, then rebuild the site.',
-    },
-    card: {
-      preview: 'Preview',
-      lightDark: 'Light + dark',
-      fallbackAware: 'Fallback aware',
-    },
-    search: {
-      searchCatalog: 'Search the catalog',
-      indexedNounSingular: 'design',
-      indexedNounPlural: 'designs',
-      indexedSuffix: 'indexed',
-      resultNounSingular: 'result',
-      resultNounPlural: 'results',
-      resultPrefix: 'for',
-      note: 'Title, summary, README, and DESIGN text are indexed.',
-      keywordLabel: 'Keyword',
-      placeholder: 'Search Stripe, docs, fintech, gradients...',
-      noMatchingTitle: 'No matching designs',
-      noMatchingCopy: 'Clear the current query to restore the full gallery.',
-      clearSearch: 'Clear search',
-    },
-    detail: {
-      pageTitleSuffix: 'Awesome Design MD Gallery',
-      backToGallery: 'Back to gallery',
-      kicker: 'Design detail',
-      slugPrefix: 'Slug:',
-      readmeRendered: 'README rendered',
-      designRendered: 'DESIGN rendered',
-    },
-    preview: {
-      kicker: 'Live preview',
-      heading: 'Theme-aware preview frame',
-      light: 'Light',
-      dark: 'Dark',
-      openDarkTitle: 'Open dark preview',
-      fallbackDarkTitle: 'Dark uses the available preview fallback',
-      bothAvailableNote: 'Both light and dark preview assets are available.',
-      fallbackNote: 'Dark mode falls back to the available preview asset for this entry.',
-    },
-    documents: {
-      kicker: 'Documentation',
-      heading: 'README and DESIGN in one place',
-      readme: 'README',
-      design: 'DESIGN',
-      copyDesign: 'Copy DESIGN.md',
-      copyDesignTitle: 'Copy raw DESIGN.md markdown',
-      downloadDesign: 'Download DESIGN.md',
-      downloadDesignTitle: 'Download the canonical DESIGN.md file',
-      copied: 'Copied',
-      copyFailed: 'Copy failed',
-    },
-    adjacent: {
-      previous: 'Previous',
-      next: 'Next',
-    },
-  },
-  'zh-CN': {
-    chrome: {
-      brandSubtitle: 'Powered by HagiCode',
-      mobileBrandLabel: siteMeta.shortName,
-      skipToContent: '跳转到正文',
-      galleryLabel: '画廊',
-      galleryCompactLabel: '画廊',
-      siteRepoLabel: '站点仓库',
-      sourceRepoLabel: '上游仓库',
-      utilityLabel: '仓库链接',
-      footerCopy: '用于浏览上游 README、DESIGN 与实时预览资源的静态画廊站点。',
-      languageEnglish: 'English',
-      languageEnglishCompact: 'EN',
-      languageChinese: '简体中文',
-      languageChineseCompact: '中',
-      themeLight: '浅色',
-      themeLightCompact: '浅',
-      themeDark: '深色',
-      themeDarkCompact: '深',
-      switchToLight: '切换到浅色模式',
-      switchToDark: '切换到深色模式',
-    },
-    home: {
-      title: 'Awesome Design MD 画廊',
-      heroEyebrow: '设计系统画廊',
-      heroTitle: 'Awesome Design',
-      heroLead:
-        '这是一个用于浏览设计系统的画廊站点，支持直接查看实时预览、README 参考内容与 DESIGN.md 文档。当前站点本身的设计与构建，也由 HagiCode 完成。',
-      heroReadmeKicker: '摘自上游 README',
-      heroReadmeExcerpts: [
-        {
-          excerpt:
-            'Curated collection of DESIGN.md files inspired by developer focused websites.',
-          translation: '收录了一组受开发者网站启发的 DESIGN.md 精选集合。',
-        },
-        {
-          excerpt:
-            'Copy a DESIGN.md into your project, tell your AI agent "build me a page that looks like this" and get pixel-perfect UI that actually matches.',
-          translation:
-            '把一个 DESIGN.md 放进你的项目，再告诉 AI Agent “按这个风格给我做一个页面”，就能更直接地生成贴近目标设计的界面。',
-        },
-        {
-          excerpt:
-            "It's just a markdown file. No Figma exports, no JSON schemas, no special tooling.",
-          translation:
-            '它本质上只是一个 Markdown 文件，不依赖 Figma 导出、JSON Schema，或额外专用工具。',
-        },
-      ],
-      showcaseEyebrow: '由 HagiCode 构建',
-      showcaseTitle: 'Hagicode',
-      showcaseLead:
-        '这个画廊壳层沿用了 HagiCode 的 OpenSpec 工作流、多 Agent 并行执行，以及 Hero Dungeon 可视化交互思路。',
-      showcaseCtaLabel: '访问 HagiCode',
-      showcaseCtaHref: siteMeta.hagicodeWebsite,
-      showcasePrev: '上一张',
-      showcaseNext: '下一张',
-      showcaseJumpLabel: '跳转到第',
-      showcaseSlides: [
-        {
-          title: 'OpenSpec 工作流',
-          description: '把想法、提案、设计、任务、实现与归档放进同一条连续链路里。',
-          imageSrc: '/img/hagicode/light-main.png',
-          imageAlt: 'HagiCode 浅色主题主界面截图',
-        },
-        {
-          title: '多 Agent 工作台',
-          description: '不同 Agent 可并行起草、修复与审阅，不再被单线程串行等待卡住。',
-          imageSrc: '/img/hagicode/multi-agent-workspace.svg',
-          imageAlt: 'HagiCode 多 Agent 工作台插画',
-        },
-        {
-          title: 'Hero Dungeon 视图',
-          description: '用地牢、队长与可视化工作台组织长时间运行的 AI 编码协作。',
-          imageSrc: '/img/hagicode/hero-dungeon-workspace.svg',
-          imageAlt: 'HagiCode Hero Dungeon 工作台插画',
-        },
-      ],
-      emptyKicker: '暂无可用设计',
-      emptyTitle: '画廊壳层已就绪，但上游内容尚未初始化。',
-      emptyCopy:
-        '先执行 `git submodule update --init --recursive` 初始化子模块，再重新构建站点。',
-    },
-    card: {
-      preview: '预览',
-      lightDark: '浅色 + 深色',
-      fallbackAware: '含回退',
-    },
-    search: {
-      searchCatalog: '搜索画廊',
-      indexedNounSingular: '个设计',
-      indexedNounPlural: '个设计',
-      indexedSuffix: '已收录',
-      resultNounSingular: '个结果',
-      resultNounPlural: '个结果',
-      resultPrefix: '匹配',
-      note: '标题、摘要、README 与 DESIGN 正文都会参与搜索。',
-      keywordLabel: '关键词',
-      placeholder: '搜索 Stripe、文档、金融科技、渐变…',
-      noMatchingTitle: '没有匹配结果',
-      noMatchingCopy: '清空当前关键词，即可恢复完整画廊。',
-      clearSearch: '清空搜索',
-    },
-    detail: {
-      pageTitleSuffix: 'Awesome Design MD 画廊',
-      backToGallery: '返回画廊',
-      kicker: '设计详情',
-      slugPrefix: '标识：',
-      readmeRendered: 'README 已渲染',
-      designRendered: 'DESIGN 已渲染',
-    },
-    preview: {
-      kicker: '实时预览',
-      heading: '预览效果',
-      light: '浅色',
-      dark: '深色',
-      openDarkTitle: '打开深色预览',
-      fallbackDarkTitle: '深色模式将回退到现有预览',
-      bothAvailableNote: '此条目同时提供浅色与深色预览资源。',
-      fallbackNote: '此条目的深色模式会回退到当前可用的预览资源。',
-    },
-    documents: {
-      kicker: '文档',
-      heading: 'README & DESIGN',
-      readme: 'README',
-      design: 'DESIGN',
-      copyDesign: '复制 DESIGN.md',
-      copyDesignTitle: '复制原始 DESIGN.md Markdown',
-      downloadDesign: '下载 DESIGN.md',
-      downloadDesignTitle: '下载站内 canonical 的 DESIGN.md 文件',
-      copied: '已复制',
-      copyFailed: '复制失败',
-    },
-    adjacent: {
-      previous: '上一个',
-      next: '下一个',
-    },
-  },
-};
+export function getSiteMeta(locale: SupportedLocale) {
+  return getLocaleResources(locale).common.site;
+}
+
+export const siteMeta = getSiteMeta(defaultLocale);
+
+export function resolveSupportedLocale(locale: string | null | undefined): SupportedLocale {
+  if (locale && isSupportedLocale(locale)) {
+    return locale;
+  }
+
+  const normalized = locale?.toLowerCase() ?? '';
+  if (normalized.startsWith('zh-hant') || normalized.startsWith('zh-tw') || normalized.startsWith('zh-hk')) {
+    return 'zh-Hant';
+  }
+
+  if (normalized.startsWith('zh')) {
+    return 'zh-CN';
+  }
+
+  if (normalized.startsWith('ja')) return 'ja-JP';
+  if (normalized.startsWith('ko')) return 'ko-KR';
+  if (normalized.startsWith('de')) return 'de-DE';
+  if (normalized.startsWith('fr')) return 'fr-FR';
+  if (normalized.startsWith('es')) return 'es-ES';
+  if (normalized.startsWith('pt')) return 'pt-BR';
+  if (normalized.startsWith('ru')) return 'ru-RU';
+
+  return defaultLocale;
+}
 
 export function getGalleryNav(locale: SupportedLocale): NavItem[] {
   const chrome = localeCopy[locale].chrome;
@@ -468,68 +162,102 @@ export function getFooterMetaLinks(locale: SupportedLocale): NavItem[] {
 }
 
 export function getLanguageLinks(currentPath: string): LanguageLink[] {
-  return [
-    {
-      label: localeCopy.en.chrome.languageEnglish,
-      shortLabel: localeCopy.en.chrome.languageEnglishCompact,
-      href: toLocalePath(currentPath, 'en'),
-      locale: 'en',
-    },
-    {
-      label: localeCopy['zh-CN'].chrome.languageChinese,
-      shortLabel: localeCopy['zh-CN'].chrome.languageChineseCompact,
-      href: toLocalePath(currentPath, 'zh-CN'),
-      locale: 'zh-CN',
-    },
-  ];
+  return supportedLocales.map((locale) => {
+    const metadata = getRouteLocaleMetadata(locale);
+
+    return {
+      label: metadata.label,
+      shortLabel: metadata.compactLabel,
+      href: toLocalePath(currentPath, locale),
+      locale,
+      hreflang: metadata.hreflang,
+      htmlLang: metadata.htmlLang,
+    };
+  });
 }
 
 export function getLocaleHomePath(locale: SupportedLocale): string {
-  return locale === 'en' ? '/' : '/zh-CN/';
+  return locale === defaultLocale ? '/' : `/${locale}/`;
 }
 
 export function toLocalePath(currentPath: string, locale: SupportedLocale): string {
   const basePath = stripLocalePrefix(normalizeInternalPath(currentPath));
 
-  if (locale === 'en') {
+  if (locale === defaultLocale) {
     return basePath;
   }
 
-  return basePath === '/' ? '/zh-CN/' : `/zh-CN${basePath}`;
+  return basePath === '/' ? `/${locale}/` : `/${locale}${basePath}`;
 }
 
 export function stripLocalePrefix(path: string): string {
   const normalized = normalizeInternalPath(path);
 
-  if (normalized === '/zh-CN' || normalized === '/en') {
-    return '/';
+  if (normalized === `/${defaultLocale}` || normalized.startsWith(`/${defaultLocale}/`)) {
+    return normalized === `/${defaultLocale}` ? '/' : normalized.slice(`/${defaultLocale}`.length) || '/';
   }
 
-  if (normalized.startsWith('/zh-CN/')) {
-    return normalized.slice('/zh-CN'.length) || '/';
-  }
+  for (const locale of supportedLocales) {
+    if (locale === defaultLocale) continue;
+    const prefix = `/${locale}`;
 
-  if (normalized.startsWith('/en/')) {
-    return normalized.slice('/en'.length) || '/';
+    if (normalized === prefix) {
+      return '/';
+    }
+
+    if (normalized.startsWith(`${prefix}/`)) {
+      return normalized.slice(prefix.length) || '/';
+    }
   }
 
   return normalized;
 }
 
 export function getHomeDescription(locale: SupportedLocale, count: number): string {
-  return locale === 'en'
-    ? count > 0
-      ? `${count} design references indexed from the awesome-design-md source repository.`
-      : 'A static gallery for awesome-design-md previews, README files, and DESIGN documentation.'
-    : count > 0
-      ? `已从 awesome-design-md 上游仓库收录 ${count} 个设计参考条目。`
-      : '一个用于浏览 awesome-design-md 预览、README 与 DESIGN 文档的静态画廊站点。';
+  const templates = getLocaleResources(locale).common.homeDescription;
+  const template = count > 0 ? templates.indexed : templates.empty;
+
+  return interpolate(template, { count });
 }
 
 export function getDetailDescription(locale: SupportedLocale, title: string): string {
-  return locale === 'en'
-    ? `${title} preview, README, and DESIGN documentation.`
-    : `${title} 的预览、README 与 DESIGN 文档详情。`;
+  return interpolate(getLocaleResources(locale).common.detailDescription, { title });
+}
+
+export function getSearchSummary(locale: SupportedLocale, query: string, count: number): string {
+  const searchCopy = getLocaleResources(locale).gallery.search;
+  const trimmedQuery = query.trim();
+  const hasQuery = trimmedQuery.length > 0;
+  const noun = hasQuery
+    ? count === 1
+      ? searchCopy.resultNounSingular
+      : searchCopy.resultNounPlural
+    : count === 1
+      ? searchCopy.indexedNounSingular
+      : searchCopy.indexedNounPlural;
+  const template = hasQuery ? searchCopy.summaryResults : searchCopy.summaryIndexed;
+
+  return interpolate(template, {
+    count,
+    noun,
+    query: trimmedQuery,
+  });
+}
+
+export function getPromotionCopy(locale: string | null | undefined) {
+  return getLocaleResources(resolveSupportedLocale(locale)).promotion;
+}
+
+export function getSeoLocaleMetadata(locale: SupportedLocale) {
+  return getRouteLocaleMetadata(locale);
+}
+
+export function getAlternateOgLocales(locale: SupportedLocale): string[] {
+  const currentOgLocale = getRouteLocaleMetadata(locale).ogLocale;
+
+  return supportedLocales
+    .map((item) => getRouteLocaleMetadata(item).ogLocale)
+    .filter((ogLocale) => ogLocale !== currentOgLocale);
 }
 
 export function toAbsoluteSiteUrl(path: string, site?: URL | string): string {
