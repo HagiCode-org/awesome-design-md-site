@@ -218,7 +218,7 @@ pre {
 }
 
 .header-actions,
-.language-links {
+.language-select-shell {
   display: inline-flex;
   align-items: center;
   gap: 0.65rem;
@@ -278,6 +278,47 @@ pre {
   letter-spacing: 0.12em;
 }
 
+.language-select-shell {
+  position: relative;
+  min-width: clamp(7rem, 10vw, 9.5rem);
+}
+
+.language-select {
+  appearance: none;
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--line-main);
+  border-radius: 4px;
+  padding: 0.72rem 2rem 0.72rem 0.9rem;
+  background: transparent;
+  color: var(--text-main);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.language-select-icon {
+  position: absolute;
+  top: 50%;
+  right: 0.8rem;
+  transform: translateY(-50%);
+  color: var(--text-soft);
+  font-size: 0.78rem;
+  pointer-events: none;
+}
+
+.language-select option {
+  color: #111111;
+}
+
 .site-nav-link:hover,
 .theme-toggle:hover,
 .language-link:hover,
@@ -295,7 +336,15 @@ pre {
   color: var(--accent-primary);
 }
 
+.language-select:hover,
+.language-select-shell:hover .language-select,
+.language-select-shell:hover .language-select-icon {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
 .site-nav-link.active,
+.gallery-showcase-nav.is-active,
 .preview-toggle.is-active,
 .detail-tab.is-active {
   background: var(--accent-primary);
@@ -850,6 +899,7 @@ main {
 .detail-copy-button:focus-visible,
 .theme-toggle:focus-visible,
 .language-link:focus-visible,
+.language-select:focus-visible,
 .site-nav-link:focus-visible,
 .header-utility-trigger:focus-visible {
   outline: 2px solid var(--accent-primary);
@@ -1153,6 +1203,7 @@ main {
   }
 
   .language-link,
+  .language-select,
   .theme-toggle,
   .site-nav-link,
   .header-utility-trigger {
@@ -1218,6 +1269,7 @@ main {
 
   .brand-mark,
   .header-actions,
+  .language-select-shell,
   .language-links,
   .site-nav-primary {
     min-width: 0;
@@ -1253,11 +1305,12 @@ main {
     flex-wrap: nowrap;
   }
 
-  .language-links {
-    gap: 0.35rem;
+  .language-select-shell {
+    min-width: 5.35rem;
   }
 
   .language-link,
+  .language-select,
   .theme-toggle,
   .site-nav-link,
   .header-utility-trigger {
@@ -1265,6 +1318,15 @@ main {
     min-height: 44px;
     padding: 0.6rem 0.72rem;
     letter-spacing: 0.08em;
+  }
+
+  .language-select {
+    padding-right: 1.7rem;
+  }
+
+  .language-select-icon {
+    right: 0.62rem;
+    font-size: 0.72rem;
   }
 
   .theme-toggle,

@@ -46,9 +46,68 @@ npm run dev
 
 默认端口为 `4321`。可用 `PORT_WEBSITE` 覆盖。
 
+## hagi18n 维护
+
+站点壳层的第一方 UI 文案与语言元数据现在由仓库内的 `@hagicode/hagi18n` 和 `hagi18n.yaml` 管理，语言范围与 Desktop 对齐：
+
+- 默认源语言：`en-US`
+- 目标语言：`zh-CN`、`zh-Hant`、`ja-JP`、`ko-KR`、`de-DE`、`fr-FR`、`es-ES`、`pt-BR`、`ru-RU`
+- YAML 源目录：`src/i18n/locales/<locale>/`
+- 运行时生成资源：`src/i18n/generated/site-locale-resources.ts`
+
+先确认本地 CLI 可用：
+
+```bash
+npx hagi18n info
+```
+
+常用维护命令：
+
+```bash
+npm run i18n:audit
+npm run i18n:doctor
+npm run i18n:generate
+npm run i18n:check
+```
+
+建议流程：
+
+1. 修改 `src/i18n/locales/<locale>/*.yml`
+2. 先运行 `npm run i18n:audit` 或 `npm run i18n:doctor`
+3. 再运行 `npm run i18n:generate`
+4. 最后运行 `npm run i18n:check`、`npm test`、`npm run typecheck`
+
+### sync / prune 约定
+
+`sync` 和 `prune` 默认都只做预览，不会改动源文件；只有显式 `:write` 变体才允许写回：
+
+```bash
+npm run i18n:sync
+npm run i18n:sync:write
+npm run i18n:prune
+npm run i18n:prune:write
+```
+
+### 翻译边界
+
+hagi18n 只负责第一方站点 UI 字符串与语言元数据，例如：
+
+- 页头、页脚、语言切换、SEO 语言元数据
+- 画廊搜索、卡片标签、详情页动作、推广回退文案
+- React islands 使用的交互标签
+
+以下内容仍然属于画廊内容源，不进入 `src/i18n/locales`：
+
+- `vendor/awesome-design-md/**/README.md`
+- `vendor/awesome-design-md/**/DESIGN.md`
+- `vendor/awesome-design-md/**/preview*.html`
+
+生成后的 `src/i18n/generated/site-locale-resources.ts` 已纳入版本控制，YAML 源变更后应一并刷新并提交。
+
 ## 验证命令
 
 ```bash
+npm run i18n:check
 npm test
 npm run typecheck
 SITE_URL=https://your-domain.example npm run build
@@ -84,7 +143,8 @@ SITE_URL=https://your-domain.example npm run build
 当上游新增或更新设计条目时：
 
 1. 同步子模块
-2. 运行 `npm test`
-3. 运行 `npm run typecheck`
-4. 运行 `npm run build`
-5. 提交 `.gitmodules`、submodule gitlink、站点代码和锁文件
+2. 如有第一方 UI 文案变更，先运行 `npm run i18n:check`
+3. 运行 `npm test`
+4. 运行 `npm run typecheck`
+5. 运行 `npm run build`
+6. 提交 `.gitmodules`、submodule gitlink、站点代码、生成的 i18n 资源和锁文件
