@@ -1,0 +1,54 @@
+localesRoot: src/i18n/locales
+repoRoot: .
+baseLocale: en-US
+targetLocales:
+  - zh-CN
+  - zh-Hant
+  - ja-JP
+  - ko-KR
+  - de-DE
+  - fr-FR
+  - es-ES
+  - pt-BR
+  - ru-RU
+doctor:
+  excludedDirectories:
+    - .astro
+    - .git
+    - coverage
+    - dist
+    - node_modules
+    - public
+  excludedPathPrefixes:
+    - src/i18n/locales/
+    - src/i18n/generated/
+    - vendor/awesome-design-md/
+  textFileExtensions:
+    - .astro
+    - .cjs
+    - .js
+    - .jsx
+    - .json
+    - .md
+    - .mjs
+    - .ts
+    - .tsx
+    - .yaml
+    - .yml
+  allowlist:
+    legacy-locale-copy-source: []
+    legacy-promotion-fallback:
+      - hagi18n.yaml
+      - src/components/promote/PromoteCard.test.tsx
+      - src/lib/promote-loader.test.ts
+    legacy-route-locale-pair: []
+  scanRules:
+    - id: legacy-locale-copy-source
+      message: Locale UI copy must come from generated hagi18n resources, not a hand-written localeCopy object.
+      pattern: "localeCopy\\s*[:=]\\s*\\{"
+    - id: legacy-promotion-fallback
+      message: Promotion UI fallback labels must come from generated hagi18n promotion resources.
+      pattern: "立即前往|关闭推广信息|Dismiss promotion|Promoted"
+    - id: legacy-route-locale-pair
+      message: Route locale unions must use the full Desktop-equivalent language catalog.
+      pattern: "['\"]en['\"]\\s*\\|\\s*['\"]zh-CN['\"]"
