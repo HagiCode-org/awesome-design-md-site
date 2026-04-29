@@ -5,15 +5,17 @@ interface Props {
   copy: string;
   links: NavItem[];
   metaLinks: NavItem[];
+  siteName: string;
+  directoryLabel: string;
 }
 
-const { copy, links, metaLinks } = Astro.props;
+const { copy, links, metaLinks, siteName, directoryLabel } = Astro.props;
 ---
 
 <footer class="site-footer">
   <div class="container shell-panel footer-panel">
     <div class="footer-brand-column">
-      <p class="footer-title">Awesome Design MD Gallery</p>
+      <p class="footer-title">{siteName}</p>
       <p class="footer-copy">{copy}</p>
       <div class="footer-meta-links">
         {metaLinks.map((item) => {
@@ -33,7 +35,7 @@ const { copy, links, metaLinks } = Astro.props;
       </div>
     </div>
     <div class="footer-directory">
-      <p class="footer-section-kicker">Related sites</p>
+      <p class="footer-section-kicker">{directoryLabel}</p>
       <div class="footer-site-grid">
       {links.map((item) => {
         const external = item.href.startsWith('http');

@@ -3,7 +3,6 @@ import ThemeToggle from '@/components/theme/ThemeToggle';
 import {
   getLocaleHomePath,
   localeCopy,
-  siteMeta,
   type LanguageLink,
   type NavItem,
   type SupportedLocale,
@@ -19,7 +18,9 @@ interface Props {
 
 const { nav, lang = 'en', currentPath = '/', brandSubtitle, languageLinks } = Astro.props;
 const homeHref = getLocaleHomePath(lang);
-const chromeCopy = localeCopy[lang].chrome;
+const copy = localeCopy[lang];
+const chromeCopy = copy.chrome;
+const siteName = copy.common.site.name;
 const primaryNav = nav.filter((item) => item.group !== 'repo');
 const repoNav = nav.filter((item) => item.group === 'repo');
 ---
@@ -29,13 +30,13 @@ const repoNav = nav.filter((item) => item.group === 'repo');
     <a class="brand-mark" href={homeHref}>
       <img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32" />
       <span class="brand-copy">
-        <strong class="brand-copy-full">{siteMeta.name}</strong>
+        <strong class="brand-copy-full">{siteName}</strong>
         <strong class="brand-copy-compact">{chromeCopy.mobileBrandLabel}</strong>
         <small>{brandSubtitle}</small>
       </span>
     </a>
 
-    <nav class="site-nav site-nav-primary" aria-label="Primary">
+    <nav class="site-nav site-nav-primary" aria-label={chromeCopy.primaryNavigationLabel}>
       {primaryNav.map((item) => {
         const active = item.href === currentPath;
         const external = item.href.startsWith('http');
@@ -65,20 +66,24 @@ const repoNav = nav.filter((item) => item.group === 'repo');
     </nav>
 
     <div class="header-actions">
-      <div class="language-links" aria-label="Language switcher">
-        {languageLinks.map((item) => (
-          <a
-            href={item.href}
-            class:list={['language-link', { active: item.locale === lang }]}
-            hreflang={item.locale}
-            lang={item.locale}
-          >
-            <span class="language-link-label language-link-label-full">{item.label}</span>
-            <span class="language-link-label language-link-label-compact">
-              {item.shortLabel ?? item.label}
-            </span>
-          </a>
-        ))}
+      <div class="language-select-shell">
+        <select
+          class="language-select"
+          name="locale"
+          aria-label={chromeCopy.languageSwitcherLabel}
+          data-language-select
+        >
+          {languageLinks.map((item) => (
+            <option
+              value={item.href}
+              selected={item.locale === lang}
+              lang={item.htmlLang}
+            >
+              {item.label}
+            </option>
+          ))}
+        </select>
+        <span class="language-select-icon" aria-hidden="true">▾</span>
       </div>
 
       <ThemeToggle locale={lang} client:load />
@@ -100,3 +105,26 @@ const repoNav = nav.filter((item) => item.group === 'repo');
     </details>
   </div>
 </header>
+
+<script is:inline>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script>

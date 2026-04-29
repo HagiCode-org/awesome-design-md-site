@@ -1,6 +1,7 @@
 ---
 import type { AwesomeDesignEntry } from '@/lib/content/awesomeDesignCatalog';
-import { toLocalePath, type SupportedLocale } from '@/config/site';
+import { interpolate } from '@/i18n';
+import { localeCopy, toLocalePath, type SupportedLocale } from '@/config/site';
 
 interface Props {
   entry: AwesomeDesignEntry;
@@ -9,8 +10,8 @@ interface Props {
 
 const { entry, locale = 'en' } = Astro.props;
 const href = toLocalePath(`/designs/${entry.slug}/`, locale);
-const ariaLabel =
-  locale === 'en' ? `Open ${entry.title} details` : `打开 ${entry.title} 的详情`;
+const copy = localeCopy[locale];
+const ariaLabel = interpolate(copy.common.card.openDetails, { title: entry.title });
 ---
 
 <a
@@ -35,6 +36,12 @@ const ariaLabel =
   </div>
 
   <div class="design-card-body">
+    <div class="design-card-topline">
+      <span>{copy.card.preview}</span>
+    </div>
     <h2>{entry.title}</h2>
+    <div class="design-card-tags">
+      <span>{entry.preview.hasDedicatedDark ? copy.card.lightDark : copy.card.fallbackAware}</span>
+    </div>
   </div>
 </a>

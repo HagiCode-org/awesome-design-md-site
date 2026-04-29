@@ -8,9 +8,11 @@ import {
   getFooterLinks,
   getFooterMetaLinks,
   getGalleryNav,
+  getAlternateOgLocales,
   getLanguageLinks,
+  getSeoLocaleMetadata,
   localeCopy,
-  siteMeta,
+  getSiteMeta,
   toAbsoluteSiteUrl,
   type SupportedLocale,
 } from '@/config/site';
@@ -32,7 +34,7 @@ const {
   lang = 'en',
   nav = getGalleryNav(lang),
   currentPath = '/',
-  imagePath = siteMeta.defaultSocialImagePath,
+  imagePath = getSiteMeta(lang).defaultSocialImagePath,
   imageAlt = title,
   structuredData,
 } = Astro.props;
@@ -40,6 +42,9 @@ const {
 const siteUrl = Astro.site ?? new URL('https://design.hagicode.com');
 const canonicalUrl = toAbsoluteSiteUrl(currentPath, siteUrl);
 const chromeCopy = localeCopy[lang].chrome;
+const commonCopy = localeCopy[lang].common;
+const siteMeta = getSiteMeta(lang);
+const seoLocale = getSeoLocaleMetadata(lang);
 const languageLinks = getLanguageLinks(currentPath);
 const alternateLanguageLinks = languageLinks.map((item) => ({
   ...item,
@@ -49,8 +54,8 @@ const footerLinks = getFooterLinks(lang);
 const footerMetaLinks = getFooterMetaLinks(lang);
 const xDefaultHref =
   alternateLanguageLinks.find((item) => item.locale === 'en')?.href ?? canonicalUrl;
-const ogLocale = lang === 'zh-CN' ? 'zh_CN' : 'en_US';
-const alternateOgLocales = ['en_US', 'zh_CN'].filter((locale) => locale !== ogLocale);
+const ogLocale = seoLocale.ogLocale;
+const alternateOgLocales = getAlternateOgLocales(lang);
 const socialImageUrl = toAbsoluteSiteUrl(imagePath, siteUrl);
 const structuredDataItems = Array.isArray(structuredData)
   ? structuredData
@@ -63,7 +68,7 @@ const pageStructuredData = {
   name: title,
   description,
   url: canonicalUrl,
-  inLanguage: lang,
+  inLanguage: seoLocale.htmlLang,
   image: socialImageUrl,
   isPartOf: {
     '@type': 'WebSite',
@@ -74,7 +79,7 @@ const pageStructuredData = {
 ---
 
 <!doctype html>
-<html lang={lang} data-theme="dark">
+<html lang={seoLocale.htmlLang} dir={seoLocale.direction} data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -88,7 +93,7 @@ const pageStructuredData = {
     <link rel="stylesheet" href="/global.css" />
     <link rel="canonical" href={canonicalUrl} />
     {alternateLanguageLinks.map((item) => (
-      <link rel="alternate" hreflang={item.locale} href={item.href} />
+      <link rel="alternate" hreflang={item.hreflang} href={item.href} />
     ))}
     <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
     <meta property="og:type" content="website" />
@@ -138,7 +143,13 @@ const pageStructuredData = {
         <slot />
       </main>
       <PromoteCard locale={lang} className={promoteCardStyles.promoteCard} client:load />
-      <Footer copy={chromeCopy.footerCopy} links={footerLinks} metaLinks={footerMetaLinks} />
+      <Footer
+        copy={chromeCopy.footerCopy}
+        links={footerLinks}
+        metaLinks={footerMetaLinks}
+        siteName={commonCopy.site.name}
+        directoryLabel={commonCopy.footer.relatedSites}
+      />
     </div>
     <Analytics51LA />
   </body>

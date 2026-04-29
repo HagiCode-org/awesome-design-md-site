@@ -17,7 +17,7 @@ const { previous, next, locale = 'en' } = Astro.props;
 const copy = localeCopy[locale].adjacent;
 ---
 
-<nav class="detail-adjacent-nav" aria-label="Adjacent designs">
+<nav class="detail-adjacent-nav" aria-label={copy.ariaLabel}>
   {
     previous ? (
       <a class="detail-adjacent-link" href={previous.href ?? `/designs/${previous.slug}/`}>

@@ -1,5 +1,5 @@
 import { startTransition, useEffect, useEffectEvent, useState } from 'react';
-import { localeCopy, type SupportedLocale } from '@/config/site';
+import { getSearchSummary, localeCopy, type SupportedLocale } from '@/config/site';
 
 export interface SearchToolbarEntry {
   slug: string;
@@ -77,17 +77,14 @@ export default function SearchToolbar({ entries, totalCount, locale = 'en' }: Pr
     syncUrl(normalizedQuery);
   }, [normalizedQuery, ready, syncCards, syncUrl, visibleEntries]);
 
-  const summary =
-    normalizedQuery.length > 0
-      ? locale === 'en'
-        ? `${resultCount} ${resultCount === 1 ? copy.resultNounSingular : copy.resultNounPlural} ${copy.resultPrefix} "${query.trim()}"`
-        : `${copy.resultPrefix} "${query.trim()}"，共 ${resultCount} ${copy.resultNounPlural}`
-      : locale === 'en'
-        ? `${totalCount} ${totalCount === 1 ? copy.indexedNounSingular : copy.indexedNounPlural} ${copy.indexedSuffix}`
-        : `${totalCount} ${copy.indexedNounPlural}${copy.indexedSuffix}`;
+  const summary = getSearchSummary(
+    locale,
+    query,
+    normalizedQuery.length > 0 ? resultCount : totalCount,
+  );
 
   return (
-    <section className="gallery-toolbar shell-panel" aria-label="Gallery search">
+    <section className="gallery-toolbar shell-panel" aria-label={copy.ariaLabel}>
       <div className="gallery-toolbar-head">
         <div>
           <p className="gallery-toolbar-label">{copy.searchCatalog}</p>

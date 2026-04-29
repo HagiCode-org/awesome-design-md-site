@@ -7,8 +7,8 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
   getHomeDescription,
   getLocaleHomePath,
+  getSiteMeta,
   localeCopy,
-  siteMeta,
   toAbsoluteSiteUrl,
   type SupportedLocale,
 } from '@/config/site';
@@ -21,6 +21,7 @@ interface Props {
 
 const { locale, entries } = Astro.props;
 const copy = localeCopy[locale];
+const siteMeta = getSiteMeta(locale);
 const searchEntries = entries.map(({ slug, title, summary, searchText }) => ({
   slug,
   title,
@@ -75,7 +76,7 @@ const structuredData = [
             {copy.home.heroReadmeExcerpts.map((item) => (
               <article class="gallery-readme-item">
                 <p class="gallery-readme-excerpt">
-                  {locale === 'zh-CN' ? item.translation ?? item.excerpt : item.excerpt}
+                  {locale === 'en' ? item.excerpt : item.translation || item.excerpt}
                 </p>
               </article>
             ))}

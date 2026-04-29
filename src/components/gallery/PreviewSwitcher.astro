@@ -1,5 +1,6 @@
 ---
 import { localeCopy, type SupportedLocale } from '@/config/site';
+import { interpolate } from '@/i18n';
 
 interface Props {
   title: string;
@@ -24,7 +25,7 @@ const copy = localeCopy[locale].preview;
       <p class="detail-kicker">{copy.kicker}</p>
       <h2>{copy.heading}</h2>
     </div>
-    <div class="preview-switcher-controls" role="tablist" aria-label="Preview theme">
+    <div class="preview-switcher-controls" role="tablist" aria-label={copy.themeTabLabel}>
       <button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-selected="true">
         {copy.light}
       </button>
@@ -43,7 +44,7 @@ const copy = localeCopy[locale].preview;
   <iframe
     class="detail-preview-frame"
     src={lightUrl}
-    title={`${title} live preview`}
+    title={interpolate(copy.frameTitle, { title })}
     loading="lazy"
     sandbox="allow-same-origin allow-scripts"
     data-preview-frame

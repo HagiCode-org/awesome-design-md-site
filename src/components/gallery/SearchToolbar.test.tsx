@@ -68,4 +68,28 @@ describe('SearchToolbar', () => {
       expect(window.location.search).toBe('');
     });
   });
+
+  it('renders generated non-English labels and summaries for Desktop-supported locales', async () => {
+    document.body.innerHTML = `
+      <div data-design-card data-slug="stripe"></div>
+      <div data-design-card data-slug="airbnb"></div>
+    `;
+    window.history.replaceState({}, '', '/de-DE/?q=stripe');
+
+    render(<SearchToolbar entries={entries} totalCount={entries.length} locale="de-DE" />);
+
+    await waitFor(() => {
+      expect(screen.getByLabelText('Suchwort')).toBeInTheDocument();
+      expect(screen.getByText('1 Ergebnis für "stripe"')).toBeInTheDocument();
+      expect(screen.getByText('Katalog durchsuchen')).toBeInTheDocument();
+    });
+
+    const input = screen.getByLabelText('Suchwort');
+    fireEvent.change(input, { target: { value: 'unknown' } });
+
+    await waitFor(() => {
+      expect(screen.getByText('Keine passenden Designs')).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: 'Suche löschen' })).toBeInTheDocument();
+    });
+  });
 });

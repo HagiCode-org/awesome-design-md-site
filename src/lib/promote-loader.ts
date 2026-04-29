@@ -1,10 +1,11 @@
+import { getPromotionCopy, getSeoLocaleMetadata, resolveSupportedLocale } from '@/config/site';
+
 const INDEX_ORIGIN = 'https://index.hagicode.com';
 const CATALOG_URL = `${INDEX_ORIGIN}/index-catalog.json`;
 const FALLBACK_FLAGS_URL = `${INDEX_ORIGIN}/promote.json`;
 const FALLBACK_CONTENT_URL = `${INDEX_ORIGIN}/promote_content.json`;
 
 type FetchLike = typeof fetch;
-type PromoteLocale = 'zh' | 'en';
 type JsonRecord = Record<string, unknown>;
 
 type PromoteFlag = {
@@ -61,15 +62,31 @@ async function readJson(fetchImpl: FetchLike, url: string): Promise<unknown> {
   return response.json();
 }
 
-function mapLocale(locale: string | null | undefined): PromoteLocale {
-  return locale?.toLowerCase().startsWith('en') ? 'en' : 'zh';
+function getLocalizedKeys(locale: string | null | undefined): string[] {
+  const resolvedLocale = resolveSupportedLocale(locale);
+  const metadata = getSeoLocaleMetadata(resolvedLocale);
+  const keys = [
+    metadata.sourceLocale,
+    metadata.routeLocale,
+    metadata.htmlLang,
+    metadata.htmlLang.toLowerCase(),
+  ];
+
+  if (metadata.sourceLocale.startsWith('zh-Hant')) {
+    keys.push('zh-Hant', 'zh-TW', 'zh-HK', 'zh');
+  } else if (metadata.sourceLocale.startsWith('zh')) {
+    keys.push('zh-CN', 'zh', 'zh-Hans');
+  } else {
+    const languageCode = metadata.htmlLang.split('-')[0];
+    keys.push(languageCode);
+  }
+
+  keys.push('en-US', 'en', 'zh-CN', 'zh');
+
+  return [...new Set(keys.filter((value) => value.length > 0))];
 }
 
-function getLocalizedKeys(locale: PromoteLocale): string[] {
-  return locale === 'en' ? ['en', 'zh', 'zh-CN'] : ['zh', 'zh-CN', 'en'];
-}
-
-function pickLocalized(value: Record<string, string>, locale: PromoteLocale): string | null {
+function pickLocalized(value: Record<string, string>, locale: string | null | undefined): string | null {
   for (const key of getLocalizedKeys(locale)) {
     const candidate = value[key];
     if (isNonEmptyString(candidate)) return candidate.trim();
@@ -77,12 +94,13 @@ function pickLocalized(value: Record<string, string>, locale: PromoteLocale): st
   return Object.values(value).find(isNonEmptyString)?.trim() ?? null;
 }
 
-function resolveCtaLabel(value: Record<string, string> | undefined, locale: PromoteLocale): string {
+function resolveCtaLabel(value: Record<string, string> | undefined, locale: string | null | undefined): string {
+  const copy = getPromotionCopy(locale);
   if (value) {
     const localized = pickLocalized(value, locale);
     if (localized) return localized;
   }
-  return locale === 'zh' ? '立即前往' : 'GO';
+  return copy.ctaLabel;
 }
 
 function parseDimension(value: unknown): number | undefined {
@@ -248,22 +266,24 @@ export async function resolvePromoteUrls(fetchImpl: FetchLike = fetch): Promise<
 }
 
 export function selectActivePromotions(flags: PromoteFlag[], contents: PromoteContent[], locale: string | null | undefined, now = Date.now()): ActivePromotion[] {
-  const promoteLocale = mapLocale(locale);
   const contentById = new Map(contents.map((entry) => [entry.id, entry]));
+  const promotionCopy = getPromotionCopy(locale);
 
   return flags.flatMap((flag) => {
     if (!isPromoteFlagActive(flag, now)) return [];
     const content = contentById.get(flag.id);
     if (!content) return [];
-    const title = pickLocalized(content.title, promoteLocale);
-    const description = pickLocalized(content.description, promoteLocale);
-    if (!title || !description) return [];
-    const image = resolveImage(content.image, title);
+    const title = pickLocalized(content.title, locale);
+    const description = pickLocalized(content.description, locale);
+    if (!title && !description) return [];
+    const resolvedTitle = title ?? promotionCopy.configuredLocaleFallback;
+    const resolvedDescription = description ?? promotionCopy.configuredLocaleFallback;
+    const image = resolveImage(content.image, resolvedTitle);
     return [{
       id: content.id,
-      title,
-      description,
-      ctaLabel: resolveCtaLabel(content.cta, promoteLocale),
+      title: resolvedTitle,
+      description: resolvedDescription,
+      ctaLabel: resolveCtaLabel(content.cta, locale),
       link: content.link,
       platform: content.targetPlatform?.trim() || null,
       image,

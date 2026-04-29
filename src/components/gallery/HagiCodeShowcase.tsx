@@ -33,23 +33,40 @@ export default function HagiCodeShowcase({ locale = 'en' }: Props) {
   }, [slides.length, stepSlide]);
 
   return (
-    <a
-      className="gallery-showcase gallery-showcase-link shell-panel"
-      href={copy.showcaseCtaHref}
-      aria-label={copy.showcaseCtaLabel}
-      target="_blank"
-      rel="noreferrer"
-    >
+    <section className="gallery-showcase shell-panel" aria-label={copy.showcaseTitle}>
       <div className="gallery-showcase-head">
         <div>
           <p className="gallery-meta-label">{copy.showcaseEyebrow}</p>
           <h2>{copy.showcaseTitle}</h2>
         </div>
+        {slides.length > 1 ? (
+          <div className="preview-switcher-controls">
+            <button
+              type="button"
+              className="gallery-showcase-nav"
+              onClick={() => stepSlide(-1)}
+              aria-label={copy.showcasePrev}
+            >
+              {copy.showcasePrev}
+            </button>
+            <button
+              type="button"
+              className="gallery-showcase-nav"
+              onClick={() => stepSlide(1)}
+              aria-label={copy.showcaseNext}
+            >
+              {copy.showcaseNext}
+            </button>
+          </div>
+        ) : null}
       </div>
 
       <p className="gallery-showcase-copy">{copy.showcaseLead}</p>
+      <a className="gallery-link-chip" href={copy.showcaseCtaHref} target="_blank" rel="noreferrer">
+        {copy.showcaseCtaLabel}
+      </a>
 
-      <div className="gallery-showcase-stage">
+      <div className="gallery-showcase-stage" aria-live="polite">
         {slides.map((slide, index) => (
           <article
             className={`gallery-showcase-slide ${index === activeIndex ? 'is-active' : ''}`}
@@ -71,6 +88,27 @@ export default function HagiCodeShowcase({ locale = 'en' }: Props) {
           </article>
         ))}
       </div>
-    </a>
+
+      {slides.length > 1 ? (
+        <div className="preview-switcher-controls">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.title}
+              type="button"
+              className={`gallery-showcase-nav ${index === activeIndex ? 'is-active' : ''}`}
+              onClick={() => {
+                startTransition(() => {
+                  setActiveIndex(index);
+                });
+              }}
+              aria-label={`${copy.showcaseJumpLabel} ${index + 1}`}
+              aria-pressed={index === activeIndex}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      ) : null}
+    </section>
   );
 }

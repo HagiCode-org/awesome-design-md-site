@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { getPromotionCopy } from '@/config/site';
 import { loadFirstActivePromotion, type ActivePromotion } from '@/lib/promote-loader';
 
 type PromoteCardProps = {
@@ -13,13 +14,9 @@ type PromoteCardProps = {
 const DEFAULT_FOOTER_SELECTOR = 'footer, [data-footer-root], .footer';
 const DISMISSED_PROMOTIONS_STORAGE_KEY = 'hagicode:promote-card:dismissed-signature';
 
-function platformLabel(platform: string | null, locale: string | undefined) {
+function platformLabel(platform: string | null, fallbackLabel: string) {
   if (platform) return platform;
-  return locale?.toLowerCase().startsWith('zh') ? '推荐' : 'Promoted';
-}
-
-function closeLabel(locale: string | undefined) {
-  return locale?.toLowerCase().startsWith('zh') ? '关闭推广信息' : 'Dismiss promotion';
+  return fallbackLabel;
 }
 
 function readDismissedSignature(): string | null {
@@ -47,6 +44,7 @@ export function PromoteCard({
   initialPromotion = null,
   footerSelector = DEFAULT_FOOTER_SELECTOR,
 }: PromoteCardProps) {
+  const copy = getPromotionCopy(locale);
   const [promotion, setPromotion] = useState<ActivePromotion | null>(initialPromotion);
   const [footerVisible, setFooterVisible] = useState(false);
   const [dismissedSignature, setDismissedSignature] = useState<string | null>(() => readDismissedSignature());
@@ -96,9 +94,9 @@ export function PromoteCard({
   };
 
   return (
-    <section className={className} data-promote-card aria-label={locale.toLowerCase().startsWith('zh') ? '推广信息' : 'Promotion'}>
+    <section className={className} data-promote-card aria-label={copy.ariaLabel}>
       <div className="promote-card__inner">
-        <button type="button" className="promote-card__close" onClick={dismissPromotion} aria-label={closeLabel(locale)}>
+        <button type="button" className="promote-card__close" onClick={dismissPromotion} aria-label={copy.dismissLabel}>
           <span aria-hidden="true">×</span>
         </button>
         <button
@@ -109,7 +107,7 @@ export function PromoteCard({
           aria-label={`${promotion.ctaLabel}: ${promotion.title}`}
         >
           <span className="promote-card__body">
-            <span className="promote-card__badge">{platformLabel(promotion.platform, locale)}</span>
+            <span className="promote-card__badge">{platformLabel(promotion.platform, copy.fallbackPlatformLabel)}</span>
             <span className="promote-card__title">{promotion.title}</span>
             <span className="promote-card__description">{promotion.description}</span>
           </span>

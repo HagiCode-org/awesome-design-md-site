@@ -32,7 +32,7 @@ const copy = localeCopy[locale].documents;
       <h2>{copy.heading}</h2>
     </div>
     <div class="detail-doc-controls">
-      <div class="detail-tab-list" role="tablist" aria-label="Document view">
+      <div class="detail-tab-list" role="tablist" aria-label={copy.tabListLabel}>
         <button type="button" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">
           {copy.readme}
         </button>

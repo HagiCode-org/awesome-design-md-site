@@ -1,4 +1,3 @@
-import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
 
@@ -43,5 +42,26 @@ describe('PromoteCard', () => {
     const markup = renderToStaticMarkup(<PromoteCard locale="en" initialPromotion={null} />);
 
     expect(markup).toBe('');
+  });
+
+  it('uses generated promotion fallback labels for non-English Desktop locales', () => {
+    const markup = renderToStaticMarkup(
+      <PromoteCard
+        locale="de-DE"
+        className="test-promote"
+        initialPromotion={{
+          ...activePromotion,
+          platform: null,
+          ctaLabel: 'Ansehen',
+          title: 'Deutschsprachige Aktion',
+          description: 'Lokalisierte Beschreibung',
+        }}
+      />,
+    );
+
+    expect(markup).toContain('aria-label="Promotion"');
+    expect(markup).toContain('aria-label="Promotion schließen"');
+    expect(markup).toContain('Empfohlen');
+    expect(markup).toContain('aria-label="Ansehen: Deutschsprachige Aktion"');
   });
 });

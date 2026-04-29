@@ -5,6 +5,7 @@ import PreviewSwitcher from '@/components/gallery/PreviewSwitcher.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
   getDetailDescription,
+  getLocaleHomePath,
   localeCopy,
   toLocalePath,
   toAbsoluteSiteUrl,
@@ -34,7 +35,7 @@ const previousEntry = previous
 const nextEntry = next
   ? { ...next, href: toLocalePath(`/designs/${next.slug}/`, locale) }
   : undefined;
-const galleryHref = locale === 'en' ? '/' : '/zh-CN/';
+const galleryHref = getLocaleHomePath(locale);
 const pageUrl = toAbsoluteSiteUrl(currentPath, Astro.site);
 const galleryUrl = toAbsoluteSiteUrl(galleryHref, Astro.site);
 const structuredData = {
