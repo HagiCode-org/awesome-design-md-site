@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "npm run prepare:i18n && astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
     "start": "npm run prepare:i18n && astro dev --host 0.0.0.0",
-    "build": "npm run prepare:i18n && npm run sync:footer-sites && astro build",
+    "build": "export NODE_ENV=\"${NODE_ENV:-production}\"; npm run prepare:i18n && npm run sync:footer-sites && astro build",
     "preview": "astro preview --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
     "astro": "astro",
     "sync:footer-sites": "node ./scripts/fetch-sites-snapshot.mjs",
