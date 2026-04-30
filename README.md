@@ -113,6 +113,16 @@ npm run typecheck
 SITE_URL=https://your-domain.example npm run build
 ```
 
+## 生产部署
+
+- 权威工作流：`.github/workflows/awesome-design-md-site-deploy-gh-pages.yml`
+- 生产 source of truth：`gh-pages` 分支，只允许 CI 发布经过验证的快照
+- 发布 payload 契约：分支根目录保留 `esa.jsonc`，静态画廊产物统一位于 `dist/`
+- 所需 GitHub 权限：deploy job 需要 `contents: write`
+- 所需托管设置：生产托管读取 `gh-pages/esa.jsonc`，并把 `gh-pages/dist/` 作为站点目录
+- 首次部署检查：确认 Actions 产出包含 `esa.jsonc` 与 `dist/`，确认子模块内容已进入构建产物，并验证 `https://design.hagicode.com`
+- 回滚方式：回退 source 变更或从旧提交重新运行工作流，让 CI 重新发布上一个通过验证的分支快照
+
 ## 画廊架构
 
 核心内容管线位于 `src/lib/content/awesomeDesignCatalog.ts`，负责：
