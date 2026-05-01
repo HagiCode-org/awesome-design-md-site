@@ -85,7 +85,7 @@ describe('header navigation config', () => {
     });
     expect(footerLinks.find((link) => link.href === 'https://docs.hagicode.com/')).toMatchObject({
       label: 'HagiCode Docs',
-      description: '使用指南',
+      description: 'Offizielle Anleitungen und Referenzen.',
     });
   });
 });

@@ -10,7 +10,16 @@ describe('awesome design footer site links', () => {
     expect(links.some((link) => link.href === 'https://builder.hagicode.com/')).toBe(true);
     expect(links.find((link) => link.siteId === 'hagicode-docs')).toMatchObject({
       label: 'HagiCode Docs',
-      description: '使用指南',
+      description: 'Official guides and references.',
+    });
+  });
+
+  it('maps route locales to multilingual footer metadata', () => {
+    const links = resolveAwesomeDesignFooterSiteLinks('de-DE');
+
+    expect(links.find((link) => link.siteId === 'hagicode-docs')).toMatchObject({
+      label: 'HagiCode Docs',
+      description: 'Offizielle Anleitungen und Referenzen.',
     });
   });
 });
