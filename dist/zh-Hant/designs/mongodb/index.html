@@ -1,0 +1,846 @@
+<!DOCTYPE html><html lang="zh-Hant" dir="ltr" data-theme="dark"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v6.1.4"><meta name="theme-color" content="#000000"><title>Mongodb • Awesome Design MD 畫廊</title><meta name="description" content="Mongodb 的預覽、README 與 DESIGN 文件詳情。"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="icon" type="image/svg+xml" href="/favicon.svg" sizes="any"><link rel="icon" type="image/x-icon" href="/favicon.ico"><link rel="stylesheet" href="/global.css"><link rel="canonical" href="https://design.hagicode.com/zh-Hant/designs/mongodb/"><link rel="alternate" hreflang="en" href="https://design.hagicode.com/designs/mongodb/"><link rel="alternate" hreflang="zh-CN" href="https://design.hagicode.com/zh-CN/designs/mongodb/"><link rel="alternate" hreflang="zh-Hant" href="https://design.hagicode.com/zh-Hant/designs/mongodb/"><link rel="alternate" hreflang="ja-JP" href="https://design.hagicode.com/ja-JP/designs/mongodb/"><link rel="alternate" hreflang="ko-KR" href="https://design.hagicode.com/ko-KR/designs/mongodb/"><link rel="alternate" hreflang="de-DE" href="https://design.hagicode.com/de-DE/designs/mongodb/"><link rel="alternate" hreflang="fr-FR" href="https://design.hagicode.com/fr-FR/designs/mongodb/"><link rel="alternate" hreflang="es-ES" href="https://design.hagicode.com/es-ES/designs/mongodb/"><link rel="alternate" hreflang="pt-BR" href="https://design.hagicode.com/pt-BR/designs/mongodb/"><link rel="alternate" hreflang="ru-RU" href="https://design.hagicode.com/ru-RU/designs/mongodb/"><link rel="alternate" hreflang="x-default" href="https://design.hagicode.com/designs/mongodb/"><meta property="og:type" content="website"><meta property="og:title" content="Mongodb • Awesome Design MD 畫廊"><meta property="og:description" content="Mongodb 的預覽、README 與 DESIGN 文件詳情。"><meta property="og:url" content="https://design.hagicode.com/zh-Hant/designs/mongodb/"><meta property="og:site_name" content="Awesome Design MD 畫廊"><meta property="og:locale" content="zh_TW"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU"><meta property="og:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:secure_url" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="3137"><meta property="og:image:height" content="1235"><meta property="og:image:alt" content="Mongodb • Awesome Design MD 畫廊"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Mongodb • Awesome Design MD 畫廊"><meta name="twitter:description" content="Mongodb 的預覽、README 與 DESIGN 文件詳情。"><meta name="twitter:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta name="twitter:image:alt" content="Mongodb • Awesome Design MD 畫廊"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Mongodb • Awesome Design MD 畫廊","description":"Mongodb 的預覽、README 與 DESIGN 文件詳情。","url":"https://design.hagicode.com/zh-Hant/designs/mongodb/","inLanguage":"zh-Hant","image":"https://design.hagicode.com/img/hagicode/light-main.png","isPartOf":{"@type":"WebSite","name":"Awesome Design MD 畫廊","url":"https://design.hagicode.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Awesome Design MD 畫廊","item":"https://design.hagicode.com/zh-Hant/"},{"@type":"ListItem","position":2,"name":"Mongodb","item":"https://design.hagicode.com/zh-Hant/designs/mongodb/"}]}</script><script>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.DW7Y49qr.css"></head> <body> <a class="skip-link" href="#main">跳到主要內容</a> <div class="page-shell"> <header class="site-header"> <div class="container shell-panel header-panel"> <a class="brand-mark" href="/zh-Hant/"> <img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32"> <span class="brand-copy"> <strong class="brand-copy-full">Awesome Design MD 畫廊</strong> <strong class="brand-copy-compact">ADMG</strong> <small>Powered by HagiCode</small> </span> </a> <nav class="site-nav site-nav-primary" aria-label="主導覽"> <a href="/zh-Hant/" class="site-nav-link"> <span class="site-nav-link-label site-nav-link-label-full">畫廊</span> <span class="site-nav-link-label site-nav-link-label-compact"> 畫廊 </span> </a> </nav> <nav class="site-nav site-nav-repo" aria-label="倉庫連結"> <a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link" target="_blank" rel="noreferrer"> <span class="site-nav-link-label site-nav-link-label-full">站點倉庫</span> </a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link" target="_blank" rel="noreferrer"> <span class="site-nav-link-label site-nav-link-label-full">上游倉庫</span> </a> </nav> <div class="header-actions"> <div class="language-select-shell"> <select class="language-select" name="locale" aria-label="語言切換" data-language-select> <option value="/designs/mongodb/" lang="en"> English </option><option value="/zh-CN/designs/mongodb/" lang="zh-CN"> 简体中文 </option><option value="/zh-Hant/designs/mongodb/" selected lang="zh-Hant"> 繁體中文 </option><option value="/ja-JP/designs/mongodb/" lang="ja-JP"> 日本語 </option><option value="/ko-KR/designs/mongodb/" lang="ko-KR"> 한국어 </option><option value="/de-DE/designs/mongodb/" lang="de-DE"> Deutsch </option><option value="/fr-FR/designs/mongodb/" lang="fr-FR"> Français </option><option value="/es-ES/designs/mongodb/" lang="es-ES"> Español </option><option value="/pt-BR/designs/mongodb/" lang="pt-BR"> Português </option><option value="/ru-RU/designs/mongodb/" lang="ru-RU"> Русский </option> </select> <span class="language-select-icon" aria-hidden="true">▾</span> </div> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();</script><script>(()=>{var A=Object.defineProperty;var g=(i,o,a)=>o in i?A(i,o,{enumerable:!0,configurable:!0,writable:!0,value:a}):i[o]=a;var d=(i,o,a)=>g(i,typeof o!="symbol"?o+"":o,a);{let i={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t),11:t=>Number.POSITIVE_INFINITY*t},o=t=>{let[l,e]=t;return l in i?i[l](e):void 0},a=t=>t.map(o),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([l,e])=>[l,o(e)]));class y extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var b;if(!this.hydrator||!this.isConnected)return;let e=(b=this.parentElement)==null?void 0:b.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let c=this.querySelectorAll("astro-slot"),n={},h=this.querySelectorAll("template[data-astro-template]");for(let r of h){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(let r of c){let s=r.closest(this.tagName);s!=null&&s.isSameNode(this)&&(n[r.getAttribute("name")||"default"]=r.innerHTML)}let p;try{p=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(r){let s=this.getAttribute("component-url")||"<unknown>",v=this.getAttribute("component-export");throw v&&(s+=` (export ${v})`),console.error(`[hydrate] Error parsing props for component ${s}`,this.getAttribute("props"),r),r}let u;await this.hydrator(this)(this.Component,p,n,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),c.disconnect(),this.childrenConnectedCallback()},c=new MutationObserver(()=>{var n;((n=this.lastChild)==null?void 0:n.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});c.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),c=this.getAttribute("client");if(Astro[c]===void 0){window.addEventListener(`astro:${c}`,()=>this.start(),{once:!0});return}try{await Astro[c](async()=>{let n=this.getAttribute("renderer-url"),[h,{default:p}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),u=this.getAttribute("component-export")||"default";if(!u.includes("."))this.Component=h[u];else{this.Component=h;for(let f of u.split("."))this.Component=this.Component[f]}return this.hydrator=p,this.hydrate},e,this)}catch(n){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,n)}}attributeChangedCallback(){this.hydrate()}}d(y,"observedAttributes",["props"]),customElements.get("astro-island")||customElements.define("astro-island",y)}})();</script><astro-island uid="Z1Yw8Gy" prefix="r2" component-url="/_astro/ThemeToggle.D6gKDYRq.js" component-export="default" renderer-url="/_astro/client.DyczpTbx.js" props="{&quot;locale&quot;:[0,&quot;zh-Hant&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="theme-toggle" data-theme-toggle="true" aria-label="切換到淺色模式"><span class="theme-toggle-label theme-toggle-label-full">深色</span><span class="theme-toggle-label theme-toggle-label-compact">深</span><span class="theme-toggle-glyph" aria-hidden="true">◐</span></button><!--astro:end--></astro-island> </div> <details class="header-utility"> <summary class="header-utility-trigger" aria-label="倉庫連結"> <span class="header-utility-trigger-label" aria-hidden="true">
+≡
+</span> </summary> <div class="header-utility-surface" aria-label="倉庫連結"> <a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link header-utility-link" target="_blank" rel="noreferrer"> 站點倉庫 </a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link header-utility-link" target="_blank" rel="noreferrer"> 上游倉庫 </a> </div> </details> </div> </header> <script>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script> <main id="main">  <section class="container detail-shell"> <div class="detail-header shell-panel"> <div class="detail-header-copy"> <a class="detail-back-link" href="/zh-Hant/"> 返回畫廊 </a> <p class="detail-kicker">設計詳情</p> <h1>Mongodb</h1> <p class="detail-summary">DESIGN.md extracted from the public MongoDB website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it&#39;s a good starting point for building something similar.</p> </div> </div> <div class="detail-grid"> <section class="preview-switcher shell-panel" data-preview-switcher data-light-url="/previews/mongodb/light.html" data-dark-url="/previews/mongodb/dark.html"> <div class="preview-switcher-head"> <div> <p class="detail-kicker">即時預覽</p> <h2>支援主題的預覽框</h2> </div> <div class="preview-switcher-controls" role="tablist" aria-label="預覽主題"> <button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-selected="true"> 淺色 </button> <button type="button" class="preview-toggle" data-preview-variant="dark" aria-selected="false" title="開啟深色預覽"> 深色 </button> </div> </div> <iframe class="detail-preview-frame" src="/previews/mongodb/light.html" title="Mongodb 即時預覽" loading="lazy" sandbox="allow-same-origin allow-scripts" data-preview-frame></iframe> <p class="preview-switcher-note"> 此項目同時提供淺色與深色預覽資源。 </p> </section> <script>
+  (() => {
+    document.querySelectorAll('[data-preview-switcher]').forEach((root) => {
+      const frame = root.querySelector('[data-preview-frame]');
+      const buttons = Array.from(root.querySelectorAll('[data-preview-variant]'));
+      const lightUrl = root.getAttribute('data-light-url') || '';
+      const darkUrl = root.getAttribute('data-dark-url') || lightUrl;
+
+      if (!frame || buttons.length === 0) {
+        return;
+      }
+
+      const activate = (variant) => {
+        const isDark = variant === 'dark';
+        frame.setAttribute('src', isDark ? darkUrl : lightUrl);
+
+        buttons.forEach((button) => {
+          const active = button.getAttribute('data-preview-variant') === variant;
+          button.classList.toggle('is-active', active);
+          button.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
+      };
+
+      const initialVariant =
+        document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+
+      activate(initialVariant);
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+          activate(button.getAttribute('data-preview-variant') || 'light');
+        });
+      });
+    });
+  })();
+</script> <section class="detail-documents" data-document-tabs data-copy-design-label="複製 DESIGN.md" data-copied-label="已複製" data-copy-failed-label="複製失敗"> <div class="detail-documents-head"> <div> <p class="detail-kicker">文件</p> <h2>README 與 DESIGN 集中檢視</h2> </div> <div class="detail-doc-controls"> <div class="detail-tab-list" role="tablist" aria-label="文件視圖"> <button type="button" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true"> README </button> <button type="button" class="detail-tab" data-doc-tab="design" aria-selected="false"> DESIGN </button> </div> <button type="button" class="detail-copy-button" data-copy-design disabled aria-disabled="true" title="複製原始 DESIGN.md Markdown"> 複製 DESIGN.md </button> <a class="detail-copy-button" data-download-design href="/designs/mongodb/DESIGN.md" download="DESIGN.md" title="下載 canonical DESIGN.md 文件" aria-hidden="true" tabindex="-1"> 下載 DESIGN.md </a> </div> </div> <div class="detail-doc-panels"> <section class="detail-doc-panel is-active" data-doc-panel="readme"> <div class="markdown-shell document-copy"><h1 id="mongodb-inspired-design-system">Mongodb Inspired Design System</h1>
+<p><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mongodb/DESIGN.md">DESIGN.md</a> extracted from the public <a href="https://mongodb.com/">MongoDB</a> website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it's a good starting point for building something similar.</p>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIGN.md</code></td>
+<td>Complete design system documentation (9 sections)</td>
+</tr>
+<tr>
+<td><code>preview.html</code></td>
+<td>Interactive design token catalog (light)</td>
+</tr>
+<tr>
+<td><code>preview-dark.html</code></td>
+<td>Interactive design token catalog (dark)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/mongodb/DESIGN.md">DESIGN.md</a> to use as a reference for AI agents (Claude, Cursor, Stitch) to generate UI that looks like the Mongodb design language.</p>
+<h2 id="preview">Preview</h2>
+<p>A sample landing page built with DESIGN.md. It shows the actual colors, typography, buttons, cards, spacing, and elevation, all in one page.</p>
+<h3 id="dark-mode">Dark Mode</h3>
+<p><img src="https://pub-2e4ecbcbc9b24e7b93f1a6ab5b2bc71f.r2.dev/designs/mongodb/preview-dark-screenshot.png" alt="Mongodb Design System — Dark Mode"></p>
+<h3 id="light-mode">Light Mode</h3>
+<p><img src="https://pub-2e4ecbcbc9b24e7b93f1a6ab5b2bc71f.r2.dev/designs/mongodb/preview-screenshot.png" alt="Mongodb Design System — Light Mode"></p></div> </section> <section class="detail-doc-panel" data-doc-panel="design" hidden> <div class="markdown-shell document-copy"><h1 id="design-system-inspiration-of-mongodb">Design System Inspiration of MongoDB</h1>
+<h2 id="1-visual-theme--atmosphere">1. Visual Theme &#x26; Atmosphere</h2>
+<p>MongoDB's website is a deep-forest-meets-terminal experience — a design system rooted in the darkest teal-black (<code>#001e2b</code>) that evokes both the density of a database and the depth of a forest canopy. Against this near-black canvas, a striking neon green (<code>#00ed64</code>) pulses as the brand accent — bright enough to feel electric, organic enough to feel alive. This isn't the cold neon of cyberpunk; it's the bioluminescent green of something growing in the dark.</p>
+<p>The typography system is architecturally ambitious: MongoDB Value Serif for massive hero headlines (96px) creates an editorial, authoritative presence — serif type at database-company scale is a bold choice that says "we're not just another tech company." Euclid Circular A handles the heavy lifting of body and UI text with an unusually wide weight range (300–700), while Source Code Pro serves as the code and label font with distinctive uppercase treatments featuring very wide letter-spacing (1px–3px). This three-font system creates a hierarchy that spans editorial elegance → geometric professionalism → engineering precision.</p>
+<p>What makes MongoDB distinctive is its dual-mode design: a dark hero/feature section world (<code>#001e2b</code> with neon green accents) and a light content world (white with teal-gray borders <code>#b8c4c2</code>). The transition between these modes creates dramatic contrast. The shadow system uses teal-tinted dark shadows (<code>rgba(0, 30, 43, 0.12)</code>) that maintain the forest-dark atmosphere even on light surfaces. Buttons use pill shapes (100px–999px radius) with MongoDB Green borders (<code>#00684a</code>), and the entire component system references the LeafyGreen design system.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Deep teal-black backgrounds (<code>#001e2b</code>) — forest-dark, not space-dark</li>
+<li>Neon MongoDB Green (<code>#00ed64</code>) as the singular brand accent — electric and organic</li>
+<li>MongoDB Value Serif for hero headlines — editorial authority at tech scale</li>
+<li>Euclid Circular A for body with weight 300 (light) as a distinctive body weight</li>
+<li>Source Code Pro with wide uppercase letter-spacing (1px–3px) for technical labels</li>
+<li>Teal-tinted shadows: <code>rgba(0, 30, 43, 0.12)</code> — shadows carry the forest color</li>
+<li>Dual-mode: dark teal hero sections + light white content sections</li>
+<li>Pill buttons (100px radius) with green borders (<code>#00684a</code>)</li>
+<li>Link Blue (<code>#006cfa</code>) and hover transition to <code>#3860be</code></li>
+</ul>
+<h2 id="2-color-palette--roles">2. Color Palette &#x26; Roles</h2>
+<h3 id="primary-brand">Primary Brand</h3>
+<ul>
+<li><strong>Forest Black</strong> (<code>#001e2b</code>): Primary dark background — the deepest teal-black</li>
+<li><strong>MongoDB Green</strong> (<code>#00ed64</code>): Primary brand accent — neon green for highlights, underlines, gradients</li>
+<li><strong>Dark Green</strong> (<code>#00684a</code>): Button borders, link text on light — muted green for functional use</li>
+</ul>
+<h3 id="interactive">Interactive</h3>
+<ul>
+<li><strong>Action Blue</strong> (<code>#006cfa</code>): Secondary accent — links, interactive highlights</li>
+<li><strong>Hover Blue</strong> (<code>#3860be</code>): All link hover states transition to this blue</li>
+<li><strong>Teal Active</strong> (<code>#1eaedb</code>): Button hover background — bright teal</li>
+</ul>
+<h3 id="neutral-scale">Neutral Scale</h3>
+<ul>
+<li><strong>Deep Teal</strong> (<code>#1c2d38</code>): Dark button backgrounds, secondary dark surfaces</li>
+<li><strong>Teal Gray</strong> (<code>#3d4f58</code>): Dark borders on dark surfaces</li>
+<li><strong>Dark Slate</strong> (<code>#21313c</code>): Dark link text variant</li>
+<li><strong>Cool Gray</strong> (<code>#5c6c75</code>): Muted text on dark, secondary button text</li>
+<li><strong>Silver Teal</strong> (<code>#b8c4c2</code>): Borders on light surfaces, dividers</li>
+<li><strong>Light Input</strong> (<code>#e8edeb</code>): Input text on dark surfaces</li>
+<li><strong>Pure White</strong> (<code>#ffffff</code>): Light section background, button text on dark</li>
+<li><strong>Black</strong> (<code>#000000</code>): Text on light surfaces, darkest elements</li>
+</ul>
+<h3 id="shadows">Shadows</h3>
+<ul>
+<li><strong>Forest Shadow</strong> (<code>rgba(0, 30, 43, 0.12) 0px 26px 44px, rgba(0, 0, 0, 0.13) 0px 7px 13px</code>): Primary card elevation — teal-tinted</li>
+<li><strong>Standard Shadow</strong> (<code>rgba(0, 0, 0, 0.15) 0px 3px 20px</code>): General elevation</li>
+<li><strong>Subtle Shadow</strong> (<code>rgba(0, 0, 0, 0.1) 0px 2px 4px</code>): Light card lift</li>
+</ul>
+<h2 id="3-typography-rules">3. Typography Rules</h2>
+<h3 id="font-families">Font Families</h3>
+<ul>
+<li><strong>Display Serif</strong>: <code>MongoDB Value Serif</code> — editorial hero headlines</li>
+<li><strong>Body / UI</strong>: <code>Euclid Circular A</code> — geometric sans-serif workhorse</li>
+<li><strong>Code / Labels</strong>: <code>Source Code Pro</code> — monospace with uppercase label treatments</li>
+<li><strong>Fallbacks</strong>: <code>Akzidenz-Grotesk Std</code> (with CJK: Noto Sans KR/SC/JP), <code>Times</code>, <code>Arial</code>, <code>system-ui</code></li>
+</ul>
+<h3 id="hierarchy">Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Font</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line Height</th>
+<th>Letter Spacing</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display Hero</td>
+<td>MongoDB Value Serif</td>
+<td>96px (6.00rem)</td>
+<td>400</td>
+<td>1.20 (tight)</td>
+<td>normal</td>
+<td>Serif authority</td>
+</tr>
+<tr>
+<td>Display Secondary</td>
+<td>MongoDB Value Serif</td>
+<td>64px (4.00rem)</td>
+<td>400</td>
+<td>1.00 (tight)</td>
+<td>normal</td>
+<td>Serif sub-hero</td>
+</tr>
+<tr>
+<td>Section Heading</td>
+<td>Euclid Circular A</td>
+<td>36px (2.25rem)</td>
+<td>500</td>
+<td>1.33</td>
+<td>normal</td>
+<td>Geometric precision</td>
+</tr>
+<tr>
+<td>Sub-heading</td>
+<td>Euclid Circular A</td>
+<td>24px (1.50rem)</td>
+<td>500</td>
+<td>1.33</td>
+<td>normal</td>
+<td>Feature titles</td>
+</tr>
+<tr>
+<td>Body Large</td>
+<td>Euclid Circular A</td>
+<td>20px (1.25rem)</td>
+<td>400</td>
+<td>1.60 (relaxed)</td>
+<td>normal</td>
+<td>Introductions</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Euclid Circular A</td>
+<td>18px (1.13rem)</td>
+<td>400</td>
+<td>1.33</td>
+<td>normal</td>
+<td>Standard body</td>
+</tr>
+<tr>
+<td>Body Light</td>
+<td>Euclid Circular A</td>
+<td>16px (1.00rem)</td>
+<td>300</td>
+<td>1.50–2.00</td>
+<td>normal</td>
+<td>Light-weight reading text</td>
+</tr>
+<tr>
+<td>Nav / UI</td>
+<td>Euclid Circular A</td>
+<td>16px (1.00rem)</td>
+<td>500</td>
+<td>1.00–1.88</td>
+<td>0.16px</td>
+<td>Navigation, emphasized</td>
+</tr>
+<tr>
+<td>Body Bold</td>
+<td>Euclid Circular A</td>
+<td>15px (0.94rem)</td>
+<td>700</td>
+<td>1.50</td>
+<td>normal</td>
+<td>Strong emphasis</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>Euclid Circular A</td>
+<td>13.5px–16px</td>
+<td>500–700</td>
+<td>1.00</td>
+<td>0.135px–0.9px</td>
+<td>CTA labels</td>
+</tr>
+<tr>
+<td>Caption</td>
+<td>Euclid Circular A</td>
+<td>14px (0.88rem)</td>
+<td>400</td>
+<td>1.71 (relaxed)</td>
+<td>normal</td>
+<td>Metadata</td>
+</tr>
+<tr>
+<td>Small</td>
+<td>Euclid Circular A</td>
+<td>11px (0.69rem)</td>
+<td>600</td>
+<td>1.82 (relaxed)</td>
+<td>0.2px</td>
+<td>Tags, annotations</td>
+</tr>
+<tr>
+<td>Code Heading</td>
+<td>Source Code Pro</td>
+<td>40px (2.50rem)</td>
+<td>400</td>
+<td>1.60 (relaxed)</td>
+<td>normal</td>
+<td>Code showcase titles</td>
+</tr>
+<tr>
+<td>Code Body</td>
+<td>Source Code Pro</td>
+<td>16px (1.00rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+<td>Code blocks</td>
+</tr>
+<tr>
+<td>Code Label</td>
+<td>Source Code Pro</td>
+<td>14px (0.88rem)</td>
+<td>400–500</td>
+<td>1.14 (tight)</td>
+<td>1px–2px</td>
+<td><code>text-transform: uppercase</code></td>
+</tr>
+<tr>
+<td>Code Micro</td>
+<td>Source Code Pro</td>
+<td>9px (0.56rem)</td>
+<td>600</td>
+<td>2.67 (relaxed)</td>
+<td>2.5px</td>
+<td><code>text-transform: uppercase</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="principles">Principles</h3>
+<ul>
+<li><strong>Serif for authority</strong>: MongoDB Value Serif at hero scale creates an editorial presence unusual in tech — it communicates that MongoDB is an institution, not a startup.</li>
+<li><strong>Weight 300 as body default</strong>: Euclid Circular A uses light (300) for body text, creating an airy reading experience that contrasts with the dense, dark backgrounds.</li>
+<li><strong>Wide-tracked monospace labels</strong>: Source Code Pro uppercase at 1px–3px letter-spacing creates technical signposts that feel like database field labels — systematic, structured, classified.</li>
+<li><strong>Four-weight range</strong>: 300 (light body) → 400 (standard) → 500 (UI/nav) → 700 (bold CTA) — a wider range than most systems, enabling fine-grained hierarchy.</li>
+</ul>
+<h2 id="4-component-stylings">4. Component Stylings</h2>
+<h3 id="buttons">Buttons</h3>
+<p><strong>Primary Green (Dark Surface)</strong></p>
+<ul>
+<li>Background: <code>#00684a</code> (muted MongoDB green)</li>
+<li>Text: <code>#000000</code></li>
+<li>Radius: 50% (circular) or 100px (pill)</li>
+<li>Border: <code>1px solid #00684a</code></li>
+<li>Shadow: <code>rgba(0,0,0,0.06) 0px 1px 6px</code></li>
+<li>Hover: scale 1.1</li>
+<li>Active: scale 0.85</li>
+</ul>
+<p><strong>Dark Teal Button</strong></p>
+<ul>
+<li>Background: <code>#1c2d38</code></li>
+<li>Text: <code>#5c6c75</code></li>
+<li>Radius: 100px (pill)</li>
+<li>Border: <code>1px solid #3d4f58</code></li>
+<li>Hover: background <code>#1eaedb</code>, text white, translateX(5px)</li>
+</ul>
+<p><strong>Outlined Button (Light Surface)</strong></p>
+<ul>
+<li>Background: transparent</li>
+<li>Text: <code>#001e2b</code></li>
+<li>Border: <code>1px solid #b8c4c2</code></li>
+<li>Radius: 4px–8px</li>
+<li>Hover: background tint</li>
+</ul>
+<h3 id="cards--containers">Cards &#x26; Containers</h3>
+<ul>
+<li>Light mode: white background with <code>1px solid #b8c4c2</code> border</li>
+<li>Dark mode: <code>#001e2b</code> or <code>#1c2d38</code> background with <code>1px solid #3d4f58</code></li>
+<li>Radius: 16px (standard), 24px (medium), 48px (large/hero)</li>
+<li>Shadow: <code>rgba(0,30,43,0.12) 0px 26px 44px</code> (forest-tinted)</li>
+<li>Image containers: 30px–32px radius</li>
+</ul>
+<h3 id="inputs--forms">Inputs &#x26; Forms</h3>
+<ul>
+<li>Textarea: text <code>#e8edeb</code>, padding 12px 12px 12px 8px</li>
+<li>Borders: <code>1px solid #b8c4c2</code> on light, <code>1px solid #3d4f58</code> on dark</li>
+<li>Input radius: 4px</li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li>Dark header on forest-black background</li>
+<li>Euclid Circular A 16px weight 500 for nav links</li>
+<li>MongoDB logo (leaf icon + wordmark) left-aligned</li>
+<li>Green CTA pill buttons right-aligned</li>
+<li>Mega-menu dropdowns with product categories</li>
+</ul>
+<h3 id="image-treatment">Image Treatment</h3>
+<ul>
+<li>Dashboard screenshots on dark backgrounds</li>
+<li>Green-accented UI elements in screenshots</li>
+<li>30px–32px radius on image containers</li>
+<li>Full-width dark sections for product showcases</li>
+</ul>
+<h3 id="distinctive-components">Distinctive Components</h3>
+<p><strong>Neon Green Accent Underlines</strong></p>
+<ul>
+<li><code>0px 2px 2px 0px solid #00ed64</code> — bottom + right border creating accent underlines</li>
+<li>Used on feature headings and highlighted text</li>
+<li>Also appears as <code>#006cfa</code> (blue) variant</li>
+</ul>
+<p><strong>Source Code Label System</strong></p>
+<ul>
+<li>14px uppercase Source Code Pro with 1px–2px letter-spacing</li>
+<li>Used as section category markers above headings</li>
+<li>Creates a "database field label" aesthetic</li>
+</ul>
+<h2 id="5-layout-principles">5. Layout Principles</h2>
+<h3 id="spacing-system">Spacing System</h3>
+<ul>
+<li>Base unit: 8px</li>
+<li>Scale: 1px, 4px, 7px, 8px, 10px, 12px, 14px, 15px, 16px, 18px, 20px, 24px, 32px</li>
+</ul>
+<h3 id="grid--container">Grid &#x26; Container</h3>
+<ul>
+<li>Max content width centered</li>
+<li>Dark hero section with contained content</li>
+<li>Light content sections below</li>
+<li>Card grids: 2–3 columns</li>
+<li>Full-width dark footer</li>
+</ul>
+<h3 id="whitespace-philosophy">Whitespace Philosophy</h3>
+<ul>
+<li><strong>Dramatic mode transitions</strong>: The shift from dark teal sections to white content creates built-in visual breathing through contrast, not just space.</li>
+<li><strong>Generous dark sections</strong>: Dark hero and feature areas use extra vertical padding (80px+) to let the forest-dark background breathe.</li>
+<li><strong>Compact light sections</strong>: White content areas are denser, with tighter card grids and less vertical spacing.</li>
+</ul>
+<h3 id="border-radius-scale">Border Radius Scale</h3>
+<ul>
+<li>Minimal (1px–2px): Small spans, badges</li>
+<li>Subtle (4px): Inputs, small buttons</li>
+<li>Standard (8px): Cards, links</li>
+<li>Card (16px): Standard cards, containers</li>
+<li>Toggle (20px): Switch elements</li>
+<li>Large (24px): Large panels</li>
+<li>Image (30px–32px): Image containers</li>
+<li>Hero (48px): Hero cards</li>
+<li>Pill (100px–999px): Buttons, navigation pills</li>
+<li>Full (9999px): Maximum pill</li>
+</ul>
+<h2 id="6-depth--elevation">6. Depth &#x26; Elevation</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Treatment</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat (Level 0)</td>
+<td>No shadow</td>
+<td>Default surfaces</td>
+</tr>
+<tr>
+<td>Subtle (Level 1)</td>
+<td><code>rgba(0,0,0,0.1) 0px 2px 4px</code></td>
+<td>Light card lift</td>
+</tr>
+<tr>
+<td>Standard (Level 2)</td>
+<td><code>rgba(0,0,0,0.15) 0px 3px 9px</code></td>
+<td>Standard cards</td>
+</tr>
+<tr>
+<td>Prominent (Level 3)</td>
+<td><code>rgba(0,0,0,0.15) 0px 3px 20px</code></td>
+<td>Elevated panels</td>
+</tr>
+<tr>
+<td>Forest (Level 4)</td>
+<td><code>rgba(0,30,43,0.12) 0px 26px 44px, rgba(0,0,0,0.13) 0px 7px 13px</code></td>
+<td>Hero cards — teal-tinted</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shadow Philosophy</strong>: MongoDB's shadow system is unique in that the primary elevation shadow uses <code>rgba(0, 30, 43, 0.12)</code> — a teal-tinted shadow that carries the forest-dark brand color into the depth system. This means even on white surfaces, shadows feel like they belong to the MongoDB color world rather than being generic neutral black.</p>
+<h2 id="7-dos-and-donts">7. Do's and Don'ts</h2>
+<h3 id="do">Do</h3>
+<ul>
+<li>Use <code>#001e2b</code> (forest-black) for dark sections — not pure black</li>
+<li>Apply MongoDB Green (<code>#00ed64</code>) sparingly for maximum electric impact</li>
+<li>Use MongoDB Value Serif ONLY for hero/display headings — Euclid Circular A for everything else</li>
+<li>Apply Source Code Pro uppercase with wide tracking (1px–3px) for technical labels</li>
+<li>Use teal-tinted shadows (<code>rgba(0,30,43,0.12)</code>) for primary card elevation</li>
+<li>Maintain the dark/light section duality — dramatic contrast between modes</li>
+<li>Use weight 300 for body text — the light weight is the readable voice</li>
+<li>Apply pill radius (100px) to primary action buttons</li>
+</ul>
+<h3 id="dont">Don't</h3>
+<ul>
+<li>Don't use pure black (<code>#000000</code>) for dark backgrounds — always use teal-black (<code>#001e2b</code>)</li>
+<li>Don't use MongoDB Green (<code>#00ed64</code>) on backgrounds — it's an accent for text, underlines, and small highlights</li>
+<li>Don't use standard gray shadows — always use teal-tinted (<code>rgba(0,30,43,...)</code>)</li>
+<li>Don't apply serif font to body text — MongoDB Value Serif is hero-only</li>
+<li>Don't use narrow letter-spacing on Source Code Pro labels — the wide tracking IS the identity</li>
+<li>Don't mix dark and light section treatments within the same section</li>
+<li>Don't use warm colors — the palette is strictly cool (teal, green, blue)</li>
+<li>Don't forget the green accent underlines — they're the signature decorative element</li>
+</ul>
+<h2 id="8-responsive-behavior">8. Responsive Behavior</h2>
+<h3 id="breakpoints">Breakpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Width</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile Small</td>
+<td>&#x3C;425px</td>
+<td>Tight single column</td>
+</tr>
+<tr>
+<td>Mobile</td>
+<td>425–768px</td>
+<td>Standard mobile</td>
+</tr>
+<tr>
+<td>Tablet</td>
+<td>768–1024px</td>
+<td>2-column grids begin</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>1024–1280px</td>
+<td>Standard layout</td>
+</tr>
+<tr>
+<td>Large Desktop</td>
+<td>1280–1440px</td>
+<td>Expanded layout</td>
+</tr>
+<tr>
+<td>Ultra-wide</td>
+<td>>1440px</td>
+<td>Maximum width, generous margins</td>
+</tr>
+</tbody>
+</table>
+<h3 id="touch-targets">Touch Targets</h3>
+<ul>
+<li>Pill buttons with generous padding</li>
+<li>Navigation links at 16px with adequate spacing</li>
+<li>Card surfaces as full-area touch targets</li>
+</ul>
+<h3 id="collapsing-strategy">Collapsing Strategy</h3>
+<ul>
+<li>Hero: MongoDB Value Serif 96px → 64px → scales further</li>
+<li>Navigation: horizontal mega-menu → hamburger</li>
+<li>Feature cards: multi-column → stacked</li>
+<li>Dark/light sections maintain their mode at all sizes</li>
+<li>Source Code Pro labels maintain uppercase treatment</li>
+</ul>
+<h3 id="image-behavior">Image Behavior</h3>
+<ul>
+<li>Dashboard screenshots scale proportionally</li>
+<li>Dark section backgrounds maintained full-width</li>
+<li>Image radius maintained across breakpoints</li>
+</ul>
+<h2 id="9-agent-prompt-guide">9. Agent Prompt Guide</h2>
+<h3 id="quick-color-reference">Quick Color Reference</h3>
+<ul>
+<li>Dark background: Forest Black (<code>#001e2b</code>)</li>
+<li>Brand accent: MongoDB Green (<code>#00ed64</code>)</li>
+<li>Functional green: Dark Green (<code>#00684a</code>)</li>
+<li>Link blue: Action Blue (<code>#006cfa</code>)</li>
+<li>Text on light: Black (<code>#000000</code>)</li>
+<li>Text on dark: White (<code>#ffffff</code>) or Light Input (<code>#e8edeb</code>)</li>
+<li>Border light: Silver Teal (<code>#b8c4c2</code>)</li>
+<li>Border dark: Teal Gray (<code>#3d4f58</code>)</li>
+</ul>
+<h3 id="example-component-prompts">Example Component Prompts</h3>
+<ul>
+<li>"Create a hero on forest-black (#001e2b) background. Headline at 96px MongoDB Value Serif weight 400, line-height 1.20, white text with 'potential' highlighted in MongoDB Green (#00ed64). Subtitle at 18px Euclid Circular A weight 400. Green pill CTA (#00684a, 100px radius). Neon green gradient glow behind product screenshot."</li>
+<li>"Design a card on white background: 1px solid #b8c4c2 border, 16px radius, shadow rgba(0,30,43,0.12) 0px 26px 44px. Title at 24px Euclid Circular A weight 500. Body at 16px weight 300. Source Code Pro 14px uppercase label above title with 2px letter-spacing."</li>
+<li>"Build a dark section: #001e2b background, 1px solid #3d4f58 border on cards. White text. MongoDB Green (#00ed64) accent underlines on headings using bottom-border 2px solid."</li>
+<li>"Create technical label: Source Code Pro 14px, text-transform uppercase, letter-spacing 2px, weight 500, #00ed64 color on dark background."</li>
+<li>"Design a pill button: #1c2d38 background, 1px solid #3d4f58 border, 100px radius, #5c6c75 text. Hover: #1eaedb background, white text, translateX(5px)."</li>
+</ul>
+<h3 id="iteration-guide">Iteration Guide</h3>
+<ol>
+<li>Start with the mode decision: dark (#001e2b) for hero/features, white for content</li>
+<li>MongoDB Green (#00ed64) is electric — use once per section for maximum impact</li>
+<li>Serif headlines (MongoDB Value Serif) create the editorial authority — never use for body</li>
+<li>Weight 300 body text creates the airy reading experience — don't default to 400</li>
+<li>Source Code Pro uppercase with wide tracking for technical labels — the database voice</li>
+<li>Teal-tinted shadows keep everything in the MongoDB color world</li>
+</ol></div> </section> </div> <textarea hidden readonly data-design-markdown># Design System Inspiration of MongoDB
+
+## 1. Visual Theme &amp; Atmosphere
+
+MongoDB&#39;s website is a deep-forest-meets-terminal experience — a design system rooted in the darkest teal-black (`#001e2b`) that evokes both the density of a database and the depth of a forest canopy. Against this near-black canvas, a striking neon green (`#00ed64`) pulses as the brand accent — bright enough to feel electric, organic enough to feel alive. This isn&#39;t the cold neon of cyberpunk; it&#39;s the bioluminescent green of something growing in the dark.
+
+The typography system is architecturally ambitious: MongoDB Value Serif for massive hero headlines (96px) creates an editorial, authoritative presence — serif type at database-company scale is a bold choice that says &quot;we&#39;re not just another tech company.&quot; Euclid Circular A handles the heavy lifting of body and UI text with an unusually wide weight range (300–700), while Source Code Pro serves as the code and label font with distinctive uppercase treatments featuring very wide letter-spacing (1px–3px). This three-font system creates a hierarchy that spans editorial elegance → geometric professionalism → engineering precision.
+
+What makes MongoDB distinctive is its dual-mode design: a dark hero/feature section world (`#001e2b` with neon green accents) and a light content world (white with teal-gray borders `#b8c4c2`). The transition between these modes creates dramatic contrast. The shadow system uses teal-tinted dark shadows (`rgba(0, 30, 43, 0.12)`) that maintain the forest-dark atmosphere even on light surfaces. Buttons use pill shapes (100px–999px radius) with MongoDB Green borders (`#00684a`), and the entire component system references the LeafyGreen design system.
+
+**Key Characteristics:**
+- Deep teal-black backgrounds (`#001e2b`) — forest-dark, not space-dark
+- Neon MongoDB Green (`#00ed64`) as the singular brand accent — electric and organic
+- MongoDB Value Serif for hero headlines — editorial authority at tech scale
+- Euclid Circular A for body with weight 300 (light) as a distinctive body weight
+- Source Code Pro with wide uppercase letter-spacing (1px–3px) for technical labels
+- Teal-tinted shadows: `rgba(0, 30, 43, 0.12)` — shadows carry the forest color
+- Dual-mode: dark teal hero sections + light white content sections
+- Pill buttons (100px radius) with green borders (`#00684a`)
+- Link Blue (`#006cfa`) and hover transition to `#3860be`
+
+## 2. Color Palette &amp; Roles
+
+### Primary Brand
+- **Forest Black** (`#001e2b`): Primary dark background — the deepest teal-black
+- **MongoDB Green** (`#00ed64`): Primary brand accent — neon green for highlights, underlines, gradients
+- **Dark Green** (`#00684a`): Button borders, link text on light — muted green for functional use
+
+### Interactive
+- **Action Blue** (`#006cfa`): Secondary accent — links, interactive highlights
+- **Hover Blue** (`#3860be`): All link hover states transition to this blue
+- **Teal Active** (`#1eaedb`): Button hover background — bright teal
+
+### Neutral Scale
+- **Deep Teal** (`#1c2d38`): Dark button backgrounds, secondary dark surfaces
+- **Teal Gray** (`#3d4f58`): Dark borders on dark surfaces
+- **Dark Slate** (`#21313c`): Dark link text variant
+- **Cool Gray** (`#5c6c75`): Muted text on dark, secondary button text
+- **Silver Teal** (`#b8c4c2`): Borders on light surfaces, dividers
+- **Light Input** (`#e8edeb`): Input text on dark surfaces
+- **Pure White** (`#ffffff`): Light section background, button text on dark
+- **Black** (`#000000`): Text on light surfaces, darkest elements
+
+### Shadows
+- **Forest Shadow** (`rgba(0, 30, 43, 0.12) 0px 26px 44px, rgba(0, 0, 0, 0.13) 0px 7px 13px`): Primary card elevation — teal-tinted
+- **Standard Shadow** (`rgba(0, 0, 0, 0.15) 0px 3px 20px`): General elevation
+- **Subtle Shadow** (`rgba(0, 0, 0, 0.1) 0px 2px 4px`): Light card lift
+
+## 3. Typography Rules
+
+### Font Families
+- **Display Serif**: `MongoDB Value Serif` — editorial hero headlines
+- **Body / UI**: `Euclid Circular A` — geometric sans-serif workhorse
+- **Code / Labels**: `Source Code Pro` — monospace with uppercase label treatments
+- **Fallbacks**: `Akzidenz-Grotesk Std` (with CJK: Noto Sans KR/SC/JP), `Times`, `Arial`, `system-ui`
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
+|------|------|------|--------|-------------|----------------|-------|
+| Display Hero | MongoDB Value Serif | 96px (6.00rem) | 400 | 1.20 (tight) | normal | Serif authority |
+| Display Secondary | MongoDB Value Serif | 64px (4.00rem) | 400 | 1.00 (tight) | normal | Serif sub-hero |
+| Section Heading | Euclid Circular A | 36px (2.25rem) | 500 | 1.33 | normal | Geometric precision |
+| Sub-heading | Euclid Circular A | 24px (1.50rem) | 500 | 1.33 | normal | Feature titles |
+| Body Large | Euclid Circular A | 20px (1.25rem) | 400 | 1.60 (relaxed) | normal | Introductions |
+| Body | Euclid Circular A | 18px (1.13rem) | 400 | 1.33 | normal | Standard body |
+| Body Light | Euclid Circular A | 16px (1.00rem) | 300 | 1.50–2.00 | normal | Light-weight reading text |
+| Nav / UI | Euclid Circular A | 16px (1.00rem) | 500 | 1.00–1.88 | 0.16px | Navigation, emphasized |
+| Body Bold | Euclid Circular A | 15px (0.94rem) | 700 | 1.50 | normal | Strong emphasis |
+| Button | Euclid Circular A | 13.5px–16px | 500–700 | 1.00 | 0.135px–0.9px | CTA labels |
+| Caption | Euclid Circular A | 14px (0.88rem) | 400 | 1.71 (relaxed) | normal | Metadata |
+| Small | Euclid Circular A | 11px (0.69rem) | 600 | 1.82 (relaxed) | 0.2px | Tags, annotations |
+| Code Heading | Source Code Pro | 40px (2.50rem) | 400 | 1.60 (relaxed) | normal | Code showcase titles |
+| Code Body | Source Code Pro | 16px (1.00rem) | 400 | 1.50 | normal | Code blocks |
+| Code Label | Source Code Pro | 14px (0.88rem) | 400–500 | 1.14 (tight) | 1px–2px | `text-transform: uppercase` |
+| Code Micro | Source Code Pro | 9px (0.56rem) | 600 | 2.67 (relaxed) | 2.5px | `text-transform: uppercase` |
+
+### Principles
+- **Serif for authority**: MongoDB Value Serif at hero scale creates an editorial presence unusual in tech — it communicates that MongoDB is an institution, not a startup.
+- **Weight 300 as body default**: Euclid Circular A uses light (300) for body text, creating an airy reading experience that contrasts with the dense, dark backgrounds.
+- **Wide-tracked monospace labels**: Source Code Pro uppercase at 1px–3px letter-spacing creates technical signposts that feel like database field labels — systematic, structured, classified.
+- **Four-weight range**: 300 (light body) → 400 (standard) → 500 (UI/nav) → 700 (bold CTA) — a wider range than most systems, enabling fine-grained hierarchy.
+
+## 4. Component Stylings
+
+### Buttons
+
+**Primary Green (Dark Surface)**
+- Background: `#00684a` (muted MongoDB green)
+- Text: `#000000`
+- Radius: 50% (circular) or 100px (pill)
+- Border: `1px solid #00684a`
+- Shadow: `rgba(0,0,0,0.06) 0px 1px 6px`
+- Hover: scale 1.1
+- Active: scale 0.85
+
+**Dark Teal Button**
+- Background: `#1c2d38`
+- Text: `#5c6c75`
+- Radius: 100px (pill)
+- Border: `1px solid #3d4f58`
+- Hover: background `#1eaedb`, text white, translateX(5px)
+
+**Outlined Button (Light Surface)**
+- Background: transparent
+- Text: `#001e2b`
+- Border: `1px solid #b8c4c2`
+- Radius: 4px–8px
+- Hover: background tint
+
+### Cards &amp; Containers
+- Light mode: white background with `1px solid #b8c4c2` border
+- Dark mode: `#001e2b` or `#1c2d38` background with `1px solid #3d4f58`
+- Radius: 16px (standard), 24px (medium), 48px (large/hero)
+- Shadow: `rgba(0,30,43,0.12) 0px 26px 44px` (forest-tinted)
+- Image containers: 30px–32px radius
+
+### Inputs &amp; Forms
+- Textarea: text `#e8edeb`, padding 12px 12px 12px 8px
+- Borders: `1px solid #b8c4c2` on light, `1px solid #3d4f58` on dark
+- Input radius: 4px
+
+### Navigation
+- Dark header on forest-black background
+- Euclid Circular A 16px weight 500 for nav links
+- MongoDB logo (leaf icon + wordmark) left-aligned
+- Green CTA pill buttons right-aligned
+- Mega-menu dropdowns with product categories
+
+### Image Treatment
+- Dashboard screenshots on dark backgrounds
+- Green-accented UI elements in screenshots
+- 30px–32px radius on image containers
+- Full-width dark sections for product showcases
+
+### Distinctive Components
+
+**Neon Green Accent Underlines**
+- `0px 2px 2px 0px solid #00ed64` — bottom + right border creating accent underlines
+- Used on feature headings and highlighted text
+- Also appears as `#006cfa` (blue) variant
+
+**Source Code Label System**
+- 14px uppercase Source Code Pro with 1px–2px letter-spacing
+- Used as section category markers above headings
+- Creates a &quot;database field label&quot; aesthetic
+
+## 5. Layout Principles
+
+### Spacing System
+- Base unit: 8px
+- Scale: 1px, 4px, 7px, 8px, 10px, 12px, 14px, 15px, 16px, 18px, 20px, 24px, 32px
+
+### Grid &amp; Container
+- Max content width centered
+- Dark hero section with contained content
+- Light content sections below
+- Card grids: 2–3 columns
+- Full-width dark footer
+
+### Whitespace Philosophy
+- **Dramatic mode transitions**: The shift from dark teal sections to white content creates built-in visual breathing through contrast, not just space.
+- **Generous dark sections**: Dark hero and feature areas use extra vertical padding (80px+) to let the forest-dark background breathe.
+- **Compact light sections**: White content areas are denser, with tighter card grids and less vertical spacing.
+
+### Border Radius Scale
+- Minimal (1px–2px): Small spans, badges
+- Subtle (4px): Inputs, small buttons
+- Standard (8px): Cards, links
+- Card (16px): Standard cards, containers
+- Toggle (20px): Switch elements
+- Large (24px): Large panels
+- Image (30px–32px): Image containers
+- Hero (48px): Hero cards
+- Pill (100px–999px): Buttons, navigation pills
+- Full (9999px): Maximum pill
+
+## 6. Depth &amp; Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| Flat (Level 0) | No shadow | Default surfaces |
+| Subtle (Level 1) | `rgba(0,0,0,0.1) 0px 2px 4px` | Light card lift |
+| Standard (Level 2) | `rgba(0,0,0,0.15) 0px 3px 9px` | Standard cards |
+| Prominent (Level 3) | `rgba(0,0,0,0.15) 0px 3px 20px` | Elevated panels |
+| Forest (Level 4) | `rgba(0,30,43,0.12) 0px 26px 44px, rgba(0,0,0,0.13) 0px 7px 13px` | Hero cards — teal-tinted |
+
+**Shadow Philosophy**: MongoDB&#39;s shadow system is unique in that the primary elevation shadow uses `rgba(0, 30, 43, 0.12)` — a teal-tinted shadow that carries the forest-dark brand color into the depth system. This means even on white surfaces, shadows feel like they belong to the MongoDB color world rather than being generic neutral black.
+
+## 7. Do&#39;s and Don&#39;ts
+
+### Do
+- Use `#001e2b` (forest-black) for dark sections — not pure black
+- Apply MongoDB Green (`#00ed64`) sparingly for maximum electric impact
+- Use MongoDB Value Serif ONLY for hero/display headings — Euclid Circular A for everything else
+- Apply Source Code Pro uppercase with wide tracking (1px–3px) for technical labels
+- Use teal-tinted shadows (`rgba(0,30,43,0.12)`) for primary card elevation
+- Maintain the dark/light section duality — dramatic contrast between modes
+- Use weight 300 for body text — the light weight is the readable voice
+- Apply pill radius (100px) to primary action buttons
+
+### Don&#39;t
+- Don&#39;t use pure black (`#000000`) for dark backgrounds — always use teal-black (`#001e2b`)
+- Don&#39;t use MongoDB Green (`#00ed64`) on backgrounds — it&#39;s an accent for text, underlines, and small highlights
+- Don&#39;t use standard gray shadows — always use teal-tinted (`rgba(0,30,43,...)`)
+- Don&#39;t apply serif font to body text — MongoDB Value Serif is hero-only
+- Don&#39;t use narrow letter-spacing on Source Code Pro labels — the wide tracking IS the identity
+- Don&#39;t mix dark and light section treatments within the same section
+- Don&#39;t use warm colors — the palette is strictly cool (teal, green, blue)
+- Don&#39;t forget the green accent underlines — they&#39;re the signature decorative element
+
+## 8. Responsive Behavior
+
+### Breakpoints
+| Name | Width | Key Changes |
+|------|-------|-------------|
+| Mobile Small | &lt;425px | Tight single column |
+| Mobile | 425–768px | Standard mobile |
+| Tablet | 768–1024px | 2-column grids begin |
+| Desktop | 1024–1280px | Standard layout |
+| Large Desktop | 1280–1440px | Expanded layout |
+| Ultra-wide | &gt;1440px | Maximum width, generous margins |
+
+### Touch Targets
+- Pill buttons with generous padding
+- Navigation links at 16px with adequate spacing
+- Card surfaces as full-area touch targets
+
+### Collapsing Strategy
+- Hero: MongoDB Value Serif 96px → 64px → scales further
+- Navigation: horizontal mega-menu → hamburger
+- Feature cards: multi-column → stacked
+- Dark/light sections maintain their mode at all sizes
+- Source Code Pro labels maintain uppercase treatment
+
+### Image Behavior
+- Dashboard screenshots scale proportionally
+- Dark section backgrounds maintained full-width
+- Image radius maintained across breakpoints
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Dark background: Forest Black (`#001e2b`)
+- Brand accent: MongoDB Green (`#00ed64`)
+- Functional green: Dark Green (`#00684a`)
+- Link blue: Action Blue (`#006cfa`)
+- Text on light: Black (`#000000`)
+- Text on dark: White (`#ffffff`) or Light Input (`#e8edeb`)
+- Border light: Silver Teal (`#b8c4c2`)
+- Border dark: Teal Gray (`#3d4f58`)
+
+### Example Component Prompts
+- &quot;Create a hero on forest-black (#001e2b) background. Headline at 96px MongoDB Value Serif weight 400, line-height 1.20, white text with &#39;potential&#39; highlighted in MongoDB Green (#00ed64). Subtitle at 18px Euclid Circular A weight 400. Green pill CTA (#00684a, 100px radius). Neon green gradient glow behind product screenshot.&quot;
+- &quot;Design a card on white background: 1px solid #b8c4c2 border, 16px radius, shadow rgba(0,30,43,0.12) 0px 26px 44px. Title at 24px Euclid Circular A weight 500. Body at 16px weight 300. Source Code Pro 14px uppercase label above title with 2px letter-spacing.&quot;
+- &quot;Build a dark section: #001e2b background, 1px solid #3d4f58 border on cards. White text. MongoDB Green (#00ed64) accent underlines on headings using bottom-border 2px solid.&quot;
+- &quot;Create technical label: Source Code Pro 14px, text-transform uppercase, letter-spacing 2px, weight 500, #00ed64 color on dark background.&quot;
+- &quot;Design a pill button: #1c2d38 background, 1px solid #3d4f58 border, 100px radius, #5c6c75 text. Hover: #1eaedb background, white text, translateX(5px).&quot;
+
+### Iteration Guide
+1. Start with the mode decision: dark (#001e2b) for hero/features, white for content
+2. MongoDB Green (#00ed64) is electric — use once per section for maximum impact
+3. Serif headlines (MongoDB Value Serif) create the editorial authority — never use for body
+4. Weight 300 body text creates the airy reading experience — don&#39;t default to 400
+5. Source Code Pro uppercase with wide tracking for technical labels — the database voice
+6. Teal-tinted shadows keep everything in the MongoDB color world
+</textarea> </section> <script type="module">function u(a,t){a&&(a.classList.toggle("is-visible",t),a.setAttribute("aria-hidden",t?"false":"true"),a instanceof HTMLAnchorElement&&(a.tabIndex=t?0:-1))}function g(a=document){a.querySelectorAll("[data-document-tabs]").forEach(t=>{const n={copyDesign:t.dataset.copyDesignLabel??"Copy DESIGN.md",copiedText:t.dataset.copiedLabel??"Copied",copyFailedText:t.dataset.copyFailedLabel??"Copy failed"},o=Array.from(t.querySelectorAll("[data-doc-tab]")),y=Array.from(t.querySelectorAll("[data-doc-panel]")),e=t.querySelector("[data-copy-design]"),b=t.querySelector("[data-download-design]"),r=t.querySelector("[data-design-markdown]"),l=c=>{o.forEach(i=>{const d=i.getAttribute("data-doc-tab")===c;i.classList.toggle("is-active",d),i.setAttribute("aria-selected",d?"true":"false")}),y.forEach(i=>{const d=i.getAttribute("data-doc-panel")===c;i.classList.toggle("is-active",d),i.toggleAttribute("hidden",!d)});const s=c==="design";e&&(e.disabled=!s,e.setAttribute("aria-disabled",s?"false":"true"),e.textContent=n.copyDesign,u(e,s)),u(b,s)};o.forEach(c=>{c.addEventListener("click",()=>{l(c.getAttribute("data-doc-tab")||"readme")})}),e&&r&&e.addEventListener("click",async()=>{if(!e.disabled)try{await navigator.clipboard.writeText(r.value),e.textContent=n.copiedText}catch{e.textContent=n.copyFailedText}}),l("readme")})}g();</script> </div> <nav class="detail-adjacent-nav" aria-label="相鄰設計"> <a class="detail-adjacent-link" href="/zh-Hant/designs/mistral.ai/"> <span>上一個</span> <strong>Mistral AI</strong> </a> <a class="detail-adjacent-link detail-adjacent-link-next" href="/zh-Hant/designs/notion/"> <span>下一個</span> <strong>Notion</strong> </a> </nav> </section>  </main> <astro-island uid="4NpzI" prefix="r3" component-url="/_astro/PromoteCard.BeRi4Nx5.js" component-export="PromoteCard" renderer-url="/_astro/client.DyczpTbx.js" props="{&quot;locale&quot;:[0,&quot;zh-Hant&quot;],&quot;className&quot;:[0,&quot;_promoteCard_1yz0l_1&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;PromoteCard&quot;,&quot;value&quot;:true}"></astro-island> <footer class="site-footer astro-pnrjdgm4"> <div class="container shell-panel footer-panel astro-pnrjdgm4"> <div class="footer-brand-column astro-pnrjdgm4"> <p class="footer-title astro-pnrjdgm4">Awesome Design MD 畫廊</p> <p class="footer-copy astro-pnrjdgm4">用於瀏覽上游 README、DESIGN 與即時預覽資源的靜態畫廊站點。</p> <div class="footer-meta-links astro-pnrjdgm4"> <a class="footer-meta-link astro-pnrjdgm4" href="/zh-Hant/"> 畫廊 </a><a class="footer-meta-link astro-pnrjdgm4" href="https://github.com/HagiCode-org/awesome-design-md-site" target="_blank" rel="noreferrer"> 站點倉庫 </a><a class="footer-meta-link astro-pnrjdgm4" href="https://github.com/VoltAgent/awesome-design-md" target="_blank" rel="noreferrer"> 上游倉庫 </a> </div> </div> <div class="footer-directory astro-pnrjdgm4"> <p class="footer-section-kicker astro-pnrjdgm4">相關站點</p> <div class="footer-site-grid astro-pnrjdgm4"> <a class="footer-site-card astro-pnrjdgm4" href="https://hagicode.com/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">HagiCode 主站</span> <span class="footer-link-description astro-pnrjdgm4">產品入口</span> </a><a class="footer-site-card astro-pnrjdgm4" href="https://docs.hagicode.com/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">HagiCode Docs</span> <span class="footer-link-description astro-pnrjdgm4">使用指南</span> </a><a class="footer-site-card astro-pnrjdgm4" href="https://newbe.hagicode.com/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">newbe</span> <span class="footer-link-description astro-pnrjdgm4">作者部落格</span> </a><a class="footer-site-card astro-pnrjdgm4" href="https://index.hagicode.com/data/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">Index Data Mirror</span> <span class="footer-link-description astro-pnrjdgm4">公開資料</span> </a><a class="footer-site-card astro-pnrjdgm4" href="https://builder.hagicode.com/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">Docker Compose Builder</span> <span class="footer-link-description astro-pnrjdgm4">使用 Docker 部署 Hagicode</span> </a><a class="footer-site-card astro-pnrjdgm4" href="https://cost.hagicode.com/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">AI Replacement Calculator</span> <span class="footer-link-description astro-pnrjdgm4">我要被 AI 淘汰了？！</span> </a><a class="footer-site-card astro-pnrjdgm4" href="https://status.hagicode.com/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">HagiCode Status</span> <span class="footer-link-description astro-pnrjdgm4">服務狀態</span> </a><a class="footer-site-card astro-pnrjdgm4" href="https://soul.hagicode.com/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">Soul Builder</span> <span class="footer-link-description astro-pnrjdgm4">Agent 之魂</span> </a><a class="footer-site-card astro-pnrjdgm4" href="https://trait.hagicode.com/" target="_blank" rel="noreferrer"> <span class="footer-link-title astro-pnrjdgm4">Trait Builder</span> <span class="footer-link-description astro-pnrjdgm4">Agent 之能</span> </a> </div> </div> </div> </footer> </div> <script charset="UTF-8" id="LA_COLLECT" src="//sdk.51.la/js-sdk-pro.min.js"></script><script>(function(){const laId = "L6b88a5yK4h2Xnci";
+
+      if (typeof LA !== 'undefined' && typeof LA.init === 'function') {
+        LA.init({ id: laId, ck: laId, autoTrack: true, hashMode: true, screenRecord: true });
+        window.dispatchEvent(new Event('hagicode:analytics-ready'));
+      }
+    })();</script> </body></html>
