@@ -1,0 +1,5 @@
+action_recommendations:
+  - id: awesome-design-md-site-deploy-gh-pages
+    watch: true
+    include: true
+    reason: "publish site"
