@@ -1,114 +1,88 @@
-import { startTransition, useEffect, useEffectEvent, useState } from 'react';
+import React from 'react';
 import { localeCopy, type SupportedLocale } from '@/config/site';
+import VideoPromo from '@/components/gallery/VideoPromo';
 
 interface Props {
   locale?: SupportedLocale;
 }
 
+const storeBadgeLanguages: Record<SupportedLocale, string> = {
+  en: 'en-us',
+  'zh-CN': 'zh-cn',
+  'zh-Hant': 'zh-tw',
+  'ja-JP': 'ja',
+  'ko-KR': 'ko',
+  'de-DE': 'de',
+  'fr-FR': 'fr',
+  'es-ES': 'es',
+  'pt-BR': 'pt-br',
+  'ru-RU': 'ru',
+};
+
 export default function HagiCodeShowcase({ locale = 'en' }: Props) {
   const copy = localeCopy[locale].home;
-  const slides = copy.showcaseSlides;
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const stepSlide = useEffectEvent((direction: number) => {
-    startTransition(() => {
-      setActiveIndex((current) => (current + direction + slides.length) % slides.length);
-    });
-  });
-
-  useEffect(() => {
-    if (slides.length < 2) {
-      return;
-    }
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      return;
-    }
-
-    const timerId = window.setInterval(() => {
-      stepSlide(1);
-    }, 4800);
-
-    return () => window.clearInterval(timerId);
-  }, [slides.length, stepSlide]);
+  const storeBadgeLanguage = storeBadgeLanguages[locale];
 
   return (
     <section className="gallery-showcase shell-panel" aria-label={copy.showcaseTitle}>
-      <div className="gallery-showcase-head">
-        <div>
-          <p className="gallery-meta-label">{copy.showcaseEyebrow}</p>
-          <h2>{copy.showcaseTitle}</h2>
-        </div>
-        {slides.length > 1 ? (
-          <div className="preview-switcher-controls">
-            <button
-              type="button"
-              className="gallery-showcase-nav"
-              onClick={() => stepSlide(-1)}
-              aria-label={copy.showcasePrev}
-            >
-              {copy.showcasePrev}
-            </button>
-            <button
-              type="button"
-              className="gallery-showcase-nav"
-              onClick={() => stepSlide(1)}
-              aria-label={copy.showcaseNext}
-            >
-              {copy.showcaseNext}
-            </button>
+      <div className="gallery-showcase-content">
+        <div className="gallery-showcase-head">
+          <div>
+            <p className="gallery-meta-label">{copy.showcaseEyebrow}</p>
+            <h2>{copy.showcaseTitle}</h2>
           </div>
-        ) : null}
-      </div>
-
-      <p className="gallery-showcase-copy">{copy.showcaseLead}</p>
-      <a className="gallery-link-chip" href={copy.showcaseCtaHref} target="_blank" rel="noreferrer">
-        {copy.showcaseCtaLabel}
-      </a>
-
-      <div className="gallery-showcase-stage" aria-live="polite">
-        {slides.map((slide, index) => (
-          <article
-            className={`gallery-showcase-slide ${index === activeIndex ? 'is-active' : ''}`}
-            key={slide.title}
-            aria-hidden={index === activeIndex ? undefined : 'true'}
-          >
-            <div className="gallery-showcase-media">
-              <img
-                src={slide.imageSrc}
-                alt={slide.imageAlt}
-                loading={index === 0 ? 'eager' : 'lazy'}
-                decoding="async"
-              />
-            </div>
-            <div className="gallery-showcase-body">
-              <h3>{slide.title}</h3>
-              <p>{slide.description}</p>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      {slides.length > 1 ? (
-        <div className="preview-switcher-controls">
-          {slides.map((slide, index) => (
-            <button
-              key={slide.title}
-              type="button"
-              className={`gallery-showcase-nav ${index === activeIndex ? 'is-active' : ''}`}
-              onClick={() => {
-                startTransition(() => {
-                  setActiveIndex(index);
-                });
-              }}
-              aria-label={`${copy.showcaseJumpLabel} ${index + 1}`}
-              aria-pressed={index === activeIndex}
-            >
-              {index + 1}
-            </button>
-          ))}
         </div>
-      ) : null}
+
+        <div className="gallery-showcase-copy">
+          <p>{copy.showcaseLead}</p>
+          <p>{copy.showcaseSubHeadline}</p>
+        </div>
+
+        <ul className="gallery-showcase-triad" aria-label={copy.showcaseTitle}>
+          {copy.showcaseTriad.map((item) => (
+            <li key={item.label}>
+              <strong>{item.label}</strong>
+              <span>{item.description}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div className="gallery-showcase-actions">
+          <a
+            className="gallery-showcase-cta button-primary"
+            href={copy.showcaseCtaHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={copy.showcaseCtaLabel}
+          >
+            {copy.showcaseCtaLabel}
+          </a>
+          <a
+            className="gallery-showcase-learn-more"
+            href={copy.showcaseLearnMoreHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={copy.showcaseLearnMoreLabel}
+          >
+            {copy.showcaseLearnMoreLabel}
+          </a>
+          <span className="gallery-showcase-store" data-store-entry="gallery-hagicode">
+            {React.createElement('ms-store-badge', {
+              productid: '9N3PM0N3SVDW',
+              productname: 'HagiCode',
+              'window-mode': 'direct',
+              theme: 'auto',
+              size: 'small',
+              language: storeBadgeLanguage,
+              animation: 'on',
+              'aria-label': 'Open HagiCode in Microsoft Store',
+              title: 'Open HagiCode in Microsoft Store',
+            })}
+          </span>
+        </div>
+      </div>
+
+      <VideoPromo locale={locale} />
     </section>
   );
 }
