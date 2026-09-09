@@ -70,23 +70,24 @@ const structuredData = [
         <p class="gallery-eyebrow">{copy.home.heroEyebrow}</p>
         <h1>{copy.home.heroTitle}</h1>
         <p class="gallery-lead">{copy.home.heroLead}</p>
-        <div class="gallery-readme-notes">
-          <p class="gallery-readme-kicker">{copy.home.heroReadmeKicker}</p>
-          <div class="gallery-readme-list">
-            {copy.home.heroReadmeExcerpts.map((item) => (
-              <article class="gallery-readme-item">
-                <p class="gallery-readme-excerpt">
-                  {locale === 'en' ? item.excerpt : item.translation || item.excerpt}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
+        <a class="gallery-hero-cta button-primary" href="#gallery-catalog">
+          {copy.chrome.galleryCtaLabel}
+        </a>
       </div>
-
-      <HagiCodeShowcase locale={locale} client:load />
+      <div class="gallery-hero-signal" aria-hidden="true">
+        <span class="gallery-hero-signal-orbit"></span>
+        <span class="gallery-hero-signal-core"></span>
+        <span class="gallery-hero-signal-line gallery-hero-signal-line-one"></span>
+        <span class="gallery-hero-signal-line gallery-hero-signal-line-two"></span>
+      </div>
     </div>
   </section>
+
+  <section class="container gallery-showcase-slot" aria-label={copy.home.showcaseTitle}>
+    <HagiCodeShowcase locale={locale} client:load />
+  </section>
+
+  <span id="gallery-catalog" class="gallery-anchor" aria-hidden="true"></span>
 
   {
     entries.length > 0 ? (
