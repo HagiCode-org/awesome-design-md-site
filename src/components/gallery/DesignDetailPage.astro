@@ -1,6 +1,7 @@
 ---
 import AdjacentNavigation from '@/components/gallery/AdjacentNavigation.astro';
 import DocumentTabs from '@/components/gallery/DocumentTabs.astro';
+import HagiCodeShowcase from '@/components/gallery/HagiCodeShowcase';
 import PreviewSwitcher from '@/components/gallery/PreviewSwitcher.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import {
@@ -96,5 +97,6 @@ const structuredData = {
     </div>
 
     <AdjacentNavigation previous={previousEntry} next={nextEntry} locale={locale} />
+    <HagiCodeShowcase locale={locale} client:load />
   </section>
 </BaseLayout>
