@@ -6,6 +6,8 @@
 - `/designs/<slug>/` 详情页
 - `/previews/<slug>/<variant>.html` 预览资源
 
+站点页脚直接复用 `@hagicode/hagilight`，RSS 链接指向 hagilight 的共享 feed。本仓库不维护独立页脚或设计站点相关站点目录；相关站点入口由 hagilight 的公共页脚统一提供。
+
 ## 站点级设计参考
 
 仓库根目录的 [`design.md`](./design.md) 记录的是当前画廊站点壳层本身的设计系统，包括双主题配色、排版、搜索栏、预览切换、README / DESIGN 标签页，以及面向维护者与 AI 的设计约束。
