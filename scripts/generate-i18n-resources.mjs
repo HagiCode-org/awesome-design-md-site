@@ -18,7 +18,6 @@ const expectedNamespaceFiles = [
   'common.yml',
   'gallery.yml',
   'metadata.yml',
-  'promotion.yml',
 ];
 
 function isPlainObject(value) {

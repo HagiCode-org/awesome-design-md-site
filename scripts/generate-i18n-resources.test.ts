@@ -56,9 +56,10 @@ describe('generate-i18n-resources', () => {
       compactLabel: '日',
       ogLocale: 'ja_JP',
     });
-    expect(result).toMatchObject({ localeCount: 10, namespaceCount: 5 });
+    expect(result).toMatchObject({ localeCount: 10, namespaceCount: 4 });
     expect(generatedModule).toContain('export const SITE_LOCALE_RESOURCES');
     expect(generatedModule).toContain('"defaultRouteLocale": "en"');
+    expect(generatedModule).not.toContain('"promotion"');
   });
 
   it('fails when a target locale loses a scalar key path from the base namespace', async () => {

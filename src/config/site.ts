@@ -7,7 +7,6 @@ import {
   supportedLocales,
   type SupportedLocale,
 } from '@/i18n';
-import { resolveAwesomeDesignFooterSiteLinks } from '@/lib/footer-site-links';
 
 export { defaultLocale, supportedLocales };
 export type { SupportedLocale };
@@ -69,7 +68,6 @@ export interface LocaleCopy {
   preview: ReturnType<typeof getLocaleResources>['gallery']['preview'];
   documents: ReturnType<typeof getLocaleResources>['gallery']['documents'];
   adjacent: ReturnType<typeof getLocaleResources>['gallery']['adjacent'];
-  promotion: ReturnType<typeof getLocaleResources>['promotion'];
 }
 
 function buildLocaleCopy(locale: SupportedLocale): LocaleCopy {
@@ -85,7 +83,6 @@ function buildLocaleCopy(locale: SupportedLocale): LocaleCopy {
     preview: resources.gallery.preview,
     documents: resources.gallery.documents,
     adjacent: resources.gallery.adjacent,
-    promotion: resources.promotion,
   };
 }
 
@@ -144,20 +141,6 @@ export function getGalleryNav(locale: SupportedLocale): NavItem[] {
       href: siteMeta.sourceRepository,
       group: 'repo',
     },
-  ];
-}
-
-export function getFooterLinks(locale: SupportedLocale): NavItem[] {
-  return resolveAwesomeDesignFooterSiteLinks(locale);
-}
-
-export function getFooterMetaLinks(locale: SupportedLocale): NavItem[] {
-  const chrome = localeCopy[locale].chrome;
-
-  return [
-    { label: chrome.galleryLabel, href: getLocaleHomePath(locale) },
-    { label: chrome.siteRepoLabel, href: siteMeta.repository },
-    { label: chrome.sourceRepoLabel, href: siteMeta.sourceRepository },
   ];
 }
 
@@ -242,10 +225,6 @@ export function getSearchSummary(locale: SupportedLocale, query: string, count: 
     noun,
     query: trimmedQuery,
   });
-}
-
-export function getPromotionCopy(locale: string | null | undefined) {
-  return getLocaleResources(resolveSupportedLocale(locale)).promotion;
 }
 
 export function getSeoLocaleMetadata(locale: SupportedLocale) {

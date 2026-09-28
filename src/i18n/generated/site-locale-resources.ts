@@ -296,13 +296,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "Promotion",
-        "fallbackPlatformLabel": "Promoted",
-        "dismissLabel": "Dismiss promotion",
-        "ctaLabel": "GO",
-        "configuredLocaleFallback": "Promotion details"
       }
     },
     "zh-CN": {
@@ -600,13 +593,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "推广信息",
-        "fallbackPlatformLabel": "推荐",
-        "dismissLabel": "关闭推广信息",
-        "ctaLabel": "立即前往",
-        "configuredLocaleFallback": "推广详情"
       }
     },
     "zh-Hant": {
@@ -904,13 +890,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "推廣資訊",
-        "fallbackPlatformLabel": "推薦",
-        "dismissLabel": "關閉推廣資訊",
-        "ctaLabel": "立即前往",
-        "configuredLocaleFallback": "推廣詳情"
       }
     },
     "ja-JP": {
@@ -1208,13 +1187,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "プロモーション",
-        "fallbackPlatformLabel": "おすすめ",
-        "dismissLabel": "プロモーションを閉じる",
-        "ctaLabel": "詳細を見る",
-        "configuredLocaleFallback": "プロモーション詳細"
       }
     },
     "ko-KR": {
@@ -1512,13 +1484,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "프로모션",
-        "fallbackPlatformLabel": "추천",
-        "dismissLabel": "프로모션 닫기",
-        "ctaLabel": "자세히 보기",
-        "configuredLocaleFallback": "프로모션 상세"
       }
     },
     "de-DE": {
@@ -1816,13 +1781,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "Promotion",
-        "fallbackPlatformLabel": "Empfohlen",
-        "dismissLabel": "Promotion schließen",
-        "ctaLabel": "Ansehen",
-        "configuredLocaleFallback": "Promotiondetails"
       }
     },
     "fr-FR": {
@@ -2120,13 +2078,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "Promotion",
-        "fallbackPlatformLabel": "Recommandé",
-        "dismissLabel": "Fermer la promotion",
-        "ctaLabel": "Voir",
-        "configuredLocaleFallback": "Détails de la promotion"
       }
     },
     "es-ES": {
@@ -2424,13 +2375,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "Promoción",
-        "fallbackPlatformLabel": "Recomendado",
-        "dismissLabel": "Cerrar promoción",
-        "ctaLabel": "Ver",
-        "configuredLocaleFallback": "Detalles de promoción"
       }
     },
     "pt-BR": {
@@ -2728,13 +2672,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "Promoção",
-        "fallbackPlatformLabel": "Recomendado",
-        "dismissLabel": "Fechar promoção",
-        "ctaLabel": "Ver",
-        "configuredLocaleFallback": "Detalhes da promoção"
       }
     },
     "ru-RU": {
@@ -3032,13 +2969,6 @@ const runtime = {
             "direction": "ltr"
           }
         }
-      },
-      "promotion": {
-        "ariaLabel": "Промо",
-        "fallbackPlatformLabel": "Рекомендуется",
-        "dismissLabel": "Закрыть промо",
-        "ctaLabel": "Смотреть",
-        "configuredLocaleFallback": "Детали промо"
       }
     }
   },

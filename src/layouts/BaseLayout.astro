@@ -2,12 +2,10 @@
 import Analytics51LA from '@/components/51LAAnalytics.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import Header from '@/components/site/Header.astro';
-import Footer from '@/components/site/Footer.astro';
-import { PromoteCard } from '@/components/promote/PromoteCard';
-import promoteCardStyles from '@/components/promote/PromoteCard.module.css';
+import Footer from '@hagicode/hagilight/Footer';
+import PromotoBanner from '@hagicode/hagilight/PromotoBanner';
+import { getHagilightFooterLinks } from '@/config/hagilight-footer';
 import {
-  getFooterLinks,
-  getFooterMetaLinks,
   getGalleryNav,
   getAlternateOgLocales,
   getLanguageLinks,
@@ -43,16 +41,14 @@ const {
 const siteUrl = Astro.site ?? new URL('https://design.hagicode.com');
 const canonicalUrl = toAbsoluteSiteUrl(currentPath, siteUrl);
 const chromeCopy = localeCopy[lang].chrome;
-const commonCopy = localeCopy[lang].common;
 const siteMeta = getSiteMeta(lang);
 const seoLocale = getSeoLocaleMetadata(lang);
 const languageLinks = getLanguageLinks(currentPath);
+const footerLinks = getHagilightFooterLinks(lang);
 const alternateLanguageLinks = languageLinks.map((item) => ({
   ...item,
   href: toAbsoluteSiteUrl(item.href, siteUrl),
 }));
-const footerLinks = getFooterLinks(lang);
-const footerMetaLinks = getFooterMetaLinks(lang);
 const xDefaultHref =
   alternateLanguageLinks.find((item) => item.locale === 'en')?.href ?? canonicalUrl;
 const ogLocale = seoLocale.ogLocale;
@@ -144,14 +140,8 @@ const pageStructuredData = {
       <main id="main">
         <slot />
       </main>
-      <PromoteCard locale={lang} className={promoteCardStyles.promoteCard} client:load />
-      <Footer
-        copy={chromeCopy.footerCopy}
-        links={footerLinks}
-        metaLinks={footerMetaLinks}
-        siteName={commonCopy.site.name}
-        directoryLabel={commonCopy.footer.relatedSites}
-      />
+      <PromotoBanner locale={lang} />
+      <Footer locale={lang} links={footerLinks} />
     </div>
     <Analytics51LA />
     <GoogleAnalytics />

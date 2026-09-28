@@ -2,7 +2,6 @@ import { describe, expect, it } from 'vitest';
 
 import {
   getAlternateOgLocales,
-  getFooterLinks,
   getGalleryNav,
   getLanguageLinks,
   getLocaleHomePath,
@@ -74,18 +73,13 @@ describe('header navigation config', () => {
     expect(getSiteMeta('ja-JP').name).toBe('Awesome Design MD ギャラリー');
   });
 
-  it('keeps footer links and localized gallery labels available for representative locales', () => {
+  it('keeps localized gallery labels available for representative locales', () => {
     const germanNav = getGalleryNav('de-DE');
-    const footerLinks = getFooterLinks('de-DE');
 
     expect(germanNav[0]).toMatchObject({
       label: 'Galerie',
       shortLabel: 'Galerie',
       href: '/de-DE/',
-    });
-    expect(footerLinks.find((link) => link.href === 'https://docs.hagicode.com/')).toMatchObject({
-      label: 'HagiCode Docs',
-      description: 'Offizielle Anleitungen und Referenzen.',
     });
   });
 });

@@ -44,6 +44,47 @@
   --shadow-panel: none;
 }
 
+.hagilight-promoto {
+  --sl-color-accent: #166534;
+  --sl-color-accent-high: #14572f;
+  --sl-color-accent-low: #183321;
+  --sl-color-bg: #141414;
+  --sl-color-bg-nav: #1a1a1a;
+  --sl-color-bg-sidebar: #202020;
+  --sl-color-text: #ffffff;
+  --sl-color-text-high: #ffffff;
+  --sl-color-gray-1: #ffffff;
+  --sl-color-gray-5: #414141;
+  --sl-color-black: #000000;
+}
+
+.hagilight-promoto .hagilight-promoto__dismiss:focus-visible,
+.hagilight-promoto .hagilight-promoto__control:focus-visible,
+.hagilight-promoto .hagilight-promoto__cta:focus-visible {
+  outline-color: #faff69;
+}
+
+[data-theme='light'] .hagilight-promoto {
+  --sl-color-accent: #14572f;
+  --sl-color-accent-high: #166534;
+  --sl-color-accent-low: #e8f0e8;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #f8f8f8;
+  --sl-color-bg-sidebar: #f1f1f1;
+  --sl-color-text: #000000;
+  --sl-color-text-high: #000000;
+  --sl-color-gray-1: #000000;
+  --sl-color-gray-5: #e5e7eb;
+  --sl-color-black: #000000;
+}
+
+[data-theme='light'] .hagilight-promoto .hagilight-promoto__dismiss:focus-visible,
+[data-theme='light'] .hagilight-promoto .hagilight-promoto__control:focus-visible,
+[data-theme='light'] .hagilight-promoto .hagilight-promoto__cta:focus-visible {
+  outline-color: #166534;
+  box-shadow: 0 0 0 3px #ffffff;
+}
+
 * {
   box-sizing: border-box;
 }
