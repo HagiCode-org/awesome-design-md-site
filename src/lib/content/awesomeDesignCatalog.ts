@@ -1,5 +1,7 @@
+import { execFile } from 'node:child_process';
 import { readdir, readFile, stat } from 'node:fs/promises';
 import path from 'node:path';
+import { promisify } from 'node:util';
 import { toString } from 'mdast-util-to-string';
 import rehypeSlug from 'rehype-slug';
 import rehypeStringify from 'rehype-stringify';
@@ -31,6 +33,7 @@ export interface AwesomeDesignEntry {
   slug: string;
   sourceKey: string;
   sourceDir: string;
+  lastUpdated: Date;
   title: string;
   readmeTitle: string;
   summary: string;
@@ -56,6 +59,7 @@ const README_FILE = 'README.md';
 const DESIGN_FILE = 'DESIGN.md';
 const LIGHT_PREVIEW_FILE = 'preview.html';
 const DARK_PREVIEW_FILE = 'preview-dark.html';
+const execFileAsync = promisify(execFile);
 
 let defaultCatalogPromise: Promise<AwesomeDesignCatalog> | undefined;
 
@@ -149,6 +153,8 @@ async function loadAwesomeDesignCatalog(
   }
 
   const entryDirs = await readdir(designRoot, { withFileTypes: true });
+  const { byEntry: lastUpdatedByEntry, fallback: sourceUpdatedAt } =
+    await getLastUpdatedBySourceKey(sourceRoot);
   const entries = await Promise.all(
     entryDirs
       .filter((dirent) => dirent.isDirectory())
@@ -157,6 +163,7 @@ async function loadAwesomeDesignCatalog(
           designRoot,
           previewBasePath,
           sourceKey: dirent.name,
+          lastUpdated: lastUpdatedByEntry.get(dirent.name) ?? sourceUpdatedAt,
         }),
       ),
   );
@@ -176,6 +183,7 @@ async function loadCatalogEntry(input: {
   designRoot: string;
   previewBasePath: string;
   sourceKey: string;
+  lastUpdated: Date;
 }): Promise<AwesomeDesignEntry> {
   const sourceDir = path.join(input.designRoot, input.sourceKey);
   const readmePath = path.join(sourceDir, README_FILE);
@@ -224,6 +232,7 @@ async function loadCatalogEntry(input: {
     slug,
     sourceKey: input.sourceKey,
     sourceDir,
+    lastUpdated: input.lastUpdated,
     title,
     readmeTitle,
     summary,
@@ -242,6 +251,39 @@ async function loadCatalogEntry(input: {
       sourceDarkPath: hasDarkPreview ? darkPreviewPath : null,
     },
   };
+}
+
+async function getLastUpdatedBySourceKey(sourceRoot: string): Promise<{
+  byEntry: Map<string, Date>;
+  fallback: Date;
+}> {
+  const [{ stdout: history }, { stdout: headTimestamp }] = await Promise.all([
+    execFileAsync('git', ['log', '--format=%ct', '--name-only', '--', 'design-md'], {
+      cwd: sourceRoot,
+      maxBuffer: 8 * 1024 * 1024,
+    }),
+    execFileAsync('git', ['log', '-1', '--format=%ct'], { cwd: sourceRoot }),
+  ]);
+  const fallbackTimestamp = Number(headTimestamp.trim());
+  if (!Number.isFinite(fallbackTimestamp)) {
+    throw new Error(`Unable to determine the source revision date in ${sourceRoot}.`);
+  }
+
+  const byEntry = new Map<string, Date>();
+  let timestamp: number | undefined;
+  for (const line of history.split(/\r?\n/u)) {
+    if (/^\d+$/u.test(line)) {
+      timestamp = Number(line);
+      continue;
+    }
+
+    const sourceKey = line.match(/^design-md\/([^/]+)\//u)?.[1];
+    if (sourceKey && timestamp !== undefined && !byEntry.has(sourceKey)) {
+      byEntry.set(sourceKey, new Date(timestamp * 1000));
+    }
+  }
+
+  return { byEntry, fallback: new Date(fallbackTimestamp * 1000) };
 }
 
 async function parseMarkdown(markdown: string): Promise<Root> {

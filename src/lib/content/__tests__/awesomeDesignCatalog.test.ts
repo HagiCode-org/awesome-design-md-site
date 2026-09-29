@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 import { mkdtemp, rm, writeFile, mkdir } from 'node:fs/promises';
 import path from 'node:path';
 import { tmpdir } from 'node:os';
@@ -134,6 +135,12 @@ async function createSourceRoot(
       await writeFile(path.join(entryRoot, 'preview-dark.html'), entry.previewDark, 'utf8');
     }
   }
+
+  execFileSync('git', ['init'], { cwd: sourceRoot, stdio: 'ignore' });
+  execFileSync('git', ['config', 'user.name', 'Gallery test'], { cwd: sourceRoot });
+  execFileSync('git', ['config', 'user.email', 'gallery-test@example.invalid'], { cwd: sourceRoot });
+  execFileSync('git', ['add', 'design-md'], { cwd: sourceRoot });
+  execFileSync('git', ['commit', '-m', 'Add test catalog'], { cwd: sourceRoot, stdio: 'ignore' });
 
   return sourceRoot;
 }
