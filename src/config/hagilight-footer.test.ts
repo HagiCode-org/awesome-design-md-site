@@ -16,15 +16,11 @@ const rssLabels: Record<(typeof supportedLocales)[number], string> = {
   'ru-RU': 'RSS для текущего языка',
 };
 
-const hagilightSiteUrl = 'https://hagilight.hagicode.com';
-
 describe('hagilight footer RSS links', () => {
   it.each(supportedLocales)('uses hagilight localized RSS link for %s', (locale) => {
     const defaultFeed = locale === defaultLocale;
     const linkKey = defaultFeed ? 'rss' : 'rssLocale';
-    const expectedHref = defaultFeed
-      ? `${hagilightSiteUrl}/rss.xml`
-      : `${hagilightSiteUrl}/rss.${locale}.xml`;
+    const expectedHref = defaultFeed ? '/rss.xml' : `/rss.${locale}.xml`;
     const links = resolveSiteLinks(locale, getHagilightFooterLinks(locale));
     const rssLinks = links.quick.filter(({ id }) => id === 'rss' || id === 'rssLocale');
 
@@ -34,5 +30,6 @@ describe('hagilight footer RSS links', () => {
       label: rssLabels[locale],
       href: expectedHref,
     });
+    expect(rssLinks[0].href).not.toContain('hagilight.hagicode.com');
   });
 });

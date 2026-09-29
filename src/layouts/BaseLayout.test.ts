@@ -35,6 +35,16 @@ function cssColor(block: string, variable: string): string {
 }
 
 describe('BaseLayout promoto integration', () => {
+  it('uses one configured gallery icon and exposes the active locale feed', async () => {
+    const source = await readFile(layoutPath, 'utf8');
+
+    expect(source).toContain('https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.2.5/favicon.ico');
+    expect(source).toContain('type="image/x-icon"');
+    expect(source).toContain('type="application/rss+xml"');
+    expect(source).toContain('toAbsoluteSiteUrl(rssLink.href, siteUrl)');
+    expect(source).not.toContain('href="/favicon.ico"');
+  });
+
   it('mounts the hagilight banner between main content and the footer', async () => {
     const source = await readFile(layoutPath, 'utf8');
 

@@ -6,7 +6,7 @@
 - `/designs/<slug>/` 详情页
 - `/previews/<slug>/<variant>.html` 预览资源
 
-站点页脚直接复用 `@hagicode/hagilight`，RSS 链接指向 hagilight 的共享 feed。本仓库不维护独立页脚或设计站点相关站点目录；相关站点入口由 hagilight 的公共页脚统一提供。
+站点页脚与 favicon 统一使用 `@hagicode/hagilight` 0.2.5 的共享 chrome；RSS 由同一版本的 renderer 按画廊目录生成，默认语言使用 `/rss.xml`，其他语言使用 `/rss.<locale>.xml`。
 
 ## 站点级设计参考
 
