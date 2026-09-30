@@ -51,7 +51,7 @@ const rssLink = resolveSiteLinks(lang, footerLinks).quick.find(
 );
 if (!rssLink) throw new Error(`No Hagilight RSS link configured for locale "${lang}".`);
 const hagilightFaviconUrl =
-  'https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.2.5/favicon.ico';
+  'https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.3.1/favicon.ico';
 const alternateLanguageLinks = languageLinks.map((item) => ({
   ...item,
   href: toAbsoluteSiteUrl(item.href, siteUrl),

@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir } from 'node:fs/promises';
 
 const siteOrigin = new URL(process.env.SITE_URL ?? 'https://design.hagicode.com').origin;
-const hagilightFaviconUrl = 'https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.2.5/favicon.ico';
+const hagilightFaviconUrl = 'https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.3.1/favicon.ico';
 const pages = [
   {
     path: new URL('../dist/index.html', import.meta.url),
@@ -47,16 +47,22 @@ const expectedItemCount = Math.min(50, designEntries.filter((entry) => entry.isD
 for (const locale of locales) {
   const filename = locale === 'en' ? 'rss.xml' : `rss.${locale}.xml`;
   const xml = await readFile(new URL(`../dist/${filename}`, import.meta.url), 'utf8');
-  const feedUrl = new URL(`/${filename}`, siteOrigin).href;
   const items = [...xml.matchAll(/<item>([\s\S]*?)<\/item>/gu)].map(([, item]) => item);
   const dates = items.map((item) => Date.parse(item.match(/<pubDate>([^<]+)<\/pubDate>/u)?.[1] ?? ''));
   const expectedPath = locale === 'en' ? '/designs/' : `/${locale}/designs/`;
 
-  assert.match(xml, /<rss version="2\.0" xmlns:atom="http:\/\/www\.w3\.org\/2005\/Atom">/u);
+  assert.match(xml, /<rss version="2\.0">/u);
   assert.match(xml, new RegExp(`<language>${locale}</language>`, 'u'));
-  assert.ok(xml.includes(`<atom:link href="${feedUrl}" rel="self" type="application/rss+xml"/>`));
+  assert.doesNotMatch(xml, /atom:link/u);
   assert.equal(items.length, expectedItemCount, `${filename} contains the newest gallery entries`);
   assert.ok(items.every((item) => item.includes(`${siteOrigin}${expectedPath}`)));
   assert.ok(dates.every(Number.isFinite));
   assert.deepEqual(dates, [...dates].sort((left, right) => right - left));
 }
+
+const englishFeed = await readFile(new URL('../dist/rss.xml', import.meta.url), 'utf8');
+const englishAlias = await readFile(new URL('../dist/rss.en.xml', import.meta.url), 'utf8');
+assert.deepEqual(
+  [...englishAlias.matchAll(/<link>([^<]+)<\/link>/gu)].map(([, link]) => link),
+  [...englishFeed.matchAll(/<link>([^<]+)<\/link>/gu)].map(([, link]) => link),
+);

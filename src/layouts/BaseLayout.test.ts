@@ -38,7 +38,7 @@ describe('BaseLayout promoto integration', () => {
   it('uses one configured gallery icon and exposes the active locale feed', async () => {
     const source = await readFile(layoutPath, 'utf8');
 
-    expect(source).toContain('https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.2.5/favicon.ico');
+    expect(source).toContain('https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.3.1/favicon.ico');
     expect(source).toContain('type="image/x-icon"');
     expect(source).toContain('type="application/rss+xml"');
     expect(source).toContain('toAbsoluteSiteUrl(rssLink.href, siteUrl)');
