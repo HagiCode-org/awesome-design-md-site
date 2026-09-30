@@ -4,6 +4,7 @@ import { describe, expect, it } from 'vitest';
 
 const layoutPath = resolve(process.cwd(), 'src/layouts/BaseLayout.astro');
 const stylesheetPath = resolve(process.cwd(), 'public/global.css');
+const footerPath = resolve(process.cwd(), 'node_modules/@hagicode/hagilight-core/Footer.astro');
 
 function contrastRatio(foreground: string, background: string): number {
   const luminance = (color: string) => {
@@ -35,20 +36,20 @@ function cssColor(block: string, variable: string): string {
 }
 
 describe('BaseLayout promoto integration', () => {
-  it('uses one configured gallery icon and exposes the active locale feed', async () => {
+  it('uses the shared gallery icon without a site-specific feed link', async () => {
     const source = await readFile(layoutPath, 'utf8');
 
-    expect(source).toContain('https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.3.1/favicon.ico');
+    expect(source).toContain('https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.4.0/favicon.ico');
     expect(source).toContain('type="image/x-icon"');
-    expect(source).toContain('type="application/rss+xml"');
-    expect(source).toContain('toAbsoluteSiteUrl(rssLink.href, siteUrl)');
+    expect(source).not.toContain('application/rss+xml');
+    expect(source).not.toContain('rssLink');
     expect(source).not.toContain('href="/favicon.ico"');
   });
 
   it('mounts the hagilight banner between main content and the footer', async () => {
     const source = await readFile(layoutPath, 'utf8');
 
-    expect(source).toContain("import PromotoBanner from '@hagicode/hagilight/PromotoBanner';");
+    expect(source).toContain("import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';");
     expect(source.indexOf('<main')).toBeLessThan(source.indexOf('<PromotoBanner locale={lang} />'));
     expect(source.indexOf('<PromotoBanner locale={lang} />')).toBeLessThan(source.indexOf('<Footer'));
     expect(source).not.toMatch(/PromoteCard|promote-loader|getPromotionCopy|data-promote-card/u);
@@ -75,5 +76,14 @@ describe('BaseLayout promoto integration', () => {
     expect(contrastRatio('#ffffff', cssColor(lightTokens, '--sl-color-accent-high'))).toBeGreaterThanOrEqual(3);
     expect(stylesheet).toContain('outline-color: #faff69;');
     expect(stylesheet).toContain('outline-color: #166534;');
+  });
+
+  it('keeps the shared footer keyboard-visible and single-column at narrow widths', async () => {
+    const footer = await readFile(footerPath, 'utf8');
+
+    expect(footer).toContain('aria-label={resolvedLinks.labels.navigation.quickLinks}');
+    expect(footer).toContain('.hagilight-footer a:focus-visible');
+    expect(footer).toContain('@media (max-width: 40rem)');
+    expect(footer).toContain('grid-template-columns: 1fr');
   });
 });

@@ -2,10 +2,8 @@
 import Analytics51LA from '@/components/51LAAnalytics.astro';
 import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
 import Header from '@/components/site/Header.astro';
-import Footer from '@hagicode/hagilight/Footer';
-import PromotoBanner from '@hagicode/hagilight/PromotoBanner';
-import { resolveSiteLinks } from '@hagicode/hagilight/site-links';
-import { getHagilightFooterLinks } from '@/config/hagilight-footer';
+import Footer from '@hagicode/hagilight-core/Footer';
+import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
 import {
   getGalleryNav,
   getAlternateOgLocales,
@@ -45,13 +43,8 @@ const chromeCopy = localeCopy[lang].chrome;
 const siteMeta = getSiteMeta(lang);
 const seoLocale = getSeoLocaleMetadata(lang);
 const languageLinks = getLanguageLinks(currentPath);
-const footerLinks = getHagilightFooterLinks(lang);
-const rssLink = resolveSiteLinks(lang, footerLinks).quick.find(
-  ({ id }) => id === 'rss' || id === 'rssLocale',
-);
-if (!rssLink) throw new Error(`No Hagilight RSS link configured for locale "${lang}".`);
 const hagilightFaviconUrl =
-  'https://cdn.jsdelivr.net/npm/@hagicode/hagilight@0.3.1/favicon.ico';
+  'https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.4.0/favicon.ico';
 const alternateLanguageLinks = languageLinks.map((item) => ({
   ...item,
   href: toAbsoluteSiteUrl(item.href, siteUrl),
@@ -93,12 +86,6 @@ const pageStructuredData = {
     <meta name="description" content={description} />
     <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
     <link rel="icon" type="image/x-icon" href={hagilightFaviconUrl} />
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      title={rssLink.label}
-      href={toAbsoluteSiteUrl(rssLink.href, siteUrl)}
-    />
     <link rel="stylesheet" href="/global.css" />
     <script is:inline type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script>
     <link rel="canonical" href={canonicalUrl} />
@@ -153,7 +140,7 @@ const pageStructuredData = {
         <slot />
       </main>
       <PromotoBanner locale={lang} />
-      <Footer locale={lang} links={footerLinks} />
+      <Footer locale={lang} />
     </div>
     <Analytics51LA />
     <GoogleAnalytics />
