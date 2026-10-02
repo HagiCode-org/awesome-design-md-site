@@ -44,7 +44,7 @@ const siteMeta = getSiteMeta(lang);
 const seoLocale = getSeoLocaleMetadata(lang);
 const languageLinks = getLanguageLinks(currentPath);
 const hagilightFaviconUrl =
-  'https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.4.0/favicon.ico';
+  'https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico';
 const alternateLanguageLinks = languageLinks.map((item) => ({
   ...item,
   href: toAbsoluteSiteUrl(item.href, siteUrl),

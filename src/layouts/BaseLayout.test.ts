@@ -39,7 +39,7 @@ describe('BaseLayout promoto integration', () => {
   it('uses the shared gallery icon without a site-specific feed link', async () => {
     const source = await readFile(layoutPath, 'utf8');
 
-    expect(source).toContain('https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.4.0/favicon.ico');
+    expect(source).toContain('https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico');
     expect(source).toContain('type="image/x-icon"');
     expect(source).not.toContain('application/rss+xml');
     expect(source).not.toContain('rssLink');
