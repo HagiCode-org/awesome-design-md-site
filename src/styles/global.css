@@ -54,6 +54,7 @@
   --sl-color-text: #ffffff;
   --sl-color-text-high: #ffffff;
   --sl-color-gray-1: #ffffff;
+  --sl-color-gray-2: #a0a0a0;
   --sl-color-gray-5: #414141;
   --sl-color-black: #000000;
 }
@@ -74,6 +75,7 @@
   --sl-color-text: #000000;
   --sl-color-text-high: #000000;
   --sl-color-gray-1: #000000;
+  --sl-color-gray-2: #414141;
   --sl-color-gray-5: #e5e7eb;
   --sl-color-black: #000000;
 }

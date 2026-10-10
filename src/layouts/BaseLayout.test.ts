@@ -72,6 +72,9 @@ describe('BaseLayout promoto integration', () => {
     expect(contrastRatio('#faff69', cssColor(darkTokens, '--sl-color-accent-high'))).toBeGreaterThanOrEqual(3);
     expect(contrastRatio('#ffffff', cssColor(lightTokens, '--sl-color-accent'))).toBeGreaterThanOrEqual(4.5);
     expect(contrastRatio('#ffffff', cssColor(lightTokens, '--sl-color-accent-high'))).toBeGreaterThanOrEqual(4.5);
+    // The banner's muted copy (description, counter, control icons) reads --sl-color-gray-2.
+    expect(contrastRatio(cssColor(darkTokens, '--sl-color-gray-2'), cssColor(darkTokens, '--sl-color-bg'))).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(cssColor(lightTokens, '--sl-color-gray-2'), cssColor(lightTokens, '--sl-color-bg'))).toBeGreaterThanOrEqual(4.5);
     expect(contrastRatio('#166534', '#ffffff')).toBeGreaterThanOrEqual(3);
     expect(contrastRatio('#ffffff', cssColor(lightTokens, '--sl-color-accent-high'))).toBeGreaterThanOrEqual(3);
     expect(stylesheet).toContain('outline-color: #faff69;');
