@@ -2,6 +2,7 @@ import React from 'react';
 import { gaEventAttributes } from '@hagicode/hagilight-core/analytics-events';
 import { localeCopy, type SupportedLocale } from '@/config/site';
 import VideoPromo from '@/components/gallery/VideoPromo';
+import { getExternalLinkRel } from '@/lib/link-policy';
 
 interface Props {
   locale?: SupportedLocale;
@@ -60,7 +61,7 @@ export default function HagiCodeShowcase({ locale = 'en' }: Props) {
             href={copy.showcaseCtaHref}
             {...gaPrimary}
             target="_blank"
-            rel="noreferrer"
+            rel={getExternalLinkRel(copy.showcaseCtaHref)}
             aria-label={copy.showcaseCtaLabel}
           >
             {copy.showcaseCtaLabel}
@@ -70,7 +71,7 @@ export default function HagiCodeShowcase({ locale = 'en' }: Props) {
             href={copy.showcaseLearnMoreHref}
             {...gaLearnMore}
             target="_blank"
-            rel="noreferrer"
+            rel={getExternalLinkRel(copy.showcaseLearnMoreHref)}
             aria-label={copy.showcaseLearnMoreLabel}
           >
             {copy.showcaseLearnMoreLabel}

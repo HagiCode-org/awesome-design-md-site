@@ -1,5 +1,6 @@
 ---
 import ThemeToggle from '@/components/theme/ThemeToggle';
+import { getExternalLinkRel } from '@/lib/link-policy';
 import {
   getLocaleHomePath,
   localeCopy,
@@ -46,7 +47,7 @@ const repoNav = nav.filter((item) => item.group === 'repo');
             href={item.href}
             class:list={['site-nav-link', { active }]}
             target={external ? '_blank' : undefined}
-            rel={external ? 'noreferrer' : undefined}
+            rel={external ? getExternalLinkRel(item.href) : undefined}
           >
             <span class="site-nav-link-label site-nav-link-label-full">{item.label}</span>
             <span class="site-nav-link-label site-nav-link-label-compact">
@@ -59,7 +60,7 @@ const repoNav = nav.filter((item) => item.group === 'repo');
 
     <nav class="site-nav site-nav-repo" aria-label={chromeCopy.utilityLabel}>
       {repoNav.map((item) => (
-        <a href={item.href} class="site-nav-link" target="_blank" rel="noreferrer">
+        <a href={item.href} class="site-nav-link" target="_blank" rel={getExternalLinkRel(item.href)}>
           <span class="site-nav-link-label site-nav-link-label-full">{item.label}</span>
         </a>
       ))}
@@ -97,7 +98,7 @@ const repoNav = nav.filter((item) => item.group === 'repo');
       </summary>
       <div class="header-utility-surface" aria-label={chromeCopy.utilityLabel}>
         {repoNav.map((item) => (
-          <a href={item.href} class="site-nav-link header-utility-link" target="_blank" rel="noreferrer">
+          <a href={item.href} class="site-nav-link header-utility-link" target="_blank" rel={getExternalLinkRel(item.href)}>
             {item.label}
           </a>
         ))}

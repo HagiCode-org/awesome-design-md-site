@@ -1,4 +1,5 @@
 import type { HomeContent } from '@/config/site';
+import { getExternalLinkRel } from '@/lib/link-policy';
 
 interface Props {
   content: HomeContent;
@@ -15,7 +16,7 @@ export default function HeroPanel({ content }: Props) {
           <a className="button-primary" href={content.primaryCtaHref}>
             {content.primaryCtaLabel}
           </a>
-          <a className="button-secondary" href={content.secondaryCtaHref} target="_blank" rel="noreferrer">
+          <a className="button-secondary" href={content.secondaryCtaHref} target="_blank" rel={getExternalLinkRel(content.secondaryCtaHref)}>
             {content.secondaryCtaLabel}
           </a>
         </div>

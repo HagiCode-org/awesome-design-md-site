@@ -1,4 +1,5 @@
 import { localeCopy, type SupportedLocale } from '@/config/site';
+import { getExternalLinkRel } from '@/lib/link-policy';
 import {
   getHomepageFallbackProvider,
   getVideoEmbedUrl,
@@ -38,11 +39,11 @@ export default function VideoPromo({ locale }: Props) {
           />
         </div>
         <p>{featuredVideo.description}</p>
-        <a href={featuredVideo.watchUrl} target="_blank" rel="noreferrer">
+        <a href={featuredVideo.watchUrl} target="_blank" rel={getExternalLinkRel(featuredVideo.watchUrl)}>
           {featuredVideo.ctaLabel}
         </a>
       </div>
-      <a className="gallery-video-promo-alternate" href={alternateVideo.watchUrl} target="_blank" rel="noreferrer">
+      <a className="gallery-video-promo-alternate" href={alternateVideo.watchUrl} target="_blank" rel={getExternalLinkRel(alternateVideo.watchUrl)}>
         {alternateVideo.ctaLabel}
       </a>
     </section>
