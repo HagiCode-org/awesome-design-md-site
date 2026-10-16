@@ -37,6 +37,7 @@ export interface AwesomeDesignEntry {
   title: string;
   readmeTitle: string;
   summary: string;
+  seoDescription: string;
   readmeMarkdown: string;
   designMarkdown: string;
   designDownloadUrl: string;
@@ -216,11 +217,19 @@ async function loadCatalogEntry(input: {
   const readmeTree = await parseMarkdown(readmeMarkdown);
   const designTree = await parseMarkdown(designMarkdown);
   const readmeTitle = extractFirstHeading(readmeTree) || startCase(input.sourceKey);
-  const title = cleanupDisplayTitle(readmeTitle, input.sourceKey);
+  const readmeDisplayTitle = cleanupDisplayTitle(readmeTitle, input.sourceKey);
+  // README headings are often mis-cased upstream ("Bmw", "Mongodb"); DESIGN.md keeps the brand casing.
+  const designHeading = extractFirstHeading(designTree);
+  const designDisplayTitle = designHeading ? cleanupDisplayTitle(designHeading, input.sourceKey) : null;
+  const title =
+    designDisplayTitle && designDisplayTitle.toLowerCase() === readmeDisplayTitle.toLowerCase()
+      ? designDisplayTitle
+      : readmeDisplayTitle;
   const summary =
     extractFirstParagraph(readmeTree) ||
     extractFirstParagraph(designTree) ||
     `${title} design system reference, preview, and implementation notes.`;
+  const seoDescription = buildSeoDescription(extractDesignThemeParagraph(designTree), summary);
   const searchText = normalizeWhitespace(
     [title, summary, toString(readmeTree), toString(designTree)]
       .join(' ')
@@ -236,6 +245,7 @@ async function loadCatalogEntry(input: {
     title,
     readmeTitle,
     summary,
+    seoDescription,
     readmeMarkdown,
     designMarkdown,
     designDownloadUrl: getDesignDownloadPath(slug),
@@ -297,11 +307,66 @@ async function renderMarkdownToHtml(markdown: string): Promise<string> {
     .use(remarkParse)
     .use(remarkGfm)
     .use(remarkRehype)
+    .use(rehypeDemoteH1)
     .use(rehypeSlug)
     .use(rehypeStringify)
     .process(markdown);
 
   return String(file);
+}
+
+// The detail page already owns the single <h1> (the entry title). Imported
+// documents start with their own "# ..." heading, so demote it to keep one <h1> per page.
+function rehypeDemoteH1() {
+  return (tree: unknown) => {
+    visit(tree as Root, (node) => {
+      const element = node as unknown as { type: string; tagName?: string };
+      if (element.type === 'element' && element.tagName === 'h1') {
+        element.tagName = 'h2';
+      }
+    });
+  };
+}
+
+// First paragraph under the first "##" section of DESIGN.md (the visual theme overview).
+// It is brand-specific, unlike the README summary that is identical across entries.
+function extractDesignThemeParagraph(tree: Root): string | null {
+  let seenSection = false;
+
+  for (const child of tree.children) {
+    if (child.type === 'heading') {
+      if (seenSection) {
+        return null;
+      }
+      seenSection = (child as Heading).depth === 2;
+      continue;
+    }
+
+    if (seenSection && child.type === 'paragraph') {
+      const value = normalizeWhitespace(toString(child));
+      if (value) {
+        return value;
+      }
+    }
+  }
+
+  return null;
+}
+
+const SEO_DESCRIPTION_MAX_LENGTH = 155;
+
+export function buildSeoDescription(primary: string | null, fallback: string): string {
+  const source = normalizeWhitespace(primary || fallback);
+
+  if (source.length <= SEO_DESCRIPTION_MAX_LENGTH) {
+    return source;
+  }
+
+  const cut = source.slice(0, SEO_DESCRIPTION_MAX_LENGTH - 1);
+  const lastSpace = cut.lastIndexOf(' ');
+  const trimmed = (lastSpace > 80 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:.\-—–]+$/, '');
+
+  return `${trimmed}…`;
 }
 
 function extractFirstHeading(tree: Root): string | null {

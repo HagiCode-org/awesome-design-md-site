@@ -17,4 +17,11 @@ describe('DesignDetailPage showcase composition', () => {
       detailPageSource.indexOf('<HagiCodeShowcase'),
     );
   });
+
+  it('targets the DESIGN.md query in the title and uses the brand-specific English description', () => {
+    expect(detailPageSource).toContain('title={`${entry.title} DESIGN.md • ${copy.detail.pageTitleSuffix}`}');
+    expect(detailPageSource).toContain(
+      "locale === 'en' ? entry.seoDescription : getDetailDescription(locale, entry.title)",
+    );
+  });
 });

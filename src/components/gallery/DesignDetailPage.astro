@@ -29,7 +29,10 @@ interface Props {
 const { locale, entry, previous, next } = Astro.props;
 const copy = localeCopy[locale];
 const currentPath = toLocalePath(`/designs/${entry.slug}/`, locale);
-const description = getDetailDescription(locale, entry.title);
+// Only English pages can use the brand-specific English excerpt from DESIGN.md;
+// localized pages keep their translated template instead of mixing languages.
+const description =
+  locale === 'en' ? entry.seoDescription : getDetailDescription(locale, entry.title);
 const previousEntry = previous
   ? { ...previous, href: toLocalePath(`/designs/${previous.slug}/`, locale) }
   : undefined;
@@ -60,7 +63,7 @@ const structuredData = {
 ---
 
 <BaseLayout
-  title={`${entry.title} • ${copy.detail.pageTitleSuffix}`}
+  title={`${entry.title} DESIGN.md • ${copy.detail.pageTitleSuffix}`}
   description={description}
   lang={locale}
   currentPath={currentPath}

@@ -4,6 +4,7 @@ import path from 'node:path';
 import { tmpdir } from 'node:os';
 import { describe, expect, it, afterEach } from 'vitest';
 import {
+  buildSeoDescription,
   getAdjacentDesignEntries,
   getAwesomeDesignCatalog,
   loadPublishedDesignMarkdown,
@@ -54,6 +55,67 @@ describe('awesomeDesignCatalog', () => {
     await expect(loadPublishedDesignMarkdown('linear.app', { sourceRoot })).resolves.toContain(
       'Shared notes for interface design.',
     );
+  });
+
+  it('derives a brand-specific SEO description and keeps one h1 in rendered documents', async () => {
+    const sourceRoot = await createSourceRoot({
+      acme: {
+        readme: '# Acme Inspired Design System\n\nShared boilerplate summary.',
+        design:
+          '# Design System Inspiration of Acme\n\n## 1. Visual Theme & Atmosphere\n\nAcme is **bold** and playful, with `#ff0000` accents.\n\n## 2. Colors\n\nRed everywhere.',
+        previewLight: '<html></html>',
+      },
+    });
+    const [entry] = (await getAwesomeDesignCatalog({ sourceRoot })).entries;
+
+    expect(entry.seoDescription).toBe('Acme is bold and playful, with #ff0000 accents.');
+    expect(entry.summary).toBe('Shared boilerplate summary.');
+    expect(entry.designHtml).not.toContain('<h1');
+    expect(entry.designHtml).toContain('<h2 id="design-system-inspiration-of-acme">');
+    expect(entry.readmeHtml).not.toContain('<h1');
+  });
+
+  it('prefers the brand casing from DESIGN.md when the README title only differs in case', async () => {
+    const sourceRoot = await createSourceRoot({
+      bmw: {
+        readme: '# Bmw Inspired Design System\n\nSummary.',
+        design: '# Design System Inspiration of BMW\n\n## 1. Theme\n\nBMW is precise.',
+        previewLight: '<html></html>',
+      },
+      other: {
+        readme: '# Other Inspired Design System\n\nSummary.',
+        design: '# Design System Inspiration of Something Else\n\n## 1. Theme\n\nText.',
+        previewLight: '<html></html>',
+      },
+    });
+    const titles = Object.fromEntries(
+      (await getAwesomeDesignCatalog({ sourceRoot })).entries.map((e) => [e.slug, e.title]),
+    );
+
+    expect(titles.bmw).toBe('BMW');
+    expect(titles.other).toBe('Other');
+  });
+
+  it('falls back to the summary when DESIGN.md has no theme paragraph', async () => {
+    const sourceRoot = await createSourceRoot({
+      plain: {
+        readme: '# Plain\n\nPlain summary text.',
+        design: '# Plain\n\n## Colors\n\n## Type\n\nLater paragraph.',
+        previewLight: '<html></html>',
+      },
+    });
+    const [entry] = (await getAwesomeDesignCatalog({ sourceRoot })).entries;
+
+    expect(entry.seoDescription).toBe('Plain summary text.');
+  });
+
+  it('truncates SEO descriptions at a word boundary', () => {
+    const long = 'word '.repeat(60);
+    const result = buildSeoDescription(long, 'fallback');
+
+    expect(result.length).toBeLessThanOrEqual(155);
+    expect(result.endsWith('…')).toBe(true);
+    expect(result).not.toMatch(/\s…$/);
   });
 
   it('fails fast when required source files are missing', async () => {
