@@ -24,7 +24,7 @@ export default defineConfig({
     },
   },
   integrations: [
-    hagilight(),
+    hagilight({ llms: { maxLinksPerSection: 60 } }),
     react(),
     mdx(),
   ],
