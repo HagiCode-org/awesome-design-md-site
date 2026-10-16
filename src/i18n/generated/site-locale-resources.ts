@@ -35,7 +35,7 @@ const runtime = {
           "relatedSites": "Related sites"
         },
         "homeDescription": {
-          "indexed": "{{count}} design references indexed from the awesome-design-md source repository.",
+          "indexed": "Browse {{count}} DESIGN.md design systems from the awesome-design-md GitHub repository, with live previews, READMEs and downloadable DESIGN.md files.",
           "empty": "A static gallery for awesome-design-md previews, README files, and DESIGN documentation."
         },
         "detailDescription": "{{title}} preview, README, and DESIGN documentation.",
@@ -332,7 +332,7 @@ const runtime = {
           "relatedSites": "相关站点"
         },
         "homeDescription": {
-          "indexed": "已从 awesome-design-md 上游仓库收录 {{count}} 个设计参考条目。",
+          "indexed": "浏览 awesome-design-md GitHub 仓库收录的 {{count}} 份 DESIGN.md 设计系统,含在线预览、README 与可下载的 DESIGN.md 文件。",
           "empty": "一个用于浏览 awesome-design-md 预览、README 与 DESIGN 文档的静态画廊站点。"
         },
         "detailDescription": "{{title}} 的预览、README 与 DESIGN 文档详情。",
@@ -629,7 +629,7 @@ const runtime = {
           "relatedSites": "相關站點"
         },
         "homeDescription": {
-          "indexed": "已從 awesome-design-md 上游倉庫收錄 {{count}} 個設計參考項目。",
+          "indexed": "瀏覽 awesome-design-md GitHub 倉庫收錄的 {{count}} 份 DESIGN.md 設計系統,含線上預覽、README 與可下載的 DESIGN.md 檔案。",
           "empty": "用於瀏覽 awesome-design-md 預覽、README 與 DESIGN 文件的靜態畫廊站點。"
         },
         "detailDescription": "{{title}} 的預覽、README 與 DESIGN 文件詳情。",
@@ -926,7 +926,7 @@ const runtime = {
           "relatedSites": "関連サイト"
         },
         "homeDescription": {
-          "indexed": "awesome-design-md のソースリポジトリから {{count}} 件のデザイン参照を登録しました。",
+          "indexed": "awesome-design-md の GitHub リポジトリに収録された {{count}} 件の DESIGN.md デザインシステムを、ライブプレビュー、README、ダウンロード可能な DESIGN.md とともに閲覧できます。",
           "empty": "awesome-design-md のプレビュー、README、DESIGN ドキュメントを閲覧する静的ギャラリーです。"
         },
         "detailDescription": "{{title}} のプレビュー、README、DESIGN ドキュメント。",
@@ -1223,7 +1223,7 @@ const runtime = {
           "relatedSites": "관련 사이트"
         },
         "homeDescription": {
-          "indexed": "awesome-design-md 소스 저장소에서 {{count}}개의 디자인 참고 자료를 색인했습니다.",
+          "indexed": "awesome-design-md GitHub 저장소의 DESIGN.md 디자인 시스템 {{count}}개를 라이브 미리보기, README, 다운로드 가능한 DESIGN.md 파일과 함께 둘러보세요.",
           "empty": "awesome-design-md 미리보기, README 파일, DESIGN 문서를 보는 정적 갤러리입니다."
         },
         "detailDescription": "{{title}} 미리보기, README, DESIGN 문서입니다.",
@@ -1520,7 +1520,7 @@ const runtime = {
           "relatedSites": "Verwandte Sites"
         },
         "homeDescription": {
-          "indexed": "{{count}} Designreferenzen aus dem awesome-design-md-Quellrepository indexiert.",
+          "indexed": "{{count}} DESIGN.md-Designsysteme aus dem awesome-design-md-GitHub-Repository mit Live-Vorschau, README und herunterladbaren DESIGN.md-Dateien.",
           "empty": "Eine statische Galerie für awesome-design-md-Vorschauen, README-Dateien und DESIGN-Dokumentation."
         },
         "detailDescription": "{{title}} Vorschau, README und DESIGN-Dokumentation.",
@@ -1817,7 +1817,7 @@ const runtime = {
           "relatedSites": "Sites associés"
         },
         "homeDescription": {
-          "indexed": "{{count}} références de design indexées depuis le dépôt source awesome-design-md.",
+          "indexed": "Parcourez {{count}} systèmes de design DESIGN.md du dépôt GitHub awesome-design-md, avec aperçus en direct, README et fichiers DESIGN.md à télécharger.",
           "empty": "Une galerie statique pour les aperçus, fichiers README et documentation DESIGN de awesome-design-md."
         },
         "detailDescription": "Aperçu, README et documentation DESIGN pour {{title}}.",
@@ -2114,7 +2114,7 @@ const runtime = {
           "relatedSites": "Sitios relacionados"
         },
         "homeDescription": {
-          "indexed": "{{count}} referencias de diseño indexadas desde el repositorio fuente awesome-design-md.",
+          "indexed": "Explora {{count}} sistemas de diseño DESIGN.md del repositorio de GitHub awesome-design-md, con vistas previas, README y archivos DESIGN.md descargables.",
           "empty": "Una galería estática para vistas previas, README y documentación DESIGN de awesome-design-md."
         },
         "detailDescription": "Vista previa, README y documentación DESIGN de {{title}}.",
@@ -2411,7 +2411,7 @@ const runtime = {
           "relatedSites": "Sites relacionados"
         },
         "homeDescription": {
-          "indexed": "{{count}} referências de design indexadas do repositório fonte awesome-design-md.",
+          "indexed": "Explore {{count}} sistemas de design DESIGN.md do repositório awesome-design-md no GitHub, com pré-visualizações, README e arquivos DESIGN.md para baixar.",
           "empty": "Uma galeria estática para previews, READMEs e documentação DESIGN do awesome-design-md."
         },
         "detailDescription": "Preview, README e documentação DESIGN de {{title}}.",
@@ -2708,7 +2708,7 @@ const runtime = {
           "relatedSites": "Связанные сайты"
         },
         "homeDescription": {
-          "indexed": "{{count}} дизайн-референсов проиндексировано из исходного репозитория awesome-design-md.",
+          "indexed": "{{count}} дизайн-систем DESIGN.md из GitHub-репозитория awesome-design-md: живые превью, README и файлы DESIGN.md для скачивания.",
           "empty": "Статическая галерея для превью, README и документации DESIGN из awesome-design-md."
         },
         "detailDescription": "Превью, README и документация DESIGN для {{title}}.",
