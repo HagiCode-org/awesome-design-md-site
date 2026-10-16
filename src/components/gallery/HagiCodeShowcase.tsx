@@ -1,10 +1,17 @@
 import React from 'react';
+import { gaEventAttributes } from '@hagicode/hagilight-core/analytics-events';
 import { localeCopy, type SupportedLocale } from '@/config/site';
 import VideoPromo from '@/components/gallery/VideoPromo';
 
 interface Props {
   locale?: SupportedLocale;
 }
+
+// Click tracking: stable ids (never localized text) so reports can compare locales.
+const GA_LOCATION = 'design_showcase';
+const gaPrimary = gaEventAttributes({ category: 'navigation', label: 'showcasePrimary', location: GA_LOCATION });
+const gaLearnMore = gaEventAttributes({ category: 'navigation', label: 'showcaseLearnMore', location: GA_LOCATION });
+const gaStore = gaEventAttributes({ category: 'download', label: 'microsoftStore', location: GA_LOCATION });
 
 const storeBadgeLanguages: Record<SupportedLocale, string> = {
   en: 'en-us',
@@ -51,6 +58,7 @@ export default function HagiCodeShowcase({ locale = 'en' }: Props) {
           <a
             className="gallery-showcase-cta button-primary"
             href={copy.showcaseCtaHref}
+            {...gaPrimary}
             target="_blank"
             rel="noreferrer"
             aria-label={copy.showcaseCtaLabel}
@@ -60,13 +68,14 @@ export default function HagiCodeShowcase({ locale = 'en' }: Props) {
           <a
             className="gallery-showcase-learn-more"
             href={copy.showcaseLearnMoreHref}
+            {...gaLearnMore}
             target="_blank"
             rel="noreferrer"
             aria-label={copy.showcaseLearnMoreLabel}
           >
             {copy.showcaseLearnMoreLabel}
           </a>
-          <span className="gallery-showcase-store" data-store-entry="gallery-hagicode">
+          <span className="gallery-showcase-store" data-store-entry="gallery-hagicode" {...gaStore}>
             {React.createElement('ms-store-badge', {
               productid: '9N3PM0N3SVDW',
               productname: 'HagiCode',

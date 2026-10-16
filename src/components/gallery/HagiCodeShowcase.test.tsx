@@ -21,6 +21,21 @@ describe('HagiCodeShowcase', () => {
     expect(screen.getByRole('link', { name: 'Watch on YouTube' })).toHaveAttribute('target', '_blank');
   });
 
+  it('tags the HagiCode links with stable GA click attributes', () => {
+    const { container } = render(<HagiCodeShowcase locale="en" />);
+    const tagged = Array.from(container.querySelectorAll('[data-ga-category]')).map((el) => [
+      el.getAttribute('data-ga-category'),
+      el.getAttribute('data-ga-label'),
+      el.getAttribute('data-ga-location'),
+    ]);
+
+    expect(tagged).toEqual([
+      ['navigation', 'showcasePrimary', 'design_showcase'],
+      ['navigation', 'showcaseLearnMore', 'design_showcase'],
+      ['download', 'microsoftStore', 'design_showcase'],
+    ]);
+  });
+
   it('selects Bilibili for Chinese locales and YouTube otherwise', () => {
     expect(getHomepageFallbackProvider('zh-CN')).toBe('bilibili');
     expect(getHomepageFallbackProvider('zh-Hant')).toBe('bilibili');
