@@ -1,21 +1,12 @@
 ---
 /**
- * Google Analytics 4 page-view bootstrap.
- * Mirrors the HagiCode standard analytics integration (site/docs):
- * loads only in production builds (import.meta.env.PROD).
+ * Google Analytics 4 for this site. Delegates to the shared Hagilight component, which
+ * loads gtag in production builds only, exposes window.gtag, and installs the click-event
+ * listener for elements tagged with data-ga-* attributes.
  */
+import CoreGoogleAnalytics from '@hagicode/hagilight-core/GoogleAnalytics';
+
 const measurementId = 'G-EN03FMT2Q4';
-const shouldRender = import.meta.env.PROD;
-const googleAnalyticsScriptUrl =
-  `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
 ---
 
-{shouldRender && (
-  <>
-    <script async src={googleAnalyticsScriptUrl}></script>
-    <script is:inline set:html={`window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '${measurementId}');`}></script>
-  </>
-)}
+<CoreGoogleAnalytics measurementId={measurementId} />
