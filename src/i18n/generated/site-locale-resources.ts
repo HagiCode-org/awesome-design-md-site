@@ -129,6 +129,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "Watch the HagiCode overview on Bilibili"
             }
+          },
+          "fusion": {
+            "titleLead": "DESIGN.md in.",
+            "titleAccent": "Shipped UI out.",
+            "lead": "Awesome Design MD: {{count}} real design systems, each a plain markdown file your agent can read. Pair one with HagiCode: OpenSpec plans the change, parallel agents build it, you review what ships.",
+            "primaryCta": "Browse {{count}} design systems",
+            "secondaryCta": "Build it with HagiCode",
+            "prompt": "build me a page that looks like this",
+            "steps": [
+              "DESIGN.md",
+              "Proposal",
+              "Tasks",
+              "Agents",
+              "Shipped"
+            ],
+            "stageLabel": "Demo: a DESIGN.md becomes a built page",
+            "tabsLabel": "Pick a design system",
+            "openDesign": "Open the {{title}} design",
+            "stop": "Stop animation",
+            "play": "Play animation",
+            "note": "Previews are live pages from the gallery. The build sequence is illustrative.",
+            "pipelineLabel": "HagiCode build steps"
           }
         },
         "card": {
@@ -426,6 +448,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "在 Bilibili 观看 HagiCode 总览"
             }
+          },
+          "fusion": {
+            "titleLead": "放入 DESIGN.md。",
+            "titleAccent": "取回成品界面。",
+            "lead": "Awesome Design MD：{{count}} 套真实的设计系统，每一套都是 Agent 能直接读懂的纯 Markdown 文件。搭配 HagiCode：OpenSpec 规划变更，多个 Agent 并行实现，你只需审阅交付结果。",
+            "primaryCta": "浏览 {{count}} 套设计系统",
+            "secondaryCta": "用 HagiCode 做出来",
+            "prompt": "按这个风格给我做一个页面",
+            "steps": [
+              "DESIGN.md",
+              "提案",
+              "任务",
+              "Agent",
+              "交付"
+            ],
+            "stageLabel": "演示：DESIGN.md 变成一个已构建的页面",
+            "tabsLabel": "选择一套设计系统",
+            "openDesign": "打开 {{title}} 设计详情",
+            "stop": "停止动画",
+            "play": "播放动画",
+            "note": "预览均为画廊中的实时页面，构建过程仅为示意。",
+            "pipelineLabel": "HagiCode 构建步骤"
           }
         },
         "card": {
@@ -723,6 +767,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "在 Bilibili 觀看 HagiCode 總覽"
             }
+          },
+          "fusion": {
+            "titleLead": "放入 DESIGN.md。",
+            "titleAccent": "取回成品介面。",
+            "lead": "Awesome Design MD：{{count}} 套真實的設計系統，每一套都是 Agent 能直接讀懂的純 Markdown 檔案。搭配 HagiCode：OpenSpec 規劃變更，多個 Agent 並行實作，你只需審閱交付結果。",
+            "primaryCta": "瀏覽 {{count}} 套設計系統",
+            "secondaryCta": "用 HagiCode 做出來",
+            "prompt": "照這個風格幫我做一個頁面",
+            "steps": [
+              "DESIGN.md",
+              "提案",
+              "任務",
+              "Agent",
+              "交付"
+            ],
+            "stageLabel": "示範：DESIGN.md 變成一個已建置的頁面",
+            "tabsLabel": "選擇一套設計系統",
+            "openDesign": "開啟 {{title}} 設計詳情",
+            "stop": "停止動畫",
+            "play": "播放動畫",
+            "note": "預覽皆為畫廊中的即時頁面，建置過程僅為示意。",
+            "pipelineLabel": "HagiCode 建置步驟"
           }
         },
         "card": {
@@ -1020,6 +1086,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "Watch the HagiCode overview on Bilibili"
             }
+          },
+          "fusion": {
+            "titleLead": "DESIGN.md を入れる。",
+            "titleAccent": "完成した UI が出てくる。",
+            "lead": "Awesome Design MD：実在する {{count}} 件のデザインシステム。どれもエージェントがそのまま読める、ただの Markdown ファイルです。HagiCode と組み合わせれば、OpenSpec が変更を計画し、複数のエージェントが並行して実装し、あなたは仕上がりをレビューするだけ。",
+            "primaryCta": "{{count}} 件のデザインシステムを見る",
+            "secondaryCta": "HagiCode で作る",
+            "prompt": "このスタイルでページを作って",
+            "steps": [
+              "DESIGN.md",
+              "提案",
+              "タスク",
+              "エージェント",
+              "完成"
+            ],
+            "stageLabel": "デモ：DESIGN.md が完成したページになる",
+            "tabsLabel": "デザインシステムを選択",
+            "openDesign": "{{title}} のデザインを開く",
+            "stop": "アニメーションを停止",
+            "play": "アニメーションを再生",
+            "note": "プレビューはギャラリーのライブページです。ビルドの流れはイメージです。",
+            "pipelineLabel": "HagiCode のビルド手順"
           }
         },
         "card": {
@@ -1317,6 +1405,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "Watch the HagiCode overview on Bilibili"
             }
+          },
+          "fusion": {
+            "titleLead": "DESIGN.md를 넣으면,",
+            "titleAccent": "완성된 UI가 나옵니다.",
+            "lead": "Awesome Design MD: 실제 디자인 시스템 {{count}}개, 모두 에이전트가 바로 읽을 수 있는 평범한 Markdown 파일입니다. HagiCode와 함께 쓰면 OpenSpec이 변경을 계획하고, 여러 에이전트가 병렬로 구현하고, 당신은 결과만 검토하면 됩니다.",
+            "primaryCta": "디자인 시스템 {{count}}개 보기",
+            "secondaryCta": "HagiCode로 만들기",
+            "prompt": "이 스타일로 페이지를 만들어 줘",
+            "steps": [
+              "DESIGN.md",
+              "제안",
+              "작업",
+              "에이전트",
+              "완료"
+            ],
+            "stageLabel": "데모: DESIGN.md가 완성된 페이지가 됩니다",
+            "tabsLabel": "디자인 시스템 선택",
+            "openDesign": "{{title}} 디자인 열기",
+            "stop": "애니메이션 중지",
+            "play": "애니메이션 재생",
+            "note": "미리보기는 갤러리의 실제 라이브 페이지입니다. 빌드 과정은 예시입니다.",
+            "pipelineLabel": "HagiCode 빌드 단계"
           }
         },
         "card": {
@@ -1614,6 +1724,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "Watch the HagiCode overview on Bilibili"
             }
+          },
+          "fusion": {
+            "titleLead": "DESIGN.md rein.",
+            "titleAccent": "Fertige UI raus.",
+            "lead": "Awesome Design MD: {{count}} echte Designsysteme, jedes eine schlichte Markdown-Datei, die dein Agent lesen kann. Kombiniere eines mit HagiCode: OpenSpec plant die Änderung, parallele Agenten bauen sie, du prüfst, was ausgeliefert wird.",
+            "primaryCta": "{{count}} Designsysteme ansehen",
+            "secondaryCta": "Mit HagiCode bauen",
+            "prompt": "bau mir eine Seite, die so aussieht",
+            "steps": [
+              "DESIGN.md",
+              "Vorschlag",
+              "Aufgaben",
+              "Agenten",
+              "Fertig"
+            ],
+            "stageLabel": "Demo: Aus einer DESIGN.md wird eine fertige Seite",
+            "tabsLabel": "Designsystem wählen",
+            "openDesign": "Design {{title}} öffnen",
+            "stop": "Animation stoppen",
+            "play": "Animation abspielen",
+            "note": "Die Vorschauen sind Live-Seiten aus der Galerie. Der Build-Ablauf ist illustrativ.",
+            "pipelineLabel": "HagiCode-Build-Schritte"
           }
         },
         "card": {
@@ -1911,6 +2043,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "Watch the HagiCode overview on Bilibili"
             }
+          },
+          "fusion": {
+            "titleLead": "DESIGN.md en entrée.",
+            "titleAccent": "UI livrée en sortie.",
+            "lead": "Awesome Design MD : {{count}} vrais design systems, chacun un simple fichier Markdown que votre agent sait lire. Associez-en un à HagiCode : OpenSpec planifie le changement, des agents en parallèle le construisent, vous relisez ce qui est livré.",
+            "primaryCta": "Parcourir {{count}} design systems",
+            "secondaryCta": "Le construire avec HagiCode",
+            "prompt": "fais-moi une page qui ressemble à ça",
+            "steps": [
+              "DESIGN.md",
+              "Proposition",
+              "Tâches",
+              "Agents",
+              "Livré"
+            ],
+            "stageLabel": "Démo : un DESIGN.md devient une page construite",
+            "tabsLabel": "Choisir un design system",
+            "openDesign": "Ouvrir le design {{title}}",
+            "stop": "Arrêter l'animation",
+            "play": "Lancer l'animation",
+            "note": "Les aperçus sont de vraies pages de la galerie. La séquence de build est illustrative.",
+            "pipelineLabel": "Étapes de build HagiCode"
           }
         },
         "card": {
@@ -2208,6 +2362,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "Watch the HagiCode overview on Bilibili"
             }
+          },
+          "fusion": {
+            "titleLead": "DESIGN.md entra.",
+            "titleAccent": "UI lista sale.",
+            "lead": "Awesome Design MD: {{count}} sistemas de diseño reales, cada uno un simple archivo Markdown que tu agente puede leer. Combina uno con HagiCode: OpenSpec planifica el cambio, agentes en paralelo lo construyen y tú revisas lo que se entrega.",
+            "primaryCta": "Explorar {{count}} sistemas de diseño",
+            "secondaryCta": "Constrúyelo con HagiCode",
+            "prompt": "hazme una página que se vea así",
+            "steps": [
+              "DESIGN.md",
+              "Propuesta",
+              "Tareas",
+              "Agentes",
+              "Entregado"
+            ],
+            "stageLabel": "Demo: un DESIGN.md se convierte en una página construida",
+            "tabsLabel": "Elige un sistema de diseño",
+            "openDesign": "Abrir el diseño {{title}}",
+            "stop": "Detener animación",
+            "play": "Reproducir animación",
+            "note": "Las vistas previas son páginas reales de la galería. La secuencia de construcción es ilustrativa.",
+            "pipelineLabel": "Pasos de construcción de HagiCode"
           }
         },
         "card": {
@@ -2505,6 +2681,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "Watch the HagiCode overview on Bilibili"
             }
+          },
+          "fusion": {
+            "titleLead": "DESIGN.md entra.",
+            "titleAccent": "UI pronta sai.",
+            "lead": "Awesome Design MD: {{count}} design systems reais, cada um um simples arquivo Markdown que seu agente consegue ler. Combine um com o HagiCode: o OpenSpec planeja a mudança, agentes em paralelo a constroem e você revisa o que é entregue.",
+            "primaryCta": "Explorar {{count}} design systems",
+            "secondaryCta": "Construa com o HagiCode",
+            "prompt": "faça uma página com esta aparência",
+            "steps": [
+              "DESIGN.md",
+              "Proposta",
+              "Tarefas",
+              "Agentes",
+              "Entregue"
+            ],
+            "stageLabel": "Demo: um DESIGN.md vira uma página construída",
+            "tabsLabel": "Escolha um design system",
+            "openDesign": "Abrir o design {{title}}",
+            "stop": "Parar animação",
+            "play": "Reproduzir animação",
+            "note": "As prévias são páginas reais da galeria. A sequência de construção é ilustrativa.",
+            "pipelineLabel": "Etapas de build do HagiCode"
           }
         },
         "card": {
@@ -2802,6 +3000,28 @@ const runtime = {
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
               "ctaLabel": "Watch the HagiCode overview on Bilibili"
             }
+          },
+          "fusion": {
+            "titleLead": "DESIGN.md на входе.",
+            "titleAccent": "Готовый UI на выходе.",
+            "lead": "Awesome Design MD: {{count}} настоящих дизайн-систем, каждая — обычный Markdown-файл, который читает ваш агент. Свяжите одну из них с HagiCode: OpenSpec планирует изменение, параллельные агенты его строят, вы проверяете результат.",
+            "primaryCta": "Смотреть дизайн-системы: {{count}}",
+            "secondaryCta": "Собрать с HagiCode",
+            "prompt": "сделай мне страницу в таком стиле",
+            "steps": [
+              "DESIGN.md",
+              "Предложение",
+              "Задачи",
+              "Агенты",
+              "Готово"
+            ],
+            "stageLabel": "Демо: DESIGN.md превращается в готовую страницу",
+            "tabsLabel": "Выберите дизайн-систему",
+            "openDesign": "Открыть дизайн {{title}}",
+            "stop": "Остановить анимацию",
+            "play": "Запустить анимацию",
+            "note": "Превью — живые страницы из галереи. Последовательность сборки показана для иллюстрации.",
+            "pipelineLabel": "Шаги сборки HagiCode"
           }
         },
         "card": {

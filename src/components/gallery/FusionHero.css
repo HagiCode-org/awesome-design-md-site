@@ -1,0 +1,697 @@
+/*
+ * Home hero: awesome-design-md x HagiCode.
+ * One authored moment: a DESIGN.md is read, HagiCode's pipeline runs, and the real preview is built top-down.
+ * Every rule below treats the finished state as the default. Animations only describe the way in (fill-mode backwards),
+ * so SSR markup, reduced motion and the stopped state all show a complete, correct stage.
+ */
+
+.fx-hero {
+  --fx-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fx-ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --fx-d: 9s;
+  --fx-ui-height: 21rem;
+  --fx-frame-width: 720px;
+  padding-block: clamp(1.25rem, 3.5vw, 3rem) 1.25rem;
+}
+
+.fx-hero ::selection {
+  background: var(--accent-primary);
+  color: var(--accent-on-primary);
+}
+
+.fx-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  align-items: center;
+}
+
+.fx-grid[data-has-stage='false'] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ---------- copy ---------- */
+
+.fx-copy {
+  display: grid;
+  gap: 1.25rem;
+  justify-items: start;
+  min-width: 0;
+}
+
+.fx-copy h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 3.4vw + 0.75rem, 4.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.fx-copy h1 > span {
+  display: block;
+}
+
+.fx-accent {
+  color: var(--accent-primary);
+}
+
+.fx-lead {
+  max-width: 48ch;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.fx-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.fx-cta {
+  gap: 0.6rem;
+  transition:
+    transform 180ms var(--fx-ease),
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.fx-cta:hover {
+  transform: translateY(-2px);
+}
+
+.fx-cta.button-primary:hover {
+  background: var(--accent-tertiary);
+  border-color: var(--accent-tertiary);
+}
+
+.fx-cta.button-secondary:hover {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.fx-cta:focus-visible,
+.fx-tab:focus-visible,
+.fx-toggle:focus-visible,
+.fx-open:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+}
+
+.fx-open:focus-visible {
+  outline-offset: -3px;
+}
+
+/* ---------- stage ---------- */
+
+.fx-stage-wrap {
+  display: grid;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.fx-stage {
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.fx-tabbar {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid var(--line-main);
+}
+
+.fx-tabs {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-main) transparent;
+}
+
+.fx-tab {
+  position: relative;
+  flex: 0 0 auto;
+  min-height: 44px;
+  padding: 0 1rem;
+  border: 0;
+  border-right: 1px solid var(--line-soft);
+  background: transparent;
+  color: var(--text-soft);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.fx-tab:hover {
+  color: var(--text-main);
+  background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
+}
+
+.fx-tab[aria-selected='true'] {
+  color: var(--text-main);
+  background: var(--page-bg-soft);
+}
+
+.fx-tab:focus-visible,
+.fx-toggle:focus-visible {
+  outline-offset: -3px;
+}
+
+.fx-tab-clock {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  transform-origin: left center;
+  animation: fx-clock var(--fx-d) linear backwards;
+}
+
+.fx-toggle {
+  display: grid;
+  place-items: center;
+  flex: 0 0 44px;
+  border: 0;
+  border-left: 1px solid var(--line-main);
+  background: transparent;
+  color: var(--text-soft);
+  cursor: pointer;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease;
+}
+
+.fx-toggle:hover {
+  color: var(--accent-primary);
+  background: color-mix(in srgb, var(--accent-primary) 8%, transparent);
+}
+
+.fx-body {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  height: var(--fx-ui-height);
+}
+
+/* ---------- DESIGN.md pane ---------- */
+
+.fx-doc {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: var(--page-bg-soft);
+  border-right: 1px solid var(--line-main);
+}
+
+.fx-pane-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--line-soft);
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+}
+
+.fx-file {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.fx-path {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--text-soft);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fx-lines {
+  flex: 1;
+  margin: 0;
+  padding: 0.85rem 0.9rem 0;
+  overflow: hidden;
+  font-family: var(--font-code);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.fx-lines code {
+  display: grid;
+  align-content: start;
+  gap: 0.2rem;
+  font-family: inherit;
+}
+
+.fx-line {
+  display: block;
+  overflow: hidden;
+  color: var(--text-soft);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  animation: fx-type-line 520ms var(--fx-ease) calc(1.1s + var(--i) * 130ms) backwards;
+}
+
+.fx-line-h1 {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.fx-line-h2 {
+  margin-top: 0.45rem;
+  color: var(--accent-primary);
+}
+
+.fx-line-label {
+  margin-top: 0.45rem;
+  color: var(--text-main);
+}
+
+.fx-palette {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.35rem 0.5rem;
+  margin: 0;
+  padding: 0.7rem 0.9rem 0.85rem;
+  border-top: 1px solid var(--line-soft);
+  list-style: none;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  color: var(--text-soft);
+}
+
+.fx-swatch {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  animation: fx-pop 380ms var(--fx-ease) calc(1.5s + var(--i) * 90ms) backwards;
+}
+
+.fx-chip {
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--line-main);
+  border-radius: 2px;
+  background: var(--c);
+}
+
+/* ---------- live preview pane ---------- */
+
+.fx-ui {
+  position: relative;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--page-bg);
+  container-type: size;
+}
+
+.fx-bands {
+  position: absolute;
+  inset: 0;
+  display: flex;
+}
+
+.fx-band {
+  flex: 1;
+  background: var(--c);
+  transform-origin: bottom center;
+  animation: fx-rise 620ms var(--fx-ease) calc(1.5s + var(--i) * 110ms) backwards;
+}
+
+.fx-frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--page-bg);
+  clip-path: inset(0);
+  animation: fx-reveal 1.9s var(--fx-ease-io) 3s backwards;
+  /* Previews are full pages. Render them at a fixed desktop-ish width and scale to the pane. */
+  --fx-scale: 0.46;
+}
+
+@supports (transform: scale(tan(atan2(100px, 720px)))) {
+  .fx-frame {
+    --fx-scale: tan(atan2(100cqw, var(--fx-frame-width)));
+  }
+}
+
+.fx-frame iframe {
+  display: block;
+  width: var(--fx-frame-width);
+  height: calc(100cqh / var(--fx-scale));
+  border: 0;
+  background: #ffffff;
+  transform: scale(var(--fx-scale));
+  transform-origin: top left;
+  pointer-events: none;
+}
+
+.fx-scan {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  height: 2px;
+  background: var(--accent-primary);
+  opacity: 0;
+  animation: fx-scan 1.9s var(--fx-ease-io) 3s both;
+  pointer-events: none;
+}
+
+.fx-open {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.75rem;
+}
+
+.fx-open-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 36px;
+  padding: 0 0.7rem 0 0.8rem;
+  border: 1px solid var(--accent-primary);
+  border-radius: 4px;
+  background: var(--page-bg);
+  color: var(--text-main);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.fx-open:hover .fx-open-chip,
+.fx-open:focus-visible .fx-open-chip {
+  background: var(--accent-primary);
+  color: var(--accent-on-primary);
+}
+
+/* ---------- prompt + HagiCode pipeline ---------- */
+
+.fx-footer {
+  display: grid;
+  gap: 0.7rem;
+  padding: 0.85rem 0.9rem 0.95rem;
+  border-top: 1px solid var(--line-main);
+}
+
+.fx-prompt {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--text-main);
+  font-family: var(--font-code);
+  font-size: 0.875rem;
+}
+
+.fx-prompt-mark {
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+.fx-prompt-text {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+  animation: fx-type 1.1s steps(var(--n)) backwards;
+}
+
+.fx-prompt-text::after {
+  content: '';
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  margin-left: 0.15em;
+  vertical-align: -0.12em;
+  background: var(--accent-primary);
+  animation: fx-blink 1.1s steps(1, end) 1.1s infinite;
+}
+
+.fx-pipeline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+  min-width: 0;
+}
+
+.fx-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-main);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.fx-brand img {
+  border-radius: 4px;
+}
+
+.fx-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fx-step {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: var(--text-main);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  animation: fx-step 420ms var(--fx-ease) calc(2.4s + var(--i) * 640ms) backwards;
+}
+
+.fx-step::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--accent-primary);
+  background: var(--accent-primary);
+  animation: fx-marker 420ms var(--fx-ease) calc(2.4s + var(--i) * 640ms) backwards;
+}
+
+.fx-step:not(:first-child) {
+  margin-left: 0.9rem;
+  padding-left: 0.9rem;
+  border-left: 1px solid var(--line-main);
+}
+
+.fx-step:last-child {
+  color: var(--accent-primary);
+}
+
+.fx-note {
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 0.8125rem;
+}
+
+/* ---------- motion ---------- */
+
+@keyframes fx-clock {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes fx-type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes fx-type-line {
+  from {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+  }
+}
+
+@keyframes fx-pop {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+@keyframes fx-rise {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes fx-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
+@keyframes fx-scan {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  98% {
+    opacity: 1;
+  }
+
+  100% {
+    top: calc(100% - 2px);
+    opacity: 0;
+  }
+}
+
+@keyframes fx-step {
+  from {
+    opacity: 0.4;
+  }
+}
+
+@keyframes fx-marker {
+  from {
+    background: transparent;
+  }
+}
+
+@keyframes fx-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Stopped, or the visitor prefers reduced motion: show the finished stage. */
+.fx-stage[data-playing='false'] .fx-anim,
+.fx-stage[data-playing='false'] .fx-step::before,
+.fx-stage[data-playing='false'] .fx-prompt-text::after {
+  animation: none;
+}
+
+.fx-stage[data-playing='false'] .fx-prompt-text::after {
+  display: none;
+}
+
+/* Off-screen: freeze in place instead of burning frames. */
+.fx-stage[data-offscreen='true'] .fx-anim,
+.fx-stage[data-offscreen='true'] .fx-step::before,
+.fx-stage[data-offscreen='true'] .fx-prompt-text::after {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-anim,
+  .fx-step::before,
+  .fx-prompt-text::after {
+    animation: none !important;
+  }
+
+  .fx-prompt-text::after {
+    display: none;
+  }
+
+  .fx-cta,
+  .fx-cta:hover {
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- responsive: reflow only ---------- */
+
+@media (min-width: 1440px) {
+  .fx-hero {
+    --fx-ui-height: 23rem;
+    --fx-frame-width: 800px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .fx-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  .fx-lead {
+    max-width: 62ch;
+  }
+}
+
+@media (max-width: 720px) {
+  .fx-hero {
+    --fx-ui-height: 15rem;
+    --fx-frame-width: 640px;
+  }
+
+  .fx-copy h1 {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .fx-actions {
+    width: 100%;
+  }
+
+  .fx-cta {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+
+  .fx-body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto var(--fx-ui-height);
+    height: auto;
+  }
+
+  .fx-doc {
+    border-right: 0;
+    border-bottom: 1px solid var(--line-main);
+  }
+
+  .fx-lines {
+    padding-bottom: 0.85rem;
+  }
+
+  .fx-palette {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .fx-step:not(:first-child) {
+    margin-left: 0.6rem;
+    padding-left: 0.6rem;
+  }
+}

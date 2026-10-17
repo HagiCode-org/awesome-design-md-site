@@ -1,5 +1,6 @@
 ---
 import DesignCard from '@/components/gallery/DesignCard.astro';
+import FusionHero from '@/components/gallery/FusionHero';
 import GalleryPreviewThemeSync from '@/components/gallery/GalleryPreviewThemeSync';
 import HagiCodeShowcase from '@/components/gallery/HagiCodeShowcase';
 import SearchToolbar from '@/components/gallery/SearchToolbar';
@@ -10,9 +11,11 @@ import {
   getSiteMeta,
   localeCopy,
   toAbsoluteSiteUrl,
+  toLocalePath,
   type SupportedLocale,
 } from '@/config/site';
 import type { AwesomeDesignEntry } from '@/lib/content/awesomeDesignCatalog';
+import { buildFusionStages } from '@/lib/content/fusionHeroData';
 
 interface Props {
   locale: SupportedLocale;
@@ -28,6 +31,7 @@ const searchEntries = entries.map(({ slug, title, summary, searchText }) => ({
   summary,
   searchText,
 }));
+const fusionStages = buildFusionStages(entries, (slug) => toLocalePath(`/designs/${slug}/`, locale));
 const description = getHomeDescription(locale, entries.length);
 const currentPath = getLocaleHomePath(locale);
 const homeUrl = toAbsoluteSiteUrl(currentPath, Astro.site);
@@ -64,24 +68,7 @@ const structuredData = [
   currentPath={currentPath}
   structuredData={structuredData}
 >
-  <section class="gallery-hero container">
-    <div class="gallery-hero-panel shell-panel">
-      <div class="gallery-copy">
-        <p class="gallery-eyebrow">{copy.home.heroEyebrow}</p>
-        <h1>{copy.home.heroTitle}</h1>
-        <p class="gallery-lead">{copy.home.heroLead}</p>
-        <a class="gallery-hero-cta button-primary" href="#gallery-catalog">
-          {copy.chrome.galleryCtaLabel}
-        </a>
-      </div>
-      <div class="gallery-hero-signal" aria-hidden="true">
-        <span class="gallery-hero-signal-orbit"></span>
-        <span class="gallery-hero-signal-core"></span>
-        <span class="gallery-hero-signal-line gallery-hero-signal-line-one"></span>
-        <span class="gallery-hero-signal-line gallery-hero-signal-line-two"></span>
-      </div>
-    </div>
-  </section>
+  <FusionHero locale={locale} stages={fusionStages} entryCount={entries.length} client:load />
 
   <section class="container gallery-showcase-slot" aria-label={copy.home.showcaseTitle}>
     <HagiCodeShowcase locale={locale} client:load />
