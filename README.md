@@ -1,5 +1,7 @@
 # awesome-design-md-site
 
+[![last commit](https://img.shields.io/github/last-commit/HagiCode-org/awesome-design-md-site)](https://github.com/HagiCode-org/awesome-design-md-site/commits/main)
+
 `awesome-design-md-site` 是一个基于 Astro 的静态画廊站点，用于浏览上游 `awesome-design-md` 仓库中的设计系统条目。站点会在构建期扫描子模块内容，为每个设计条目生成：
 
 - 画廊首页卡片
