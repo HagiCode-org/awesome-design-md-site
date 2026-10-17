@@ -66,7 +66,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "Built with HagiCode",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "HagiCode is an agentic coding workspace: OpenSpec workflows, multi-agent execution, and Hero Dungeon views turn ideas into shipped software.",
+          "showcaseLead": "HagiCode is an agentic coding workspace: OpenSpec workflows, multi-agent execution, and Hero Scenario views turn ideas into shipped software.",
           "showcaseCtaLabel": "Visit HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "Previous slide",
@@ -86,10 +86,10 @@ const runtime = {
               "imageAlt": "HagiCode multi-agent workspace illustration"
             },
             {
-              "title": "Hero Dungeon view",
-              "description": "Dungeons, captains, and visual workspaces make long-running AI coding sessions easier to coordinate.",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "HagiCode Hero Dungeon workspace illustration"
+              "title": "Hero Scenario view",
+              "description": "Scenarios, captains, and visual workspaces make long-running AI coding sessions easier to coordinate.",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "HagiCode Hero Scenario workspace illustration"
             }
           ],
           "emptyKicker": "No designs available",
@@ -107,7 +107,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
             }
           ],
           "showcaseLearnMoreLabel": "Learn more",
@@ -385,7 +385,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "由 HagiCode 构建",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "HagiCode 是一套智能体编码工作台：OpenSpec 工作流、多 Agent 并行执行与 Hero Dungeon 视图，把想法变成真正交付的软件。",
+          "showcaseLead": "HagiCode 是一套智能体编码工作台：OpenSpec 工作流、多 Agent 并行执行与 Hero 场景视图，把想法变成真正交付的软件。",
           "showcaseCtaLabel": "访问 HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "上一张",
@@ -405,10 +405,10 @@ const runtime = {
               "imageAlt": "HagiCode 多 Agent 工作台插画"
             },
             {
-              "title": "Hero Dungeon 视图",
-              "description": "用地牢、队长与可视化工作台组织长时间运行的 AI 编码协作。",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "HagiCode Hero Dungeon 工作台插画"
+              "title": "Hero 场景视图",
+              "description": "用场景、队长与可视化工作台组织长时间运行的 AI 编码协作。",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "HagiCode Hero 场景工作台插画"
             }
           ],
           "emptyKicker": "暂无可用设计",
@@ -426,7 +426,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon 让长时间编码协作更直观、更有参与感。"
+              "description": "Hero 场景让长时间编码协作更直观、更有参与感。"
             }
           ],
           "showcaseLearnMoreLabel": "了解更多",
@@ -704,7 +704,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "由 HagiCode 建置",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "OpenSpec 工作流、多 Agent 執行與 Hero Dungeon 介面，是用來打造這個畫廊外殼的產品概念。",
+          "showcaseLead": "OpenSpec 工作流、多 Agent 執行與 Hero 場景介面，是用來打造這個畫廊外殼的產品概念。",
           "showcaseCtaLabel": "造訪 HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "上一張",
@@ -724,10 +724,10 @@ const runtime = {
               "imageAlt": "HagiCode 多 Agent 工作區插圖"
             },
             {
-              "title": "Hero Dungeon 視圖",
-              "description": "用地牢、隊長與視覺化工作區協調長時間 AI 編碼工作。",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "HagiCode Hero Dungeon 工作區插圖"
+              "title": "Hero 場景視圖",
+              "description": "用場景、隊長與視覺化工作區協調長時間 AI 編碼工作。",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "HagiCode Hero 場景工作區插圖"
             }
           ],
           "emptyKicker": "暫無設計",
@@ -745,7 +745,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon 讓長時間編碼協作更直觀、更有參與感。"
+              "description": "Hero 場景讓長時間編碼協作更直觀、更有參與感。"
             }
           ],
           "showcaseLearnMoreLabel": "了解更多",
@@ -1023,7 +1023,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "HagiCode で構築",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "OpenSpec ワークフロー、マルチエージェント実行、Hero Dungeon インターフェイスの考え方をこのギャラリーシェルに再利用しています。",
+          "showcaseLead": "OpenSpec ワークフロー、マルチエージェント実行、Hero シナリオ インターフェイスの考え方をこのギャラリーシェルに再利用しています。",
           "showcaseCtaLabel": "HagiCode を見る",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "前のスライド",
@@ -1043,10 +1043,10 @@ const runtime = {
               "imageAlt": "HagiCode マルチエージェントワークスペースの図"
             },
             {
-              "title": "Hero Dungeon ビュー",
-              "description": "ダンジョン、キャプテン、視覚的な作業場で長時間の AI コーディングセッションを調整します。",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "HagiCode Hero Dungeon ワークスペースの図"
+              "title": "Hero シナリオ ビュー",
+              "description": "シナリオ、キャプテン、視覚的な作業場で長時間の AI コーディングセッションを調整します。",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "HagiCode Hero シナリオ ワークスペースの図"
             }
           ],
           "emptyKicker": "デザインがありません",
@@ -1064,7 +1064,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
             }
           ],
           "showcaseLearnMoreLabel": "Learn more",
@@ -1342,7 +1342,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "HagiCode로 구축",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "OpenSpec 워크플로, 멀티 에이전트 실행, Hero Dungeon 인터페이스 아이디어가 이 갤러리 셸에 재사용되었습니다.",
+          "showcaseLead": "OpenSpec 워크플로, 멀티 에이전트 실행, Hero 시나리오 인터페이스 아이디어가 이 갤러리 셸에 재사용되었습니다.",
           "showcaseCtaLabel": "HagiCode 방문",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "이전 슬라이드",
@@ -1362,10 +1362,10 @@ const runtime = {
               "imageAlt": "HagiCode 멀티 에이전트 작업 공간 그림"
             },
             {
-              "title": "Hero Dungeon 보기",
-              "description": "던전, 캡틴, 시각적 작업 공간으로 장시간 AI 코딩 세션을 조율합니다.",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "HagiCode Hero Dungeon 작업 공간 그림"
+              "title": "Hero 시나리오 보기",
+              "description": "시나리오, 캡틴, 시각적 작업 공간으로 장시간 AI 코딩 세션을 조율합니다.",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "HagiCode Hero 시나리오 작업 공간 그림"
             }
           ],
           "emptyKicker": "사용 가능한 디자인 없음",
@@ -1383,7 +1383,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
             }
           ],
           "showcaseLearnMoreLabel": "Learn more",
@@ -1661,7 +1661,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "Mit HagiCode gebaut",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "OpenSpec-Workflow, Multi-Agent-Ausführung und Hero-Dungeon-Oberflächen sind Produktideen, die für diese Galerie-Shell wiederverwendet wurden.",
+          "showcaseLead": "OpenSpec-Workflow, Multi-Agent-Ausführung und Hero-Szenario-Oberflächen sind Produktideen, die für diese Galerie-Shell wiederverwendet wurden.",
           "showcaseCtaLabel": "HagiCode besuchen",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "Vorherige Folie",
@@ -1681,10 +1681,10 @@ const runtime = {
               "imageAlt": "HagiCode Multi-Agent-Arbeitsbereich Illustration"
             },
             {
-              "title": "Hero Dungeon Ansicht",
-              "description": "Dungeons, Captains und visuelle Arbeitsbereiche koordinieren lange AI-Coding-Sessions.",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "HagiCode Hero Dungeon Arbeitsbereich Illustration"
+              "title": "Hero Szenario Ansicht",
+              "description": "Szenarien, Captains und visuelle Arbeitsbereiche koordinieren lange AI-Coding-Sessions.",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "HagiCode Hero Szenario Arbeitsbereich Illustration"
             }
           ],
           "emptyKicker": "Keine Designs verfügbar",
@@ -1702,7 +1702,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
             }
           ],
           "showcaseLearnMoreLabel": "Learn more",
@@ -1980,7 +1980,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "Construit avec HagiCode",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "Le workflow OpenSpec, l’exécution multi-agent et les interfaces Hero Dungeon sont les idées réutilisées pour cette enveloppe de galerie.",
+          "showcaseLead": "Le workflow OpenSpec, l’exécution multi-agent et les interfaces Hero Scénario sont les idées réutilisées pour cette enveloppe de galerie.",
           "showcaseCtaLabel": "Visiter HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "Diapositive précédente",
@@ -2000,10 +2000,10 @@ const runtime = {
               "imageAlt": "Illustration de l’espace multi-agent HagiCode"
             },
             {
-              "title": "Vue Hero Dungeon",
-              "description": "Donjons, capitaines et espaces visuels coordonnent les longues sessions de codage IA.",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "Illustration de l’espace Hero Dungeon HagiCode"
+              "title": "Vue Hero Scénario",
+              "description": "Scénarios, capitaines et espaces visuels coordonnent les longues sessions de codage IA.",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "Illustration de l’espace Hero Scénario HagiCode"
             }
           ],
           "emptyKicker": "Aucun design disponible",
@@ -2021,7 +2021,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
             }
           ],
           "showcaseLearnMoreLabel": "Learn more",
@@ -2299,7 +2299,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "Construido con HagiCode",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "El flujo OpenSpec, la ejecución multiagente y las interfaces Hero Dungeon son ideas reutilizadas para construir esta galería.",
+          "showcaseLead": "El flujo OpenSpec, la ejecución multiagente y las interfaces Hero Escenario son ideas reutilizadas para construir esta galería.",
           "showcaseCtaLabel": "Visitar HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "Diapositiva anterior",
@@ -2319,10 +2319,10 @@ const runtime = {
               "imageAlt": "Ilustración del espacio multiagente de HagiCode"
             },
             {
-              "title": "Vista Hero Dungeon",
-              "description": "Mazmorras, capitanes y espacios visuales coordinan sesiones largas de codificación con IA.",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "Ilustración del espacio Hero Dungeon de HagiCode"
+              "title": "Vista Hero Escenario",
+              "description": "Escenarios, capitanes y espacios visuales coordinan sesiones largas de codificación con IA.",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "Ilustración del espacio Hero Escenario de HagiCode"
             }
           ],
           "emptyKicker": "No hay diseños disponibles",
@@ -2340,7 +2340,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
             }
           ],
           "showcaseLearnMoreLabel": "Learn more",
@@ -2618,7 +2618,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "Construído com HagiCode",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "Workflow OpenSpec, execução multiagente e interfaces Hero Dungeon são ideias reutilizadas para criar esta galeria.",
+          "showcaseLead": "Workflow OpenSpec, execução multiagente e interfaces Hero Cenário são ideias reutilizadas para criar esta galeria.",
           "showcaseCtaLabel": "Visitar HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "Slide anterior",
@@ -2638,10 +2638,10 @@ const runtime = {
               "imageAlt": "Ilustração do workspace multiagente HagiCode"
             },
             {
-              "title": "Visão Hero Dungeon",
-              "description": "Dungeons, capitães e workspaces visuais coordenam sessões longas de codificação com IA.",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "Ilustração do workspace Hero Dungeon HagiCode"
+              "title": "Visão Hero Cenário",
+              "description": "Cenários, capitães e workspaces visuais coordenam sessões longas de codificação com IA.",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "Ilustração do workspace Hero Cenário HagiCode"
             }
           ],
           "emptyKicker": "Nenhum design disponível",
@@ -2659,7 +2659,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
             }
           ],
           "showcaseLearnMoreLabel": "Learn more",
@@ -2937,7 +2937,7 @@ const runtime = {
           ],
           "showcaseEyebrow": "Построено с HagiCode",
           "showcaseTitle": "Hagicode",
-          "showcaseLead": "OpenSpec workflow, multi-agent execution и интерфейсы Hero Dungeon стали идеями, использованными в оболочке этой галереи.",
+          "showcaseLead": "OpenSpec workflow, multi-agent execution и интерфейсы Hero Scenario стали идеями, использованными в оболочке этой галереи.",
           "showcaseCtaLabel": "Посетить HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
           "showcasePrev": "Предыдущий слайд",
@@ -2957,10 +2957,10 @@ const runtime = {
               "imageAlt": "Иллюстрация multi-agent workspace HagiCode"
             },
             {
-              "title": "Hero Dungeon view",
-              "description": "Dungeons, captains и визуальные рабочие пространства помогают координировать долгие AI coding sessions.",
-              "imageSrc": "/img/hagicode/hero-dungeon-workspace.svg",
-              "imageAlt": "Иллюстрация Hero Dungeon workspace HagiCode"
+              "title": "Hero Scenario view",
+              "description": "Сценарии, captains и визуальные рабочие пространства помогают координировать долгие AI coding sessions.",
+              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
+              "imageAlt": "Иллюстрация Hero Scenario workspace HagiCode"
             }
           ],
           "emptyKicker": "Нет доступных дизайнов",
@@ -2978,7 +2978,7 @@ const runtime = {
             },
             {
               "label": "Fun",
-              "description": "Hero Dungeon interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
             }
           ],
           "showcaseLearnMoreLabel": "Learn more",
