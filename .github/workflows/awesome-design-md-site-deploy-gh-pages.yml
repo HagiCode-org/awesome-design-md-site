@@ -55,6 +55,7 @@ jobs:
         with:
           name: awesome-design-md-site-gh-pages-payload
           path: ${{ env.AWESOME_DESIGN_MD_SITE_GH_PAGES_PAYLOAD_DIR }}
+          include-hidden-files: true
           if-no-files-found: error
 
   deploy:
