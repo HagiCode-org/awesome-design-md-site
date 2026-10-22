@@ -10,7 +10,7 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { visit } from 'unist-util-visit';
-import type { Heading, Root } from 'mdast';
+import type { Heading, Paragraph, Root } from 'mdast';
 import previewImageManifestData from '../../data/preview-images.json';
 
 export type SourceStatus = 'ready' | 'missing_source';
@@ -428,7 +428,7 @@ function isLegacyScreenshotUrl(url: string): boolean {
   }
 }
 
-function isLegacyScreenshotParagraph(node: Root['children'][number]): boolean {
+function isLegacyScreenshotParagraph(node: Root['children'][number]): node is Paragraph {
   if (node.type !== 'paragraph') {
     return false;
   }
