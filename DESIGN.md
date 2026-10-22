@@ -101,18 +101,18 @@ The shell must stay distinct from gallery entries. A vendor entry may use any pa
 
 ### Cards
 
-- Cards are live preview containers with charcoal borders and minimal radius.
+- Cards are preview containers with charcoal borders and minimal radius. Each shows a locally rendered AVIF thumbnail of the entry's top page.
 - Hover should lift slightly and sharpen border emphasis.
-- Preview stage remains framed as a live iframe rather than a static screenshot.
+- Previews are locally rendered full-page AVIF images, not live frames. Gallery and detail pages never embed the upstream preview HTML; the live page opens only through the open-in-new-tab action and the error fallback.
 
 ### Detail page
 
-The detail page is a workbench, not an article. From `1100px` up the live preview is pinned on the left (`position: sticky` under the site header) and the documentation scrolls on the right.
+The detail page is a workbench, not an article. From `1100px` up the rendered preview is pinned on the left (`position: sticky` under the site header) and the documentation scrolls on the right.
 
 - Back link, segmented toggles, document tabs, and adjacent navigation all use the same small-radius outlined control language. Related toggles are fused into one `segmented` group (shared borders, only the outer corners rounded).
 - The header carries identity only: back link, layout switch (Split / Preview / Docs), title, summary. Panel headings inside the workbench are `1.125rem`, not display size, so the preview starts above the fold.
 - The layout switch is remembered in `localStorage` (`adms-detail-layout`) and restored before first paint. Below `1100px` the panels stack and the switch is hidden.
-- Preview tools: Light / Dark, a viewport width (Fit / Tablet `820px` / Mobile `390px`, hidden below `720px`), an open-in-new-tab icon, and a monospace width readout. A 2px Neon Volt bar runs across the stage while the frame loads.
+- Preview tools: Light / Dark, a viewport width (Fit / Tablet `820px` / Mobile `390px`, hidden below `720px`), an open-in-new-tab icon, and a monospace width readout. Fit shows the 1440 px render, Tablet the 820 px render and Mobile the 390 px render; each is a full-page image that scrolls inside the stage at its natural proportions. A 2px Neon Volt bar runs across the stage while the image loads, and a failed image shows a short message with a link to the live HTML preview.
 - Documentation keeps its tabs, copy/download actions, and a section strip (the document's `h2`s, with scroll-spy) in one sticky bar. Actions that do not apply to the active tab leave the row; the DESIGN copy and download buttons appear only on the DESIGN tab.
 - `←` / `→` open the previous / next design (ignored while typing or with a modifier key held).
 - Preview and documentation stay in separate bordered panels.
@@ -121,7 +121,7 @@ The detail page is a workbench, not an article. From `1100px` up the live previe
 
 - Search: `/` focuses the field from anywhere, `Esc` clears it. Cards that stay after a filter slide to their new cell (transform only); cards that appear fade up. Both are skipped under `prefers-reduced-motion`.
 - Cards show a Neon Volt arrow cue on hover and keyboard focus.
-- Card-to-detail morph: the clicked card's preview frame grows into the detail preview stage and back (cross-document View Transitions, `design-preview`). Only that one element is named, at `pageswap` / `pagereveal` time; the site header is named `site-header` so it stays put. Browsers without support, and visitors who prefer reduced motion, get an ordinary navigation.
+- Card-to-detail morph: the clicked card's preview thumbnail grows into the detail preview stage and back (cross-document View Transitions, `design-preview`). Only that one element is named, at `pageswap` / `pagereveal` time; the site header is named `site-header` so it stays put. Browsers without support, and visitors who prefer reduced motion, get an ordinary navigation.
 
 ### Markdown
 
@@ -169,17 +169,17 @@ Depth comes from contrast and containment, not from blur or layered drop shadows
 - Don't reintroduce warm glassmorphism surfaces.
 - Don't use soft 24px-32px radii for the shell.
 - Don't use teal / amber / rust as primary shell colors.
-- Don't turn the preview cards into screenshots.
+- Don't embed the upstream preview HTML in a frame on the gallery or detail pages; use the rendered images.
 - Don't merge README and DESIGN into a single undifferentiated document surface.
 
 ## 8. Responsive Behavior
 
 | Range | Behavior |
 | --- | --- |
-| `>= 1440px` | Wider container, 4-column gallery grid, taller stacked detail preview |
+| `>= 1440px` | Wider container, 4-column gallery grid, taller detail preview stage (48rem) |
 | `>= 1100px` | Detail workbench: sticky preview left, scrolling docs right, layout switch visible |
 | `721px - 1080px` | 2-column gallery grid, stacked toolbar and header groups |
-| `<= 720px` | Single-column gallery and adjacent navigation, segmented groups share the row, viewport switch hidden, reduced preview height |
+| `<= 720px` | Single-column gallery and adjacent navigation, segmented groups share the row, viewport switch hidden, reduced preview stage height (26rem) |
 
 Mobile keeps the same black/white ClickHouse identity. It should compress, not soften.
 
