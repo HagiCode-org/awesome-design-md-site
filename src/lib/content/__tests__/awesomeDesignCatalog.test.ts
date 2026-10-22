@@ -207,20 +207,24 @@ describe('awesomeDesignCatalog', () => {
     );
   });
 
-  it('drops the legacy Cloudflare R2 screenshots and their headings from the rendered README only', async () => {
+  it('replaces the legacy Cloudflare R2 screenshots with the local Fit image of the same variant', async () => {
     const sourceRoot = await createSourceRoot({
       acme: {
         readme:
           '# Acme Inspired Design System\n\n## Preview\n\nA sample page.\n\n### Dark Mode\n![Dark](https://pub-x.r2.dev/designs/acme/preview-dark-screenshot.png)\n\n### Light Mode\n![Light](https://pub-x.r2.dev/designs/acme/preview-screenshot.png)\n\n## Usage\n\nKeep it.',
         design: '# Design System Inspiration of Acme\n\n## 1. Theme\n\nText.',
         previewLight: '<html></html>',
+        previewDark: '<html></html>',
       },
     });
     const [entry] = (await getAwesomeDesignCatalog(await catalogOptions(sourceRoot))).entries;
 
     expect(entry.readmeHtml).not.toContain('r2.dev');
-    expect(entry.readmeHtml).not.toContain('Dark Mode');
-    expect(entry.readmeHtml).not.toContain('Light Mode');
+    expect(entry.readmeHtml).toContain('src="/preview-images/acme/dark-fit.avif"');
+    expect(entry.readmeHtml).toContain('src="/preview-images/acme/light-fit.avif"');
+    expect(entry.readmeHtml).toContain('loading="lazy"');
+    expect(entry.readmeHtml).toContain('Dark Mode');
+    expect(entry.readmeHtml).toContain('Light Mode');
     expect(entry.readmeHtml).toContain('A sample page.');
     expect(entry.readmeHtml).toContain('Keep it.');
     expect(entry.readmeMarkdown).toContain('pub-x.r2.dev');

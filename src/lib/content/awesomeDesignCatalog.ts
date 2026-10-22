@@ -248,6 +248,7 @@ async function loadCatalogEntry(input: {
   }
 
   const images = resolvePreviewImages(input.sourceKey, input.previewImageManifest);
+  const screenshots = { light: images.light.fit, dark: images.dark.fit };
   const [readmeMarkdown, designMarkdown] = await Promise.all([
     readFile(readmePath, 'utf8'),
     readFile(designPath, 'utf8'),
@@ -288,8 +289,8 @@ async function loadCatalogEntry(input: {
     readmeMarkdown,
     designMarkdown,
     designDownloadUrl: getDesignDownloadPath(slug),
-    readmeHtml: await renderMarkdownToHtml(readmeMarkdown),
-    designHtml: await renderMarkdownToHtml(designMarkdown),
+    readmeHtml: await renderMarkdownToHtml(readmeMarkdown, screenshots),
+    designHtml: await renderMarkdownToHtml(designMarkdown, screenshots),
     searchText,
     preview: {
       lightUrl: `${input.previewBasePath}/${encodeURIComponent(slug)}/light.html`,
@@ -396,13 +397,17 @@ async function parseMarkdown(markdown: string): Promise<Root> {
   return (await processor.run(parsed)) as Root;
 }
 
-async function renderMarkdownToHtml(markdown: string): Promise<string> {
+async function renderMarkdownToHtml(
+  markdown: string,
+  screenshots: Record<PreviewVariant, PreviewImageFile>,
+): Promise<string> {
   const file = await unified()
     .use(remarkParse)
     .use(remarkGfm)
-    .use(remarkDropLegacyScreenshots)
+    .use(remarkReplaceLegacyScreenshots, screenshots)
     .use(remarkRehype)
     .use(rehypeDemoteH1)
+    .use(rehypeLazyPreviewImages)
     .use(rehypeSlug)
     .use(rehypeStringify)
     .process(markdown);
@@ -410,9 +415,9 @@ async function renderMarkdownToHtml(markdown: string): Promise<string> {
   return String(file);
 }
 
-// Upstream READMEs embed old light/dark screenshots hosted on Cloudflare R2. The rendered
-// previews on this site replace them, so the image paragraphs and the heading that introduced
-// them are dropped from the rendered document. The vendor Markdown itself is not changed.
+// Upstream READMEs embed old light/dark screenshots hosted on Cloudflare R2. They are rewritten
+// to this entry's locally rendered full-page Fit image for the same variant. The vendor Markdown
+// itself is not changed.
 const LEGACY_SCREENSHOT_HOST_SUFFIX = '.r2.dev';
 
 function isLegacyScreenshotUrl(url: string): boolean {
@@ -436,22 +441,32 @@ function isLegacyScreenshotParagraph(node: Root['children'][number]): boolean {
   return onlyImagesAndSpace && images.length > 0 && images.every((image) => isLegacyScreenshotUrl(image.url));
 }
 
-function remarkDropLegacyScreenshots() {
+function remarkReplaceLegacyScreenshots(screenshots: Record<PreviewVariant, PreviewImageFile>) {
   return (tree: Root) => {
-    const kept: Root['children'] = [];
-
     for (const node of tree.children) {
-      if (isLegacyScreenshotParagraph(node)) {
-        if (kept[kept.length - 1]?.type === 'heading') {
-          kept.pop();
-        }
+      if (!isLegacyScreenshotParagraph(node)) {
         continue;
       }
 
-      kept.push(node);
+      for (const child of node.children) {
+        if (child.type === 'image') {
+          child.url = /dark/iu.test(child.url) ? screenshots.dark.url : screenshots.light.url;
+        }
+      }
     }
+  };
+}
 
-    tree.children = kept;
+const PREVIEW_IMAGE_LAZY_PREFIX = `${PREVIEW_IMAGE_BASE_PATH}/`;
+
+function rehypeLazyPreviewImages() {
+  return (tree: unknown) => {
+    visit(tree as Root, (node) => {
+      const element = node as unknown as { type: string; tagName?: string; properties?: Record<string, unknown> };
+      if (element.type === 'element' && element.tagName === 'img' && String(element.properties?.src ?? '').startsWith(PREVIEW_IMAGE_LAZY_PREFIX)) {
+        element.properties = { ...element.properties, loading: 'lazy', decoding: 'async' };
+      }
+    });
   };
 }
 
