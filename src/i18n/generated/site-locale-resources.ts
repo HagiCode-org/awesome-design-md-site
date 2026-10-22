@@ -182,7 +182,11 @@ const runtime = {
           "kicker": "Design detail",
           "slugPrefix": "Slug:",
           "readmeRendered": "README rendered",
-          "designRendered": "DESIGN rendered"
+          "designRendered": "DESIGN rendered",
+          "layoutLabel": "Workspace layout",
+          "layoutSplit": "Split",
+          "layoutPreview": "Preview",
+          "layoutDocs": "Docs"
         },
         "preview": {
           "kicker": "Live preview",
@@ -194,7 +198,12 @@ const runtime = {
           "bothAvailableNote": "Both light and dark preview assets are available.",
           "fallbackNote": "Dark mode falls back to the available preview asset for this entry.",
           "themeTabLabel": "Preview theme",
-          "frameTitle": "{{title}} live preview"
+          "frameTitle": "{{title}} live preview",
+          "viewportLabel": "Preview width",
+          "viewportFit": "Fit",
+          "viewportTablet": "Tablet",
+          "viewportMobile": "Mobile",
+          "openInTab": "Open preview in new tab"
         },
         "documents": {
           "kicker": "Documentation",
@@ -207,7 +216,8 @@ const runtime = {
           "downloadDesignTitle": "Download the canonical DESIGN.md file",
           "copied": "Copied",
           "copyFailed": "Copy failed",
-          "tabListLabel": "Document view"
+          "tabListLabel": "Document view",
+          "outlineLabel": "Jump to section"
         },
         "adjacent": {
           "ariaLabel": "Adjacent designs",
@@ -501,7 +511,11 @@ const runtime = {
           "kicker": "设计详情",
           "slugPrefix": "标识：",
           "readmeRendered": "README 已渲染",
-          "designRendered": "DESIGN 已渲染"
+          "designRendered": "DESIGN 已渲染",
+          "layoutLabel": "工作区布局",
+          "layoutSplit": "分栏",
+          "layoutPreview": "预览",
+          "layoutDocs": "文档"
         },
         "preview": {
           "kicker": "实时预览",
@@ -513,7 +527,12 @@ const runtime = {
           "bothAvailableNote": "此条目同时提供浅色与深色预览资源。",
           "fallbackNote": "此条目的深色模式会回退到当前可用的预览资源。",
           "themeTabLabel": "预览主题",
-          "frameTitle": "{{title}} 实时预览"
+          "frameTitle": "{{title}} 实时预览",
+          "viewportLabel": "预览宽度",
+          "viewportFit": "自适应",
+          "viewportTablet": "平板",
+          "viewportMobile": "手机",
+          "openInTab": "在新标签页打开预览"
         },
         "documents": {
           "kicker": "文档",
@@ -526,7 +545,8 @@ const runtime = {
           "downloadDesignTitle": "下载站内 canonical 的 DESIGN.md 文件",
           "copied": "已复制",
           "copyFailed": "复制失败",
-          "tabListLabel": "文档视图"
+          "tabListLabel": "文档视图",
+          "outlineLabel": "跳转到章节"
         },
         "adjacent": {
           "ariaLabel": "相邻设计",
@@ -820,7 +840,11 @@ const runtime = {
           "kicker": "設計詳情",
           "slugPrefix": "識別碼：",
           "readmeRendered": "README 已渲染",
-          "designRendered": "DESIGN 已渲染"
+          "designRendered": "DESIGN 已渲染",
+          "layoutLabel": "工作區版面",
+          "layoutSplit": "分欄",
+          "layoutPreview": "預覽",
+          "layoutDocs": "文件"
         },
         "preview": {
           "kicker": "即時預覽",
@@ -832,7 +856,12 @@ const runtime = {
           "bothAvailableNote": "此項目同時提供淺色與深色預覽資源。",
           "fallbackNote": "此項目的深色模式會回退到可用的預覽資源。",
           "themeTabLabel": "預覽主題",
-          "frameTitle": "{{title}} 即時預覽"
+          "frameTitle": "{{title}} 即時預覽",
+          "viewportLabel": "預覽寬度",
+          "viewportFit": "自適應",
+          "viewportTablet": "平板",
+          "viewportMobile": "手機",
+          "openInTab": "在新分頁開啟預覽"
         },
         "documents": {
           "kicker": "文件",
@@ -845,7 +874,8 @@ const runtime = {
           "downloadDesignTitle": "下載 canonical DESIGN.md 文件",
           "copied": "已複製",
           "copyFailed": "複製失敗",
-          "tabListLabel": "文件視圖"
+          "tabListLabel": "文件視圖",
+          "outlineLabel": "跳至章節"
         },
         "adjacent": {
           "ariaLabel": "相鄰設計",
@@ -1139,7 +1169,11 @@ const runtime = {
           "kicker": "デザイン詳細",
           "slugPrefix": "Slug:",
           "readmeRendered": "README 表示済み",
-          "designRendered": "DESIGN 表示済み"
+          "designRendered": "DESIGN 表示済み",
+          "layoutLabel": "ワークスペースのレイアウト",
+          "layoutSplit": "分割",
+          "layoutPreview": "プレビュー",
+          "layoutDocs": "ドキュメント"
         },
         "preview": {
           "kicker": "ライブプレビュー",
@@ -1151,7 +1185,12 @@ const runtime = {
           "bothAvailableNote": "ライトとダークのプレビュー素材が利用できます。",
           "fallbackNote": "この項目のダークモードは利用可能なプレビュー素材にフォールバックします。",
           "themeTabLabel": "プレビューテーマ",
-          "frameTitle": "{{title}} ライブプレビュー"
+          "frameTitle": "{{title}} ライブプレビュー",
+          "viewportLabel": "プレビュー幅",
+          "viewportFit": "自動",
+          "viewportTablet": "タブレット",
+          "viewportMobile": "モバイル",
+          "openInTab": "プレビューを新しいタブで開く"
         },
         "documents": {
           "kicker": "ドキュメント",
@@ -1164,7 +1203,8 @@ const runtime = {
           "downloadDesignTitle": "canonical DESIGN.md ファイルをダウンロード",
           "copied": "コピー済み",
           "copyFailed": "コピー失敗",
-          "tabListLabel": "ドキュメント表示"
+          "tabListLabel": "ドキュメント表示",
+          "outlineLabel": "セクションへ移動"
         },
         "adjacent": {
           "ariaLabel": "前後のデザイン",
@@ -1458,7 +1498,11 @@ const runtime = {
           "kicker": "디자인 상세",
           "slugPrefix": "Slug:",
           "readmeRendered": "README 렌더링됨",
-          "designRendered": "DESIGN 렌더링됨"
+          "designRendered": "DESIGN 렌더링됨",
+          "layoutLabel": "작업 공간 레이아웃",
+          "layoutSplit": "분할",
+          "layoutPreview": "미리보기",
+          "layoutDocs": "문서"
         },
         "preview": {
           "kicker": "라이브 미리보기",
@@ -1470,7 +1514,12 @@ const runtime = {
           "bothAvailableNote": "라이트와 다크 미리보기 자산을 모두 사용할 수 있습니다.",
           "fallbackNote": "이 항목의 다크 모드는 사용 가능한 미리보기 자산으로 폴백합니다.",
           "themeTabLabel": "미리보기 테마",
-          "frameTitle": "{{title}} 라이브 미리보기"
+          "frameTitle": "{{title}} 라이브 미리보기",
+          "viewportLabel": "미리보기 너비",
+          "viewportFit": "맞춤",
+          "viewportTablet": "태블릿",
+          "viewportMobile": "모바일",
+          "openInTab": "미리보기를 새 탭에서 열기"
         },
         "documents": {
           "kicker": "문서",
@@ -1483,7 +1532,8 @@ const runtime = {
           "downloadDesignTitle": "canonical DESIGN.md 파일 다운로드",
           "copied": "복사됨",
           "copyFailed": "복사 실패",
-          "tabListLabel": "문서 보기"
+          "tabListLabel": "문서 보기",
+          "outlineLabel": "섹션으로 이동"
         },
         "adjacent": {
           "ariaLabel": "인접 디자인",
@@ -1777,7 +1827,11 @@ const runtime = {
           "kicker": "Designdetail",
           "slugPrefix": "Slug:",
           "readmeRendered": "README gerendert",
-          "designRendered": "DESIGN gerendert"
+          "designRendered": "DESIGN gerendert",
+          "layoutLabel": "Arbeitsbereich-Layout",
+          "layoutSplit": "Geteilt",
+          "layoutPreview": "Vorschau",
+          "layoutDocs": "Doku"
         },
         "preview": {
           "kicker": "Live-Vorschau",
@@ -1789,7 +1843,12 @@ const runtime = {
           "bothAvailableNote": "Helle und dunkle Vorschau-Assets sind verfügbar.",
           "fallbackNote": "Der dunkle Modus fällt für diesen Eintrag auf das verfügbare Vorschau-Asset zurück.",
           "themeTabLabel": "Vorschau-Theme",
-          "frameTitle": "{{title}} Live-Vorschau"
+          "frameTitle": "{{title}} Live-Vorschau",
+          "viewportLabel": "Vorschaubreite",
+          "viewportFit": "Einpassen",
+          "viewportTablet": "Tablet",
+          "viewportMobile": "Mobil",
+          "openInTab": "Vorschau in neuem Tab öffnen"
         },
         "documents": {
           "kicker": "Dokumentation",
@@ -1802,7 +1861,8 @@ const runtime = {
           "downloadDesignTitle": "Die kanonische DESIGN.md-Datei herunterladen",
           "copied": "Kopiert",
           "copyFailed": "Kopieren fehlgeschlagen",
-          "tabListLabel": "Dokumentenansicht"
+          "tabListLabel": "Dokumentenansicht",
+          "outlineLabel": "Zu Abschnitt springen"
         },
         "adjacent": {
           "ariaLabel": "Benachbarte Designs",
@@ -2096,7 +2156,11 @@ const runtime = {
           "kicker": "Détail du design",
           "slugPrefix": "Slug :",
           "readmeRendered": "README rendu",
-          "designRendered": "DESIGN rendu"
+          "designRendered": "DESIGN rendu",
+          "layoutLabel": "Disposition de l’espace de travail",
+          "layoutSplit": "Partagé",
+          "layoutPreview": "Aperçu",
+          "layoutDocs": "Docs"
         },
         "preview": {
           "kicker": "Aperçu en direct",
@@ -2108,7 +2172,12 @@ const runtime = {
           "bothAvailableNote": "Les aperçus clair et sombre sont disponibles.",
           "fallbackNote": "Le mode sombre se replie sur l’aperçu disponible pour cette entrée.",
           "themeTabLabel": "Thème d’aperçu",
-          "frameTitle": "Aperçu en direct de {{title}}"
+          "frameTitle": "Aperçu en direct de {{title}}",
+          "viewportLabel": "Largeur de l’aperçu",
+          "viewportFit": "Ajusté",
+          "viewportTablet": "Tablette",
+          "viewportMobile": "Mobile",
+          "openInTab": "Ouvrir l’aperçu dans un nouvel onglet"
         },
         "documents": {
           "kicker": "Documentation",
@@ -2121,7 +2190,8 @@ const runtime = {
           "downloadDesignTitle": "Télécharger le fichier DESIGN.md canonique",
           "copied": "Copié",
           "copyFailed": "Échec de copie",
-          "tabListLabel": "Vue document"
+          "tabListLabel": "Vue document",
+          "outlineLabel": "Aller à la section"
         },
         "adjacent": {
           "ariaLabel": "Designs adjacents",
@@ -2415,7 +2485,11 @@ const runtime = {
           "kicker": "Detalle de diseño",
           "slugPrefix": "Slug:",
           "readmeRendered": "README renderizado",
-          "designRendered": "DESIGN renderizado"
+          "designRendered": "DESIGN renderizado",
+          "layoutLabel": "Diseño del espacio de trabajo",
+          "layoutSplit": "Dividido",
+          "layoutPreview": "Vista previa",
+          "layoutDocs": "Docs"
         },
         "preview": {
           "kicker": "Vista previa en vivo",
@@ -2427,7 +2501,12 @@ const runtime = {
           "bothAvailableNote": "Hay recursos de vista previa clara y oscura disponibles.",
           "fallbackNote": "El modo oscuro usa el recurso de vista previa disponible para esta entrada.",
           "themeTabLabel": "Tema de vista previa",
-          "frameTitle": "Vista previa en vivo de {{title}}"
+          "frameTitle": "Vista previa en vivo de {{title}}",
+          "viewportLabel": "Ancho de la vista previa",
+          "viewportFit": "Ajustar",
+          "viewportTablet": "Tableta",
+          "viewportMobile": "Móvil",
+          "openInTab": "Abrir la vista previa en una pestaña nueva"
         },
         "documents": {
           "kicker": "Documentación",
@@ -2440,7 +2519,8 @@ const runtime = {
           "downloadDesignTitle": "Descargar el archivo DESIGN.md canónico",
           "copied": "Copiado",
           "copyFailed": "Error al copiar",
-          "tabListLabel": "Vista de documento"
+          "tabListLabel": "Vista de documento",
+          "outlineLabel": "Ir a la sección"
         },
         "adjacent": {
           "ariaLabel": "Diseños adyacentes",
@@ -2734,7 +2814,11 @@ const runtime = {
           "kicker": "Detalhe do design",
           "slugPrefix": "Slug:",
           "readmeRendered": "README renderizado",
-          "designRendered": "DESIGN renderizado"
+          "designRendered": "DESIGN renderizado",
+          "layoutLabel": "Layout da área de trabalho",
+          "layoutSplit": "Dividido",
+          "layoutPreview": "Preview",
+          "layoutDocs": "Docs"
         },
         "preview": {
           "kicker": "Preview ao vivo",
@@ -2746,7 +2830,12 @@ const runtime = {
           "bothAvailableNote": "Assets de preview claro e escuro estão disponíveis.",
           "fallbackNote": "O modo escuro usa o asset de preview disponível para esta entrada.",
           "themeTabLabel": "Tema do preview",
-          "frameTitle": "Preview ao vivo de {{title}}"
+          "frameTitle": "Preview ao vivo de {{title}}",
+          "viewportLabel": "Largura do preview",
+          "viewportFit": "Ajustar",
+          "viewportTablet": "Tablet",
+          "viewportMobile": "Celular",
+          "openInTab": "Abrir o preview em nova guia"
         },
         "documents": {
           "kicker": "Documentação",
@@ -2759,7 +2848,8 @@ const runtime = {
           "downloadDesignTitle": "Baixar o arquivo DESIGN.md canônico",
           "copied": "Copiado",
           "copyFailed": "Falha ao copiar",
-          "tabListLabel": "Visualização de documento"
+          "tabListLabel": "Visualização de documento",
+          "outlineLabel": "Ir para a seção"
         },
         "adjacent": {
           "ariaLabel": "Designs adjacentes",
@@ -3053,7 +3143,11 @@ const runtime = {
           "kicker": "Детали дизайна",
           "slugPrefix": "Slug:",
           "readmeRendered": "README отрендерен",
-          "designRendered": "DESIGN отрендерен"
+          "designRendered": "DESIGN отрендерен",
+          "layoutLabel": "Раскладка рабочей области",
+          "layoutSplit": "Две колонки",
+          "layoutPreview": "Превью",
+          "layoutDocs": "Документы"
         },
         "preview": {
           "kicker": "Live preview",
@@ -3065,7 +3159,12 @@ const runtime = {
           "bothAvailableNote": "Доступны светлые и тёмные preview assets.",
           "fallbackNote": "Тёмный режим для этой записи использует доступный preview asset.",
           "themeTabLabel": "Тема preview",
-          "frameTitle": "Live preview {{title}}"
+          "frameTitle": "Live preview {{title}}",
+          "viewportLabel": "Ширина превью",
+          "viewportFit": "По ширине",
+          "viewportTablet": "Планшет",
+          "viewportMobile": "Телефон",
+          "openInTab": "Открыть превью в новой вкладке"
         },
         "documents": {
           "kicker": "Документация",
@@ -3078,7 +3177,8 @@ const runtime = {
           "downloadDesignTitle": "Скачать canonical файл DESIGN.md",
           "copied": "Скопировано",
           "copyFailed": "Не удалось скопировать",
-          "tabListLabel": "Вид документа"
+          "tabListLabel": "Вид документа",
+          "outlineLabel": "Перейти к разделу"
         },
         "adjacent": {
           "ariaLabel": "Соседние дизайны",

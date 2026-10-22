@@ -84,4 +84,28 @@ describe('initializeDocumentTabs', () => {
     expect(writeText).toHaveBeenCalledWith('Raw markdown');
     expect(copyButton?.textContent?.trim()).toBe('Copied');
   });
+
+  it('rebuilds the section strip for the active document', () => {
+    document.body.innerHTML = `
+      <section data-document-tabs>
+        <div data-doc-bar></div>
+        <nav data-doc-outline hidden></nav>
+        <button type="button" data-doc-tab="readme" aria-selected="true">README</button>
+        <button type="button" data-doc-tab="design" aria-selected="false">DESIGN</button>
+        <section data-doc-panel="readme"><h2>Files</h2><h2>Preview</h2></section>
+        <section data-doc-panel="design" hidden><h2>Colors</h2><h2>Type</h2><h2>Layout</h2></section>
+      </section>
+    `;
+    initializeDocumentTabs();
+
+    const nav = document.querySelector<HTMLElement>('[data-doc-outline]');
+    const labels = () => Array.from(nav?.querySelectorAll('button') ?? []).map((button) => button.textContent);
+
+    expect(labels()).toEqual(['Files', 'Preview']);
+
+    document.querySelector<HTMLElement>('[data-doc-tab="design"]')?.click();
+
+    expect(labels()).toEqual(['Colors', 'Type', 'Layout']);
+    expect(nav?.hidden).toBe(false);
+  });
 });

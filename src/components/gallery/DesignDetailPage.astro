@@ -71,17 +71,42 @@ const structuredData = {
 >
   <section class="container detail-shell">
     <div class="detail-header shell-panel">
-      <div class="detail-header-copy">
+      <div class="detail-header-bar">
         <a class="detail-back-link" href={galleryHref}>
           {copy.detail.backToGallery}
         </a>
-        <p class="detail-kicker">{copy.detail.kicker}</p>
+        <div
+          class="segmented detail-layout-toggle"
+          role="group"
+          aria-label={copy.detail.layoutLabel}
+        >
+          <button type="button" class="preview-toggle is-active" data-detail-layout="split" aria-pressed="true">
+            {copy.detail.layoutSplit}
+          </button>
+          <button type="button" class="preview-toggle" data-detail-layout="preview" aria-pressed="false">
+            {copy.detail.layoutPreview}
+          </button>
+          <button type="button" class="preview-toggle" data-detail-layout="docs" aria-pressed="false">
+            {copy.detail.layoutDocs}
+          </button>
+        </div>
+      </div>
+      <div class="detail-header-copy">
         <h1>{entry.title}</h1>
         <p class="detail-summary">{entry.summary}</p>
       </div>
     </div>
 
-    <div class="detail-grid">
+    <div class="detail-grid" data-detail-grid data-layout="split">
+      <script is:inline>
+        // Restore the saved layout before first paint so the grid does not jump.
+        try {
+          const saved = localStorage.getItem('adms-detail-layout');
+          if (saved === 'preview' || saved === 'docs') {
+            document.currentScript.parentElement.dataset.layout = saved;
+          }
+        } catch {}
+      </script>
       <PreviewSwitcher
         title={entry.title}
         lightUrl={entry.preview.lightUrl}
@@ -103,3 +128,9 @@ const structuredData = {
     <HagiCodeShowcase locale={locale} client:load />
   </section>
 </BaseLayout>
+
+<script>
+  import { initializeDetailWorkbench } from '@/components/gallery/detail-workbench';
+
+  initializeDetailWorkbench();
+</script>

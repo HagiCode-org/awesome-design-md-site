@@ -1,3 +1,5 @@
+import { createDocOutline } from '@/components/gallery/doc-outline';
+
 interface DocumentTabLabels {
   copyDesign: string;
   copiedText: string;
@@ -29,6 +31,16 @@ export function initializeDocumentTabs(rootDocument: Document = document) {
     const copyButton = root.querySelector<HTMLButtonElement>('[data-copy-design]');
     const downloadLink = root.querySelector<HTMLAnchorElement>('[data-download-design]');
     const designMarkdown = root.querySelector<HTMLTextAreaElement>('[data-design-markdown]');
+    const outlineNav = root.querySelector<HTMLElement>('[data-doc-outline]');
+    const bar = root.querySelector<HTMLElement>('[data-doc-bar]');
+    const outline = outlineNav && bar ? createDocOutline(outlineNav, bar) : undefined;
+
+    // Scrolled-to headings must clear both the site header and this bar.
+    if (bar && typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(() => {
+        root.style.setProperty('--doc-bar-height', `${bar.offsetHeight}px`);
+      }).observe(bar);
+    }
 
     const activate = (target: string) => {
       tabs.forEach((tab) => {
@@ -42,6 +54,8 @@ export function initializeDocumentTabs(rootDocument: Document = document) {
         panel.classList.toggle('is-active', active);
         panel.toggleAttribute('hidden', !active);
       });
+
+      outline?.show(panels.find((panel) => panel.getAttribute('data-doc-panel') === target) ?? null);
 
       const designActive = target === 'design';
 

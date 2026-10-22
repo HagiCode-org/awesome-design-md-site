@@ -20,8 +20,16 @@ const copy = localeCopy[locale].adjacent;
 <nav class="detail-adjacent-nav" aria-label={copy.ariaLabel}>
   {
     previous ? (
-      <a class="detail-adjacent-link" href={previous.href ?? `/designs/${previous.slug}/`}>
-        <span>{copy.previous}</span>
+      <a
+        class="detail-adjacent-link"
+        href={previous.href ?? `/designs/${previous.slug}/`}
+        data-adjacent-link="previous"
+        aria-keyshortcuts="ArrowLeft"
+      >
+        <span>
+          <kbd aria-hidden="true">←</kbd>
+          {copy.previous}
+        </span>
         <strong>{previous.title}</strong>
       </a>
     ) : (
@@ -31,8 +39,16 @@ const copy = localeCopy[locale].adjacent;
 
   {
     next ? (
-      <a class="detail-adjacent-link detail-adjacent-link-next" href={next.href ?? `/designs/${next.slug}/`}>
-        <span>{copy.next}</span>
+      <a
+        class="detail-adjacent-link detail-adjacent-link-next"
+        href={next.href ?? `/designs/${next.slug}/`}
+        data-adjacent-link="next"
+        aria-keyshortcuts="ArrowRight"
+      >
+        <span>
+          {copy.next}
+          <kbd aria-hidden="true">→</kbd>
+        </span>
         <strong>{next.title}</strong>
       </a>
     ) : (

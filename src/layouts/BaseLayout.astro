@@ -125,6 +125,56 @@ const pageStructuredData = {
         document.documentElement.dataset.theme = theme;
       })();
     </script>
+    <script is:inline>
+      // Cross-document view transition: the gallery card preview grows into the detail preview
+      // (and back). Only the one clicked card is named, so no other card is captured.
+      (() => {
+        const NAME = 'design-preview';
+        const slugOf = (href) => {
+          try {
+            const match = new URL(href, location.href).pathname.match(/\/designs\/([^/]+)\/?$/);
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch {
+            return null;
+          }
+        };
+        // On the way back the browser has not restored the scroll position yet when the page
+        // is revealed, so the returning card is named wherever it is, not only when in view.
+        const cardPreview = (slug, anywhere) => {
+          const card = Array.from(document.querySelectorAll('[data-design-card]')).find(
+            (item) => item.dataset.slug === slug,
+          );
+          const preview = card && card.querySelector('.design-card-preview');
+          if (!preview) return null;
+          const rect = preview.getBoundingClientRect();
+          return anywhere || (rect.bottom > 0 && rect.top < innerHeight) ? preview : null;
+        };
+        const name = async (element, transition) => {
+          if (!element) return;
+          element.style.viewTransitionName = NAME;
+          await transition.finished.catch(() => {});
+          element.style.viewTransitionName = '';
+        };
+
+        addEventListener('pageswap', (event) => {
+          if (!event.viewTransition || !event.activation || !event.activation.entry) return;
+          const to = slugOf(event.activation.entry.url);
+          const here = slugOf(location.href);
+          if (to && !here) name(cardPreview(to), event.viewTransition);
+          else if (!to && here) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+        });
+
+        addEventListener('pagereveal', (event) => {
+          if (!event.viewTransition) return;
+          const activation = window.navigation && window.navigation.activation;
+          if (!activation || !activation.from) return;
+          const from = slugOf(activation.from.url);
+          const here = slugOf(location.href);
+          if (here && !from) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+          else if (!here && from) name(cardPreview(from, true), event.viewTransition);
+        });
+      })();
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main">{chromeCopy.skipToContent}</a>

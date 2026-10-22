@@ -26,42 +26,43 @@ const copy = localeCopy[locale].documents;
   data-copied-label={copy.copied}
   data-copy-failed-label={copy.copyFailed}
 >
-  <div class="detail-documents-head">
-    <div>
-      <p class="detail-kicker">{copy.kicker}</p>
-      <h2>{copy.heading}</h2>
-    </div>
-    <div class="detail-doc-controls">
-      <div class="detail-tab-list" role="tablist" aria-label={copy.tabListLabel}>
-        <button type="button" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">
+  <h2 class="visually-hidden">{copy.heading}</h2>
+
+  <div class="detail-documents-bar shell-panel" data-doc-bar>
+    <div class="detail-documents-head">
+      <div class="segmented detail-tab-list" role="tablist" aria-label={copy.tabListLabel}>
+        <button type="button" role="tab" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">
           {copy.readme}
         </button>
-        <button type="button" class="detail-tab" data-doc-tab="design" aria-selected="false">
+        <button type="button" role="tab" class="detail-tab" data-doc-tab="design" aria-selected="false">
           {copy.design}
         </button>
       </div>
-      <button
-        type="button"
-        class="detail-copy-button"
-        data-copy-design
-        disabled
-        aria-disabled="true"
-        title={copy.copyDesignTitle}
-      >
-        {copy.copyDesign}
-      </button>
-      <a
-        class="detail-copy-button"
-        data-download-design
-        href={designDownloadUrl}
-        download="DESIGN.md"
-        title={copy.downloadDesignTitle}
-        aria-hidden="true"
-        tabindex="-1"
-      >
-        {copy.downloadDesign}
-      </a>
+      <div class="detail-doc-controls">
+        <button
+          type="button"
+          class="detail-copy-button"
+          data-copy-design
+          disabled
+          aria-disabled="true"
+          title={copy.copyDesignTitle}
+        >
+          {copy.copyDesign}
+        </button>
+        <a
+          class="detail-copy-button"
+          data-download-design
+          href={designDownloadUrl}
+          download="DESIGN.md"
+          title={copy.downloadDesignTitle}
+          aria-hidden="true"
+          tabindex="-1"
+        >
+          {copy.downloadDesign}
+        </a>
+      </div>
     </div>
+    <nav class="detail-outline" data-doc-outline aria-label={copy.outlineLabel} hidden></nav>
   </div>
 
   <div class="detail-doc-panels">

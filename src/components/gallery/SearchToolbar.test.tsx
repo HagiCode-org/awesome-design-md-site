@@ -92,4 +92,30 @@ describe('SearchToolbar', () => {
       expect(screen.getByRole('button', { name: 'Suche löschen' })).toBeInTheDocument();
     });
   });
+
+  it('focuses the search box when / is pressed outside a text field', async () => {
+    render(<SearchToolbar entries={entries} totalCount={entries.length} />);
+
+    const input = screen.getByLabelText('Keyword');
+    expect(input).not.toHaveFocus();
+
+    fireEvent.keyDown(document.body, { key: '/' });
+
+    await waitFor(() => expect(input).toHaveFocus());
+  });
+
+  it('clears the query with Escape while the search box is focused', async () => {
+    window.history.replaceState({}, '', '/?q=stripe');
+    render(<SearchToolbar entries={entries} totalCount={entries.length} />);
+
+    const input = screen.getByLabelText('Keyword');
+    await waitFor(() => expect(input).toHaveValue('stripe'));
+
+    fireEvent.keyDown(input, { key: 'Escape' });
+
+    await waitFor(() => {
+      expect(input).toHaveValue('');
+      expect(screen.getByText('2 designs indexed')).toBeInTheDocument();
+    });
+  });
 });
