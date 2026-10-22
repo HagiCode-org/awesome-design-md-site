@@ -12,8 +12,8 @@ const stages: FusionStage[] = ['stripe', 'linear.app', 'spotify'].map((slug) => 
   slug,
   title: slug.split('.')[0].toUpperCase(),
   href: `/designs/${slug}/`,
-  lightUrl: `/previews/${slug}/light`,
-  darkUrl: `/previews/${slug}/dark`,
+  lightImageUrl: `/preview-images/${slug}/light-tablet.avif`,
+  darkImageUrl: `/preview-images/${slug}/dark-tablet.avif`,
   lines: [
     { kind: 'h1', text: `# Design System Inspiration of ${slug}` },
     { kind: 'h2', text: '## 1. Visual Theme & Atmosphere' },
@@ -44,11 +44,14 @@ describe('FusionHero', () => {
     ]);
   });
 
-  it('quotes the DESIGN.md and loads the live preview for the selected design', () => {
+  it('quotes the DESIGN.md and shows the rendered preview image for the selected design', () => {
     render(<FusionHero locale="en" stages={stages} entryCount={58} />);
 
     expect(screen.getByText('# Design System Inspiration of stripe')).toBeInTheDocument();
-    expect(screen.getByTitle('STRIPE live preview')).toHaveAttribute('src', '/previews/stripe/dark');
+    expect(screen.getByRole('img', { name: 'STRIPE preview image' })).toHaveAttribute(
+      'src',
+      '/preview-images/stripe/dark-tablet.avif',
+    );
     expect(screen.getByRole('link', { name: 'Open the STRIPE design' })).toHaveAttribute('href', '/designs/stripe/');
   });
 
@@ -61,7 +64,7 @@ describe('FusionHero', () => {
 
     fireEvent.click(tabs[2]);
     expect(screen.getAllByRole('tab')[2]).toHaveAttribute('aria-selected', 'true');
-    expect(screen.getByTitle('SPOTIFY live preview')).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: 'SPOTIFY preview image' })).toBeInTheDocument();
 
     fireEvent.keyDown(screen.getByRole('tablist'), { key: 'ArrowRight' });
     expect(screen.getAllByRole('tab')[0]).toHaveAttribute('aria-selected', 'true');

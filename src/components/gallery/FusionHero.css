@@ -342,7 +342,7 @@
   background: var(--page-bg);
   clip-path: inset(0);
   animation: fx-reveal 1.9s var(--fx-ease-io) 3s backwards;
-  /* Previews are full pages. Render them at a fixed desktop-ish width and scale to the pane. */
+  /* Preview images are full pages. Show their top at a fixed desktop-ish width and scale to the pane. */
   --fx-scale: 0.46;
 }
 
@@ -352,10 +352,12 @@
   }
 }
 
-.fx-frame iframe {
+.fx-frame img {
   display: block;
   width: var(--fx-frame-width);
   height: calc(100cqh / var(--fx-scale));
+  object-fit: cover;
+  object-position: top left;
   border: 0;
   background: #ffffff;
   transform: scale(var(--fx-scale));

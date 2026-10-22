@@ -14,8 +14,9 @@ export interface FusionStage {
   slug: string;
   title: string;
   href: string;
-  lightUrl: string;
-  darkUrl: string;
+  /** Tablet-width rendered page image; the stage shows its top at a fixed width. */
+  lightImageUrl: string;
+  darkImageUrl: string;
   /** Verbatim lines lifted from the entry's own DESIGN.md. */
   lines: FusionDocLine[];
   /** Hex colours that appear in the entry's DESIGN.md, in order of first mention. */
@@ -92,8 +93,8 @@ export function buildFusionStages(
       slug: entry.slug,
       title: entry.title,
       href: toHref(entry.slug),
-      lightUrl: entry.preview.lightUrl,
-      darkUrl: entry.preview.darkUrl,
+      lightImageUrl: entry.preview.images.light.tablet.url,
+      darkImageUrl: entry.preview.images.dark.tablet.url,
       lines: extractDocLines(entry.designMarkdown),
       palette: extractPalette(entry.designMarkdown),
     }));

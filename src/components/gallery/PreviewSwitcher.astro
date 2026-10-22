@@ -1,17 +1,30 @@
 ---
 import { localeCopy, type SupportedLocale } from '@/config/site';
 import { interpolate } from '@/i18n';
+import type { PreviewImageSet } from '@/lib/content/awesomeDesignCatalog';
 
 interface Props {
   title: string;
   lightUrl: string;
   darkUrl: string;
+  images: Record<'light' | 'dark', PreviewImageSet>;
   hasDedicatedDark: boolean;
   locale?: SupportedLocale;
 }
 
-const { title, lightUrl, darkUrl, hasDedicatedDark, locale = 'en' } = Astro.props;
+const { title, lightUrl, darkUrl, images, hasDedicatedDark, locale = 'en' } = Astro.props;
 const copy = localeCopy[locale].preview;
+const initialImage = images.light.fit;
+// The client script swaps in the variant and viewport the visitor picks; these labels keep its alt text localized.
+const altTemplate = interpolate(copy.imageAlt, { title, variant: '{{variant}}', viewport: '{{viewport}}' });
+const altLabels = {
+  light: copy.light,
+  dark: copy.dark,
+  fit: copy.viewportFit,
+  tablet: copy.viewportTablet,
+  mobile: copy.viewportMobile,
+};
+const initialAlt = interpolate(copy.imageAlt, { title, variant: copy.light, viewport: copy.viewportFit });
 ---
 
 <section
@@ -19,6 +32,9 @@ const copy = localeCopy[locale].preview;
   data-preview-switcher
   data-light-url={lightUrl}
   data-dark-url={darkUrl}
+  data-images={JSON.stringify(images)}
+  data-alt-template={altTemplate}
+  data-labels={JSON.stringify(altLabels)}
 >
   <div class="preview-switcher-head">
     <h2>{copy.heading}</h2>
@@ -67,11 +83,19 @@ const copy = localeCopy[locale].preview;
   </div>
 
   <div class="preview-stage" data-preview-stage data-state="loading" aria-busy="true">
-    <iframe
-      class="detail-preview-frame"
-      title={interpolate(copy.frameTitle, { title })}
-      sandbox="allow-same-origin allow-scripts"
-      data-preview-frame></iframe>
+    <img
+      class="detail-preview-image"
+      data-preview-image
+      src={initialImage.url}
+      width={initialImage.width}
+      height={initialImage.height}
+      alt={initialAlt}
+      decoding="async"
+    />
+    <p class="preview-error" data-preview-error hidden>
+      <span>{copy.imageFailed}</span>
+      <a data-preview-live href={lightUrl} target="_blank" rel="noopener">{copy.liveLink}</a>
+    </p>
   </div>
 
   <p class="preview-switcher-foot">

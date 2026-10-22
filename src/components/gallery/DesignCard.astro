@@ -12,6 +12,9 @@ const { entry, locale = 'en' } = Astro.props;
 const href = toLocalePath(`/designs/${entry.slug}/`, locale);
 const copy = localeCopy[locale];
 const ariaLabel = interpolate(copy.common.card.openDetails, { title: entry.title });
+const thumbAlt = interpolate(copy.card.imageAlt, { title: entry.title });
+const lightThumb = entry.preview.images.light.thumb;
+const darkThumb = entry.preview.images.dark.thumb;
 ---
 
 <a
@@ -23,15 +26,17 @@ const ariaLabel = interpolate(copy.common.card.openDetails, { title: entry.title
   aria-label={ariaLabel}
 >
   <div class="design-card-preview">
-    <iframe
-      class="design-card-frame"
-      src="about:blank"
-      data-preview-frame
-      data-light-src={entry.preview.lightUrl}
-      data-dark-src={entry.preview.darkUrl}
-      title={`${entry.title} preview`}
+    <img
+      class="design-card-thumb"
+      src={lightThumb.url}
+      width={lightThumb.width}
+      height={lightThumb.height}
+      alt={thumbAlt}
       loading="lazy"
-      sandbox="allow-same-origin allow-scripts"
+      decoding="async"
+      data-preview-thumb
+      data-light-src={lightThumb.url}
+      data-dark-src={darkThumb.url}
     />
   </div>
 

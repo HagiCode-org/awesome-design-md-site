@@ -64,7 +64,6 @@ export default function FusionHero({ locale = 'en', stages, entryCount, catalogH
   const fx = copy.home.fusion;
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const [mounted, setMounted] = useState(false);
   const [theme, setTheme] = useState<ThemeName>('dark');
   const stageRef = useRef<HTMLDivElement>(null);
   const clockRef = useRef<HTMLSpanElement>(null);
@@ -75,7 +74,6 @@ export default function FusionHero({ locale = 'en', stages, entryCount, catalogH
 
   // Theme, reduced motion and off-screen pausing. All of it is progressive: the SSR markup is already the finished state.
   useEffect(() => {
-    setMounted(true);
     setTheme(readTheme());
 
     const themeObserver = new MutationObserver(() => setTheme(readTheme()));
@@ -262,11 +260,10 @@ export default function FusionHero({ locale = 'en', stages, entryCount, catalogH
                       ))}
                     </div>
                     <div className="fx-frame fx-anim">
-                      <iframe
-                        title={interpolate(copy.preview.frameTitle, { title: stage.title })}
-                        src={mounted ? (theme === 'light' ? stage.lightUrl : stage.darkUrl) : undefined}
-                        sandbox="allow-same-origin allow-scripts"
-                        tabIndex={-1}
+                      <img
+                        src={theme === 'light' ? stage.lightImageUrl : stage.darkImageUrl}
+                        alt={interpolate(copy.card.imageAlt, { title: stage.title })}
+                        decoding="async"
                       />
                     </div>
                     <span className="fx-scan fx-anim" aria-hidden="true" />

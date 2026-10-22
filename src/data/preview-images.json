@@ -1,0 +1,3717 @@
+{
+  "version": 1,
+  "entries": {
+    "airbnb": {
+      "light": {
+        "sourceSha256": "ef9c797ac124b71e87a526b27ca343721bc69142e10f20992d5defef1f516acb",
+        "capped": false,
+        "pageHeight": 4747,
+        "files": {
+          "fit": {
+            "path": "airbnb/light-fit.avif",
+            "width": 1440,
+            "height": 3656,
+            "bytes": 47232
+          },
+          "tablet": {
+            "path": "airbnb/light-tablet.avif",
+            "width": 820,
+            "height": 4132,
+            "bytes": 48384
+          },
+          "mobile": {
+            "path": "airbnb/light-mobile.avif",
+            "width": 390,
+            "height": 4747,
+            "bytes": 47217
+          },
+          "thumb": {
+            "path": "airbnb/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18636
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "9e05142f1725de63669872edcc7ccb27b1eefc082563d0c7aed9c3536aa260eb",
+        "capped": false,
+        "pageHeight": 4747,
+        "files": {
+          "fit": {
+            "path": "airbnb/dark-fit.avif",
+            "width": 1440,
+            "height": 3656,
+            "bytes": 45270
+          },
+          "tablet": {
+            "path": "airbnb/dark-tablet.avif",
+            "width": 820,
+            "height": 4132,
+            "bytes": 46954
+          },
+          "mobile": {
+            "path": "airbnb/dark-mobile.avif",
+            "width": 390,
+            "height": 4747,
+            "bytes": 45872
+          },
+          "thumb": {
+            "path": "airbnb/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18717
+          }
+        }
+      }
+    },
+    "airtable": {
+      "light": {
+        "sourceSha256": "ddc23eeee12509112850a1a5592b0a57ab428f8e78faf89dcc8654b4efc4235c",
+        "capped": false,
+        "pageHeight": 4054,
+        "files": {
+          "fit": {
+            "path": "airtable/light-fit.avif",
+            "width": 1440,
+            "height": 3661,
+            "bytes": 51624
+          },
+          "tablet": {
+            "path": "airtable/light-tablet.avif",
+            "width": 820,
+            "height": 3792,
+            "bytes": 53396
+          },
+          "mobile": {
+            "path": "airtable/light-mobile.avif",
+            "width": 390,
+            "height": 4054,
+            "bytes": 49130
+          },
+          "thumb": {
+            "path": "airtable/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19645
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "47d42fb67fd9821c3b9b6ed17f3e6add9a8c58989519c67e1aefd7cdbdf087d2",
+        "capped": false,
+        "pageHeight": 4054,
+        "files": {
+          "fit": {
+            "path": "airtable/dark-fit.avif",
+            "width": 1440,
+            "height": 3661,
+            "bytes": 47202
+          },
+          "tablet": {
+            "path": "airtable/dark-tablet.avif",
+            "width": 820,
+            "height": 3792,
+            "bytes": 49034
+          },
+          "mobile": {
+            "path": "airtable/dark-mobile.avif",
+            "width": 390,
+            "height": 4054,
+            "bytes": 45248
+          },
+          "thumb": {
+            "path": "airtable/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18315
+          }
+        }
+      }
+    },
+    "apple": {
+      "light": {
+        "sourceSha256": "f9ba9d0a913d8092d924a13ebf07512042383e17cc6f1479b3497ffb43c5eea3",
+        "capped": true,
+        "pageHeight": 8101,
+        "files": {
+          "fit": {
+            "path": "apple/light-fit.avif",
+            "width": 1440,
+            "height": 5865,
+            "bytes": 92416
+          },
+          "tablet": {
+            "path": "apple/light-tablet.avif",
+            "width": 820,
+            "height": 6286,
+            "bytes": 94856
+          },
+          "mobile": {
+            "path": "apple/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 94328
+          },
+          "thumb": {
+            "path": "apple/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19298
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "87fa7554b0be56512336dfc472312cb75a8a5f9eb6e8c2b18e1d3c5d2f0e219d",
+        "capped": true,
+        "pageHeight": 8102,
+        "files": {
+          "fit": {
+            "path": "apple/dark-fit.avif",
+            "width": 1440,
+            "height": 5866,
+            "bytes": 91887
+          },
+          "tablet": {
+            "path": "apple/dark-tablet.avif",
+            "width": 820,
+            "height": 6287,
+            "bytes": 94490
+          },
+          "mobile": {
+            "path": "apple/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 93947
+          },
+          "thumb": {
+            "path": "apple/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19035
+          }
+        }
+      }
+    },
+    "bmw": {
+      "light": {
+        "sourceSha256": "248008c87fa738dc5c029532c62dd1135a0906dd811cc2dbb67a6d7cd6e3ea05",
+        "capped": false,
+        "pageHeight": 4951,
+        "files": {
+          "fit": {
+            "path": "bmw/light-fit.avif",
+            "width": 1440,
+            "height": 4197,
+            "bytes": 58517
+          },
+          "tablet": {
+            "path": "bmw/light-tablet.avif",
+            "width": 820,
+            "height": 4334,
+            "bytes": 59036
+          },
+          "mobile": {
+            "path": "bmw/light-mobile.avif",
+            "width": 390,
+            "height": 4951,
+            "bytes": 56542
+          },
+          "thumb": {
+            "path": "bmw/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18499
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "6333b90e4ddf399c7f3142bdcbe7eaeee3665f32fb61f663d6002984bdc51132",
+        "capped": false,
+        "pageHeight": 4951,
+        "files": {
+          "fit": {
+            "path": "bmw/dark-fit.avif",
+            "width": 1440,
+            "height": 4197,
+            "bytes": 49997
+          },
+          "tablet": {
+            "path": "bmw/dark-tablet.avif",
+            "width": 820,
+            "height": 4334,
+            "bytes": 46850
+          },
+          "mobile": {
+            "path": "bmw/dark-mobile.avif",
+            "width": 390,
+            "height": 4951,
+            "bytes": 46929
+          },
+          "thumb": {
+            "path": "bmw/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 8323
+          }
+        }
+      }
+    },
+    "cal": {
+      "light": {
+        "sourceSha256": "70008b1a4d799d82276ec477f3db62a68378441560fcf4ab214fa077c120650d",
+        "capped": false,
+        "pageHeight": 6975,
+        "files": {
+          "fit": {
+            "path": "cal/light-fit.avif",
+            "width": 1440,
+            "height": 5761,
+            "bytes": 101497
+          },
+          "tablet": {
+            "path": "cal/light-tablet.avif",
+            "width": 820,
+            "height": 6165,
+            "bytes": 99610
+          },
+          "mobile": {
+            "path": "cal/light-mobile.avif",
+            "width": 390,
+            "height": 6975,
+            "bytes": 92771
+          },
+          "thumb": {
+            "path": "cal/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 22178
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "36f6c08aae6242303569dca7b25777f250ea006e8178a92ff2a139c002f70a3c",
+        "capped": false,
+        "pageHeight": 6614,
+        "files": {
+          "fit": {
+            "path": "cal/dark-fit.avif",
+            "width": 1440,
+            "height": 5580,
+            "bytes": 80617
+          },
+          "tablet": {
+            "path": "cal/dark-tablet.avif",
+            "width": 820,
+            "height": 5948,
+            "bytes": 80798
+          },
+          "mobile": {
+            "path": "cal/dark-mobile.avif",
+            "width": 390,
+            "height": 6614,
+            "bytes": 75540
+          },
+          "thumb": {
+            "path": "cal/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21455
+          }
+        }
+      }
+    },
+    "claude": {
+      "light": {
+        "sourceSha256": "3d6be6eca2d69f36a3a25a2149085d2c6092f0cb7381aab53ee2d146bab14d63",
+        "capped": true,
+        "pageHeight": 9353,
+        "files": {
+          "fit": {
+            "path": "claude/light-fit.avif",
+            "width": 1440,
+            "height": 6386,
+            "bytes": 117721
+          },
+          "tablet": {
+            "path": "claude/light-tablet.avif",
+            "width": 820,
+            "height": 7276,
+            "bytes": 114595
+          },
+          "mobile": {
+            "path": "claude/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 98757
+          },
+          "thumb": {
+            "path": "claude/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 13774
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "e9ce8b405638d54ca65ed9782651543d2f336413204088f96b7f59337d86f6ce",
+        "capped": true,
+        "pageHeight": 9347,
+        "files": {
+          "fit": {
+            "path": "claude/dark-fit.avif",
+            "width": 1440,
+            "height": 6383,
+            "bytes": 110596
+          },
+          "tablet": {
+            "path": "claude/dark-tablet.avif",
+            "width": 820,
+            "height": 7249,
+            "bytes": 109033
+          },
+          "mobile": {
+            "path": "claude/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 93287
+          },
+          "thumb": {
+            "path": "claude/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 13245
+          }
+        }
+      }
+    },
+    "clay": {
+      "light": {
+        "sourceSha256": "d33f637f631d8cbfe37448a9a780235f106f477398242250475a3e0126a336da",
+        "capped": false,
+        "pageHeight": 6714,
+        "files": {
+          "fit": {
+            "path": "clay/light-fit.avif",
+            "width": 1440,
+            "height": 5118,
+            "bytes": 87894
+          },
+          "tablet": {
+            "path": "clay/light-tablet.avif",
+            "width": 820,
+            "height": 5549,
+            "bytes": 89603
+          },
+          "mobile": {
+            "path": "clay/light-mobile.avif",
+            "width": 390,
+            "height": 6714,
+            "bytes": 87270
+          },
+          "thumb": {
+            "path": "clay/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20243
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "8f93a5877fb8d0dac4b62cd1ee125857fd0c522aa2e0e9bb32e505d848a87e34",
+        "capped": false,
+        "pageHeight": 6714,
+        "files": {
+          "fit": {
+            "path": "clay/dark-fit.avif",
+            "width": 1440,
+            "height": 5118,
+            "bytes": 81591
+          },
+          "tablet": {
+            "path": "clay/dark-tablet.avif",
+            "width": 820,
+            "height": 5549,
+            "bytes": 82857
+          },
+          "mobile": {
+            "path": "clay/dark-mobile.avif",
+            "width": 390,
+            "height": 6714,
+            "bytes": 81750
+          },
+          "thumb": {
+            "path": "clay/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19855
+          }
+        }
+      }
+    },
+    "clickhouse": {
+      "light": {
+        "sourceSha256": "fc2cd480449d72f5fea2682df7eb54beaef0b3e1813dbdaf22c8de680c209f3f",
+        "capped": true,
+        "pageHeight": 9816,
+        "files": {
+          "fit": {
+            "path": "clickhouse/light-fit.avif",
+            "width": 1440,
+            "height": 6724,
+            "bytes": 125767
+          },
+          "tablet": {
+            "path": "clickhouse/light-tablet.avif",
+            "width": 820,
+            "height": 7443,
+            "bytes": 123878
+          },
+          "mobile": {
+            "path": "clickhouse/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 97955
+          },
+          "thumb": {
+            "path": "clickhouse/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18721
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "dee82084dcb667e68521f78eaa9b678c252da34a5149f22c3215f364fd458484",
+        "capped": true,
+        "pageHeight": 10157,
+        "files": {
+          "fit": {
+            "path": "clickhouse/dark-fit.avif",
+            "width": 1440,
+            "height": 6922,
+            "bytes": 133218
+          },
+          "tablet": {
+            "path": "clickhouse/dark-tablet.avif",
+            "width": 820,
+            "height": 7648,
+            "bytes": 129865
+          },
+          "mobile": {
+            "path": "clickhouse/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 104470
+          },
+          "thumb": {
+            "path": "clickhouse/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19410
+          }
+        }
+      }
+    },
+    "cohere": {
+      "light": {
+        "sourceSha256": "ed323b8d96afe940a6196b556c41a8e3421af651f0dd90aaad44d5ab49bfdb06",
+        "capped": true,
+        "pageHeight": 9758,
+        "files": {
+          "fit": {
+            "path": "cohere/light-fit.avif",
+            "width": 1440,
+            "height": 6778,
+            "bytes": 126330
+          },
+          "tablet": {
+            "path": "cohere/light-tablet.avif",
+            "width": 820,
+            "height": 7405,
+            "bytes": 124955
+          },
+          "mobile": {
+            "path": "cohere/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 95380
+          },
+          "thumb": {
+            "path": "cohere/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 15354
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "02d22996cdbd960b0d34b91e46ded99cfdfc4702ec2c9a1c7a35c24bac5db038",
+        "capped": true,
+        "pageHeight": 9758,
+        "files": {
+          "fit": {
+            "path": "cohere/dark-fit.avif",
+            "width": 1440,
+            "height": 6778,
+            "bytes": 125760
+          },
+          "tablet": {
+            "path": "cohere/dark-tablet.avif",
+            "width": 820,
+            "height": 7385,
+            "bytes": 123836
+          },
+          "mobile": {
+            "path": "cohere/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 96246
+          },
+          "thumb": {
+            "path": "cohere/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 15208
+          }
+        }
+      }
+    },
+    "coinbase": {
+      "light": {
+        "sourceSha256": "b3905172151761bfa3483d30a76885635cde9ad857ed70c8c53f92b2982090b2",
+        "capped": false,
+        "pageHeight": 4134,
+        "files": {
+          "fit": {
+            "path": "coinbase/light-fit.avif",
+            "width": 1440,
+            "height": 3525,
+            "bytes": 51746
+          },
+          "tablet": {
+            "path": "coinbase/light-tablet.avif",
+            "width": 820,
+            "height": 3794,
+            "bytes": 52103
+          },
+          "mobile": {
+            "path": "coinbase/light-mobile.avif",
+            "width": 390,
+            "height": 4134,
+            "bytes": 49103
+          },
+          "thumb": {
+            "path": "coinbase/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18793
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "4041d9d845c172bed0773ff0fae9f8513e0332924b69ee72e5f51f757492e235",
+        "capped": false,
+        "pageHeight": 4134,
+        "files": {
+          "fit": {
+            "path": "coinbase/dark-fit.avif",
+            "width": 1440,
+            "height": 3525,
+            "bytes": 48543
+          },
+          "tablet": {
+            "path": "coinbase/dark-tablet.avif",
+            "width": 820,
+            "height": 3794,
+            "bytes": 48659
+          },
+          "mobile": {
+            "path": "coinbase/dark-mobile.avif",
+            "width": 390,
+            "height": 4134,
+            "bytes": 46268
+          },
+          "thumb": {
+            "path": "coinbase/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17683
+          }
+        }
+      }
+    },
+    "composio": {
+      "light": {
+        "sourceSha256": "5130383c64a9b0ffe353cc281f5c707e4cb184d0c2e15f26b1ce7376f10205ab",
+        "capped": true,
+        "pageHeight": 10641,
+        "files": {
+          "fit": {
+            "path": "composio/light-fit.avif",
+            "width": 1440,
+            "height": 7660,
+            "bytes": 140788
+          },
+          "tablet": {
+            "path": "composio/light-tablet.avif",
+            "width": 820,
+            "height": 8000,
+            "bytes": 140301
+          },
+          "mobile": {
+            "path": "composio/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 110122
+          },
+          "thumb": {
+            "path": "composio/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 15936
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "8a2b0415b8e75a347cfa8e6e0e246d58e8cb9499ab3f02e80eca0c4e9c3f7b6e",
+        "capped": true,
+        "pageHeight": 10616,
+        "files": {
+          "fit": {
+            "path": "composio/dark-fit.avif",
+            "width": 1440,
+            "height": 7660,
+            "bytes": 142936
+          },
+          "tablet": {
+            "path": "composio/dark-tablet.avif",
+            "width": 820,
+            "height": 8000,
+            "bytes": 142232
+          },
+          "mobile": {
+            "path": "composio/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 111371
+          },
+          "thumb": {
+            "path": "composio/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17177
+          }
+        }
+      }
+    },
+    "cursor": {
+      "light": {
+        "sourceSha256": "397435876978651bf9a67d476cdd0c0a3e0362dbea6d203be0dc11a81c312a86",
+        "capped": false,
+        "pageHeight": 7645,
+        "files": {
+          "fit": {
+            "path": "cursor/light-fit.avif",
+            "width": 1440,
+            "height": 5584,
+            "bytes": 93389
+          },
+          "tablet": {
+            "path": "cursor/light-tablet.avif",
+            "width": 820,
+            "height": 6087,
+            "bytes": 94877
+          },
+          "mobile": {
+            "path": "cursor/light-mobile.avif",
+            "width": 390,
+            "height": 7645,
+            "bytes": 90905
+          },
+          "thumb": {
+            "path": "cursor/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19901
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "b1d7525bfe9568c171be692cb83df6fe54ea802a8a47c4d7fbe1f6b242775139",
+        "capped": false,
+        "pageHeight": 7645,
+        "files": {
+          "fit": {
+            "path": "cursor/dark-fit.avif",
+            "width": 1440,
+            "height": 5584,
+            "bytes": 91376
+          },
+          "tablet": {
+            "path": "cursor/dark-tablet.avif",
+            "width": 820,
+            "height": 6087,
+            "bytes": 92885
+          },
+          "mobile": {
+            "path": "cursor/dark-mobile.avif",
+            "width": 390,
+            "height": 7645,
+            "bytes": 89360
+          },
+          "thumb": {
+            "path": "cursor/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20041
+          }
+        }
+      }
+    },
+    "elevenlabs": {
+      "light": {
+        "sourceSha256": "c44752c62df5e9bb7f51dfd5404bed9e6e4e1a142139779c694bf60ab174a072",
+        "capped": false,
+        "pageHeight": 5852,
+        "files": {
+          "fit": {
+            "path": "elevenlabs/light-fit.avif",
+            "width": 1440,
+            "height": 4753,
+            "bytes": 79569
+          },
+          "tablet": {
+            "path": "elevenlabs/light-tablet.avif",
+            "width": 820,
+            "height": 4703,
+            "bytes": 81105
+          },
+          "mobile": {
+            "path": "elevenlabs/light-mobile.avif",
+            "width": 390,
+            "height": 5852,
+            "bytes": 78017
+          },
+          "thumb": {
+            "path": "elevenlabs/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20042
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "7b7192021a57f6ccf99eb7f9e148977ee4b2b5eef1e9071dedd7e44488a00afe",
+        "capped": false,
+        "pageHeight": 5852,
+        "files": {
+          "fit": {
+            "path": "elevenlabs/dark-fit.avif",
+            "width": 1440,
+            "height": 4753,
+            "bytes": 74913
+          },
+          "tablet": {
+            "path": "elevenlabs/dark-tablet.avif",
+            "width": 820,
+            "height": 4703,
+            "bytes": 76342
+          },
+          "mobile": {
+            "path": "elevenlabs/dark-mobile.avif",
+            "width": 390,
+            "height": 5852,
+            "bytes": 73555
+          },
+          "thumb": {
+            "path": "elevenlabs/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19110
+          }
+        }
+      }
+    },
+    "expo": {
+      "light": {
+        "sourceSha256": "feb22ec14df1b766035db3a1e53cfbb800b8c34e5e5537ec1428cfcd19e66450",
+        "capped": true,
+        "pageHeight": 9120,
+        "files": {
+          "fit": {
+            "path": "expo/light-fit.avif",
+            "width": 1440,
+            "height": 6821,
+            "bytes": 113631
+          },
+          "tablet": {
+            "path": "expo/light-tablet.avif",
+            "width": 820,
+            "height": 7849,
+            "bytes": 111411
+          },
+          "mobile": {
+            "path": "expo/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 91946
+          },
+          "thumb": {
+            "path": "expo/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 14022
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "d0d18f53a3d3705021a286778a507e970311363aa456fca324757efd47f0af92",
+        "capped": true,
+        "pageHeight": 9114,
+        "files": {
+          "fit": {
+            "path": "expo/dark-fit.avif",
+            "width": 1440,
+            "height": 6821,
+            "bytes": 120508
+          },
+          "tablet": {
+            "path": "expo/dark-tablet.avif",
+            "width": 820,
+            "height": 7849,
+            "bytes": 119113
+          },
+          "mobile": {
+            "path": "expo/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 100185
+          },
+          "thumb": {
+            "path": "expo/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 13963
+          }
+        }
+      }
+    },
+    "ferrari": {
+      "light": {
+        "sourceSha256": "85e662767f8e738bc9755fe7fb0f2eabd7dce2636c3fb903bdb8492094242027",
+        "capped": true,
+        "pageHeight": 9476,
+        "files": {
+          "fit": {
+            "path": "ferrari/light-fit.avif",
+            "width": 1440,
+            "height": 6863,
+            "bytes": 118334
+          },
+          "tablet": {
+            "path": "ferrari/light-tablet.avif",
+            "width": 820,
+            "height": 7783,
+            "bytes": 117928
+          },
+          "mobile": {
+            "path": "ferrari/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 93894
+          },
+          "thumb": {
+            "path": "ferrari/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17884
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "9d1c0ef0226ab73ecd85084d82d78dc819ad2eb7c952bb6c5eb6aec957540a9e",
+        "capped": true,
+        "pageHeight": 9507,
+        "files": {
+          "fit": {
+            "path": "ferrari/dark-fit.avif",
+            "width": 1440,
+            "height": 6871,
+            "bytes": 115010
+          },
+          "tablet": {
+            "path": "ferrari/dark-tablet.avif",
+            "width": 820,
+            "height": 7813,
+            "bytes": 114563
+          },
+          "mobile": {
+            "path": "ferrari/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 91897
+          },
+          "thumb": {
+            "path": "ferrari/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18594
+          }
+        }
+      }
+    },
+    "figma": {
+      "light": {
+        "sourceSha256": "0a5fc9b813ee7b6fcc5bafc588805c34faee174da36af929fa13028e50fd3828",
+        "capped": true,
+        "pageHeight": 9106,
+        "files": {
+          "fit": {
+            "path": "figma/light-fit.avif",
+            "width": 1440,
+            "height": 6802,
+            "bytes": 127185
+          },
+          "tablet": {
+            "path": "figma/light-tablet.avif",
+            "width": 820,
+            "height": 7240,
+            "bytes": 124860
+          },
+          "mobile": {
+            "path": "figma/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 106710
+          },
+          "thumb": {
+            "path": "figma/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20306
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "c620dbd4d915f9193795945ad0e6801a9198a93c20508c6730847681fff29831",
+        "capped": true,
+        "pageHeight": 9087,
+        "files": {
+          "fit": {
+            "path": "figma/dark-fit.avif",
+            "width": 1440,
+            "height": 6800,
+            "bytes": 128233
+          },
+          "tablet": {
+            "path": "figma/dark-tablet.avif",
+            "width": 820,
+            "height": 7217,
+            "bytes": 126688
+          },
+          "mobile": {
+            "path": "figma/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 106935
+          },
+          "thumb": {
+            "path": "figma/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20366
+          }
+        }
+      }
+    },
+    "framer": {
+      "light": {
+        "sourceSha256": "572be104dba1b7e660dac5a07d8be74c7a3933aada21377adf12d69e686bafe1",
+        "capped": true,
+        "pageHeight": 9305,
+        "files": {
+          "fit": {
+            "path": "framer/light-fit.avif",
+            "width": 1440,
+            "height": 6695,
+            "bytes": 145542
+          },
+          "tablet": {
+            "path": "framer/light-tablet.avif",
+            "width": 820,
+            "height": 7174,
+            "bytes": 147939
+          },
+          "mobile": {
+            "path": "framer/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 118994
+          },
+          "thumb": {
+            "path": "framer/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20051
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "9ae898a886be181480667a9f2391ce16e7c362380e9b902a93ce4301e43ef35e",
+        "capped": true,
+        "pageHeight": 9305,
+        "files": {
+          "fit": {
+            "path": "framer/dark-fit.avif",
+            "width": 1440,
+            "height": 6695,
+            "bytes": 145207
+          },
+          "tablet": {
+            "path": "framer/dark-tablet.avif",
+            "width": 820,
+            "height": 7174,
+            "bytes": 147361
+          },
+          "mobile": {
+            "path": "framer/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 118373
+          },
+          "thumb": {
+            "path": "framer/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21414
+          }
+        }
+      }
+    },
+    "hashicorp": {
+      "light": {
+        "sourceSha256": "61ca53c22e2fbea4fcacd73024ab51d9c568c57cf2501c44549a0841c4bc128a",
+        "capped": true,
+        "pageHeight": 15240,
+        "files": {
+          "fit": {
+            "path": "hashicorp/light-fit.avif",
+            "width": 1440,
+            "height": 8000,
+            "bytes": 187266
+          },
+          "tablet": {
+            "path": "hashicorp/light-tablet.avif",
+            "width": 820,
+            "height": 8000,
+            "bytes": 171222
+          },
+          "mobile": {
+            "path": "hashicorp/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 79102
+          },
+          "thumb": {
+            "path": "hashicorp/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 14095
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "881810fa62c7cdab9a2dc40f78fbd373e88841c4d2e31e799d7ef3fcf49d1cac",
+        "capped": true,
+        "pageHeight": 14827,
+        "files": {
+          "fit": {
+            "path": "hashicorp/dark-fit.avif",
+            "width": 1440,
+            "height": 7890,
+            "bytes": 178745
+          },
+          "tablet": {
+            "path": "hashicorp/dark-tablet.avif",
+            "width": 820,
+            "height": 8000,
+            "bytes": 164427
+          },
+          "mobile": {
+            "path": "hashicorp/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 75297
+          },
+          "thumb": {
+            "path": "hashicorp/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 15051
+          }
+        }
+      }
+    },
+    "ibm": {
+      "light": {
+        "sourceSha256": "b1dd6269566e3eaef3b2d0ccaa954f5c33c170a0a85a7b7611b7a06f0723bdda",
+        "capped": false,
+        "pageHeight": 7269,
+        "files": {
+          "fit": {
+            "path": "ibm/light-fit.avif",
+            "width": 1440,
+            "height": 5521,
+            "bytes": 89190
+          },
+          "tablet": {
+            "path": "ibm/light-tablet.avif",
+            "width": 820,
+            "height": 5803,
+            "bytes": 91451
+          },
+          "mobile": {
+            "path": "ibm/light-mobile.avif",
+            "width": 390,
+            "height": 7269,
+            "bytes": 84899
+          },
+          "thumb": {
+            "path": "ibm/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18894
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "9f866ebae0aa0ca4d8d468c712ff7cfabee5cb3f5b1a7f72916b2e1896461d7f",
+        "capped": false,
+        "pageHeight": 7113,
+        "files": {
+          "fit": {
+            "path": "ibm/dark-fit.avif",
+            "width": 1440,
+            "height": 5505,
+            "bytes": 87145
+          },
+          "tablet": {
+            "path": "ibm/dark-tablet.avif",
+            "width": 820,
+            "height": 5649,
+            "bytes": 90436
+          },
+          "mobile": {
+            "path": "ibm/dark-mobile.avif",
+            "width": 390,
+            "height": 7113,
+            "bytes": 86444
+          },
+          "thumb": {
+            "path": "ibm/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19229
+          }
+        }
+      }
+    },
+    "intercom": {
+      "light": {
+        "sourceSha256": "206cc0faa65bff8e935510678b51440eeee9c43e6d83ac98256903d8d6b67ef8",
+        "capped": false,
+        "pageHeight": 5021,
+        "files": {
+          "fit": {
+            "path": "intercom/light-fit.avif",
+            "width": 1440,
+            "height": 4110,
+            "bytes": 58275
+          },
+          "tablet": {
+            "path": "intercom/light-tablet.avif",
+            "width": 820,
+            "height": 4236,
+            "bytes": 59978
+          },
+          "mobile": {
+            "path": "intercom/light-mobile.avif",
+            "width": 390,
+            "height": 5021,
+            "bytes": 56992
+          },
+          "thumb": {
+            "path": "intercom/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18715
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "62e81ada0aea2e01b5865687789e2ac0cd86dfcf562fd213fc1ce2ab69b194b3",
+        "capped": false,
+        "pageHeight": 5021,
+        "files": {
+          "fit": {
+            "path": "intercom/dark-fit.avif",
+            "width": 1440,
+            "height": 4110,
+            "bytes": 57775
+          },
+          "tablet": {
+            "path": "intercom/dark-tablet.avif",
+            "width": 820,
+            "height": 4236,
+            "bytes": 59583
+          },
+          "mobile": {
+            "path": "intercom/dark-mobile.avif",
+            "width": 390,
+            "height": 5021,
+            "bytes": 56245
+          },
+          "thumb": {
+            "path": "intercom/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18500
+          }
+        }
+      }
+    },
+    "kraken": {
+      "light": {
+        "sourceSha256": "5fdbb4a065a3f9f920cb2d926cfe3e2fa62294c0a78908a285e0852f88b6b55a",
+        "capped": false,
+        "pageHeight": 4103,
+        "files": {
+          "fit": {
+            "path": "kraken/light-fit.avif",
+            "width": 1440,
+            "height": 3609,
+            "bytes": 44176
+          },
+          "tablet": {
+            "path": "kraken/light-tablet.avif",
+            "width": 820,
+            "height": 3735,
+            "bytes": 44698
+          },
+          "mobile": {
+            "path": "kraken/light-mobile.avif",
+            "width": 390,
+            "height": 4103,
+            "bytes": 43528
+          },
+          "thumb": {
+            "path": "kraken/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17248
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "c199641496e57dbba759e4bde8a408bdc444c950c3fe2a63ee45dacc7e2381f4",
+        "capped": false,
+        "pageHeight": 4103,
+        "files": {
+          "fit": {
+            "path": "kraken/dark-fit.avif",
+            "width": 1440,
+            "height": 3609,
+            "bytes": 41856
+          },
+          "tablet": {
+            "path": "kraken/dark-tablet.avif",
+            "width": 820,
+            "height": 3735,
+            "bytes": 42859
+          },
+          "mobile": {
+            "path": "kraken/dark-mobile.avif",
+            "width": 390,
+            "height": 4103,
+            "bytes": 41205
+          },
+          "thumb": {
+            "path": "kraken/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16604
+          }
+        }
+      }
+    },
+    "lamborghini": {
+      "light": {
+        "sourceSha256": "98f9b70aff5e2b9110aa67d4b5bcba8b57335d661c926895acbbd3b1c926057a",
+        "capped": true,
+        "pageHeight": 9135,
+        "files": {
+          "fit": {
+            "path": "lamborghini/light-fit.avif",
+            "width": 1440,
+            "height": 6666,
+            "bytes": 101716
+          },
+          "tablet": {
+            "path": "lamborghini/light-tablet.avif",
+            "width": 820,
+            "height": 7229,
+            "bytes": 100222
+          },
+          "mobile": {
+            "path": "lamborghini/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 82297
+          },
+          "thumb": {
+            "path": "lamborghini/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 13736
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "ecc729abf7928cff07f79d87efb4c022886ec4cd0d5dfd6218cd7bc50fe0d3b6",
+        "capped": true,
+        "pageHeight": 8323,
+        "files": {
+          "fit": {
+            "path": "lamborghini/dark-fit.avif",
+            "width": 1440,
+            "height": 6370,
+            "bytes": 77738
+          },
+          "tablet": {
+            "path": "lamborghini/dark-tablet.avif",
+            "width": 820,
+            "height": 6859,
+            "bytes": 76229
+          },
+          "mobile": {
+            "path": "lamborghini/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 66355
+          },
+          "thumb": {
+            "path": "lamborghini/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 14400
+          }
+        }
+      }
+    },
+    "linear.app": {
+      "light": {
+        "sourceSha256": "ad381e5057cde37e6986754d69e34e80f0fa2fc29a3c74663ab449b13e674707",
+        "capped": false,
+        "pageHeight": 7945,
+        "files": {
+          "fit": {
+            "path": "linear.app/light-fit.avif",
+            "width": 1440,
+            "height": 5922,
+            "bytes": 100906
+          },
+          "tablet": {
+            "path": "linear.app/light-tablet.avif",
+            "width": 820,
+            "height": 6137,
+            "bytes": 101760
+          },
+          "mobile": {
+            "path": "linear.app/light-mobile.avif",
+            "width": 390,
+            "height": 7945,
+            "bytes": 98772
+          },
+          "thumb": {
+            "path": "linear.app/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18526
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "c091c72bb343b0e4bea3c61128a34edade72ad3e8199348d1da60bc5efe01474",
+        "capped": false,
+        "pageHeight": 7810,
+        "files": {
+          "fit": {
+            "path": "linear.app/dark-fit.avif",
+            "width": 1440,
+            "height": 5936,
+            "bytes": 98328
+          },
+          "tablet": {
+            "path": "linear.app/dark-tablet.avif",
+            "width": 820,
+            "height": 6153,
+            "bytes": 98939
+          },
+          "mobile": {
+            "path": "linear.app/dark-mobile.avif",
+            "width": 390,
+            "height": 7810,
+            "bytes": 95683
+          },
+          "thumb": {
+            "path": "linear.app/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18593
+          }
+        }
+      }
+    },
+    "lovable": {
+      "light": {
+        "sourceSha256": "825b5c37108b0452f275ba0428a930d6f218bedcfd8481fd5ff3b9d1570d54e8",
+        "capped": false,
+        "pageHeight": 6715,
+        "files": {
+          "fit": {
+            "path": "lovable/light-fit.avif",
+            "width": 1440,
+            "height": 5133,
+            "bytes": 86891
+          },
+          "tablet": {
+            "path": "lovable/light-tablet.avif",
+            "width": 820,
+            "height": 5634,
+            "bytes": 87497
+          },
+          "mobile": {
+            "path": "lovable/light-mobile.avif",
+            "width": 390,
+            "height": 6715,
+            "bytes": 85272
+          },
+          "thumb": {
+            "path": "lovable/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19300
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "23aa62568bd8048400f048e346bfb88d597fea4e334851c1320deca13db4ba88",
+        "capped": false,
+        "pageHeight": 6717,
+        "files": {
+          "fit": {
+            "path": "lovable/dark-fit.avif",
+            "width": 1440,
+            "height": 5133,
+            "bytes": 83375
+          },
+          "tablet": {
+            "path": "lovable/dark-tablet.avif",
+            "width": 820,
+            "height": 5634,
+            "bytes": 84200
+          },
+          "mobile": {
+            "path": "lovable/dark-mobile.avif",
+            "width": 390,
+            "height": 6717,
+            "bytes": 81608
+          },
+          "thumb": {
+            "path": "lovable/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18498
+          }
+        }
+      }
+    },
+    "minimax": {
+      "light": {
+        "sourceSha256": "b24192bc0ef4c81f75d1826d60e9780d8c3afb780014da9934698c118fdb615a",
+        "capped": true,
+        "pageHeight": 11891,
+        "files": {
+          "fit": {
+            "path": "minimax/light-fit.avif",
+            "width": 1440,
+            "height": 6641,
+            "bytes": 150479
+          },
+          "tablet": {
+            "path": "minimax/light-tablet.avif",
+            "width": 820,
+            "height": 7403,
+            "bytes": 148588
+          },
+          "mobile": {
+            "path": "minimax/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 88886
+          },
+          "thumb": {
+            "path": "minimax/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 12430
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "bbe2e1338d156569bc41ea1df48cb121c9df9d60d280d17787ab1909b34e077e",
+        "capped": true,
+        "pageHeight": 11920,
+        "files": {
+          "fit": {
+            "path": "minimax/dark-fit.avif",
+            "width": 1440,
+            "height": 6644,
+            "bytes": 140244
+          },
+          "tablet": {
+            "path": "minimax/dark-tablet.avif",
+            "width": 820,
+            "height": 7406,
+            "bytes": 141028
+          },
+          "mobile": {
+            "path": "minimax/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 83488
+          },
+          "thumb": {
+            "path": "minimax/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 13562
+          }
+        }
+      }
+    },
+    "mintlify": {
+      "light": {
+        "sourceSha256": "9e668a1f60c1f4308542417ded006d3f2fed7450e975feb4a7a635a2d8621b51",
+        "capped": false,
+        "pageHeight": 7803,
+        "files": {
+          "fit": {
+            "path": "mintlify/light-fit.avif",
+            "width": 1440,
+            "height": 5735,
+            "bytes": 106195
+          },
+          "tablet": {
+            "path": "mintlify/light-tablet.avif",
+            "width": 820,
+            "height": 6286,
+            "bytes": 103816
+          },
+          "mobile": {
+            "path": "mintlify/light-mobile.avif",
+            "width": 390,
+            "height": 7803,
+            "bytes": 102893
+          },
+          "thumb": {
+            "path": "mintlify/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21194
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "149fc89311c3991c26b78fd7c9f6a53efad30b5ae3f028512745a7d00f344634",
+        "capped": false,
+        "pageHeight": 7803,
+        "files": {
+          "fit": {
+            "path": "mintlify/dark-fit.avif",
+            "width": 1440,
+            "height": 5735,
+            "bytes": 100667
+          },
+          "tablet": {
+            "path": "mintlify/dark-tablet.avif",
+            "width": 820,
+            "height": 6286,
+            "bytes": 98948
+          },
+          "mobile": {
+            "path": "mintlify/dark-mobile.avif",
+            "width": 390,
+            "height": 7803,
+            "bytes": 97785
+          },
+          "thumb": {
+            "path": "mintlify/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20416
+          }
+        }
+      }
+    },
+    "miro": {
+      "light": {
+        "sourceSha256": "5284e246a6e393591c49f80ad8049dabf18fb02e2f1463bf41a350aa3dc2cde2",
+        "capped": false,
+        "pageHeight": 4549,
+        "files": {
+          "fit": {
+            "path": "miro/light-fit.avif",
+            "width": 1440,
+            "height": 3969,
+            "bytes": 52362
+          },
+          "tablet": {
+            "path": "miro/light-tablet.avif",
+            "width": 820,
+            "height": 4085,
+            "bytes": 52976
+          },
+          "mobile": {
+            "path": "miro/light-mobile.avif",
+            "width": 390,
+            "height": 4549,
+            "bytes": 50925
+          },
+          "thumb": {
+            "path": "miro/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19933
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "79eeda768965a47d30aa47a3afef13f786b7365557e1837533f4e2f7fbfb0fea",
+        "capped": false,
+        "pageHeight": 4549,
+        "files": {
+          "fit": {
+            "path": "miro/dark-fit.avif",
+            "width": 1440,
+            "height": 3969,
+            "bytes": 48483
+          },
+          "tablet": {
+            "path": "miro/dark-tablet.avif",
+            "width": 820,
+            "height": 4085,
+            "bytes": 49598
+          },
+          "mobile": {
+            "path": "miro/dark-mobile.avif",
+            "width": 390,
+            "height": 4549,
+            "bytes": 47758
+          },
+          "thumb": {
+            "path": "miro/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19071
+          }
+        }
+      }
+    },
+    "mistral.ai": {
+      "light": {
+        "sourceSha256": "cf257229415401e9205c5ea6f877781a87f4196ae2c587d07533f9ec31a27f50",
+        "capped": true,
+        "pageHeight": 8514,
+        "files": {
+          "fit": {
+            "path": "mistral.ai/light-fit.avif",
+            "width": 1440,
+            "height": 6155,
+            "bytes": 114491
+          },
+          "tablet": {
+            "path": "mistral.ai/light-tablet.avif",
+            "width": 820,
+            "height": 7123,
+            "bytes": 115507
+          },
+          "mobile": {
+            "path": "mistral.ai/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 98196
+          },
+          "thumb": {
+            "path": "mistral.ai/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16942
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "43173e72ba64a57c4d3ce0ac6981774e6ee9e0e9beb188cfee46cdca974efcc0",
+        "capped": true,
+        "pageHeight": 8465,
+        "files": {
+          "fit": {
+            "path": "mistral.ai/dark-fit.avif",
+            "width": 1440,
+            "height": 6132,
+            "bytes": 102294
+          },
+          "tablet": {
+            "path": "mistral.ai/dark-tablet.avif",
+            "width": 820,
+            "height": 7099,
+            "bytes": 103623
+          },
+          "mobile": {
+            "path": "mistral.ai/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 90480
+          },
+          "thumb": {
+            "path": "mistral.ai/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 15898
+          }
+        }
+      }
+    },
+    "mongodb": {
+      "light": {
+        "sourceSha256": "330ecffaff5abd83826507458a338f8e86e67f39c7b41bf7f7926c715f3b7715",
+        "capped": false,
+        "pageHeight": 5924,
+        "files": {
+          "fit": {
+            "path": "mongodb/light-fit.avif",
+            "width": 1440,
+            "height": 4638,
+            "bytes": 74569
+          },
+          "tablet": {
+            "path": "mongodb/light-tablet.avif",
+            "width": 820,
+            "height": 4957,
+            "bytes": 76645
+          },
+          "mobile": {
+            "path": "mongodb/light-mobile.avif",
+            "width": 390,
+            "height": 5924,
+            "bytes": 73353
+          },
+          "thumb": {
+            "path": "mongodb/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 23333
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "2d8972180cb6d93a53a6e07c4be774b0bceee4fe874d1e362edc5d715443cf89",
+        "capped": false,
+        "pageHeight": 5924,
+        "files": {
+          "fit": {
+            "path": "mongodb/dark-fit.avif",
+            "width": 1440,
+            "height": 4638,
+            "bytes": 61866
+          },
+          "tablet": {
+            "path": "mongodb/dark-tablet.avif",
+            "width": 820,
+            "height": 4957,
+            "bytes": 64016
+          },
+          "mobile": {
+            "path": "mongodb/dark-mobile.avif",
+            "width": 390,
+            "height": 5924,
+            "bytes": 60902
+          },
+          "thumb": {
+            "path": "mongodb/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 13107
+          }
+        }
+      }
+    },
+    "notion": {
+      "light": {
+        "sourceSha256": "3117b51fc534647644974b74dc5917c8223f5af078059c9ce033895d43159639",
+        "capped": false,
+        "pageHeight": 7757,
+        "files": {
+          "fit": {
+            "path": "notion/light-fit.avif",
+            "width": 1440,
+            "height": 5560,
+            "bytes": 100209
+          },
+          "tablet": {
+            "path": "notion/light-tablet.avif",
+            "width": 820,
+            "height": 6070,
+            "bytes": 101464
+          },
+          "mobile": {
+            "path": "notion/light-mobile.avif",
+            "width": 390,
+            "height": 7757,
+            "bytes": 99997
+          },
+          "thumb": {
+            "path": "notion/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21420
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "d352a4a7c98222b5728516b0c586e1c4114cfdbe3ec929edb8a7c94a8113ca55",
+        "capped": false,
+        "pageHeight": 7757,
+        "files": {
+          "fit": {
+            "path": "notion/dark-fit.avif",
+            "width": 1440,
+            "height": 5577,
+            "bytes": 95345
+          },
+          "tablet": {
+            "path": "notion/dark-tablet.avif",
+            "width": 820,
+            "height": 6086,
+            "bytes": 96089
+          },
+          "mobile": {
+            "path": "notion/dark-mobile.avif",
+            "width": 390,
+            "height": 7757,
+            "bytes": 94398
+          },
+          "thumb": {
+            "path": "notion/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20675
+          }
+        }
+      }
+    },
+    "nvidia": {
+      "light": {
+        "sourceSha256": "927e0a251f5e71ca653a2fd5a41ea88fd1f29ce5c7f8d6afc38831fc4017aa53",
+        "capped": true,
+        "pageHeight": 8065,
+        "files": {
+          "fit": {
+            "path": "nvidia/light-fit.avif",
+            "width": 1440,
+            "height": 5891,
+            "bytes": 107978
+          },
+          "tablet": {
+            "path": "nvidia/light-tablet.avif",
+            "width": 820,
+            "height": 6544,
+            "bytes": 107207
+          },
+          "mobile": {
+            "path": "nvidia/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 103743
+          },
+          "thumb": {
+            "path": "nvidia/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20082
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "6fe04d3ba945e15a304ca41e507e0bb2b75afa7fb32dcac10e7fb01769ff23f4",
+        "capped": true,
+        "pageHeight": 8065,
+        "files": {
+          "fit": {
+            "path": "nvidia/dark-fit.avif",
+            "width": 1440,
+            "height": 5891,
+            "bytes": 102193
+          },
+          "tablet": {
+            "path": "nvidia/dark-tablet.avif",
+            "width": 820,
+            "height": 6454,
+            "bytes": 100753
+          },
+          "mobile": {
+            "path": "nvidia/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 98064
+          },
+          "thumb": {
+            "path": "nvidia/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18993
+          }
+        }
+      }
+    },
+    "ollama": {
+      "light": {
+        "sourceSha256": "e19ff293afb958aaea4000fe3f0e00bf14a6474b803ff3d383fc3b517d762154",
+        "capped": false,
+        "pageHeight": 7429,
+        "files": {
+          "fit": {
+            "path": "ollama/light-fit.avif",
+            "width": 1440,
+            "height": 5929,
+            "bytes": 95258
+          },
+          "tablet": {
+            "path": "ollama/light-tablet.avif",
+            "width": 820,
+            "height": 6190,
+            "bytes": 90635
+          },
+          "mobile": {
+            "path": "ollama/light-mobile.avif",
+            "width": 390,
+            "height": 7429,
+            "bytes": 83636
+          },
+          "thumb": {
+            "path": "ollama/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 15960
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "696468880d00a72c83c58945d4af28cf2d2c54580c9557582e9d5b76e8ecbf3b",
+        "capped": false,
+        "pageHeight": 7405,
+        "files": {
+          "fit": {
+            "path": "ollama/dark-fit.avif",
+            "width": 1440,
+            "height": 5896,
+            "bytes": 96306
+          },
+          "tablet": {
+            "path": "ollama/dark-tablet.avif",
+            "width": 820,
+            "height": 6156,
+            "bytes": 90159
+          },
+          "mobile": {
+            "path": "ollama/dark-mobile.avif",
+            "width": 390,
+            "height": 7405,
+            "bytes": 84507
+          },
+          "thumb": {
+            "path": "ollama/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16480
+          }
+        }
+      }
+    },
+    "opencode.ai": {
+      "light": {
+        "sourceSha256": "660a495442752c5011ef3807686a67ddc81384d48b0bc56c13854fe84d3a6a31",
+        "capped": false,
+        "pageHeight": 6735,
+        "files": {
+          "fit": {
+            "path": "opencode.ai/light-fit.avif",
+            "width": 1440,
+            "height": 5059,
+            "bytes": 84240
+          },
+          "tablet": {
+            "path": "opencode.ai/light-tablet.avif",
+            "width": 820,
+            "height": 5512,
+            "bytes": 85451
+          },
+          "mobile": {
+            "path": "opencode.ai/light-mobile.avif",
+            "width": 390,
+            "height": 6735,
+            "bytes": 80482
+          },
+          "thumb": {
+            "path": "opencode.ai/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16934
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "47811fde6d0c52ca1cee042e49dbaaae058cbe7e8ed562e139fd134443936192",
+        "capped": false,
+        "pageHeight": 6735,
+        "files": {
+          "fit": {
+            "path": "opencode.ai/dark-fit.avif",
+            "width": 1440,
+            "height": 5076,
+            "bytes": 81196
+          },
+          "tablet": {
+            "path": "opencode.ai/dark-tablet.avif",
+            "width": 820,
+            "height": 5512,
+            "bytes": 82234
+          },
+          "mobile": {
+            "path": "opencode.ai/dark-mobile.avif",
+            "width": 390,
+            "height": 6735,
+            "bytes": 77333
+          },
+          "thumb": {
+            "path": "opencode.ai/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18022
+          }
+        }
+      }
+    },
+    "pinterest": {
+      "light": {
+        "sourceSha256": "c92f514e98f9ceefa8958f31cc65a7e93dffd618271dc71bd666a1e3ab3a00b6",
+        "capped": false,
+        "pageHeight": 4606,
+        "files": {
+          "fit": {
+            "path": "pinterest/light-fit.avif",
+            "width": 1440,
+            "height": 3839,
+            "bytes": 50025
+          },
+          "tablet": {
+            "path": "pinterest/light-tablet.avif",
+            "width": 820,
+            "height": 4204,
+            "bytes": 51040
+          },
+          "mobile": {
+            "path": "pinterest/light-mobile.avif",
+            "width": 390,
+            "height": 4606,
+            "bytes": 48560
+          },
+          "thumb": {
+            "path": "pinterest/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19109
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "a34ddc6d9804eddd49c22c005b7106cb84d7f94a4cfcb4d5787d5556903f2d58",
+        "capped": false,
+        "pageHeight": 4606,
+        "files": {
+          "fit": {
+            "path": "pinterest/dark-fit.avif",
+            "width": 1440,
+            "height": 3839,
+            "bytes": 46609
+          },
+          "tablet": {
+            "path": "pinterest/dark-tablet.avif",
+            "width": 820,
+            "height": 4204,
+            "bytes": 47931
+          },
+          "mobile": {
+            "path": "pinterest/dark-mobile.avif",
+            "width": 390,
+            "height": 4606,
+            "bytes": 45513
+          },
+          "thumb": {
+            "path": "pinterest/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17676
+          }
+        }
+      }
+    },
+    "posthog": {
+      "light": {
+        "sourceSha256": "d9a6099f1a651a145df4033dca5cd2e7874a979d661606103c68628f6a3fb807",
+        "capped": false,
+        "pageHeight": 7609,
+        "files": {
+          "fit": {
+            "path": "posthog/light-fit.avif",
+            "width": 1440,
+            "height": 5480,
+            "bytes": 104759
+          },
+          "tablet": {
+            "path": "posthog/light-tablet.avif",
+            "width": 820,
+            "height": 6159,
+            "bytes": 108975
+          },
+          "mobile": {
+            "path": "posthog/light-mobile.avif",
+            "width": 390,
+            "height": 7609,
+            "bytes": 102489
+          },
+          "thumb": {
+            "path": "posthog/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 26376
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "6ef3619731219ea277fe394b03dc0aa59f6bc604c11a022181e94df98dd90a79",
+        "capped": false,
+        "pageHeight": 7516,
+        "files": {
+          "fit": {
+            "path": "posthog/dark-fit.avif",
+            "width": 1440,
+            "height": 5360,
+            "bytes": 97254
+          },
+          "tablet": {
+            "path": "posthog/dark-tablet.avif",
+            "width": 820,
+            "height": 6148,
+            "bytes": 99770
+          },
+          "mobile": {
+            "path": "posthog/dark-mobile.avif",
+            "width": 390,
+            "height": 7516,
+            "bytes": 94128
+          },
+          "thumb": {
+            "path": "posthog/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 23997
+          }
+        }
+      }
+    },
+    "raycast": {
+      "light": {
+        "sourceSha256": "2fc9a1c16ef3385b711be384bcf1a1dfc15e09540b95ae4afa3745957bc9cbac",
+        "capped": true,
+        "pageHeight": 9482,
+        "files": {
+          "fit": {
+            "path": "raycast/light-fit.avif",
+            "width": 1440,
+            "height": 6538,
+            "bytes": 133481
+          },
+          "tablet": {
+            "path": "raycast/light-tablet.avif",
+            "width": 820,
+            "height": 7188,
+            "bytes": 132986
+          },
+          "mobile": {
+            "path": "raycast/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 105641
+          },
+          "thumb": {
+            "path": "raycast/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 22512
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "0465463398a32915b7272b03b4310e3d466a37fc19137227fc3dd801580a6049",
+        "capped": true,
+        "pageHeight": 8960,
+        "files": {
+          "fit": {
+            "path": "raycast/dark-fit.avif",
+            "width": 1440,
+            "height": 6122,
+            "bytes": 112757
+          },
+          "tablet": {
+            "path": "raycast/dark-tablet.avif",
+            "width": 820,
+            "height": 6663,
+            "bytes": 112848
+          },
+          "mobile": {
+            "path": "raycast/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 96622
+          },
+          "thumb": {
+            "path": "raycast/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 22842
+          }
+        }
+      }
+    },
+    "renault": {
+      "light": {
+        "sourceSha256": "d190abe1cfad7db0930eebf7371ab71423fad52d1e2d690116a021bc6a3d5a5c",
+        "capped": true,
+        "pageHeight": 9349,
+        "files": {
+          "fit": {
+            "path": "renault/light-fit.avif",
+            "width": 1440,
+            "height": 6859,
+            "bytes": 122193
+          },
+          "tablet": {
+            "path": "renault/light-tablet.avif",
+            "width": 820,
+            "height": 7486,
+            "bytes": 121418
+          },
+          "mobile": {
+            "path": "renault/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 97819
+          },
+          "thumb": {
+            "path": "renault/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16959
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "abe57032cf3c49af4f25b6254fd2241b7ab510f841ad447ec1d56e6fb6b85286",
+        "capped": true,
+        "pageHeight": 9069,
+        "files": {
+          "fit": {
+            "path": "renault/dark-fit.avif",
+            "width": 1440,
+            "height": 6661,
+            "bytes": 109113
+          },
+          "tablet": {
+            "path": "renault/dark-tablet.avif",
+            "width": 820,
+            "height": 7289,
+            "bytes": 109729
+          },
+          "mobile": {
+            "path": "renault/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 95464
+          },
+          "thumb": {
+            "path": "renault/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17597
+          }
+        }
+      }
+    },
+    "replicate": {
+      "light": {
+        "sourceSha256": "a87b1c6bbe311805fc30d9c4765b4c03179ea3ed130ad0c63d1b54454cb4596c",
+        "capped": true,
+        "pageHeight": 9306,
+        "files": {
+          "fit": {
+            "path": "replicate/light-fit.avif",
+            "width": 1440,
+            "height": 6334,
+            "bytes": 143328
+          },
+          "tablet": {
+            "path": "replicate/light-tablet.avif",
+            "width": 820,
+            "height": 7125,
+            "bytes": 141999
+          },
+          "mobile": {
+            "path": "replicate/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 120227
+          },
+          "thumb": {
+            "path": "replicate/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17747
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "7fe9c1c9958c1baaba3c8bc11eba83cbab1e90409c8ea2fbe7b70dfebe93406e",
+        "capped": true,
+        "pageHeight": 9306,
+        "files": {
+          "fit": {
+            "path": "replicate/dark-fit.avif",
+            "width": 1440,
+            "height": 6353,
+            "bytes": 130113
+          },
+          "tablet": {
+            "path": "replicate/dark-tablet.avif",
+            "width": 820,
+            "height": 7125,
+            "bytes": 130142
+          },
+          "mobile": {
+            "path": "replicate/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 109690
+          },
+          "thumb": {
+            "path": "replicate/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17497
+          }
+        }
+      }
+    },
+    "resend": {
+      "light": {
+        "sourceSha256": "9b4fe81bba23fb8303afc95a5472cbffb346cceb485880f03c98f372d41fcb8a",
+        "capped": false,
+        "pageHeight": 7180,
+        "files": {
+          "fit": {
+            "path": "resend/light-fit.avif",
+            "width": 1440,
+            "height": 5536,
+            "bytes": 90720
+          },
+          "tablet": {
+            "path": "resend/light-tablet.avif",
+            "width": 820,
+            "height": 5875,
+            "bytes": 90802
+          },
+          "mobile": {
+            "path": "resend/light-mobile.avif",
+            "width": 390,
+            "height": 7180,
+            "bytes": 84843
+          },
+          "thumb": {
+            "path": "resend/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 24236
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "70ddd36191db15a6273bd593f2aec3f3220fe4f78da266effa1659d878329c24",
+        "capped": false,
+        "pageHeight": 7180,
+        "files": {
+          "fit": {
+            "path": "resend/dark-fit.avif",
+            "width": 1440,
+            "height": 5536,
+            "bytes": 90107
+          },
+          "tablet": {
+            "path": "resend/dark-tablet.avif",
+            "width": 820,
+            "height": 5875,
+            "bytes": 90561
+          },
+          "mobile": {
+            "path": "resend/dark-mobile.avif",
+            "width": 390,
+            "height": 7180,
+            "bytes": 84520
+          },
+          "thumb": {
+            "path": "resend/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 24356
+          }
+        }
+      }
+    },
+    "revolut": {
+      "light": {
+        "sourceSha256": "20cdeac6d1e225e4dcc94f02ccb7efcf144fa0432f97b1b7b015bbba46a2ad13",
+        "capped": false,
+        "pageHeight": 5613,
+        "files": {
+          "fit": {
+            "path": "revolut/light-fit.avif",
+            "width": 1440,
+            "height": 4518,
+            "bytes": 64799
+          },
+          "tablet": {
+            "path": "revolut/light-tablet.avif",
+            "width": 820,
+            "height": 4866,
+            "bytes": 65584
+          },
+          "mobile": {
+            "path": "revolut/light-mobile.avif",
+            "width": 390,
+            "height": 5613,
+            "bytes": 61358
+          },
+          "thumb": {
+            "path": "revolut/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 23214
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "f283648587dbb6332ae4f4c950bfc1cda64bf6fc52a14508629c33523de7d9b7",
+        "capped": false,
+        "pageHeight": 5613,
+        "files": {
+          "fit": {
+            "path": "revolut/dark-fit.avif",
+            "width": 1440,
+            "height": 4518,
+            "bytes": 63738
+          },
+          "tablet": {
+            "path": "revolut/dark-tablet.avif",
+            "width": 820,
+            "height": 4866,
+            "bytes": 64153
+          },
+          "mobile": {
+            "path": "revolut/dark-mobile.avif",
+            "width": 390,
+            "height": 5613,
+            "bytes": 61310
+          },
+          "thumb": {
+            "path": "revolut/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 23480
+          }
+        }
+      }
+    },
+    "runwayml": {
+      "light": {
+        "sourceSha256": "6ad250564d4a2c15e27eb8232e087788a0f63ed993f5f6b3c6018af20d95c8a6",
+        "capped": false,
+        "pageHeight": 7510,
+        "files": {
+          "fit": {
+            "path": "runwayml/light-fit.avif",
+            "width": 1440,
+            "height": 5379,
+            "bytes": 94648
+          },
+          "tablet": {
+            "path": "runwayml/light-tablet.avif",
+            "width": 820,
+            "height": 6053,
+            "bytes": 93654
+          },
+          "mobile": {
+            "path": "runwayml/light-mobile.avif",
+            "width": 390,
+            "height": 7510,
+            "bytes": 85139
+          },
+          "thumb": {
+            "path": "runwayml/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 12580
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "236594bd44e413a392553f26126daaa24c7c2ebaf9645b05c6707fa2f2c78836",
+        "capped": false,
+        "pageHeight": 7510,
+        "files": {
+          "fit": {
+            "path": "runwayml/dark-fit.avif",
+            "width": 1440,
+            "height": 5379,
+            "bytes": 91916
+          },
+          "tablet": {
+            "path": "runwayml/dark-tablet.avif",
+            "width": 820,
+            "height": 6053,
+            "bytes": 91650
+          },
+          "mobile": {
+            "path": "runwayml/dark-mobile.avif",
+            "width": 390,
+            "height": 7510,
+            "bytes": 83540
+          },
+          "thumb": {
+            "path": "runwayml/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 12565
+          }
+        }
+      }
+    },
+    "sanity": {
+      "light": {
+        "sourceSha256": "15c3f6f698f9597f8cf6c7abe801af1ed7db12328c05d8c9a478f23f8c3b22ae",
+        "capped": true,
+        "pageHeight": 11086,
+        "files": {
+          "fit": {
+            "path": "sanity/light-fit.avif",
+            "width": 1440,
+            "height": 8000,
+            "bytes": 117834
+          },
+          "tablet": {
+            "path": "sanity/light-tablet.avif",
+            "width": 820,
+            "height": 8000,
+            "bytes": 108735
+          },
+          "mobile": {
+            "path": "sanity/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 93209
+          },
+          "thumb": {
+            "path": "sanity/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21022
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "9bce6844eefa47da49fe5fd4cef1797ee1c0c1d0ec3730a2042f9f5134e9a7ea",
+        "capped": true,
+        "pageHeight": 9280,
+        "files": {
+          "fit": {
+            "path": "sanity/dark-fit.avif",
+            "width": 1440,
+            "height": 7092,
+            "bytes": 109742
+          },
+          "tablet": {
+            "path": "sanity/dark-tablet.avif",
+            "width": 820,
+            "height": 7668,
+            "bytes": 108969
+          },
+          "mobile": {
+            "path": "sanity/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 94006
+          },
+          "thumb": {
+            "path": "sanity/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21715
+          }
+        }
+      }
+    },
+    "sentry": {
+      "light": {
+        "sourceSha256": "b5b562ecc1d69b03e0e6bc590b0b75285de4782d5d7c2f37bdd467ec9407b827",
+        "capped": true,
+        "pageHeight": 8416,
+        "files": {
+          "fit": {
+            "path": "sentry/light-fit.avif",
+            "width": 1440,
+            "height": 6253,
+            "bytes": 103538
+          },
+          "tablet": {
+            "path": "sentry/light-tablet.avif",
+            "width": 820,
+            "height": 6618,
+            "bytes": 101401
+          },
+          "mobile": {
+            "path": "sentry/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 98038
+          },
+          "thumb": {
+            "path": "sentry/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20467
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "3aa95f4f39a225f0b719c805a037481e1e8a10f6d333617d9fb28f6b7a4b5cca",
+        "capped": false,
+        "pageHeight": 7660,
+        "files": {
+          "fit": {
+            "path": "sentry/dark-fit.avif",
+            "width": 1440,
+            "height": 5673,
+            "bytes": 80853
+          },
+          "tablet": {
+            "path": "sentry/dark-tablet.avif",
+            "width": 820,
+            "height": 6016,
+            "bytes": 81011
+          },
+          "mobile": {
+            "path": "sentry/dark-mobile.avif",
+            "width": 390,
+            "height": 7660,
+            "bytes": 80279
+          },
+          "thumb": {
+            "path": "sentry/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21614
+          }
+        }
+      }
+    },
+    "spacex": {
+      "light": {
+        "sourceSha256": "e17b3277b0154385c0c7bbf4af7567c8ba456805088b399840fb8903c76db6cd",
+        "capped": false,
+        "pageHeight": 4440,
+        "files": {
+          "fit": {
+            "path": "spacex/light-fit.avif",
+            "width": 1440,
+            "height": 4055,
+            "bytes": 50992
+          },
+          "tablet": {
+            "path": "spacex/light-tablet.avif",
+            "width": 820,
+            "height": 4055,
+            "bytes": 50639
+          },
+          "mobile": {
+            "path": "spacex/light-mobile.avif",
+            "width": 390,
+            "height": 4440,
+            "bytes": 47482
+          },
+          "thumb": {
+            "path": "spacex/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 14473
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "5e5940fc4251a5dfa81a5a15c2dc9bcc4d15283d347b0c640a0b7538462bff70",
+        "capped": false,
+        "pageHeight": 4440,
+        "files": {
+          "fit": {
+            "path": "spacex/dark-fit.avif",
+            "width": 1440,
+            "height": 4055,
+            "bytes": 51095
+          },
+          "tablet": {
+            "path": "spacex/dark-tablet.avif",
+            "width": 820,
+            "height": 4055,
+            "bytes": 50774
+          },
+          "mobile": {
+            "path": "spacex/dark-mobile.avif",
+            "width": 390,
+            "height": 4440,
+            "bytes": 47711
+          },
+          "thumb": {
+            "path": "spacex/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 14910
+          }
+        }
+      }
+    },
+    "spotify": {
+      "light": {
+        "sourceSha256": "0b7cff059321ea2bd6d6870845370ea9752476f34adeb7f5307bc1c0e0c4cd94",
+        "capped": false,
+        "pageHeight": 4205,
+        "files": {
+          "fit": {
+            "path": "spotify/light-fit.avif",
+            "width": 1440,
+            "height": 3380,
+            "bytes": 46397
+          },
+          "tablet": {
+            "path": "spotify/light-tablet.avif",
+            "width": 820,
+            "height": 3467,
+            "bytes": 47447
+          },
+          "mobile": {
+            "path": "spotify/light-mobile.avif",
+            "width": 390,
+            "height": 4205,
+            "bytes": 47572
+          },
+          "thumb": {
+            "path": "spotify/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20270
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "1c2385d29477bb54e10458bc7da01fe2f4bd107bca4f19e0e80e5b3e261d0cc6",
+        "capped": false,
+        "pageHeight": 4205,
+        "files": {
+          "fit": {
+            "path": "spotify/dark-fit.avif",
+            "width": 1440,
+            "height": 3380,
+            "bytes": 47084
+          },
+          "tablet": {
+            "path": "spotify/dark-tablet.avif",
+            "width": 820,
+            "height": 3467,
+            "bytes": 48173
+          },
+          "mobile": {
+            "path": "spotify/dark-mobile.avif",
+            "width": 390,
+            "height": 4205,
+            "bytes": 48080
+          },
+          "thumb": {
+            "path": "spotify/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20614
+          }
+        }
+      }
+    },
+    "stripe": {
+      "light": {
+        "sourceSha256": "cefb87eb3499d7b6b95732c71b50002697ab17ab2c1966b501863d21e625bbfc",
+        "capped": false,
+        "pageHeight": 7902,
+        "files": {
+          "fit": {
+            "path": "stripe/light-fit.avif",
+            "width": 1440,
+            "height": 6006,
+            "bytes": 92986
+          },
+          "tablet": {
+            "path": "stripe/light-tablet.avif",
+            "width": 820,
+            "height": 6376,
+            "bytes": 93996
+          },
+          "mobile": {
+            "path": "stripe/light-mobile.avif",
+            "width": 390,
+            "height": 7902,
+            "bytes": 89696
+          },
+          "thumb": {
+            "path": "stripe/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17947
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "311b9925f39117d1698a1c95a7368853376c74c02cd1eff672c68b9758cdd6b2",
+        "capped": false,
+        "pageHeight": 7881,
+        "files": {
+          "fit": {
+            "path": "stripe/dark-fit.avif",
+            "width": 1440,
+            "height": 6006,
+            "bytes": 88781
+          },
+          "tablet": {
+            "path": "stripe/dark-tablet.avif",
+            "width": 820,
+            "height": 6376,
+            "bytes": 89445
+          },
+          "mobile": {
+            "path": "stripe/dark-mobile.avif",
+            "width": 390,
+            "height": 7881,
+            "bytes": 86280
+          },
+          "thumb": {
+            "path": "stripe/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17552
+          }
+        }
+      }
+    },
+    "supabase": {
+      "light": {
+        "sourceSha256": "27cbf97ce5359feae094908592e8c22edc6e3a2066a813a75d80ff3c8eb4dbd4",
+        "capped": true,
+        "pageHeight": 10626,
+        "files": {
+          "fit": {
+            "path": "supabase/light-fit.avif",
+            "width": 1440,
+            "height": 7646,
+            "bytes": 127606
+          },
+          "tablet": {
+            "path": "supabase/light-tablet.avif",
+            "width": 820,
+            "height": 8000,
+            "bytes": 126044
+          },
+          "mobile": {
+            "path": "supabase/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 98895
+          },
+          "thumb": {
+            "path": "supabase/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 23652
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "1ef49a46d03ce4dc2cdd8bd61e22545e296fdffc0f46b8715727744cf49e147e",
+        "capped": true,
+        "pageHeight": 10626,
+        "files": {
+          "fit": {
+            "path": "supabase/dark-fit.avif",
+            "width": 1440,
+            "height": 7674,
+            "bytes": 128494
+          },
+          "tablet": {
+            "path": "supabase/dark-tablet.avif",
+            "width": 820,
+            "height": 8000,
+            "bytes": 131036
+          },
+          "mobile": {
+            "path": "supabase/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 100656
+          },
+          "thumb": {
+            "path": "supabase/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 24909
+          }
+        }
+      }
+    },
+    "superhuman": {
+      "light": {
+        "sourceSha256": "79fcdad9614ba58120c9336ee3e23df2a56d24659e9c9df6f2ebe0ecdfca066b",
+        "capped": true,
+        "pageHeight": 9321,
+        "files": {
+          "fit": {
+            "path": "superhuman/light-fit.avif",
+            "width": 1440,
+            "height": 6903,
+            "bytes": 132483
+          },
+          "tablet": {
+            "path": "superhuman/light-tablet.avif",
+            "width": 820,
+            "height": 7477,
+            "bytes": 134418
+          },
+          "mobile": {
+            "path": "superhuman/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 108635
+          },
+          "thumb": {
+            "path": "superhuman/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19303
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "f6446b382c2e2666eb3f28068aa6b9ef9313222e152ba5bff1bdcca5f5ac8068",
+        "capped": true,
+        "pageHeight": 9272,
+        "files": {
+          "fit": {
+            "path": "superhuman/dark-fit.avif",
+            "width": 1440,
+            "height": 6893,
+            "bytes": 134838
+          },
+          "tablet": {
+            "path": "superhuman/dark-tablet.avif",
+            "width": 820,
+            "height": 7468,
+            "bytes": 137429
+          },
+          "mobile": {
+            "path": "superhuman/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 110718
+          },
+          "thumb": {
+            "path": "superhuman/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19076
+          }
+        }
+      }
+    },
+    "tesla": {
+      "light": {
+        "sourceSha256": "8d701e6ebcba9dc24a75602db62afb884ff7130b44300df0b6730518546f804b",
+        "capped": true,
+        "pageHeight": 8465,
+        "files": {
+          "fit": {
+            "path": "tesla/light-fit.avif",
+            "width": 1440,
+            "height": 6203,
+            "bytes": 105881
+          },
+          "tablet": {
+            "path": "tesla/light-tablet.avif",
+            "width": 820,
+            "height": 6904,
+            "bytes": 103362
+          },
+          "mobile": {
+            "path": "tesla/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 90318
+          },
+          "thumb": {
+            "path": "tesla/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16576
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "7b21860ec61c7d180fa8a2d94fddf415c396a010c5c85e06d0539cbcc21d5a44",
+        "capped": true,
+        "pageHeight": 8471,
+        "files": {
+          "fit": {
+            "path": "tesla/dark-fit.avif",
+            "width": 1440,
+            "height": 6206,
+            "bytes": 97083
+          },
+          "tablet": {
+            "path": "tesla/dark-tablet.avif",
+            "width": 820,
+            "height": 6889,
+            "bytes": 95428
+          },
+          "mobile": {
+            "path": "tesla/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 83702
+          },
+          "thumb": {
+            "path": "tesla/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16322
+          }
+        }
+      }
+    },
+    "together.ai": {
+      "light": {
+        "sourceSha256": "a1ab62382a59626f42d832d909b9036b6140d60224161b20fb42a15a44765650",
+        "capped": true,
+        "pageHeight": 9163,
+        "files": {
+          "fit": {
+            "path": "together.ai/light-fit.avif",
+            "width": 1440,
+            "height": 6570,
+            "bytes": 117647
+          },
+          "tablet": {
+            "path": "together.ai/light-tablet.avif",
+            "width": 820,
+            "height": 7648,
+            "bytes": 117783
+          },
+          "mobile": {
+            "path": "together.ai/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 96346
+          },
+          "thumb": {
+            "path": "together.ai/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16359
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "5496e97b60f73b4b422a986cfcb064c156a000a44a4ae238ee1ea9da17e1de98",
+        "capped": true,
+        "pageHeight": 9131,
+        "files": {
+          "fit": {
+            "path": "together.ai/dark-fit.avif",
+            "width": 1440,
+            "height": 6540,
+            "bytes": 123811
+          },
+          "tablet": {
+            "path": "together.ai/dark-tablet.avif",
+            "width": 820,
+            "height": 7639,
+            "bytes": 123509
+          },
+          "mobile": {
+            "path": "together.ai/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 101944
+          },
+          "thumb": {
+            "path": "together.ai/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16224
+          }
+        }
+      }
+    },
+    "uber": {
+      "light": {
+        "sourceSha256": "d16c00d4f934160119234b02c93437333aac7a1d226e172304cc58b506c27d1f",
+        "capped": true,
+        "pageHeight": 9571,
+        "files": {
+          "fit": {
+            "path": "uber/light-fit.avif",
+            "width": 1440,
+            "height": 6229,
+            "bytes": 102994
+          },
+          "tablet": {
+            "path": "uber/light-tablet.avif",
+            "width": 820,
+            "height": 6949,
+            "bytes": 103631
+          },
+          "mobile": {
+            "path": "uber/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 83432
+          },
+          "thumb": {
+            "path": "uber/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21619
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "61a0528dbd1446fda73e7e33b973b80033a8bb9c9debd87f23dd20fec7c5cd7c",
+        "capped": true,
+        "pageHeight": 9571,
+        "files": {
+          "fit": {
+            "path": "uber/dark-fit.avif",
+            "width": 1440,
+            "height": 6229,
+            "bytes": 101134
+          },
+          "tablet": {
+            "path": "uber/dark-tablet.avif",
+            "width": 820,
+            "height": 6949,
+            "bytes": 102514
+          },
+          "mobile": {
+            "path": "uber/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 82454
+          },
+          "thumb": {
+            "path": "uber/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20842
+          }
+        }
+      }
+    },
+    "vercel": {
+      "light": {
+        "sourceSha256": "41bd90029489fa19efc1ceacdb4c62f5209c9067b3a81a7f6d1d2b5884e79e9a",
+        "capped": false,
+        "pageHeight": 7978,
+        "files": {
+          "fit": {
+            "path": "vercel/light-fit.avif",
+            "width": 1440,
+            "height": 5908,
+            "bytes": 102485
+          },
+          "tablet": {
+            "path": "vercel/light-tablet.avif",
+            "width": 820,
+            "height": 6298,
+            "bytes": 103617
+          },
+          "mobile": {
+            "path": "vercel/light-mobile.avif",
+            "width": 390,
+            "height": 7978,
+            "bytes": 100412
+          },
+          "thumb": {
+            "path": "vercel/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 20043
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "178e85d75d54dd4e652df896c27c38da583ca8e5c7a9132150241b5e98a9c3aa",
+        "capped": false,
+        "pageHeight": 7978,
+        "files": {
+          "fit": {
+            "path": "vercel/dark-fit.avif",
+            "width": 1440,
+            "height": 5908,
+            "bytes": 98120
+          },
+          "tablet": {
+            "path": "vercel/dark-tablet.avif",
+            "width": 820,
+            "height": 6298,
+            "bytes": 99280
+          },
+          "mobile": {
+            "path": "vercel/dark-mobile.avif",
+            "width": 390,
+            "height": 7978,
+            "bytes": 96133
+          },
+          "thumb": {
+            "path": "vercel/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 19572
+          }
+        }
+      }
+    },
+    "voltagent": {
+      "light": {
+        "sourceSha256": "358ffc5fcbe1ddc9f37335ecdae6cf0073face9aacff5a97eeea59de51bb0f9e",
+        "capped": true,
+        "pageHeight": 9482,
+        "files": {
+          "fit": {
+            "path": "voltagent/light-fit.avif",
+            "width": 1440,
+            "height": 6324,
+            "bytes": 112565
+          },
+          "tablet": {
+            "path": "voltagent/light-tablet.avif",
+            "width": 820,
+            "height": 6871,
+            "bytes": 112619
+          },
+          "mobile": {
+            "path": "voltagent/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 94900
+          },
+          "thumb": {
+            "path": "voltagent/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16507
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "8ed7a766ee7bc211a8f027971c3a2c6e8dd12a06c147c7bbd32b36d143bda00e",
+        "capped": true,
+        "pageHeight": 9165,
+        "files": {
+          "fit": {
+            "path": "voltagent/dark-fit.avif",
+            "width": 1440,
+            "height": 6160,
+            "bytes": 104701
+          },
+          "tablet": {
+            "path": "voltagent/dark-tablet.avif",
+            "width": 820,
+            "height": 6679,
+            "bytes": 105676
+          },
+          "mobile": {
+            "path": "voltagent/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 91435
+          },
+          "thumb": {
+            "path": "voltagent/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 16492
+          }
+        }
+      }
+    },
+    "warp": {
+      "light": {
+        "sourceSha256": "b93e326ea1d1a3d517124dc0690f9982177ab910856574522f3b954978315256",
+        "capped": true,
+        "pageHeight": 8851,
+        "files": {
+          "fit": {
+            "path": "warp/light-fit.avif",
+            "width": 1440,
+            "height": 5966,
+            "bytes": 128810
+          },
+          "tablet": {
+            "path": "warp/light-tablet.avif",
+            "width": 820,
+            "height": 6481,
+            "bytes": 133428
+          },
+          "mobile": {
+            "path": "warp/light-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 112050
+          },
+          "thumb": {
+            "path": "warp/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21181
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "87a84d356c03f154a35c7ce0c62f6aa13a5ed079d16fdb491066aa852407b9aa",
+        "capped": true,
+        "pageHeight": 8121,
+        "files": {
+          "fit": {
+            "path": "warp/dark-fit.avif",
+            "width": 1440,
+            "height": 5636,
+            "bytes": 103812
+          },
+          "tablet": {
+            "path": "warp/dark-tablet.avif",
+            "width": 820,
+            "height": 5997,
+            "bytes": 107939
+          },
+          "mobile": {
+            "path": "warp/dark-mobile.avif",
+            "width": 390,
+            "height": 8000,
+            "bytes": 96522
+          },
+          "thumb": {
+            "path": "warp/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 22111
+          }
+        }
+      }
+    },
+    "webflow": {
+      "light": {
+        "sourceSha256": "558b3381b26ea2fc751e7187e6f4214a4874641f675ed2014767e83e5619b0b3",
+        "capped": false,
+        "pageHeight": 4200,
+        "files": {
+          "fit": {
+            "path": "webflow/light-fit.avif",
+            "width": 1440,
+            "height": 3753,
+            "bytes": 48324
+          },
+          "tablet": {
+            "path": "webflow/light-tablet.avif",
+            "width": 820,
+            "height": 3879,
+            "bytes": 50555
+          },
+          "mobile": {
+            "path": "webflow/light-mobile.avif",
+            "width": 390,
+            "height": 4200,
+            "bytes": 45860
+          },
+          "thumb": {
+            "path": "webflow/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18373
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "5cbed9d6e9d2abf40d2da88dc158a6b27e934d20502040e758e2cf59fba45be1",
+        "capped": false,
+        "pageHeight": 4200,
+        "files": {
+          "fit": {
+            "path": "webflow/dark-fit.avif",
+            "width": 1440,
+            "height": 3753,
+            "bytes": 46488
+          },
+          "tablet": {
+            "path": "webflow/dark-tablet.avif",
+            "width": 820,
+            "height": 3879,
+            "bytes": 48410
+          },
+          "mobile": {
+            "path": "webflow/dark-mobile.avif",
+            "width": 390,
+            "height": 4200,
+            "bytes": 44333
+          },
+          "thumb": {
+            "path": "webflow/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 17922
+          }
+        }
+      }
+    },
+    "wise": {
+      "light": {
+        "sourceSha256": "5170f66cd464b592aa1dee5d78c6c327817cb9527cf1a35d76dda810beffb48b",
+        "capped": false,
+        "pageHeight": 5256,
+        "files": {
+          "fit": {
+            "path": "wise/light-fit.avif",
+            "width": 1440,
+            "height": 4467,
+            "bytes": 66544
+          },
+          "tablet": {
+            "path": "wise/light-tablet.avif",
+            "width": 820,
+            "height": 4667,
+            "bytes": 69337
+          },
+          "mobile": {
+            "path": "wise/light-mobile.avif",
+            "width": 390,
+            "height": 5256,
+            "bytes": 64668
+          },
+          "thumb": {
+            "path": "wise/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 23056
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "22868bb40d879719cd514c4ff2c472fcde63114773a66754352aaf15742f2e71",
+        "capped": false,
+        "pageHeight": 5256,
+        "files": {
+          "fit": {
+            "path": "wise/dark-fit.avif",
+            "width": 1440,
+            "height": 4467,
+            "bytes": 61373
+          },
+          "tablet": {
+            "path": "wise/dark-tablet.avif",
+            "width": 820,
+            "height": 4667,
+            "bytes": 63936
+          },
+          "mobile": {
+            "path": "wise/dark-mobile.avif",
+            "width": 390,
+            "height": 5256,
+            "bytes": 59563
+          },
+          "thumb": {
+            "path": "wise/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21447
+          }
+        }
+      }
+    },
+    "x.ai": {
+      "light": {
+        "sourceSha256": "5a6babb47e44e4e74509e3d53859f0f5cc98ecaffb329beadf7689388e340e87",
+        "capped": false,
+        "pageHeight": 7159,
+        "files": {
+          "fit": {
+            "path": "x.ai/light-fit.avif",
+            "width": 1440,
+            "height": 5512,
+            "bytes": 93881
+          },
+          "tablet": {
+            "path": "x.ai/light-tablet.avif",
+            "width": 820,
+            "height": 5935,
+            "bytes": 93949
+          },
+          "mobile": {
+            "path": "x.ai/light-mobile.avif",
+            "width": 390,
+            "height": 7159,
+            "bytes": 89765
+          },
+          "thumb": {
+            "path": "x.ai/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18056
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "eb8704629f7638a0d6d1f8bb59b9ef8068884e988056e475112e993272a918b1",
+        "capped": false,
+        "pageHeight": 6316,
+        "files": {
+          "fit": {
+            "path": "x.ai/dark-fit.avif",
+            "width": 1440,
+            "height": 5006,
+            "bytes": 80730
+          },
+          "tablet": {
+            "path": "x.ai/dark-tablet.avif",
+            "width": 820,
+            "height": 5283,
+            "bytes": 82014
+          },
+          "mobile": {
+            "path": "x.ai/dark-mobile.avif",
+            "width": 390,
+            "height": 6316,
+            "bytes": 78237
+          },
+          "thumb": {
+            "path": "x.ai/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 18414
+          }
+        }
+      }
+    },
+    "zapier": {
+      "light": {
+        "sourceSha256": "be5ccbcd86e472de70cf121873816cff6513e9b6d9f236b1e18aebcb7b073371",
+        "capped": false,
+        "pageHeight": 7387,
+        "files": {
+          "fit": {
+            "path": "zapier/light-fit.avif",
+            "width": 1440,
+            "height": 5661,
+            "bytes": 94027
+          },
+          "tablet": {
+            "path": "zapier/light-tablet.avif",
+            "width": 820,
+            "height": 6062,
+            "bytes": 93920
+          },
+          "mobile": {
+            "path": "zapier/light-mobile.avif",
+            "width": 390,
+            "height": 7387,
+            "bytes": 91067
+          },
+          "thumb": {
+            "path": "zapier/light-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 22637
+          }
+        }
+      },
+      "dark": {
+        "sourceSha256": "35613fdf5b8d7211b695c1bd384d6c642331b1989943a5fa1d90e12f83db7866",
+        "capped": false,
+        "pageHeight": 7387,
+        "files": {
+          "fit": {
+            "path": "zapier/dark-fit.avif",
+            "width": 1440,
+            "height": 5661,
+            "bytes": 92619
+          },
+          "tablet": {
+            "path": "zapier/dark-tablet.avif",
+            "width": 820,
+            "height": 6062,
+            "bytes": 91606
+          },
+          "mobile": {
+            "path": "zapier/dark-mobile.avif",
+            "width": 390,
+            "height": 7387,
+            "bytes": 89375
+          },
+          "thumb": {
+            "path": "zapier/dark-thumb.avif",
+            "width": 780,
+            "height": 1131,
+            "bytes": 21779
+          }
+        }
+      }
+    }
+  }
+}

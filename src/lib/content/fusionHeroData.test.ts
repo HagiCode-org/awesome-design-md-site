@@ -21,7 +21,14 @@ function entry(slug: string, designMarkdown = markdown): AwesomeDesignEntry {
     slug,
     title: slug.toUpperCase(),
     designMarkdown,
-    preview: { lightUrl: `/previews/${slug}/light`, darkUrl: `/previews/${slug}/dark` },
+    preview: {
+      lightUrl: `/previews/${slug}/light.html`,
+      darkUrl: `/previews/${slug}/dark.html`,
+      images: {
+        light: { tablet: { url: `/preview-images/${slug}/light-tablet.avif`, width: 820, height: 6000 } },
+        dark: { tablet: { url: `/preview-images/${slug}/dark-tablet.avif`, width: 820, height: 6000 } },
+      },
+    },
   } as AwesomeDesignEntry;
 }
 
@@ -52,6 +59,10 @@ describe('fusion hero data', () => {
     );
 
     expect(stages.map((stage) => stage.slug)).toEqual(['b', 'a']);
-    expect(stages[0]).toMatchObject({ href: '/designs/b/', lightUrl: '/previews/b/light', darkUrl: '/previews/b/dark' });
+    expect(stages[0]).toMatchObject({
+      href: '/designs/b/',
+      lightImageUrl: '/preview-images/b/light-tablet.avif',
+      darkImageUrl: '/preview-images/b/dark-tablet.avif',
+    });
   });
 });

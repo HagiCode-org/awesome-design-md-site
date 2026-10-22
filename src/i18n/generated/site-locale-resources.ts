@@ -48,7 +48,7 @@ const runtime = {
           "title": "Awesome Design MD Gallery",
           "heroEyebrow": "Design system gallery",
           "heroTitle": "Awesome Design",
-          "heroLead": "Browse curated design systems through live previews, README references, and DESIGN.md documentation.",
+          "heroLead": "Browse curated design systems through rendered previews, README references, and DESIGN.md documentation.",
           "heroReadmeKicker": "From the upstream README",
           "heroReadmeExcerpts": [
             {
@@ -149,14 +149,15 @@ const runtime = {
             "openDesign": "Open the {{title}} design",
             "stop": "Stop animation",
             "play": "Play animation",
-            "note": "Previews are live pages from the gallery. The build sequence is illustrative.",
+            "note": "Previews are rendered images of the gallery's design pages. The build sequence is illustrative.",
             "pipelineLabel": "HagiCode build steps"
           }
         },
         "card": {
           "preview": "Preview",
           "lightDark": "Light + dark",
-          "fallbackAware": "Fallback aware"
+          "fallbackAware": "Fallback aware",
+          "imageAlt": "{{title}} preview image"
         },
         "search": {
           "ariaLabel": "Gallery search",
@@ -198,12 +199,14 @@ const runtime = {
           "bothAvailableNote": "Both light and dark preview assets are available.",
           "fallbackNote": "Dark mode falls back to the available preview asset for this entry.",
           "themeTabLabel": "Preview theme",
-          "frameTitle": "{{title}} live preview",
           "viewportLabel": "Preview width",
           "viewportFit": "Fit",
           "viewportTablet": "Tablet",
           "viewportMobile": "Mobile",
-          "openInTab": "Open preview in new tab"
+          "openInTab": "Open preview in new tab",
+          "imageAlt": "{{title}} {{variant}} preview, {{viewport}} width",
+          "imageFailed": "The rendered preview could not be loaded.",
+          "liveLink": "Open the live HTML preview"
         },
         "documents": {
           "kicker": "Documentation",
@@ -377,7 +380,7 @@ const runtime = {
           "title": "Awesome Design MD 画廊",
           "heroEyebrow": "设计系统画廊",
           "heroTitle": "Awesome Design",
-          "heroLead": "浏览精选设计系统，直接查看实时预览、README 参考内容与 DESIGN.md 文档。",
+          "heroLead": "浏览精选设计系统，查看渲染预览、README 参考内容与 DESIGN.md 文档。",
           "heroReadmeKicker": "摘自上游 README",
           "heroReadmeExcerpts": [
             {
@@ -478,14 +481,15 @@ const runtime = {
             "openDesign": "打开 {{title}} 设计详情",
             "stop": "停止动画",
             "play": "播放动画",
-            "note": "预览均为画廊中的实时页面，构建过程仅为示意。",
+            "note": "预览均为画廊中设计页面的渲染图，构建过程仅为示意。",
             "pipelineLabel": "HagiCode 构建步骤"
           }
         },
         "card": {
           "preview": "预览",
           "lightDark": "浅色 + 深色",
-          "fallbackAware": "含回退"
+          "fallbackAware": "含回退",
+          "imageAlt": "{{title}} 预览图"
         },
         "search": {
           "ariaLabel": "画廊搜索",
@@ -527,12 +531,14 @@ const runtime = {
           "bothAvailableNote": "此条目同时提供浅色与深色预览资源。",
           "fallbackNote": "此条目的深色模式会回退到当前可用的预览资源。",
           "themeTabLabel": "预览主题",
-          "frameTitle": "{{title}} 实时预览",
           "viewportLabel": "预览宽度",
           "viewportFit": "自适应",
           "viewportTablet": "平板",
           "viewportMobile": "手机",
-          "openInTab": "在新标签页打开预览"
+          "openInTab": "在新标签页打开预览",
+          "imageAlt": "{{title}} {{variant}}预览，{{viewport}}宽度",
+          "imageFailed": "渲染预览加载失败。",
+          "liveLink": "打开实时 HTML 预览"
         },
         "documents": {
           "kicker": "文档",
@@ -706,7 +712,7 @@ const runtime = {
           "title": "Awesome Design MD 畫廊",
           "heroEyebrow": "設計系統畫廊",
           "heroTitle": "Awesome Design",
-          "heroLead": "這是一個用於瀏覽設計系統的畫廊站點，可查看即時預覽、README 參考與 DESIGN.md 文件。站點本身的體驗與呈現也由 HagiCode 設計並建置。",
+          "heroLead": "瀏覽精選設計系統，查看渲染預覽、README 參考內容與 DESIGN.md 文件。",
           "heroReadmeKicker": "摘自上游 README",
           "heroReadmeExcerpts": [
             {
@@ -807,14 +813,15 @@ const runtime = {
             "openDesign": "開啟 {{title}} 設計詳情",
             "stop": "停止動畫",
             "play": "播放動畫",
-            "note": "預覽皆為畫廊中的即時頁面，建置過程僅為示意。",
+            "note": "預覽均為畫廊中設計頁面的渲染圖，建置過程僅為示意。",
             "pipelineLabel": "HagiCode 建置步驟"
           }
         },
         "card": {
           "preview": "預覽",
           "lightDark": "淺色 + 深色",
-          "fallbackAware": "含回退"
+          "fallbackAware": "含回退",
+          "imageAlt": "{{title}} 預覽圖"
         },
         "search": {
           "ariaLabel": "畫廊搜尋",
@@ -856,12 +863,14 @@ const runtime = {
           "bothAvailableNote": "此項目同時提供淺色與深色預覽資源。",
           "fallbackNote": "此項目的深色模式會回退到可用的預覽資源。",
           "themeTabLabel": "預覽主題",
-          "frameTitle": "{{title}} 即時預覽",
           "viewportLabel": "預覽寬度",
           "viewportFit": "自適應",
           "viewportTablet": "平板",
           "viewportMobile": "手機",
-          "openInTab": "在新分頁開啟預覽"
+          "openInTab": "在新分頁開啟預覽",
+          "imageAlt": "{{title}} {{variant}}預覽，{{viewport}}寬度",
+          "imageFailed": "渲染預覽載入失敗。",
+          "liveLink": "開啟即時 HTML 預覽"
         },
         "documents": {
           "kicker": "文件",
@@ -1035,7 +1044,7 @@ const runtime = {
           "title": "Awesome Design MD ギャラリー",
           "heroEyebrow": "デザインシステムギャラリー",
           "heroTitle": "Awesome Design",
-          "heroLead": "ライブプレビュー、README 参照、DESIGN.md ドキュメントからデザインシステムを閲覧するギャラリーサイトです。このサイトの体験と表示も HagiCode で設計、構築されています。",
+          "heroLead": "厳選されたデザインシステムを、レンダリング済みプレビュー、README の参考情報、DESIGN.md のドキュメントから閲覧できます。",
           "heroReadmeKicker": "上流 README より",
           "heroReadmeExcerpts": [
             {
@@ -1136,14 +1145,15 @@ const runtime = {
             "openDesign": "{{title}} のデザインを開く",
             "stop": "アニメーションを停止",
             "play": "アニメーションを再生",
-            "note": "プレビューはギャラリーのライブページです。ビルドの流れはイメージです。",
+            "note": "プレビューはギャラリー内のデザインページをレンダリングした画像です。ビルドの流れは説明用です。",
             "pipelineLabel": "HagiCode のビルド手順"
           }
         },
         "card": {
           "preview": "プレビュー",
           "lightDark": "ライト + ダーク",
-          "fallbackAware": "フォールバック対応"
+          "fallbackAware": "フォールバック対応",
+          "imageAlt": "{{title}} のプレビュー画像"
         },
         "search": {
           "ariaLabel": "ギャラリー検索",
@@ -1185,12 +1195,14 @@ const runtime = {
           "bothAvailableNote": "ライトとダークのプレビュー素材が利用できます。",
           "fallbackNote": "この項目のダークモードは利用可能なプレビュー素材にフォールバックします。",
           "themeTabLabel": "プレビューテーマ",
-          "frameTitle": "{{title}} ライブプレビュー",
           "viewportLabel": "プレビュー幅",
           "viewportFit": "自動",
           "viewportTablet": "タブレット",
           "viewportMobile": "モバイル",
-          "openInTab": "プレビューを新しいタブで開く"
+          "openInTab": "プレビューを新しいタブで開く",
+          "imageAlt": "{{title}} {{variant}}プレビュー、{{viewport}}幅",
+          "imageFailed": "レンダリング済みプレビューを読み込めませんでした。",
+          "liveLink": "ライブ HTML プレビューを開く"
         },
         "documents": {
           "kicker": "ドキュメント",
@@ -1364,7 +1376,7 @@ const runtime = {
           "title": "Awesome Design MD 갤러리",
           "heroEyebrow": "디자인 시스템 갤러리",
           "heroTitle": "Awesome Design",
-          "heroLead": "라이브 미리보기, README 참고, DESIGN.md 문서를 통해 디자인 시스템을 탐색하는 갤러리 사이트입니다. 이 사이트의 경험과 표현도 HagiCode로 설계하고 구축했습니다.",
+          "heroLead": "엄선된 디자인 시스템을 렌더링된 미리보기, README 참고 자료, DESIGN.md 문서로 살펴보세요.",
           "heroReadmeKicker": "상위 README에서",
           "heroReadmeExcerpts": [
             {
@@ -1465,14 +1477,15 @@ const runtime = {
             "openDesign": "{{title}} 디자인 열기",
             "stop": "애니메이션 중지",
             "play": "애니메이션 재생",
-            "note": "미리보기는 갤러리의 실제 라이브 페이지입니다. 빌드 과정은 예시입니다.",
+            "note": "미리보기는 갤러리 디자인 페이지를 렌더링한 이미지입니다. 빌드 순서는 설명을 위한 것입니다.",
             "pipelineLabel": "HagiCode 빌드 단계"
           }
         },
         "card": {
           "preview": "미리보기",
           "lightDark": "라이트 + 다크",
-          "fallbackAware": "폴백 지원"
+          "fallbackAware": "폴백 지원",
+          "imageAlt": "{{title}} 미리보기 이미지"
         },
         "search": {
           "ariaLabel": "갤러리 검색",
@@ -1514,12 +1527,14 @@ const runtime = {
           "bothAvailableNote": "라이트와 다크 미리보기 자산을 모두 사용할 수 있습니다.",
           "fallbackNote": "이 항목의 다크 모드는 사용 가능한 미리보기 자산으로 폴백합니다.",
           "themeTabLabel": "미리보기 테마",
-          "frameTitle": "{{title}} 라이브 미리보기",
           "viewportLabel": "미리보기 너비",
           "viewportFit": "맞춤",
           "viewportTablet": "태블릿",
           "viewportMobile": "모바일",
-          "openInTab": "미리보기를 새 탭에서 열기"
+          "openInTab": "미리보기를 새 탭에서 열기",
+          "imageAlt": "{{title}} {{variant}} 미리보기, {{viewport}} 너비",
+          "imageFailed": "렌더링된 미리보기를 불러오지 못했습니다.",
+          "liveLink": "실시간 HTML 미리보기 열기"
         },
         "documents": {
           "kicker": "문서",
@@ -1693,7 +1708,7 @@ const runtime = {
           "title": "Awesome Design MD Galerie",
           "heroEyebrow": "Designsystem-Galerie",
           "heroTitle": "Awesome Design",
-          "heroLead": "Eine Galerie zum Durchsuchen von Designsystemen mit Live-Vorschauen, README-Referenzen und DESIGN.md-Dokumentation. Erlebnis und Präsentation dieser Site wurden mit HagiCode gestaltet und gebaut.",
+          "heroLead": "Durchstöbern Sie ausgewählte Designsysteme über gerenderte Vorschauen, README-Hinweise und die DESIGN.md-Dokumentation.",
           "heroReadmeKicker": "Aus dem Upstream README",
           "heroReadmeExcerpts": [
             {
@@ -1794,14 +1809,15 @@ const runtime = {
             "openDesign": "Design {{title}} öffnen",
             "stop": "Animation stoppen",
             "play": "Animation abspielen",
-            "note": "Die Vorschauen sind Live-Seiten aus der Galerie. Der Build-Ablauf ist illustrativ.",
+            "note": "Die Vorschauen sind gerenderte Bilder der Designseiten der Galerie. Die Build-Abfolge dient nur der Veranschaulichung.",
             "pipelineLabel": "HagiCode-Build-Schritte"
           }
         },
         "card": {
           "preview": "Vorschau",
           "lightDark": "Hell + dunkel",
-          "fallbackAware": "Fallback-fähig"
+          "fallbackAware": "Fallback-fähig",
+          "imageAlt": "{{title}} Vorschaubild"
         },
         "search": {
           "ariaLabel": "Galeriesuche",
@@ -1843,12 +1859,14 @@ const runtime = {
           "bothAvailableNote": "Helle und dunkle Vorschau-Assets sind verfügbar.",
           "fallbackNote": "Der dunkle Modus fällt für diesen Eintrag auf das verfügbare Vorschau-Asset zurück.",
           "themeTabLabel": "Vorschau-Theme",
-          "frameTitle": "{{title}} Live-Vorschau",
           "viewportLabel": "Vorschaubreite",
           "viewportFit": "Einpassen",
           "viewportTablet": "Tablet",
           "viewportMobile": "Mobil",
-          "openInTab": "Vorschau in neuem Tab öffnen"
+          "openInTab": "Vorschau in neuem Tab öffnen",
+          "imageAlt": "{{title}} {{variant}} Vorschau, Breite {{viewport}}",
+          "imageFailed": "Die gerenderte Vorschau konnte nicht geladen werden.",
+          "liveLink": "Live-HTML-Vorschau öffnen"
         },
         "documents": {
           "kicker": "Dokumentation",
@@ -2022,7 +2040,7 @@ const runtime = {
           "title": "Galerie Awesome Design MD",
           "heroEyebrow": "Galerie de systèmes de design",
           "heroTitle": "Awesome Design",
-          "heroLead": "Un site galerie pour parcourir des systèmes de design avec des aperçus en direct, des références README et la documentation DESIGN.md. L’expérience et la présentation de ce site ont été conçues et construites avec HagiCode.",
+          "heroLead": "Parcourez des systèmes de design sélectionnés grâce aux aperçus rendus, aux références du README et à la documentation DESIGN.md.",
           "heroReadmeKicker": "Depuis le README amont",
           "heroReadmeExcerpts": [
             {
@@ -2123,14 +2141,15 @@ const runtime = {
             "openDesign": "Ouvrir le design {{title}}",
             "stop": "Arrêter l'animation",
             "play": "Lancer l'animation",
-            "note": "Les aperçus sont de vraies pages de la galerie. La séquence de build est illustrative.",
+            "note": "Les aperçus sont des images rendues des pages de design de la galerie. La séquence de build est illustrative.",
             "pipelineLabel": "Étapes de build HagiCode"
           }
         },
         "card": {
           "preview": "Aperçu",
           "lightDark": "Clair + sombre",
-          "fallbackAware": "Avec repli"
+          "fallbackAware": "Avec repli",
+          "imageAlt": "Image d’aperçu de {{title}}"
         },
         "search": {
           "ariaLabel": "Recherche galerie",
@@ -2172,12 +2191,14 @@ const runtime = {
           "bothAvailableNote": "Les aperçus clair et sombre sont disponibles.",
           "fallbackNote": "Le mode sombre se replie sur l’aperçu disponible pour cette entrée.",
           "themeTabLabel": "Thème d’aperçu",
-          "frameTitle": "Aperçu en direct de {{title}}",
           "viewportLabel": "Largeur de l’aperçu",
           "viewportFit": "Ajusté",
           "viewportTablet": "Tablette",
           "viewportMobile": "Mobile",
-          "openInTab": "Ouvrir l’aperçu dans un nouvel onglet"
+          "openInTab": "Ouvrir l’aperçu dans un nouvel onglet",
+          "imageAlt": "Aperçu {{variant}} de {{title}}, largeur {{viewport}}",
+          "imageFailed": "L’aperçu rendu n’a pas pu être chargé.",
+          "liveLink": "Ouvrir l’aperçu HTML en direct"
         },
         "documents": {
           "kicker": "Documentation",
@@ -2351,7 +2372,7 @@ const runtime = {
           "title": "Galería Awesome Design MD",
           "heroEyebrow": "Galería de sistemas de diseño",
           "heroTitle": "Awesome Design",
-          "heroLead": "Un sitio galería para explorar sistemas de diseño con vistas previas en vivo, referencias README y documentación DESIGN.md. La experiencia y presentación de este sitio fueron diseñadas y construidas con HagiCode.",
+          "heroLead": "Explora sistemas de diseño seleccionados con vistas previas renderizadas, referencias del README y la documentación DESIGN.md.",
           "heroReadmeKicker": "Desde el README upstream",
           "heroReadmeExcerpts": [
             {
@@ -2452,14 +2473,15 @@ const runtime = {
             "openDesign": "Abrir el diseño {{title}}",
             "stop": "Detener animación",
             "play": "Reproducir animación",
-            "note": "Las vistas previas son páginas reales de la galería. La secuencia de construcción es ilustrativa.",
+            "note": "Las vistas previas son imágenes renderizadas de las páginas de diseño de la galería. La secuencia de compilación es ilustrativa.",
             "pipelineLabel": "Pasos de construcción de HagiCode"
           }
         },
         "card": {
           "preview": "Vista previa",
           "lightDark": "Claro + oscuro",
-          "fallbackAware": "Con fallback"
+          "fallbackAware": "Con fallback",
+          "imageAlt": "Imagen de vista previa de {{title}}"
         },
         "search": {
           "ariaLabel": "Búsqueda de galería",
@@ -2501,12 +2523,14 @@ const runtime = {
           "bothAvailableNote": "Hay recursos de vista previa clara y oscura disponibles.",
           "fallbackNote": "El modo oscuro usa el recurso de vista previa disponible para esta entrada.",
           "themeTabLabel": "Tema de vista previa",
-          "frameTitle": "Vista previa en vivo de {{title}}",
           "viewportLabel": "Ancho de la vista previa",
           "viewportFit": "Ajustar",
           "viewportTablet": "Tableta",
           "viewportMobile": "Móvil",
-          "openInTab": "Abrir la vista previa en una pestaña nueva"
+          "openInTab": "Abrir la vista previa en una pestaña nueva",
+          "imageAlt": "Vista previa {{variant}} de {{title}}, ancho {{viewport}}",
+          "imageFailed": "No se pudo cargar la vista previa renderizada.",
+          "liveLink": "Abrir la vista previa HTML en vivo"
         },
         "documents": {
           "kicker": "Documentación",
@@ -2680,7 +2704,7 @@ const runtime = {
           "title": "Galeria Awesome Design MD",
           "heroEyebrow": "Galeria de sistemas de design",
           "heroTitle": "Awesome Design",
-          "heroLead": "Um site galeria para navegar por sistemas de design com previews ao vivo, referências README e documentação DESIGN.md. A experiência e apresentação deste site foram projetadas e construídas com HagiCode.",
+          "heroLead": "Explore sistemas de design selecionados com pré-visualizações renderizadas, referências do README e a documentação DESIGN.md.",
           "heroReadmeKicker": "Do README upstream",
           "heroReadmeExcerpts": [
             {
@@ -2781,14 +2805,15 @@ const runtime = {
             "openDesign": "Abrir o design {{title}}",
             "stop": "Parar animação",
             "play": "Reproduzir animação",
-            "note": "As prévias são páginas reais da galeria. A sequência de construção é ilustrativa.",
+            "note": "As pré-visualizações são imagens renderizadas das páginas de design da galeria. A sequência de build é ilustrativa.",
             "pipelineLabel": "Etapas de build do HagiCode"
           }
         },
         "card": {
           "preview": "Preview",
           "lightDark": "Claro + escuro",
-          "fallbackAware": "Com fallback"
+          "fallbackAware": "Com fallback",
+          "imageAlt": "Imagem de pré-visualização de {{title}}"
         },
         "search": {
           "ariaLabel": "Busca da galeria",
@@ -2830,12 +2855,14 @@ const runtime = {
           "bothAvailableNote": "Assets de preview claro e escuro estão disponíveis.",
           "fallbackNote": "O modo escuro usa o asset de preview disponível para esta entrada.",
           "themeTabLabel": "Tema do preview",
-          "frameTitle": "Preview ao vivo de {{title}}",
           "viewportLabel": "Largura do preview",
           "viewportFit": "Ajustar",
           "viewportTablet": "Tablet",
           "viewportMobile": "Celular",
-          "openInTab": "Abrir o preview em nova guia"
+          "openInTab": "Abrir o preview em nova guia",
+          "imageAlt": "Pré-visualização {{variant}} de {{title}}, largura {{viewport}}",
+          "imageFailed": "Não foi possível carregar a pré-visualização renderizada.",
+          "liveLink": "Abrir a pré-visualização HTML ao vivo"
         },
         "documents": {
           "kicker": "Documentação",
@@ -3009,7 +3036,7 @@ const runtime = {
           "title": "Галерея Awesome Design MD",
           "heroEyebrow": "Галерея дизайн-систем",
           "heroTitle": "Awesome Design",
-          "heroLead": "Сайт-галерея для просмотра дизайн-систем через live preview, README-референсы и документацию DESIGN.md. Опыт и подача этого сайта спроектированы и построены с HagiCode.",
+          "heroLead": "Просматривайте отобранные дизайн-системы: готовые предпросмотры, ссылки из README и документация DESIGN.md.",
           "heroReadmeKicker": "Из upstream README",
           "heroReadmeExcerpts": [
             {
@@ -3110,14 +3137,15 @@ const runtime = {
             "openDesign": "Открыть дизайн {{title}}",
             "stop": "Остановить анимацию",
             "play": "Запустить анимацию",
-            "note": "Превью — живые страницы из галереи. Последовательность сборки показана для иллюстрации.",
+            "note": "Предпросмотры — готовые изображения страниц дизайна из галереи. Последовательность сборки приведена для наглядности.",
             "pipelineLabel": "Шаги сборки HagiCode"
           }
         },
         "card": {
           "preview": "Превью",
           "lightDark": "Светлая + тёмная",
-          "fallbackAware": "С fallback"
+          "fallbackAware": "С fallback",
+          "imageAlt": "Изображение предпросмотра: {{title}}"
         },
         "search": {
           "ariaLabel": "Поиск по галерее",
@@ -3159,12 +3187,14 @@ const runtime = {
           "bothAvailableNote": "Доступны светлые и тёмные preview assets.",
           "fallbackNote": "Тёмный режим для этой записи использует доступный preview asset.",
           "themeTabLabel": "Тема preview",
-          "frameTitle": "Live preview {{title}}",
           "viewportLabel": "Ширина превью",
           "viewportFit": "По ширине",
           "viewportTablet": "Планшет",
           "viewportMobile": "Телефон",
-          "openInTab": "Открыть превью в новой вкладке"
+          "openInTab": "Открыть превью в новой вкладке",
+          "imageAlt": "Предпросмотр {{title}}, {{variant}}, ширина: {{viewport}}",
+          "imageFailed": "Не удалось загрузить готовый предпросмотр.",
+          "liveLink": "Открыть живой HTML-предпросмотр"
         },
         "documents": {
           "kicker": "Документация",

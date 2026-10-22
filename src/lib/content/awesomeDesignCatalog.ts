@@ -11,14 +11,25 @@ import remarkRehype from 'remark-rehype';
 import { unified } from 'unified';
 import { visit } from 'unist-util-visit';
 import type { Heading, Root } from 'mdast';
+import previewImageManifestData from '../../data/preview-images.json';
 
 export type SourceStatus = 'ready' | 'missing_source';
 export type PreviewVariant = 'light' | 'dark';
+export type PreviewImageName = 'fit' | 'tablet' | 'mobile' | 'thumb';
 
 export interface AwesomeDesignCatalogOptions {
   sourceRoot?: string;
   previewBasePath?: string;
+  previewImageManifest?: PreviewImageManifest;
 }
+
+export interface PreviewImageFile {
+  url: string;
+  width: number;
+  height: number;
+}
+
+export type PreviewImageSet = Record<PreviewImageName, PreviewImageFile>;
 
 export interface AwesomeDesignPreview {
   lightUrl: string;
@@ -27,6 +38,28 @@ export interface AwesomeDesignPreview {
   hasDedicatedDark: boolean;
   sourceLightPath: string | null;
   sourceDarkPath: string | null;
+  images: Record<PreviewVariant, PreviewImageSet>;
+}
+
+export interface PreviewImageFileRecord {
+  path: string;
+  width: number;
+  height: number;
+  bytes: number;
+}
+
+export type PreviewImageRecord =
+  | { reuses: PreviewVariant }
+  | {
+      sourceSha256: string;
+      capped: boolean;
+      pageHeight: number;
+      files: Record<PreviewImageName, PreviewImageFileRecord>;
+    };
+
+export interface PreviewImageManifest {
+  version: number;
+  entries: Record<string, Partial<Record<PreviewVariant, PreviewImageRecord>>>;
 }
 
 export interface AwesomeDesignEntry {
@@ -56,6 +89,8 @@ export interface AwesomeDesignCatalog {
 const REPO_ROOT = process.cwd();
 const DEFAULT_SOURCE_ROOT = path.join(REPO_ROOT, 'vendor', 'awesome-design-md');
 const DEFAULT_PREVIEW_BASE_PATH = '/previews';
+const PREVIEW_IMAGE_BASE_PATH = '/preview-images';
+const DEFAULT_PREVIEW_IMAGE_MANIFEST = previewImageManifestData as PreviewImageManifest;
 const README_FILE = 'README.md';
 const DESIGN_FILE = 'DESIGN.md';
 const LIGHT_PREVIEW_FILE = 'preview.html';
@@ -67,7 +102,7 @@ let defaultCatalogPromise: Promise<AwesomeDesignCatalog> | undefined;
 export async function getAwesomeDesignCatalog(
   options: AwesomeDesignCatalogOptions = {},
 ): Promise<AwesomeDesignCatalog> {
-  if (!options.sourceRoot && !options.previewBasePath) {
+  if (!options.sourceRoot && !options.previewBasePath && !options.previewImageManifest) {
     defaultCatalogPromise ??= loadAwesomeDesignCatalog(options);
     return defaultCatalogPromise;
   }
@@ -143,6 +178,7 @@ async function loadAwesomeDesignCatalog(
 ): Promise<AwesomeDesignCatalog> {
   const sourceRoot = options.sourceRoot ?? DEFAULT_SOURCE_ROOT;
   const previewBasePath = options.previewBasePath ?? DEFAULT_PREVIEW_BASE_PATH;
+  const previewImageManifest = options.previewImageManifest ?? DEFAULT_PREVIEW_IMAGE_MANIFEST;
   const designRoot = path.join(sourceRoot, 'design-md');
 
   if (!(await pathExists(designRoot))) {
@@ -163,6 +199,7 @@ async function loadAwesomeDesignCatalog(
         loadCatalogEntry({
           designRoot,
           previewBasePath,
+          previewImageManifest,
           sourceKey: dirent.name,
           lastUpdated: lastUpdatedByEntry.get(dirent.name) ?? sourceUpdatedAt,
         }),
@@ -183,6 +220,7 @@ async function loadAwesomeDesignCatalog(
 async function loadCatalogEntry(input: {
   designRoot: string;
   previewBasePath: string;
+  previewImageManifest: PreviewImageManifest;
   sourceKey: string;
   lastUpdated: Date;
 }): Promise<AwesomeDesignEntry> {
@@ -209,6 +247,7 @@ async function loadCatalogEntry(input: {
     );
   }
 
+  const images = resolvePreviewImages(input.sourceKey, input.previewImageManifest);
   const [readmeMarkdown, designMarkdown] = await Promise.all([
     readFile(readmePath, 'utf8'),
     readFile(designPath, 'utf8'),
@@ -259,7 +298,62 @@ async function loadCatalogEntry(input: {
       hasDedicatedDark: hasDarkPreview,
       sourceLightPath: hasLightPreview ? lightPreviewPath : null,
       sourceDarkPath: hasDarkPreview ? darkPreviewPath : null,
+      images,
     },
+  };
+}
+
+// The gallery shows rendered images, so an entry without a manifest record must not load.
+// A dark variant without its own render reuses the light set, the same as the HTML fallback.
+function resolvePreviewImages(
+  slug: string,
+  manifest: PreviewImageManifest,
+): Record<PreviewVariant, PreviewImageSet> {
+  const record = manifest.entries[slug];
+  const resolveVariant = (variant: PreviewVariant): PreviewImageSet => {
+    const variantRecord = record?.[variant];
+
+    if (!variantRecord) {
+      throw new Error(missingPreviewImagesMessage(slug));
+    }
+
+    if ('reuses' in variantRecord) {
+      const source = record?.[variantRecord.reuses];
+
+      if (!source || 'reuses' in source) {
+        throw new Error(`Preview images for design entry "${slug}" (${variant}) reuse ${variantRecord.reuses}, which has no rendered set.`);
+      }
+
+      return toPreviewImageSet(source.files);
+    }
+
+    return toPreviewImageSet(variantRecord.files);
+  };
+
+  return {
+    light: resolveVariant('light'),
+    dark: resolveVariant('dark'),
+  };
+}
+
+function missingPreviewImagesMessage(slug: string): string {
+  return `Preview images are missing for design entry "${slug}". Run \`npm run previews:render -- --only ${slug}\` and commit the output.`;
+}
+
+function toPreviewImageSet(files: Record<PreviewImageName, PreviewImageFileRecord>): PreviewImageSet {
+  return {
+    fit: toPreviewImageFile(files.fit),
+    tablet: toPreviewImageFile(files.tablet),
+    mobile: toPreviewImageFile(files.mobile),
+    thumb: toPreviewImageFile(files.thumb),
+  };
+}
+
+function toPreviewImageFile(file: PreviewImageFileRecord): PreviewImageFile {
+  return {
+    url: `${PREVIEW_IMAGE_BASE_PATH}/${file.path.split('/').map((segment) => encodeURIComponent(segment)).join('/')}`,
+    width: file.width,
+    height: file.height,
   };
 }
 
@@ -306,6 +400,7 @@ async function renderMarkdownToHtml(markdown: string): Promise<string> {
   const file = await unified()
     .use(remarkParse)
     .use(remarkGfm)
+    .use(remarkDropLegacyScreenshots)
     .use(remarkRehype)
     .use(rehypeDemoteH1)
     .use(rehypeSlug)
@@ -313,6 +408,51 @@ async function renderMarkdownToHtml(markdown: string): Promise<string> {
     .process(markdown);
 
   return String(file);
+}
+
+// Upstream READMEs embed old light/dark screenshots hosted on Cloudflare R2. The rendered
+// previews on this site replace them, so the image paragraphs and the heading that introduced
+// them are dropped from the rendered document. The vendor Markdown itself is not changed.
+const LEGACY_SCREENSHOT_HOST_SUFFIX = '.r2.dev';
+
+function isLegacyScreenshotUrl(url: string): boolean {
+  try {
+    return new URL(url).hostname.endsWith(LEGACY_SCREENSHOT_HOST_SUFFIX);
+  } catch {
+    return false;
+  }
+}
+
+function isLegacyScreenshotParagraph(node: Root['children'][number]): boolean {
+  if (node.type !== 'paragraph') {
+    return false;
+  }
+
+  const images = node.children.filter((child) => child.type === 'image');
+  const onlyImagesAndSpace = node.children.every(
+    (child) => child.type === 'image' || (child.type === 'text' && child.value.trim() === ''),
+  );
+
+  return onlyImagesAndSpace && images.length > 0 && images.every((image) => isLegacyScreenshotUrl(image.url));
+}
+
+function remarkDropLegacyScreenshots() {
+  return (tree: Root) => {
+    const kept: Root['children'] = [];
+
+    for (const node of tree.children) {
+      if (isLegacyScreenshotParagraph(node)) {
+        if (kept[kept.length - 1]?.type === 'heading') {
+          kept.pop();
+        }
+        continue;
+      }
+
+      kept.push(node);
+    }
+
+    tree.children = kept;
+  };
 }
 
 // The detail page already owns the single <h1> (the entry title). Imported

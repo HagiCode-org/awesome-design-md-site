@@ -1,5 +1,5 @@
 import { execFileSync } from 'node:child_process';
-import { mkdtemp, rm, writeFile, mkdir } from 'node:fs/promises';
+import { mkdtemp, rm, writeFile, mkdir, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { tmpdir } from 'node:os';
 import { describe, expect, it, afterEach } from 'vitest';
@@ -9,7 +9,12 @@ import {
   getAwesomeDesignCatalog,
   loadPublishedDesignMarkdown,
   loadPublishedPreviewHtml,
+  type PreviewImageFileRecord,
+  type PreviewImageManifest,
+  type PreviewImageName,
+  type PreviewImageRecord,
 } from '@/lib/content/awesomeDesignCatalog';
+import previewImageManifest from '@/data/preview-images.json';
 
 const tempDirs: string[] = [];
 
@@ -20,7 +25,7 @@ afterEach(async () => {
 describe('awesomeDesignCatalog', () => {
   it('returns an empty catalog when the submodule content is not initialized', async () => {
     const sourceRoot = await createSourceRoot();
-    const catalog = await getAwesomeDesignCatalog({ sourceRoot });
+    const catalog = await getAwesomeDesignCatalog(await catalogOptions(sourceRoot));
 
     expect(catalog.sourceStatus).toBe('missing_source');
     expect(catalog.entries).toHaveLength(0);
@@ -34,7 +39,7 @@ describe('awesomeDesignCatalog', () => {
         previewLight: '<html><body>light preview</body></html>',
       },
     });
-    const catalog = await getAwesomeDesignCatalog({ sourceRoot });
+    const catalog = await getAwesomeDesignCatalog(await catalogOptions(sourceRoot));
 
     expect(catalog.sourceStatus).toBe('ready');
     expect(catalog.entries).toHaveLength(1);
@@ -50,9 +55,9 @@ describe('awesomeDesignCatalog', () => {
     expect(entry.designDownloadUrl).toBe('/designs/linear.app/DESIGN.md');
     expect(entry.searchText).toContain('fast workflows');
 
-    const darkHtml = await loadPublishedPreviewHtml('linear.app', 'dark', { sourceRoot });
+    const darkHtml = await loadPublishedPreviewHtml('linear.app', 'dark', await catalogOptions(sourceRoot));
     expect(darkHtml).toContain('light preview');
-    await expect(loadPublishedDesignMarkdown('linear.app', { sourceRoot })).resolves.toContain(
+    await expect(loadPublishedDesignMarkdown('linear.app', await catalogOptions(sourceRoot))).resolves.toContain(
       'Shared notes for interface design.',
     );
   });
@@ -66,7 +71,7 @@ describe('awesomeDesignCatalog', () => {
         previewLight: '<html></html>',
       },
     });
-    const [entry] = (await getAwesomeDesignCatalog({ sourceRoot })).entries;
+    const [entry] = (await getAwesomeDesignCatalog(await catalogOptions(sourceRoot))).entries;
 
     expect(entry.seoDescription).toBe('Acme is bold and playful, with #ff0000 accents.');
     expect(entry.summary).toBe('Shared boilerplate summary.');
@@ -89,7 +94,7 @@ describe('awesomeDesignCatalog', () => {
       },
     });
     const titles = Object.fromEntries(
-      (await getAwesomeDesignCatalog({ sourceRoot })).entries.map((e) => [e.slug, e.title]),
+      (await getAwesomeDesignCatalog(await catalogOptions(sourceRoot))).entries.map((e) => [e.slug, e.title]),
     );
 
     expect(titles.bmw).toBe('BMW');
@@ -104,7 +109,7 @@ describe('awesomeDesignCatalog', () => {
         previewLight: '<html></html>',
       },
     });
-    const [entry] = (await getAwesomeDesignCatalog({ sourceRoot })).entries;
+    const [entry] = (await getAwesomeDesignCatalog(await catalogOptions(sourceRoot))).entries;
 
     expect(entry.seoDescription).toBe('Plain summary text.');
   });
@@ -126,7 +131,7 @@ describe('awesomeDesignCatalog', () => {
       },
     });
 
-    await expect(getAwesomeDesignCatalog({ sourceRoot })).rejects.toThrow(/missing DESIGN\.md/i);
+    await expect(getAwesomeDesignCatalog(await catalogOptions(sourceRoot))).rejects.toThrow(/missing DESIGN\.md/i);
   });
 
   it('resolves adjacent entries from the canonical sorted catalog', async () => {
@@ -147,14 +152,126 @@ describe('awesomeDesignCatalog', () => {
         previewLight: '<html><body>airbnb</body></html>',
       },
     });
-    const catalog = await getAwesomeDesignCatalog({ sourceRoot });
+    const catalog = await getAwesomeDesignCatalog(await catalogOptions(sourceRoot));
     const adjacent = getAdjacentDesignEntries(catalog.entries, 'stripe');
 
     expect(catalog.entries.map((entry) => entry.slug)).toEqual(['airbnb', 'stripe', 'vercel']);
     expect(adjacent.previous?.slug).toBe('airbnb');
     expect(adjacent.next?.slug).toBe('vercel');
   });
+  it('exposes the rendered image set per variant and reuses the light set when there is no dark render', async () => {
+    const sourceRoot = await createSourceRoot({
+      'linear.app': {
+        readme: '# Linear Inspired Design System\n\nFast workflows.',
+        design: '# Design System Inspiration of Linear\n\nNotes.',
+        previewLight: '<html>light</html>',
+      },
+      'x.ai': {
+        readme: '# X.ai Inspired Design System\n\nSummary.',
+        design: '# Design System Inspiration of X.ai\n\nNotes.',
+        previewLight: '<html>light</html>',
+        previewDark: '<html>dark</html>',
+      },
+    });
+    const catalog = await getAwesomeDesignCatalog(await catalogOptions(sourceRoot));
+    const linear = catalog.entries.find((entry) => entry.slug === 'linear.app');
+    const xai = catalog.entries.find((entry) => entry.slug === 'x.ai');
+
+    expect(linear?.preview.images.light.fit).toEqual({
+      url: '/preview-images/linear.app/light-fit.avif',
+      width: 1440,
+      height: 1000,
+    });
+    expect(linear?.preview.images.light.thumb).toEqual({
+      url: '/preview-images/linear.app/light-thumb.avif',
+      width: 780,
+      height: 1131,
+    });
+    expect(linear?.preview.images.dark).toEqual(linear?.preview.images.light);
+    expect(xai?.preview.images.dark.tablet.url).toBe('/preview-images/x.ai/dark-tablet.avif');
+    expect(xai?.preview.images.dark.mobile.width).toBe(390);
+    expect(xai?.preview.images.light).not.toBe(xai?.preview.images.dark);
+  });
+
+  it('fails catalog loading for an entry without a manifest record, naming the entry', async () => {
+    const sourceRoot = await createSourceRoot({
+      stripe: {
+        readme: '# Stripe Inspired Design System\n\nPayments.',
+        design: '# Design System Inspiration of Stripe\n\nNotes.',
+        previewLight: '<html>stripe</html>',
+      },
+    });
+
+    await expect(getAwesomeDesignCatalog({ sourceRoot, previewImageManifest: { version: 1, entries: {} } })).rejects.toThrow(
+      'Preview images are missing for design entry "stripe". Run `npm run previews:render -- --only stripe`',
+    );
+  });
+
+  it('drops the legacy Cloudflare R2 screenshots and their headings from the rendered README only', async () => {
+    const sourceRoot = await createSourceRoot({
+      acme: {
+        readme:
+          '# Acme Inspired Design System\n\n## Preview\n\nA sample page.\n\n### Dark Mode\n![Dark](https://pub-x.r2.dev/designs/acme/preview-dark-screenshot.png)\n\n### Light Mode\n![Light](https://pub-x.r2.dev/designs/acme/preview-screenshot.png)\n\n## Usage\n\nKeep it.',
+        design: '# Design System Inspiration of Acme\n\n## 1. Theme\n\nText.',
+        previewLight: '<html></html>',
+      },
+    });
+    const [entry] = (await getAwesomeDesignCatalog(await catalogOptions(sourceRoot))).entries;
+
+    expect(entry.readmeHtml).not.toContain('r2.dev');
+    expect(entry.readmeHtml).not.toContain('Dark Mode');
+    expect(entry.readmeHtml).not.toContain('Light Mode');
+    expect(entry.readmeHtml).toContain('A sample page.');
+    expect(entry.readmeHtml).toContain('Keep it.');
+    expect(entry.readmeMarkdown).toContain('pub-x.r2.dev');
+  });
+
+  it('keeps the manifest keys equal to the catalog slugs for the real vendor tree', async () => {
+    const catalog = await getAwesomeDesignCatalog();
+    const catalogSlugs = catalog.entries.map((entry) => entry.slug).sort();
+
+    expect(Object.keys((previewImageManifest as PreviewImageManifest).entries).sort()).toEqual(catalogSlugs);
+  });
 });
+
+async function catalogOptions(sourceRoot: string) {
+  const designRoot = path.join(sourceRoot, 'design-md');
+  const slugs = await readdir(designRoot).catch(() => []);
+  const entries: PreviewImageManifest['entries'] = {};
+
+  for (const slug of slugs) {
+    const hasLight = await exists(path.join(designRoot, slug, 'preview.html'));
+    const hasDark = await exists(path.join(designRoot, slug, 'preview-dark.html'));
+
+    entries[slug] = {
+      light: hasLight ? renderedImageRecord(slug, 'light') : { reuses: 'dark' },
+      dark: hasDark ? renderedImageRecord(slug, 'dark') : { reuses: 'light' },
+    };
+  }
+
+  return { sourceRoot, previewImageManifest: { version: 1, entries } };
+}
+
+async function exists(filePath: string): Promise<boolean> {
+  try {
+    await stat(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function renderedImageRecord(slug: string, variant: 'light' | 'dark'): PreviewImageRecord {
+  const size = { fit: [1440, 1000], tablet: [820, 1000], mobile: [390, 1000], thumb: [780, 1131] } as const;
+  const files = Object.fromEntries(
+    (Object.keys(size) as PreviewImageName[]).map((name) => [
+      name,
+      { path: `${slug}/${variant}-${name}.avif`, width: size[name][0], height: size[name][1], bytes: 1 },
+    ]),
+  ) as Record<PreviewImageName, PreviewImageFileRecord>;
+
+  return { sourceSha256: 'test-sha', capped: false, pageHeight: 1000, files };
+}
 
 async function createSourceRoot(
   entries?: Record<
