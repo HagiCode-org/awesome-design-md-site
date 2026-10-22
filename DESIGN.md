@@ -107,9 +107,21 @@ The shell must stay distinct from gallery entries. A vendor entry may use any pa
 
 ### Detail page
 
-- Back link, preview toggles, document tabs, and adjacent navigation all use the same small-radius outlined control language.
+The detail page is a workbench, not an article. From `1100px` up the live preview is pinned on the left (`position: sticky` under the site header) and the documentation scrolls on the right.
+
+- Back link, segmented toggles, document tabs, and adjacent navigation all use the same small-radius outlined control language. Related toggles are fused into one `segmented` group (shared borders, only the outer corners rounded).
+- The header carries identity only: back link, layout switch (Split / Preview / Docs), title, summary. Panel headings inside the workbench are `1.125rem`, not display size, so the preview starts above the fold.
+- The layout switch is remembered in `localStorage` (`adms-detail-layout`) and restored before first paint. Below `1100px` the panels stack and the switch is hidden.
+- Preview tools: Light / Dark, a viewport width (Fit / Tablet `820px` / Mobile `390px`, hidden below `720px`), an open-in-new-tab icon, and a monospace width readout. A 2px Neon Volt bar runs across the stage while the frame loads.
+- Documentation keeps its tabs, copy/download actions, and a section strip (the document's `h2`s, with scroll-spy) in one sticky bar. Actions that do not apply to the active tab leave the row; the DESIGN copy and download buttons appear only on the DESIGN tab.
+- `←` / `→` open the previous / next design (ignored while typing or with a modifier key held).
 - Preview and documentation stay in separate bordered panels.
-- The DESIGN copy button appears only when the DESIGN tab is active.
+
+### Gallery interaction
+
+- Search: `/` focuses the field from anywhere, `Esc` clears it. Cards that stay after a filter slide to their new cell (transform only); cards that appear fade up. Both are skipped under `prefers-reduced-motion`.
+- Cards show a Neon Volt arrow cue on hover and keyboard focus.
+- Card-to-detail morph: the clicked card's preview frame grows into the detail preview stage and back (cross-document View Transitions, `design-preview`). Only that one element is named, at `pageswap` / `pagereveal` time; the site header is named `site-header` so it stays put. Browsers without support, and visitors who prefer reduced motion, get an ordinary navigation.
 
 ### Markdown
 
@@ -150,6 +162,7 @@ Depth comes from contrast and containment, not from blur or layered drop shadows
 - Prefer border contrast over glow, blur, or gradient ornament.
 - Keep hover and active states obvious.
 - Preserve existing gallery behavior: source ingestion, preview fallback, README / DESIGN split, and bilingual shell copy.
+- Keep motion on transform and opacity (plus the grid-track reflow of the detail layout switch), and keep every effect behind `prefers-reduced-motion`.
 
 ### Don't
 
@@ -163,9 +176,10 @@ Depth comes from contrast and containment, not from blur or layered drop shadows
 
 | Range | Behavior |
 | --- | --- |
-| `>= 1440px` | Wider container, 4-column gallery grid, taller detail preview |
+| `>= 1440px` | Wider container, 4-column gallery grid, taller stacked detail preview |
+| `>= 1100px` | Detail workbench: sticky preview left, scrolling docs right, layout switch visible |
 | `721px - 1080px` | 2-column gallery grid, stacked toolbar and header groups |
-| `<= 720px` | Single-column gallery and adjacent navigation, full-width controls, reduced preview height |
+| `<= 720px` | Single-column gallery and adjacent navigation, segmented groups share the row, viewport switch hidden, reduced preview height |
 
 Mobile keeps the same black/white ClickHouse identity. It should compress, not soften.
 
