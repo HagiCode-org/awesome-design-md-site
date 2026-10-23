@@ -26,7 +26,7 @@ npm run previews:render                    # maintainer only: needs Chromium and
 git submodule update --init --recursive   # needed for real gallery content
 ```
 
-Requires Node.js 24+. `npm run build` also runs `scripts/verify-promoto-build.mjs` and `scripts/verify-footer-build.mjs` against `dist/`.
+Requires Node.js 24+. `npm run build` first runs `previews:verify`, then also runs `scripts/verify-promoto-build.mjs` and `scripts/verify-footer-build.mjs` against `dist/`.
 
 ## Key Paths
 
@@ -47,7 +47,7 @@ Requires Node.js 24+. `npm run build` also runs `scripts/verify-promoto-build.mj
 - Gallery previews are locally rendered AVIF images, never live iframes. Do not hand-edit `public/preview-images/` or the manifest; after a vendor change run `npm run previews:render`, then `npm run previews:verify`.
 - Keep the gallery site shell design (two-theme colors, typography, search, preview tabs) aligned with `DESIGN.md`.
 - Use `npm run i18n:check` to validate locale consistency.
-- Footer, favicon, analytics, RSS and `llms.txt` come from `@hagicode/hagilight` / `hagilight-core` (configured in `astro.config.mjs`); upgrade them together and adjust the build verification scripts if footer or promoto output changes.
+- Footer, favicon, analytics, RSS and `llms.txt` come from `@hagicode/hagilight` / `hagilight-core` (configured in `astro.config.mjs`); upgrade them together and adjust the build verification scripts if footer or promoto output changes. Analytics renders the shared `@hagicode/hagilight-core` components directly (no local wrappers; PostHog is injected by `hagilight()`), and the site identifies itself to the footer/promoto banner with `siteId` `awesome-design-gallery` so it is absent from its own Ecosystem Sites list.
 
 ## References
 
