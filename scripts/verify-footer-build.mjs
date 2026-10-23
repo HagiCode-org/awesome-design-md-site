@@ -27,6 +27,13 @@ for (const page of pages) {
   const isZhCn = page.pathname.includes('/zh-CN/');
 
   assert.equal([...html.matchAll(/<footer\b[^>]*class="[^"]*\bhagilight-footer\b[^"]*"/gu)].length, 1);
+  // The site must not list itself under Ecosystem Sites (it identifies itself with siteId), while
+  // other ecosystem sites stay listed.
+  const footer = html.match(/<footer\b[^>]*class="[^"]*\bhagilight-footer\b[^"]*"[\s\S]*?<\/footer>/u)?.[0] ?? '';
+  const related = footer.match(/<h2\b[^>]*>[^<]*<\/h2>\s*<nav\b[\s\S]*?<\/nav>/u)?.[0] ?? '';
+  const relatedHosts = [...related.matchAll(/<a href="(https?:\/\/[^"]+)"/gu)].map((match) => new URL(match[1]).host);
+  assert.ok(relatedHosts.includes('www.hagicode.com'), 'Ecosystem Sites must list other HagiCode sites');
+  assert.ok(!relatedHosts.includes(new URL(siteOrigin).host), 'Ecosystem Sites must not list this site itself');
   const icons = [...html.matchAll(/<link\b[^>]*\brel="icon"[^>]*>/gu)];
   assert.equal(icons.length, 1);
   assert.ok(icons[0][0].includes(`href="${hagilightFaviconUrl}"`));

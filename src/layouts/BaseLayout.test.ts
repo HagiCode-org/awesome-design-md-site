@@ -50,9 +50,17 @@ describe('BaseLayout promoto integration', () => {
     const source = await readFile(layoutPath, 'utf8');
 
     expect(source).toContain("import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';");
-    expect(source.indexOf('<main')).toBeLessThan(source.indexOf('<PromotoBanner locale={lang} />'));
-    expect(source.indexOf('<PromotoBanner locale={lang} />')).toBeLessThan(source.indexOf('<Footer'));
+    expect(source.indexOf('<main')).toBeLessThan(source.indexOf('<PromotoBanner locale={lang}'));
+    expect(source.indexOf('<PromotoBanner locale={lang}')).toBeLessThan(source.indexOf('<Footer'));
     expect(source).not.toMatch(/PromoteCard|promote-loader|getPromotionCopy|data-promote-card/u);
+  });
+
+  it('identifies the site to the shared footer and banner so it is not listed as its own related site', async () => {
+    const source = await readFile(layoutPath, 'utf8');
+
+    expect(source).toContain("const hagilightSiteId = 'awesome-design-gallery';");
+    expect(source).toContain('<Footer locale={lang} links={{ siteId: hagilightSiteId }} />');
+    expect(source).toContain('<PromotoBanner locale={lang} siteId={hagilightSiteId} />');
   });
 
   it('scopes readable dark and light banner colors and visible focus outlines', async () => {

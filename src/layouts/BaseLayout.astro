@@ -1,6 +1,6 @@
 ---
-import Analytics51LA from '@/components/51LAAnalytics.astro';
-import GoogleAnalytics from '@/components/GoogleAnalytics.astro';
+import Analytics51LA from '@hagicode/hagilight-core/Analytics51LA';
+import GoogleAnalytics from '@hagicode/hagilight-core/GoogleAnalytics';
 import Header from '@/components/site/Header.astro';
 import Footer from '@hagicode/hagilight-core/Footer';
 import PromotoBanner from '@hagicode/hagilight-core/PromotoBanner';
@@ -14,6 +14,10 @@ import {
   toAbsoluteSiteUrl,
   type SupportedLocale,
 } from '@/config/site';
+
+// Identifies this site to the shared footer: it leaves this catalog entry out of the related-sites list
+// and tags first-party footer and banner links with utm_source=<siteId>.
+const hagilightSiteId = 'awesome-design-gallery';
 
 interface Props {
   title: string;
@@ -189,10 +193,10 @@ const pageStructuredData = {
       <main id="main">
         <slot />
       </main>
-      <PromotoBanner locale={lang} />
-      <Footer locale={lang} />
+      <PromotoBanner locale={lang} siteId={hagilightSiteId} />
+      <Footer locale={lang} links={{ siteId: hagilightSiteId }} />
     </div>
-    <Analytics51LA />
-    <GoogleAnalytics />
+    <Analytics51LA siteId="L6b88a5yK4h2Xnci" />
+    <GoogleAnalytics measurementId="G-EN03FMT2Q4" />
   </body>
 </html>
