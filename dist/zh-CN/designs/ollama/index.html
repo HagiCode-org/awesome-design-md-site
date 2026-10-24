@@ -1,0 +1,818 @@
+<!DOCTYPE html><html lang="zh-CN" dir="ltr" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v7.3.8"><meta name="theme-color" content="#000000"><title>Ollama DESIGN.md • Awesome Design MD 画廊</title><meta name="description" content="Ollama 的预览、README 与 DESIGN 文档详情。"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico"><link rel="stylesheet" href="/global.css"><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><link rel="canonical" href="https://design.hagicode.com/zh-CN/designs/ollama/"><link rel="alternate" hreflang="en" href="https://design.hagicode.com/designs/ollama/"><link rel="alternate" hreflang="zh-CN" href="https://design.hagicode.com/zh-CN/designs/ollama/"><link rel="alternate" hreflang="zh-Hant" href="https://design.hagicode.com/zh-Hant/designs/ollama/"><link rel="alternate" hreflang="ja-JP" href="https://design.hagicode.com/ja-JP/designs/ollama/"><link rel="alternate" hreflang="ko-KR" href="https://design.hagicode.com/ko-KR/designs/ollama/"><link rel="alternate" hreflang="de-DE" href="https://design.hagicode.com/de-DE/designs/ollama/"><link rel="alternate" hreflang="fr-FR" href="https://design.hagicode.com/fr-FR/designs/ollama/"><link rel="alternate" hreflang="es-ES" href="https://design.hagicode.com/es-ES/designs/ollama/"><link rel="alternate" hreflang="pt-BR" href="https://design.hagicode.com/pt-BR/designs/ollama/"><link rel="alternate" hreflang="ru-RU" href="https://design.hagicode.com/ru-RU/designs/ollama/"><link rel="alternate" hreflang="x-default" href="https://design.hagicode.com/designs/ollama/"><meta property="og:type" content="website"><meta property="og:title" content="Ollama DESIGN.md • Awesome Design MD 画廊"><meta property="og:description" content="Ollama 的预览、README 与 DESIGN 文档详情。"><meta property="og:url" content="https://design.hagicode.com/zh-CN/designs/ollama/"><meta property="og:site_name" content="Awesome Design MD 画廊"><meta property="og:locale" content="zh_CN"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU"><meta property="og:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:secure_url" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="3137"><meta property="og:image:height" content="1235"><meta property="og:image:alt" content="Ollama DESIGN.md • Awesome Design MD 画廊"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Ollama DESIGN.md • Awesome Design MD 画廊"><meta name="twitter:description" content="Ollama 的预览、README 与 DESIGN 文档详情。"><meta name="twitter:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta name="twitter:image:alt" content="Ollama DESIGN.md • Awesome Design MD 画廊"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Ollama DESIGN.md • Awesome Design MD 画廊","description":"Ollama 的预览、README 与 DESIGN 文档详情。","url":"https://design.hagicode.com/zh-CN/designs/ollama/","inLanguage":"zh-CN","image":"https://design.hagicode.com/img/hagicode/light-main.png","isPartOf":{"@type":"WebSite","name":"Awesome Design MD 画廊","url":"https://design.hagicode.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Awesome Design MD 画廊","item":"https://design.hagicode.com/zh-CN/"},{"@type":"ListItem","position":2,"name":"Ollama","item":"https://design.hagicode.com/zh-CN/designs/ollama/"}]}</script><script>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script>
+      // Cross-document view transition: the gallery card preview grows into the detail preview
+      // (and back). Only the one clicked card is named, so no other card is captured.
+      (() => {
+        const NAME = 'design-preview';
+        const slugOf = (href) => {
+          try {
+            const match = new URL(href, location.href).pathname.match(/\/designs\/([^/]+)\/?$/);
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch {
+            return null;
+          }
+        };
+        // On the way back the browser has not restored the scroll position yet when the page
+        // is revealed, so the returning card is named wherever it is, not only when in view.
+        const cardPreview = (slug, anywhere) => {
+          const card = Array.from(document.querySelectorAll('[data-design-card]')).find(
+            (item) => item.dataset.slug === slug,
+          );
+          const preview = card && card.querySelector('.design-card-preview');
+          if (!preview) return null;
+          const rect = preview.getBoundingClientRect();
+          return anywhere || (rect.bottom > 0 && rect.top < innerHeight) ? preview : null;
+        };
+        const name = async (element, transition) => {
+          if (!element) return;
+          element.style.viewTransitionName = NAME;
+          await transition.finished.catch(() => {});
+          element.style.viewTransitionName = '';
+        };
+
+        addEventListener('pageswap', (event) => {
+          if (!event.viewTransition || !event.activation || !event.activation.entry) return;
+          const to = slugOf(event.activation.entry.url);
+          const here = slugOf(location.href);
+          if (to && !here) name(cardPreview(to), event.viewTransition);
+          else if (!to && here) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+        });
+
+        addEventListener('pagereveal', (event) => {
+          if (!event.viewTransition) return;
+          const activation = window.navigation && window.navigation.activation;
+          if (!activation || !activation.from) return;
+          const from = slugOf(activation.from.url);
+          const here = slugOf(location.href);
+          if (here && !from) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+          else if (!here && from) name(cardPreview(from, true), event.viewTransition);
+        });
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Ce-f4tKu.css"><script>(() => {
+  if (window.__hagilightPosthogInitialized) return;
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init("phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5", {"api_host":"https://us.i.posthog.com","defaults":"2026-05-30"});
+  window.__hagilightPosthogInitialized = true;
+})();</script></head><body><a class="skip-link" href="#main">跳转到正文</a><div class="page-shell"><header class="site-header"><div class="container shell-panel header-panel"><a class="brand-mark" href="/zh-CN/"><img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32"><span class="brand-copy"><strong class="brand-copy-full">Awesome Design MD 画廊</strong><strong class="brand-copy-compact">ADMG</strong><small>Powered by HagiCode</small></span></a><nav class="site-nav site-nav-primary" aria-label="主导航"><a href="/zh-CN/" class="site-nav-link"><span class="site-nav-link-label site-nav-link-label-full">画廊</span><span class="site-nav-link-label site-nav-link-label-compact">画廊</span></a></nav><nav class="site-nav site-nav-repo" aria-label="仓库链接"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link" target="_blank" rel="noopener"><span class="site-nav-link-label site-nav-link-label-full">站点仓库</span></a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link" target="_blank" rel="noopener noreferrer"><span class="site-nav-link-label site-nav-link-label-full">上游仓库</span></a></nav><div class="header-actions"><div class="language-select-shell"><select class="language-select" name="locale" aria-label="语言切换" data-language-select><option value="/designs/ollama/" lang="en">English</option><option value="/zh-CN/designs/ollama/" selected lang="zh-CN">简体中文</option><option value="/zh-Hant/designs/ollama/" lang="zh-Hant">繁體中文</option><option value="/ja-JP/designs/ollama/" lang="ja-JP">日本語</option><option value="/ko-KR/designs/ollama/" lang="ko-KR">한국어</option><option value="/de-DE/designs/ollama/" lang="de-DE">Deutsch</option><option value="/fr-FR/designs/ollama/" lang="fr-FR">Français</option><option value="/es-ES/designs/ollama/" lang="es-ES">Español</option><option value="/pt-BR/designs/ollama/" lang="pt-BR">Português</option><option value="/ru-RU/designs/ollama/" lang="ru-RU">Русский</option></select><span class="language-select-icon" aria-hidden="true">▾</span></div><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(function(){let e=async e=>{await(await e())()};(self.Astro||(self.Astro={})).load=e,window.dispatchEvent(new Event(`astro:load`))})();</script><script>(function(){function e(t){"@babel/helpers - typeof";return e=typeof Symbol==`function`&&typeof Symbol.iterator==`symbol`?function(e){return typeof e}:function(e){return e&&typeof Symbol==`function`&&e.constructor===Symbol&&e!==Symbol.prototype?`symbol`:typeof e},e(t)}function t(t,n){if(e(t)!=`object`||!t)return t;var r=t[Symbol.toPrimitive];if(r!==void 0){var i=r.call(t,n||`default`);if(e(i)!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(t)}function n(n){var r=t(n,`string`);return e(r)==`symbol`?r:r+``}function r(e,t,r){return(t=n(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}let i=/* @__PURE__ */ new Set([`__proto__`,`constructor`,`prototype`]);{let e={0:e=>a(e),1:e=>n(e),2:e=>new RegExp(e),3:e=>new Date(e),4:e=>new Map(n(e)),5:e=>new Set(n(e)),6:e=>BigInt(e),7:e=>new URL(e),8:e=>new Uint8Array(e),9:e=>new Uint16Array(e),10:e=>new Uint32Array(e),11:e=>1/0*e},t=t=>{let[n,r]=t;return n in e?e[n](r):void 0},n=e=>e.map(t),a=e=>typeof e!=`object`||!e?e:Object.fromEntries(Object.entries(e).map(([e,n])=>[e,t(n)]));class o extends HTMLElement{constructor(...e){super(...e),r(this,`Component`,void 0),r(this,`hydrator`,void 0),r(this,`hydrate`,async()=>{var e;if(!this.hydrator||!this.isConnected)return;let t=(e=this.parentElement)==null?void 0:e.closest(`astro-island[ssr]`);if(t){t.addEventListener(`astro:hydrate`,this.hydrate,{once:!0});return}let n=this.querySelectorAll(`astro-slot`),r={},i=this.querySelectorAll(`template[data-astro-template]`);for(let e of i){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`data-astro-template`)||`default`]=e.innerHTML,e.remove())}for(let e of n){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`name`)||`default`]=e.innerHTML)}let o;try{o=this.hasAttribute(`props`)?a(JSON.parse(this.getAttribute(`props`))):{}}catch(e){let t=this.getAttribute(`component-url`)||`<unknown>`,n=this.getAttribute(`component-export`);throw n&&(t+=` (export ${n})`),console.error(`[hydrate] Error parsing props for component ${t}`,this.getAttribute(`props`),e),e}await this.hydrator(this)(this.Component,o,r,{client:this.getAttribute(`client`)}),this.removeAttribute(`ssr`),this.dispatchEvent(new CustomEvent(`astro:hydrate`))}),r(this,`unmount`,()=>{this.isConnected||this.dispatchEvent(new CustomEvent(`astro:unmount`))})}disconnectedCallback(){document.removeEventListener(`astro:after-swap`,this.unmount),document.addEventListener(`astro:after-swap`,this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute(`await-children`)||document.readyState===`interactive`||document.readyState===`complete`)this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener(`DOMContentLoaded`,e),t.disconnect(),this.childrenConnectedCallback()},t=new MutationObserver(()=>{var t;((t=this.lastChild)==null?void 0:t.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue===`astro:end`&&(this.lastChild.remove(),e())});t.observe(this,{childList:!0}),document.addEventListener(`DOMContentLoaded`,e)}}async childrenConnectedCallback(){let e=this.getAttribute(`before-hydration-url`);e&&await import(e),this.start()}getRetryImportUrl(e){let t=new URL(e,document.baseURI);return t.searchParams.set(`astro-retry`,Date.now().toString()),t.toString()}async importWithRetry(e){try{return await import(e)}catch(t){return await new Promise(e=>setTimeout(e,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let t=this.getAttribute(`component-url`),n=new CustomEvent(`astro:hydration-error`,{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:t}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${t}`,e)}async start(){let e=JSON.parse(this.getAttribute(`opts`)),t=this.getAttribute(`client`);if(Astro[t]===void 0){window.addEventListener(`astro:${t}`,()=>this.start(),{once:!0});return}try{await Astro[t](async()=>{let e=this.getAttribute(`renderer-url`);try{let[t,{default:n}]=await Promise.all([this.importWithRetry(this.getAttribute(`component-url`)),e?this.importWithRetry(e):Promise.resolve({default:()=>()=>{}})]),r=this.getAttribute(`component-export`)||`default`;if(r.includes(`.`)){this.Component=t;for(let e of r.split(`.`)){if(i.has(e)||!this.Component||typeof this.Component!=`object`&&typeof this.Component!=`function`||!Object.hasOwn(this.Component,e))throw Error(`Invalid component export path: ${r}`);this.Component=this.Component[e]}}else{if(i.has(r))throw Error(`Invalid component export path: ${r}`);this.Component=t[r]}return this.hydrator=n,this.hydrate}catch(e){return this.handleHydrationError(e),()=>{}}},e,this)}catch(e){this.handleHydrationError(e)}}attributeChangedCallback(){this.hydrate()}}r(o,`observedAttributes`,[`props`]),customElements.get(`astro-island`)||customElements.define(`astro-island`,o)}})();</script><astro-island uid="1UGE2k" prefix="r3" component-url="/_astro/ThemeToggle.B6702iMl.js" component-export="default" renderer-url="/_astro/client.CuuXzlfV.js" props="{&quot;locale&quot;:[0,&quot;zh-CN&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="theme-toggle" data-theme-toggle="true" aria-label="切换到浅色模式"><span class="theme-toggle-label theme-toggle-label-full">深色</span><span class="theme-toggle-label theme-toggle-label-compact">深</span><span class="theme-toggle-glyph" aria-hidden="true">◐</span></button><!--astro:end--></astro-island></div><details class="header-utility"><summary class="header-utility-trigger" aria-label="仓库链接"><span class="header-utility-trigger-label" aria-hidden="true">≡</span></summary><div class="header-utility-surface" aria-label="仓库链接"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link header-utility-link" target="_blank" rel="noopener">站点仓库</a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link header-utility-link" target="_blank" rel="noopener noreferrer">上游仓库</a></div></details></div></header><script>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script><main id="main"><section class="container detail-shell"><div class="detail-header shell-panel"><div class="detail-header-bar"><a class="detail-back-link" href="/zh-CN/">返回画廊</a><div class="segmented detail-layout-toggle" role="group" aria-label="工作区布局"><button type="button" class="preview-toggle is-active" data-detail-layout="split" aria-pressed="true">分栏</button><button type="button" class="preview-toggle" data-detail-layout="preview" aria-pressed="false">预览</button><button type="button" class="preview-toggle" data-detail-layout="docs" aria-pressed="false">文档</button></div></div><div class="detail-header-copy"><h1>Ollama</h1><p class="detail-summary">DESIGN.md extracted from the public Ollama website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it&#39;s a good starting point for building something similar.</p></div></div><div class="detail-grid" data-detail-grid data-layout="split"><script>
+        // Restore the saved layout before first paint so the grid does not jump.
+        try {
+          const saved = localStorage.getItem('adms-detail-layout');
+          if (saved === 'preview' || saved === 'docs') {
+            document.currentScript.parentElement.dataset.layout = saved;
+          }
+        } catch {}
+      </script><section class="preview-switcher shell-panel" data-preview-switcher data-light-url="/previews/ollama/light.html" data-dark-url="/previews/ollama/dark.html" data-images="{&quot;light&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/ollama/light-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:5929},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/ollama/light-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:6190},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/ollama/light-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:7429},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/ollama/light-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}},&quot;dark&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/ollama/dark-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:5896},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/ollama/dark-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:6156},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/ollama/dark-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:7405},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/ollama/dark-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}}}" data-alt-template="Ollama {{variant}}预览，{{viewport}}宽度" data-labels="{&quot;light&quot;:&quot;浅色&quot;,&quot;dark&quot;:&quot;深色&quot;,&quot;fit&quot;:&quot;自适应&quot;,&quot;tablet&quot;:&quot;平板&quot;,&quot;mobile&quot;:&quot;手机&quot;}"><div class="preview-switcher-head"><h2>预览效果</h2><div class="preview-switcher-tools"><div class="segmented" role="group" aria-label="预览主题"><button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-pressed="true">浅色</button><button type="button" class="preview-toggle" data-preview-variant="dark" aria-pressed="false" title="打开深色预览">深色</button></div><div class="segmented preview-viewport-group" role="group" aria-label="预览宽度"><button type="button" class="preview-toggle is-active" data-preview-viewport="fit" aria-pressed="true">自适应</button><button type="button" class="preview-toggle" data-preview-viewport="tablet" aria-pressed="false">平板</button><button type="button" class="preview-toggle" data-preview-viewport="mobile" aria-pressed="false">手机</button></div><a class="preview-open" data-preview-open href="/previews/ollama/light.html" target="_blank" rel="noopener" aria-label="在新标签页打开预览" title="在新标签页打开预览"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M6 3H3v10h10v-3"></path><path d="M9 2.5h4.5V7"></path><path d="M13.5 2.5 7.5 8.5"></path></svg></a></div></div><div class="preview-stage" data-preview-stage data-state="loading" aria-busy="true"><img class="detail-preview-image" data-preview-image src="/preview-images/ollama/light-fit.avif" width="1440" height="5929" alt="Ollama 浅色预览，自适应宽度" decoding="async"><p class="preview-error" data-preview-error hidden><span>渲染预览加载失败。</span><a data-preview-live href="/previews/ollama/light.html" target="_blank" rel="noopener">打开实时 HTML 预览</a></p></div><p class="preview-switcher-foot"><span class="preview-switcher-note">此条目同时提供浅色与深色预览资源。</span><output class="preview-width-readout" data-preview-width aria-hidden="true"></output></p></section><script type="module">function e(e,t,n){e.forEach(e=>{let r=e.getAttribute(t)===n;e.classList.toggle(`is-active`,r),e.setAttribute(`aria-pressed`,r?`true`:`false`)})}function t(e){return`${Math.round(e)} px`}function n(e){if(e)try{return JSON.parse(e)}catch{return}}function r(e,t,n){return e[t][n]}function i(e,t,n){return e.replace(`{{variant}}`,t).replace(`{{viewport}}`,n)}function a(a=document){a.querySelectorAll(`[data-preview-switcher]`).forEach(o=>{let s=o.querySelector(`[data-preview-image]`),c=o.querySelector(`[data-preview-stage]`),l=o.querySelector(`[data-preview-error]`),u=o.querySelector(`[data-preview-live]`),d=Array.from(o.querySelectorAll(`[data-preview-variant]`)),f=Array.from(o.querySelectorAll(`[data-preview-viewport]`)),p=o.querySelector(`[data-preview-open]`),m=o.querySelector(`[data-preview-width]`),h=n(o.dataset.images),g=o.dataset.lightUrl??``,_=o.dataset.darkUrl||g,v=o.dataset.altTemplate??``,y=JSON.parse(o.dataset.labels??`{}`),b=`light`,x=`fit`;if(!s||!c||!h||d.length===0)return;let S=()=>{s.hidden=!1,c.dataset.state=`ready`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!0)},C=()=>{c.dataset.state=`loading`,c.setAttribute(`aria-busy`,`true`)},w=()=>{s.hidden=!0,c.dataset.state=`error`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!1)},T=()=>{let e=r(h,b,x),t=i(v,y[b]??b,y[x]??x);s.alt=t,s.width=e.width,s.height=e.height,s.getAttribute(`src`)===e.url?s.complete&&(s.naturalWidth>0?S():w()):(C(),s.src=e.url)},E=()=>{let t=b===`dark`?_:g;p&&(p.href=t),u&&(u.href=t),o.dataset.viewport=x,e(d,`data-preview-variant`,b),e(f,`data-preview-viewport`,x),T()};s.addEventListener(`load`,S),s.addEventListener(`error`,w),m&&typeof ResizeObserver<`u`&&new ResizeObserver(([e])=>{e&&(m.textContent=t(e.contentRect.width))}).observe(c),d.forEach(e=>{e.addEventListener(`click`,()=>{b=e.dataset.previewVariant===`dark`?`dark`:`light`,E()})}),f.forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.previewViewport;x=t===`tablet`||t===`mobile`?t:`fit`,E()})}),b=a.documentElement.dataset.theme===`dark`?`dark`:`light`,E()})}a();</script><section class="detail-documents" data-document-tabs data-copy-design-label="复制 DESIGN.md" data-copied-label="已复制" data-copy-failed-label="复制失败"><h2 class="visually-hidden">README &amp; DESIGN</h2><div class="detail-documents-bar shell-panel" data-doc-bar><div class="detail-documents-head"><div class="segmented detail-tab-list" role="tablist" aria-label="文档视图"><button type="button" role="tab" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">README</button><button type="button" role="tab" class="detail-tab" data-doc-tab="design" aria-selected="false">DESIGN</button></div><div class="detail-doc-controls"><button type="button" class="detail-copy-button" data-copy-design disabled aria-disabled="true" title="复制原始 DESIGN.md Markdown">复制 DESIGN.md</button><a class="detail-copy-button" data-download-design href="/designs/ollama/DESIGN.md" download="DESIGN.md" title="下载站内 canonical 的 DESIGN.md 文件" aria-hidden="true" tabindex="-1">下载 DESIGN.md</a></div></div><nav class="detail-outline" data-doc-outline aria-label="跳转到章节" hidden></nav></div><div class="detail-doc-panels"><section class="detail-doc-panel is-active" data-doc-panel="readme"><div class="markdown-shell document-copy"><h2 id="ollama-inspired-design-system">Ollama Inspired Design System</h2>
+<p><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/ollama/DESIGN.md">DESIGN.md</a> extracted from the public <a href="https://ollama.com/">Ollama</a> website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it's a good starting point for building something similar.</p>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIGN.md</code></td>
+<td>Complete design system documentation (9 sections)</td>
+</tr>
+<tr>
+<td><code>preview.html</code></td>
+<td>Interactive design token catalog (light)</td>
+</tr>
+<tr>
+<td><code>preview-dark.html</code></td>
+<td>Interactive design token catalog (dark)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/ollama/DESIGN.md">DESIGN.md</a> to use as a reference for AI agents (Claude, Cursor, Stitch) to generate UI that looks like the Ollama design language.</p>
+<h2 id="preview">Preview</h2>
+<p>A sample landing page built with DESIGN.md. It shows the actual colors, typography, buttons, cards, spacing, and elevation, all in one page.</p>
+<h3 id="dark-mode">Dark Mode</h3>
+<p><img src="/preview-images/ollama/dark-fit.avif" alt="Ollama Design System — Dark Mode" loading="lazy" decoding="async"></p>
+<h3 id="light-mode">Light Mode</h3>
+<p><img src="/preview-images/ollama/light-fit.avif" alt="Ollama Design System — Light Mode" loading="lazy" decoding="async"></p></div></section><section class="detail-doc-panel" data-doc-panel="design" hidden><div class="markdown-shell document-copy"><h2 id="design-system-inspiration-of-ollama">Design System Inspiration of Ollama</h2>
+<h2 id="1-visual-theme--atmosphere">1. Visual Theme &#x26; Atmosphere</h2>
+<p>Ollama's interface is radical minimalism taken to its logical conclusion — a pure-white void where content floats without decoration, shadow, or color. The design philosophy mirrors the product itself: strip away everything unnecessary until only the essential tool remains. This is the digital equivalent of a Dieter Rams object — every pixel earns its place, and the absence of design IS the design.</p>
+<p>The entire page exists in pure grayscale. There is zero chromatic color in the interface — no brand blue, no accent green, no semantic red. The only colors that exist are shades between pure black (<code>#000000</code>) and pure white (<code>#ffffff</code>), creating a monochrome environment that lets the user's mental model of "open models" remain uncolored by brand opinion. The Ollama llama mascot, rendered in simple black line art, is the only illustration — and even it's monochrome.</p>
+<p>What makes Ollama distinctive is the combination of SF Pro Rounded (Apple's rounded system font) with an exclusively pill-shaped geometry (9999px radius on everything interactive). The rounded letterforms + rounded buttons + rounded containers create a cohesive "softness language" that makes a developer CLI tool feel approachable and friendly rather than intimidating. This is minimalism with warmth — not cold Swiss-style grid minimalism, but the kind where the edges are literally softened.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Pure white canvas with zero chromatic color — completely grayscale</li>
+<li>SF Pro Rounded headlines creating a distinctively Apple-like softness</li>
+<li>Binary border-radius system: 12px (containers) or 9999px (everything interactive)</li>
+<li>Zero shadows — depth comes exclusively from background color shifts and borders</li>
+<li>Pill-shaped geometry on all interactive elements (buttons, tabs, inputs, tags)</li>
+<li>The Ollama llama as the sole illustration — black line art, no color</li>
+<li>Extreme content restraint — the homepage is short, focused, and uncluttered</li>
+</ul>
+<h2 id="2-color-palette--roles">2. Color Palette &#x26; Roles</h2>
+<h3 id="primary">Primary</h3>
+<ul>
+<li><strong>Pure Black</strong> (<code>#000000</code>): Primary headlines, primary links, and the darkest text. The only "color" that demands attention.</li>
+<li><strong>Near Black</strong> (<code>#262626</code>): Button text on light surfaces, secondary headline weight.</li>
+<li><strong>Darkest Surface</strong> (<code>#090909</code>): The darkest possible surface — barely distinguishable from pure black, used for footer or dark containers.</li>
+</ul>
+<h3 id="surface--background">Surface &#x26; Background</h3>
+<ul>
+<li><strong>Pure White</strong> (<code>#ffffff</code>): The primary page background — not off-white, not cream, pure white. Button surfaces for secondary actions.</li>
+<li><strong>Snow</strong> (<code>#fafafa</code>): The subtlest possible surface distinction from white — used for section backgrounds and barely-elevated containers.</li>
+<li><strong>Light Gray</strong> (<code>#e5e5e5</code>): Button backgrounds, borders, and the primary containment color. The workhorse neutral.</li>
+</ul>
+<h3 id="neutrals--text">Neutrals &#x26; Text</h3>
+<ul>
+<li><strong>Stone</strong> (<code>#737373</code>): Secondary body text, footer links, and de-emphasized content. The primary "muted" tone.</li>
+<li><strong>Mid Gray</strong> (<code>#525252</code>): Emphasized secondary text, slightly darker than Stone.</li>
+<li><strong>Silver</strong> (<code>#a3a3a3</code>): Tertiary text, placeholders, and deeply de-emphasized metadata.</li>
+<li><strong>Button Text Dark</strong> (<code>#404040</code>): Specific to white-surface button text.</li>
+</ul>
+<h3 id="semantic--accent">Semantic &#x26; Accent</h3>
+<ul>
+<li><strong>Ring Blue</strong> (<code>#3b82f6</code> at 50%): The ONLY non-gray color in the entire system — Tailwind's default focus ring, used exclusively for keyboard accessibility. Never visible in normal interaction flow.</li>
+<li><strong>Border Light</strong> (<code>#d4d4d4</code>): A slightly darker gray for white-surface button borders.</li>
+</ul>
+<h3 id="gradient-system">Gradient System</h3>
+<ul>
+<li><strong>None.</strong> Ollama uses absolutely no gradients. Visual separation comes from flat color blocks and single-pixel borders. This is a deliberate, almost philosophical design choice.</li>
+</ul>
+<h2 id="3-typography-rules">3. Typography Rules</h2>
+<h3 id="font-family">Font Family</h3>
+<ul>
+<li><strong>Display</strong>: <code>SF Pro Rounded</code>, with fallbacks: <code>system-ui, -apple-system, system-ui</code></li>
+<li><strong>Body / UI</strong>: <code>ui-sans-serif</code>, with fallbacks: <code>system-ui, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji</code></li>
+<li><strong>Monospace</strong>: <code>ui-monospace</code>, with fallbacks: <code>SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New</code></li>
+</ul>
+<p><em>Note: SF Pro Rounded is Apple's system font — it renders with rounded terminals on macOS/iOS and falls back to the system sans-serif on other platforms.</em></p>
+<h3 id="hierarchy">Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Font</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line Height</th>
+<th>Letter Spacing</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display / Hero</td>
+<td>SF Pro Rounded</td>
+<td>48px (3rem)</td>
+<td>500</td>
+<td>1.00 (tight)</td>
+<td>normal</td>
+<td>Maximum impact, rounded letterforms</td>
+</tr>
+<tr>
+<td>Section Heading</td>
+<td>SF Pro Rounded</td>
+<td>36px (2.25rem)</td>
+<td>500</td>
+<td>1.11 (tight)</td>
+<td>normal</td>
+<td>Feature section titles</td>
+</tr>
+<tr>
+<td>Sub-heading</td>
+<td>SF Pro Rounded / ui-sans-serif</td>
+<td>30px (1.88rem)</td>
+<td>400–500</td>
+<td>1.20 (tight)</td>
+<td>normal</td>
+<td>Card headings, feature names</td>
+</tr>
+<tr>
+<td>Card Title</td>
+<td>ui-sans-serif</td>
+<td>24px (1.5rem)</td>
+<td>400</td>
+<td>1.33</td>
+<td>normal</td>
+<td>Medium emphasis headings</td>
+</tr>
+<tr>
+<td>Body Large</td>
+<td>ui-sans-serif</td>
+<td>18px (1.13rem)</td>
+<td>400–500</td>
+<td>1.56</td>
+<td>normal</td>
+<td>Hero descriptions, button text</td>
+</tr>
+<tr>
+<td>Body / Link</td>
+<td>ui-sans-serif</td>
+<td>16px (1rem)</td>
+<td>400–500</td>
+<td>1.50</td>
+<td>normal</td>
+<td>Standard body text, navigation</td>
+</tr>
+<tr>
+<td>Caption</td>
+<td>ui-sans-serif</td>
+<td>14px (0.88rem)</td>
+<td>400</td>
+<td>1.43</td>
+<td>normal</td>
+<td>Metadata, descriptions</td>
+</tr>
+<tr>
+<td>Small</td>
+<td>ui-sans-serif</td>
+<td>12px (0.75rem)</td>
+<td>400</td>
+<td>1.33</td>
+<td>normal</td>
+<td>Smallest sans-serif text</td>
+</tr>
+<tr>
+<td>Code Body</td>
+<td>ui-monospace</td>
+<td>16px (1rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+<td>Inline code, commands</td>
+</tr>
+<tr>
+<td>Code Caption</td>
+<td>ui-monospace</td>
+<td>14px (0.88rem)</td>
+<td>400</td>
+<td>1.43</td>
+<td>normal</td>
+<td>Code snippets, secondary</td>
+</tr>
+<tr>
+<td>Code Small</td>
+<td>ui-monospace</td>
+<td>12px (0.75rem)</td>
+<td>400–700</td>
+<td>1.63</td>
+<td>normal</td>
+<td>Tags, labels</td>
+</tr>
+</tbody>
+</table>
+<h3 id="principles">Principles</h3>
+<ul>
+<li><strong>Rounded display, standard body</strong>: SF Pro Rounded carries display headlines with its distinctive rounded terminals, while the standard system sans handles all body text. The rounded font IS the brand expression.</li>
+<li><strong>Weight restraint</strong>: Only two weights matter — 400 (regular) for body and 500 (medium) for headings. No bold, no light, no black weight. This extreme restraint reinforces the minimal philosophy.</li>
+<li><strong>Tight display, comfortable body</strong>: Headlines compress to 1.0 line-height, while body text relaxes to 1.43–1.56. The contrast creates clear hierarchy without needing weight contrast.</li>
+<li><strong>Monospace for developer identity</strong>: Code blocks and terminal commands appear throughout as primary content, using the system monospace stack.</li>
+</ul>
+<h2 id="4-component-stylings">4. Component Stylings</h2>
+<h3 id="buttons">Buttons</h3>
+<p><strong>Gray Pill (Primary)</strong></p>
+<ul>
+<li>Background: Light Gray (<code>#e5e5e5</code>)</li>
+<li>Text: Near Black (<code>#262626</code>)</li>
+<li>Padding: 10px 24px</li>
+<li>Border: thin solid Light Gray (<code>1px solid #e5e5e5</code>)</li>
+<li>Radius: pill-shaped (9999px)</li>
+<li>The primary action button — understated, grayscale, always pill-shaped</li>
+</ul>
+<p><strong>White Pill (Secondary)</strong></p>
+<ul>
+<li>Background: Pure White (<code>#ffffff</code>)</li>
+<li>Text: Button Text Dark (<code>#404040</code>)</li>
+<li>Padding: 10px 24px</li>
+<li>Border: thin solid Border Light (<code>1px solid #d4d4d4</code>)</li>
+<li>Radius: pill-shaped (9999px)</li>
+<li>Secondary action — visually lighter than Gray Pill</li>
+</ul>
+<p><strong>Black Pill (CTA)</strong></p>
+<ul>
+<li>Background: Pure Black (<code>#000000</code>)</li>
+<li>Text: Pure White (<code>#ffffff</code>)</li>
+<li>Radius: pill-shaped (9999px)</li>
+<li>Inferred from "Create account" and "Explore" buttons</li>
+<li>Maximum emphasis — black on white</li>
+</ul>
+<h3 id="cards--containers">Cards &#x26; Containers</h3>
+<ul>
+<li>Background: Pure White or Snow (<code>#fafafa</code>)</li>
+<li>Border: thin solid Light Gray (<code>1px solid #e5e5e5</code>) when needed</li>
+<li>Radius: comfortably rounded (12px) — the ONLY non-pill radius in the system</li>
+<li>Shadow: <strong>none</strong> — zero shadows on any element</li>
+<li>Hover: likely subtle background shift or border darkening</li>
+</ul>
+<h3 id="inputs--forms">Inputs &#x26; Forms</h3>
+<ul>
+<li>Background: Pure White</li>
+<li>Border: <code>1px solid #e5e5e5</code></li>
+<li>Radius: pill-shaped (9999px) — search inputs and form fields are pill-shaped</li>
+<li>Focus: Ring Blue (<code>#3b82f6</code> at 50%) ring</li>
+<li>Placeholder: Silver (<code>#a3a3a3</code>)</li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li>Clean horizontal nav with minimal elements</li>
+<li>Logo: Ollama llama icon + wordmark in black</li>
+<li>Links: "Models", "Docs", "Pricing" in black at 16px, weight 400</li>
+<li>Search bar: pill-shaped with placeholder text</li>
+<li>Right side: "Sign in" link + "Download" black pill CTA</li>
+<li>No borders, no background — transparent nav on white page</li>
+</ul>
+<h3 id="image-treatment">Image Treatment</h3>
+<ul>
+<li>The Ollama llama mascot is the only illustration — black line art on white</li>
+<li>Code screenshots/terminal outputs shown in bordered containers (12px radius)</li>
+<li>Integration logos displayed as simple icons in a grid</li>
+<li>No photographs, no gradients, no decorative imagery</li>
+</ul>
+<h3 id="distinctive-components">Distinctive Components</h3>
+<p><strong>Tab Pills</strong></p>
+<ul>
+<li>Pill-shaped tab selectors (e.g., "Coding" | "OpenClaw")</li>
+<li>Active: Light Gray bg; Inactive: transparent</li>
+<li>All pill-shaped (9999px)</li>
+</ul>
+<p><strong>Model Tags</strong></p>
+<ul>
+<li>Small pill-shaped tags (e.g., "ollama", "launch", "claude")</li>
+<li>Light Gray background, dark text</li>
+<li>The primary way to browse models</li>
+</ul>
+<p><strong>Terminal Command Block</strong></p>
+<ul>
+<li>Monospace code showing <code>ollama run</code> commands</li>
+<li>Minimal styling — just a bordered 12px-radius container</li>
+<li>Copy button integrated</li>
+</ul>
+<p><strong>Integration Grid</strong></p>
+<ul>
+<li>Grid of integration logos (Codex, Claude Code, OpenCode, LangChain, etc.)</li>
+<li>Each in a bordered pill or card with icon + name</li>
+<li>Tabbed by category (Coding, Documents &#x26; RAG, Automation, Chat)</li>
+</ul>
+<h2 id="5-layout-principles">5. Layout Principles</h2>
+<h3 id="spacing-system">Spacing System</h3>
+<ul>
+<li>Base unit: 8px</li>
+<li>Scale: 4px, 6px, 8px, 9px, 10px, 12px, 14px, 16px, 20px, 24px, 32px, 40px, 48px, 88px, 112px</li>
+<li>Button padding: 10px 24px (consistent across all buttons)</li>
+<li>Card internal padding: approximately 24–32px</li>
+<li>Section vertical spacing: very generous (88px–112px)</li>
+</ul>
+<h3 id="grid--container">Grid &#x26; Container</h3>
+<ul>
+<li>Max container width: approximately 1024–1280px, centered</li>
+<li>Hero: centered single-column with llama illustration</li>
+<li>Feature sections: 2-column layout (text left, code right)</li>
+<li>Integration grid: responsive multi-column</li>
+<li>Footer: clean single-row</li>
+</ul>
+<h3 id="whitespace-philosophy">Whitespace Philosophy</h3>
+<ul>
+<li><strong>Emptiness as luxury</strong>: The page is remarkably short and sparse — no feature section overstays its welcome. Each concept gets minimal but sufficient space.</li>
+<li><strong>Content density is low by design</strong>: Where other AI companies pack feature after feature, Ollama presents three ideas (run models, use with apps, integrations) and stops.</li>
+<li><strong>The white space IS the brand</strong>: Pure white space with zero decoration communicates "this tool gets out of your way."</li>
+</ul>
+<h3 id="border-radius-scale">Border Radius Scale</h3>
+<ul>
+<li>Comfortably rounded (12px): The sole container radius — code blocks, cards, panels</li>
+<li>Pill-shaped (9999px): Everything interactive — buttons, tabs, inputs, tags, badges</li>
+</ul>
+<p><em>This binary system is extreme and distinctive. There is no 4px, no 8px, no gradient of roundness. Elements are either containers (12px) or interactive (pill).</em></p>
+<h2 id="6-depth--elevation">6. Depth &#x26; Elevation</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Treatment</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat (Level 0)</td>
+<td>No shadow, no border</td>
+<td>Page background, most content</td>
+</tr>
+<tr>
+<td>Bordered (Level 1)</td>
+<td><code>1px solid #e5e5e5</code></td>
+<td>Cards, code blocks, buttons</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shadow Philosophy</strong>: Ollama uses <strong>zero shadows</strong>. This is not an oversight — it's a deliberate design decision. Every other major AI product site uses at least subtle shadows. Ollama's flat, shadowless approach creates a paper-like experience where elements are distinguished purely by background color and single-pixel borders. Depth is communicated through <strong>content hierarchy and typography weight</strong>, not visual layering.</p>
+<h2 id="7-dos-and-donts">7. Do's and Don'ts</h2>
+<h3 id="do">Do</h3>
+<ul>
+<li>Use pure white (<code>#ffffff</code>) as the page background — never off-white or cream</li>
+<li>Use pill-shaped (9999px) radius on all interactive elements — buttons, tabs, inputs, tags</li>
+<li>Use 12px radius on all non-interactive containers — code blocks, cards, panels</li>
+<li>Keep the palette strictly grayscale — no chromatic colors except the blue focus ring</li>
+<li>Use SF Pro Rounded at weight 500 for display headings — the rounded terminals are the brand expression</li>
+<li>Maintain zero shadows — depth comes from borders and background shifts only</li>
+<li>Keep content density low — each section should present one clear idea</li>
+<li>Use monospace for terminal commands and code — it's primary content, not decoration</li>
+<li>Keep all buttons at 10px 24px padding with pill shape — consistency is absolute</li>
+</ul>
+<h3 id="dont">Don't</h3>
+<ul>
+<li>Don't introduce any chromatic color — no brand blue, no accent green, no warm tones</li>
+<li>Don't use border-radius between 12px and 9999px — the system is binary</li>
+<li>Don't add shadows to any element — the flat aesthetic is intentional</li>
+<li>Don't use font weights above 500 — no bold, no black weight</li>
+<li>Don't add decorative illustrations beyond the llama mascot</li>
+<li>Don't use gradients anywhere — flat blocks and borders only</li>
+<li>Don't overcomplicate the layout — two columns maximum, no complex grids</li>
+<li>Don't use borders heavier than 1px — containment is always the lightest possible touch</li>
+<li>Don't add hover animations or transitions — interactions should feel instant and direct</li>
+</ul>
+<h2 id="8-responsive-behavior">8. Responsive Behavior</h2>
+<h3 id="breakpoints">Breakpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Width</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile</td>
+<td>&#x3C;640px</td>
+<td>Single column, stacked everything, hamburger nav</td>
+</tr>
+<tr>
+<td>Small Tablet</td>
+<td>640–768px</td>
+<td>Minor adjustments to spacing</td>
+</tr>
+<tr>
+<td>Tablet</td>
+<td>768–850px</td>
+<td>2-column layouts begin</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>850–1024px</td>
+<td>Standard layout, expanded features</td>
+</tr>
+<tr>
+<td>Large Desktop</td>
+<td>1024–1280px</td>
+<td>Maximum content width</td>
+</tr>
+</tbody>
+</table>
+<h3 id="touch-targets">Touch Targets</h3>
+<ul>
+<li>All buttons are pill-shaped with generous padding (10px 24px)</li>
+<li>Navigation links at comfortable 16px size</li>
+<li>Minimum touch area easily exceeds 44x44px</li>
+</ul>
+<h3 id="collapsing-strategy">Collapsing Strategy</h3>
+<ul>
+<li><strong>Navigation</strong>: Collapses to hamburger menu on mobile</li>
+<li><strong>Feature sections</strong>: 2-column → stacked single column</li>
+<li><strong>Hero text</strong>: 48px → 36px → 30px progressive scaling</li>
+<li><strong>Integration grid</strong>: Multi-column → 2-column → single column</li>
+<li><strong>Code blocks</strong>: Horizontal scroll maintained</li>
+</ul>
+<h3 id="image-behavior">Image Behavior</h3>
+<ul>
+<li>Llama mascot scales proportionally</li>
+<li>Code blocks maintain monospace formatting</li>
+<li>Integration icons reflow to fewer columns</li>
+<li>No art direction changes</li>
+</ul>
+<h2 id="9-agent-prompt-guide">9. Agent Prompt Guide</h2>
+<h3 id="quick-color-reference">Quick Color Reference</h3>
+<ul>
+<li>Primary Text: "Pure Black (#000000)"</li>
+<li>Page Background: "Pure White (#ffffff)"</li>
+<li>Secondary Text: "Stone (#737373)"</li>
+<li>Button Background: "Light Gray (#e5e5e5)"</li>
+<li>Borders: "Light Gray (#e5e5e5)"</li>
+<li>Muted Text: "Silver (#a3a3a3)"</li>
+<li>Dark Text: "Near Black (#262626)"</li>
+<li>Subtle Surface: "Snow (#fafafa)"</li>
+</ul>
+<h3 id="example-component-prompts">Example Component Prompts</h3>
+<ul>
+<li>"Create a hero section on pure white (#ffffff) with an illustration centered above a headline at 48px SF Pro Rounded weight 500, line-height 1.0. Use Pure Black (#000000) text. Below, add a black pill-shaped CTA button (9999px radius, 10px 24px padding) and a gray pill button."</li>
+<li>"Design a code block with a 12px border-radius, 1px solid Light Gray (#e5e5e5) border on white background. Use ui-monospace at 16px for the terminal command. No shadow."</li>
+<li>"Build a tab bar with pill-shaped tabs (9999px radius). Active tab: Light Gray (#e5e5e5) background, Near Black (#262626) text. Inactive: transparent background, Stone (#737373) text."</li>
+<li>"Create an integration card grid. Each card is a bordered pill (9999px radius) or a 12px-radius card with 1px solid #e5e5e5 border. Icon + name inside. Grid of 4 columns on desktop."</li>
+<li>"Design a navigation bar: transparent background, no border. Ollama logo on the left, 3 text links (Pure Black, 16px, weight 400), pill search input in the center, 'Sign in' text link and black pill 'Download' button on the right."</li>
+</ul>
+<h3 id="iteration-guide">Iteration Guide</h3>
+<ol>
+<li>Focus on ONE component at a time</li>
+<li>Keep all values grayscale — "Stone (#737373)" not "use a light color"</li>
+<li>Always specify pill (9999px) or container (12px) radius — nothing in between</li>
+<li>Shadows are always zero — never add them</li>
+<li>Weight is always 400 or 500 — never bold</li>
+<li>If something feels too decorated, remove it — less is always more for Ollama</li>
+</ol></div></section></div><textarea hidden readonly data-design-markdown># Design System Inspiration of Ollama
+
+## 1. Visual Theme &amp; Atmosphere
+
+Ollama&#39;s interface is radical minimalism taken to its logical conclusion — a pure-white void where content floats without decoration, shadow, or color. The design philosophy mirrors the product itself: strip away everything unnecessary until only the essential tool remains. This is the digital equivalent of a Dieter Rams object — every pixel earns its place, and the absence of design IS the design.
+
+The entire page exists in pure grayscale. There is zero chromatic color in the interface — no brand blue, no accent green, no semantic red. The only colors that exist are shades between pure black (`#000000`) and pure white (`#ffffff`), creating a monochrome environment that lets the user&#39;s mental model of &quot;open models&quot; remain uncolored by brand opinion. The Ollama llama mascot, rendered in simple black line art, is the only illustration — and even it&#39;s monochrome.
+
+What makes Ollama distinctive is the combination of SF Pro Rounded (Apple&#39;s rounded system font) with an exclusively pill-shaped geometry (9999px radius on everything interactive). The rounded letterforms + rounded buttons + rounded containers create a cohesive &quot;softness language&quot; that makes a developer CLI tool feel approachable and friendly rather than intimidating. This is minimalism with warmth — not cold Swiss-style grid minimalism, but the kind where the edges are literally softened.
+
+**Key Characteristics:**
+- Pure white canvas with zero chromatic color — completely grayscale
+- SF Pro Rounded headlines creating a distinctively Apple-like softness
+- Binary border-radius system: 12px (containers) or 9999px (everything interactive)
+- Zero shadows — depth comes exclusively from background color shifts and borders
+- Pill-shaped geometry on all interactive elements (buttons, tabs, inputs, tags)
+- The Ollama llama as the sole illustration — black line art, no color
+- Extreme content restraint — the homepage is short, focused, and uncluttered
+
+## 2. Color Palette &amp; Roles
+
+### Primary
+- **Pure Black** (`#000000`): Primary headlines, primary links, and the darkest text. The only &quot;color&quot; that demands attention.
+- **Near Black** (`#262626`): Button text on light surfaces, secondary headline weight.
+- **Darkest Surface** (`#090909`): The darkest possible surface — barely distinguishable from pure black, used for footer or dark containers.
+
+### Surface &amp; Background
+- **Pure White** (`#ffffff`): The primary page background — not off-white, not cream, pure white. Button surfaces for secondary actions.
+- **Snow** (`#fafafa`): The subtlest possible surface distinction from white — used for section backgrounds and barely-elevated containers.
+- **Light Gray** (`#e5e5e5`): Button backgrounds, borders, and the primary containment color. The workhorse neutral.
+
+### Neutrals &amp; Text
+- **Stone** (`#737373`): Secondary body text, footer links, and de-emphasized content. The primary &quot;muted&quot; tone.
+- **Mid Gray** (`#525252`): Emphasized secondary text, slightly darker than Stone.
+- **Silver** (`#a3a3a3`): Tertiary text, placeholders, and deeply de-emphasized metadata.
+- **Button Text Dark** (`#404040`): Specific to white-surface button text.
+
+### Semantic &amp; Accent
+- **Ring Blue** (`#3b82f6` at 50%): The ONLY non-gray color in the entire system — Tailwind&#39;s default focus ring, used exclusively for keyboard accessibility. Never visible in normal interaction flow.
+- **Border Light** (`#d4d4d4`): A slightly darker gray for white-surface button borders.
+
+### Gradient System
+- **None.** Ollama uses absolutely no gradients. Visual separation comes from flat color blocks and single-pixel borders. This is a deliberate, almost philosophical design choice.
+
+## 3. Typography Rules
+
+### Font Family
+- **Display**: `SF Pro Rounded`, with fallbacks: `system-ui, -apple-system, system-ui`
+- **Body / UI**: `ui-sans-serif`, with fallbacks: `system-ui, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji`
+- **Monospace**: `ui-monospace`, with fallbacks: `SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New`
+
+*Note: SF Pro Rounded is Apple&#39;s system font — it renders with rounded terminals on macOS/iOS and falls back to the system sans-serif on other platforms.*
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
+|------|------|------|--------|-------------|----------------|-------|
+| Display / Hero | SF Pro Rounded | 48px (3rem) | 500 | 1.00 (tight) | normal | Maximum impact, rounded letterforms |
+| Section Heading | SF Pro Rounded | 36px (2.25rem) | 500 | 1.11 (tight) | normal | Feature section titles |
+| Sub-heading | SF Pro Rounded / ui-sans-serif | 30px (1.88rem) | 400–500 | 1.20 (tight) | normal | Card headings, feature names |
+| Card Title | ui-sans-serif | 24px (1.5rem) | 400 | 1.33 | normal | Medium emphasis headings |
+| Body Large | ui-sans-serif | 18px (1.13rem) | 400–500 | 1.56 | normal | Hero descriptions, button text |
+| Body / Link | ui-sans-serif | 16px (1rem) | 400–500 | 1.50 | normal | Standard body text, navigation |
+| Caption | ui-sans-serif | 14px (0.88rem) | 400 | 1.43 | normal | Metadata, descriptions |
+| Small | ui-sans-serif | 12px (0.75rem) | 400 | 1.33 | normal | Smallest sans-serif text |
+| Code Body | ui-monospace | 16px (1rem) | 400 | 1.50 | normal | Inline code, commands |
+| Code Caption | ui-monospace | 14px (0.88rem) | 400 | 1.43 | normal | Code snippets, secondary |
+| Code Small | ui-monospace | 12px (0.75rem) | 400–700 | 1.63 | normal | Tags, labels |
+
+### Principles
+- **Rounded display, standard body**: SF Pro Rounded carries display headlines with its distinctive rounded terminals, while the standard system sans handles all body text. The rounded font IS the brand expression.
+- **Weight restraint**: Only two weights matter — 400 (regular) for body and 500 (medium) for headings. No bold, no light, no black weight. This extreme restraint reinforces the minimal philosophy.
+- **Tight display, comfortable body**: Headlines compress to 1.0 line-height, while body text relaxes to 1.43–1.56. The contrast creates clear hierarchy without needing weight contrast.
+- **Monospace for developer identity**: Code blocks and terminal commands appear throughout as primary content, using the system monospace stack.
+
+## 4. Component Stylings
+
+### Buttons
+
+**Gray Pill (Primary)**
+- Background: Light Gray (`#e5e5e5`)
+- Text: Near Black (`#262626`)
+- Padding: 10px 24px
+- Border: thin solid Light Gray (`1px solid #e5e5e5`)
+- Radius: pill-shaped (9999px)
+- The primary action button — understated, grayscale, always pill-shaped
+
+**White Pill (Secondary)**
+- Background: Pure White (`#ffffff`)
+- Text: Button Text Dark (`#404040`)
+- Padding: 10px 24px
+- Border: thin solid Border Light (`1px solid #d4d4d4`)
+- Radius: pill-shaped (9999px)
+- Secondary action — visually lighter than Gray Pill
+
+**Black Pill (CTA)**
+- Background: Pure Black (`#000000`)
+- Text: Pure White (`#ffffff`)
+- Radius: pill-shaped (9999px)
+- Inferred from &quot;Create account&quot; and &quot;Explore&quot; buttons
+- Maximum emphasis — black on white
+
+### Cards &amp; Containers
+- Background: Pure White or Snow (`#fafafa`)
+- Border: thin solid Light Gray (`1px solid #e5e5e5`) when needed
+- Radius: comfortably rounded (12px) — the ONLY non-pill radius in the system
+- Shadow: **none** — zero shadows on any element
+- Hover: likely subtle background shift or border darkening
+
+### Inputs &amp; Forms
+- Background: Pure White
+- Border: `1px solid #e5e5e5`
+- Radius: pill-shaped (9999px) — search inputs and form fields are pill-shaped
+- Focus: Ring Blue (`#3b82f6` at 50%) ring
+- Placeholder: Silver (`#a3a3a3`)
+
+### Navigation
+- Clean horizontal nav with minimal elements
+- Logo: Ollama llama icon + wordmark in black
+- Links: &quot;Models&quot;, &quot;Docs&quot;, &quot;Pricing&quot; in black at 16px, weight 400
+- Search bar: pill-shaped with placeholder text
+- Right side: &quot;Sign in&quot; link + &quot;Download&quot; black pill CTA
+- No borders, no background — transparent nav on white page
+
+### Image Treatment
+- The Ollama llama mascot is the only illustration — black line art on white
+- Code screenshots/terminal outputs shown in bordered containers (12px radius)
+- Integration logos displayed as simple icons in a grid
+- No photographs, no gradients, no decorative imagery
+
+### Distinctive Components
+
+**Tab Pills**
+- Pill-shaped tab selectors (e.g., &quot;Coding&quot; | &quot;OpenClaw&quot;)
+- Active: Light Gray bg; Inactive: transparent
+- All pill-shaped (9999px)
+
+**Model Tags**
+- Small pill-shaped tags (e.g., &quot;ollama&quot;, &quot;launch&quot;, &quot;claude&quot;)
+- Light Gray background, dark text
+- The primary way to browse models
+
+**Terminal Command Block**
+- Monospace code showing `ollama run` commands
+- Minimal styling — just a bordered 12px-radius container
+- Copy button integrated
+
+**Integration Grid**
+- Grid of integration logos (Codex, Claude Code, OpenCode, LangChain, etc.)
+- Each in a bordered pill or card with icon + name
+- Tabbed by category (Coding, Documents &amp; RAG, Automation, Chat)
+
+## 5. Layout Principles
+
+### Spacing System
+- Base unit: 8px
+- Scale: 4px, 6px, 8px, 9px, 10px, 12px, 14px, 16px, 20px, 24px, 32px, 40px, 48px, 88px, 112px
+- Button padding: 10px 24px (consistent across all buttons)
+- Card internal padding: approximately 24–32px
+- Section vertical spacing: very generous (88px–112px)
+
+### Grid &amp; Container
+- Max container width: approximately 1024–1280px, centered
+- Hero: centered single-column with llama illustration
+- Feature sections: 2-column layout (text left, code right)
+- Integration grid: responsive multi-column
+- Footer: clean single-row
+
+### Whitespace Philosophy
+- **Emptiness as luxury**: The page is remarkably short and sparse — no feature section overstays its welcome. Each concept gets minimal but sufficient space.
+- **Content density is low by design**: Where other AI companies pack feature after feature, Ollama presents three ideas (run models, use with apps, integrations) and stops.
+- **The white space IS the brand**: Pure white space with zero decoration communicates &quot;this tool gets out of your way.&quot;
+
+### Border Radius Scale
+- Comfortably rounded (12px): The sole container radius — code blocks, cards, panels
+- Pill-shaped (9999px): Everything interactive — buttons, tabs, inputs, tags, badges
+
+*This binary system is extreme and distinctive. There is no 4px, no 8px, no gradient of roundness. Elements are either containers (12px) or interactive (pill).*
+
+## 6. Depth &amp; Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| Flat (Level 0) | No shadow, no border | Page background, most content |
+| Bordered (Level 1) | `1px solid #e5e5e5` | Cards, code blocks, buttons |
+
+**Shadow Philosophy**: Ollama uses **zero shadows**. This is not an oversight — it&#39;s a deliberate design decision. Every other major AI product site uses at least subtle shadows. Ollama&#39;s flat, shadowless approach creates a paper-like experience where elements are distinguished purely by background color and single-pixel borders. Depth is communicated through **content hierarchy and typography weight**, not visual layering.
+
+## 7. Do&#39;s and Don&#39;ts
+
+### Do
+- Use pure white (`#ffffff`) as the page background — never off-white or cream
+- Use pill-shaped (9999px) radius on all interactive elements — buttons, tabs, inputs, tags
+- Use 12px radius on all non-interactive containers — code blocks, cards, panels
+- Keep the palette strictly grayscale — no chromatic colors except the blue focus ring
+- Use SF Pro Rounded at weight 500 for display headings — the rounded terminals are the brand expression
+- Maintain zero shadows — depth comes from borders and background shifts only
+- Keep content density low — each section should present one clear idea
+- Use monospace for terminal commands and code — it&#39;s primary content, not decoration
+- Keep all buttons at 10px 24px padding with pill shape — consistency is absolute
+
+### Don&#39;t
+- Don&#39;t introduce any chromatic color — no brand blue, no accent green, no warm tones
+- Don&#39;t use border-radius between 12px and 9999px — the system is binary
+- Don&#39;t add shadows to any element — the flat aesthetic is intentional
+- Don&#39;t use font weights above 500 — no bold, no black weight
+- Don&#39;t add decorative illustrations beyond the llama mascot
+- Don&#39;t use gradients anywhere — flat blocks and borders only
+- Don&#39;t overcomplicate the layout — two columns maximum, no complex grids
+- Don&#39;t use borders heavier than 1px — containment is always the lightest possible touch
+- Don&#39;t add hover animations or transitions — interactions should feel instant and direct
+
+## 8. Responsive Behavior
+
+### Breakpoints
+| Name | Width | Key Changes |
+|------|-------|-------------|
+| Mobile | &lt;640px | Single column, stacked everything, hamburger nav |
+| Small Tablet | 640–768px | Minor adjustments to spacing |
+| Tablet | 768–850px | 2-column layouts begin |
+| Desktop | 850–1024px | Standard layout, expanded features |
+| Large Desktop | 1024–1280px | Maximum content width |
+
+### Touch Targets
+- All buttons are pill-shaped with generous padding (10px 24px)
+- Navigation links at comfortable 16px size
+- Minimum touch area easily exceeds 44x44px
+
+### Collapsing Strategy
+- **Navigation**: Collapses to hamburger menu on mobile
+- **Feature sections**: 2-column → stacked single column
+- **Hero text**: 48px → 36px → 30px progressive scaling
+- **Integration grid**: Multi-column → 2-column → single column
+- **Code blocks**: Horizontal scroll maintained
+
+### Image Behavior
+- Llama mascot scales proportionally
+- Code blocks maintain monospace formatting
+- Integration icons reflow to fewer columns
+- No art direction changes
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Primary Text: &quot;Pure Black (#000000)&quot;
+- Page Background: &quot;Pure White (#ffffff)&quot;
+- Secondary Text: &quot;Stone (#737373)&quot;
+- Button Background: &quot;Light Gray (#e5e5e5)&quot;
+- Borders: &quot;Light Gray (#e5e5e5)&quot;
+- Muted Text: &quot;Silver (#a3a3a3)&quot;
+- Dark Text: &quot;Near Black (#262626)&quot;
+- Subtle Surface: &quot;Snow (#fafafa)&quot;
+
+### Example Component Prompts
+- &quot;Create a hero section on pure white (#ffffff) with an illustration centered above a headline at 48px SF Pro Rounded weight 500, line-height 1.0. Use Pure Black (#000000) text. Below, add a black pill-shaped CTA button (9999px radius, 10px 24px padding) and a gray pill button.&quot;
+- &quot;Design a code block with a 12px border-radius, 1px solid Light Gray (#e5e5e5) border on white background. Use ui-monospace at 16px for the terminal command. No shadow.&quot;
+- &quot;Build a tab bar with pill-shaped tabs (9999px radius). Active tab: Light Gray (#e5e5e5) background, Near Black (#262626) text. Inactive: transparent background, Stone (#737373) text.&quot;
+- &quot;Create an integration card grid. Each card is a bordered pill (9999px radius) or a 12px-radius card with 1px solid #e5e5e5 border. Icon + name inside. Grid of 4 columns on desktop.&quot;
+- &quot;Design a navigation bar: transparent background, no border. Ollama logo on the left, 3 text links (Pure Black, 16px, weight 400), pill search input in the center, &#39;Sign in&#39; text link and black pill &#39;Download&#39; button on the right.&quot;
+
+### Iteration Guide
+1. Focus on ONE component at a time
+2. Keep all values grayscale — &quot;Stone (#737373)&quot; not &quot;use a light color&quot;
+3. Always specify pill (9999px) or container (12px) radius — nothing in between
+4. Shadows are always zero — never add them
+5. Weight is always 400 or 500 — never bold
+6. If something feels too decorated, remove it — less is always more for Ollama
+</textarea></section><script type="module">function e(e){return Array.from(e.querySelectorAll(`h2`)).map(e=>({heading:e,label:(e.textContent??``).trim()})).filter(e=>e.label.length>0)}function t(e,t){let n=-1;return e.forEach((e,r)=>{e<=t&&(n=r)}),n}function n(){return typeof window.matchMedia==`function`&&window.matchMedia(`(prefers-reduced-motion: reduce)`).matches}function r(r,i){let a=[],o=[],s=-1,c=0,l=e=>{e!==s&&(s=e,o.forEach((t,i)=>{let a=i===e;if(t.classList.toggle(`is-active`,a),a){t.setAttribute(`aria-current`,`location`);let e=t.offsetLeft-(r.clientWidth-t.offsetWidth)/2;r.scrollTo?.({left:Math.max(0,e),behavior:n()?`auto`:`smooth`})}else t.removeAttribute(`aria-current`)}))},u=()=>{if(c=0,a.length===0)return;let e=i.getBoundingClientRect().bottom+24;l(t(a.map(e=>e.heading.getBoundingClientRect().top),e))},d=()=>{c||=window.requestAnimationFrame(u)};return window.addEventListener(`scroll`,d,{passive:!0}),window.addEventListener(`resize`,d),{show(t){a=t?e(t):[],s=-1,r.replaceChildren(),o=[];let i=a.length>=2;r.hidden=!i,i&&(o=a.map(e=>{let t=document.createElement(`button`);return t.type=`button`,t.className=`detail-outline-link`,t.textContent=e.label,t.title=e.label,t.addEventListener(`click`,()=>{e.heading.scrollIntoView({behavior:n()?`auto`:`smooth`,block:`start`})}),t}),r.append(...o),r.scrollTo?.({left:0}),d())}}}function i(e,t){e&&(e.classList.toggle(`is-visible`,t),e.setAttribute(`aria-hidden`,t?`false`:`true`),e instanceof HTMLAnchorElement&&(e.tabIndex=t?0:-1))}function a(e=document){e.querySelectorAll(`[data-document-tabs]`).forEach(e=>{let t={copyDesign:e.dataset.copyDesignLabel??`Copy DESIGN.md`,copiedText:e.dataset.copiedLabel??`Copied`,copyFailedText:e.dataset.copyFailedLabel??`Copy failed`},n=Array.from(e.querySelectorAll(`[data-doc-tab]`)),a=Array.from(e.querySelectorAll(`[data-doc-panel]`)),o=e.querySelector(`[data-copy-design]`),s=e.querySelector(`[data-download-design]`),c=e.querySelector(`[data-design-markdown]`),l=e.querySelector(`[data-doc-outline]`),u=e.querySelector(`[data-doc-bar]`),d=l&&u?r(l,u):void 0;u&&typeof ResizeObserver<`u`&&new ResizeObserver(()=>{e.style.setProperty(`--doc-bar-height`,`${u.offsetHeight}px`)}).observe(u);let f=e=>{n.forEach(t=>{let n=t.getAttribute(`data-doc-tab`)===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-selected`,n?`true`:`false`)}),a.forEach(t=>{let n=t.getAttribute(`data-doc-panel`)===e;t.classList.toggle(`is-active`,n),t.toggleAttribute(`hidden`,!n)}),d?.show(a.find(t=>t.getAttribute(`data-doc-panel`)===e)??null);let r=e===`design`;o&&(o.disabled=!r,o.setAttribute(`aria-disabled`,r?`false`:`true`),o.textContent=t.copyDesign,i(o,r)),i(s,r)};n.forEach(e=>{e.addEventListener(`click`,()=>{f(e.getAttribute(`data-doc-tab`)||`readme`)})}),o&&c&&o.addEventListener(`click`,async()=>{if(!o.disabled)try{await navigator.clipboard.writeText(c.value),o.textContent=t.copiedText}catch{o.textContent=t.copyFailedText}}),f(`readme`)})}a();</script></div><nav class="detail-adjacent-nav" aria-label="相邻设计"><a class="detail-adjacent-link" href="/zh-CN/designs/nvidia/" data-adjacent-link="previous" aria-keyshortcuts="ArrowLeft"><span><kbd aria-hidden="true">←</kbd>上一个</span><strong>NVIDIA</strong></a><a class="detail-adjacent-link detail-adjacent-link-next" href="/zh-CN/designs/opencode.ai/" data-adjacent-link="next" aria-keyshortcuts="ArrowRight"><span>下一个<kbd aria-hidden="true">→</kbd></span><strong>OpenCode AI</strong></a></nav><astro-island uid="Z1JQv8T" prefix="r2" component-url="/_astro/HagiCodeShowcase.BTfkzqJ-.js" component-export="default" renderer-url="/_astro/client.CuuXzlfV.js" props="{&quot;locale&quot;:[0,&quot;zh-CN&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;HagiCodeShowcase&quot;,&quot;value&quot;:true}" await-children><section class="gallery-showcase shell-panel" aria-label="Hagicode"><div class="gallery-showcase-content"><div class="gallery-showcase-head"><div><p class="gallery-meta-label">由 HagiCode 构建</p><h2>Hagicode</h2></div></div><div class="gallery-showcase-copy"><p>HagiCode 是一套智能体编码工作台：OpenSpec 工作流、多 Agent 并行执行与 Hero 场景视图，把想法变成真正交付的软件。</p><p>让想法更快变成好用的软件，让智能编码更聪明、更高效，也更有趣。</p></div><ul class="gallery-showcase-triad" aria-label="Hagicode"><li><strong>Smart</strong><span>OpenSpec 将意图转化为从想法到交付的可执行路径。</span></li><li><strong>Efficient</strong><span>多 Agent 工作流让调研、实现与审阅并行推进。</span></li><li><strong>Fun</strong><span>Hero 场景让长时间编码协作更直观、更有参与感。</span></li></ul><div class="gallery-showcase-actions"><a class="gallery-showcase-cta button-primary" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcasePrimary" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="访问 HagiCode">访问 HagiCode</a><a class="gallery-showcase-learn-more" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcaseLearnMore" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="了解更多">了解更多</a><span class="gallery-showcase-store" data-store-entry="gallery-hagicode" data-ga-category="download" data-ga-label="microsoftStore" data-ga-location="design_showcase"><ms-store-badge productid="9N3PM0N3SVDW" productname="HagiCode" window-mode="direct" theme="auto" size="small" language="zh-cn" animation="on" aria-label="Open HagiCode in Microsoft Store" title="Open HagiCode in Microsoft Store"></ms-store-badge></span></div></div><section class="gallery-video-promo" aria-labelledby="gallery-video-promo-title"><div class="gallery-video-promo-heading"><h3 id="gallery-video-promo-title">HagiCode promo</h3><p>看看 HagiCode 如何让 Agentic Coding 真正运转起来。</p></div><div class="gallery-video-promo-featured"><span class="gallery-video-promo-platform">HagiCode 总览</span><div class="gallery-video-promo-frame"><iframe src="https://player.bilibili.com/player.html?bvid=BV1z4oWB3EpY&amp;page=1&amp;high_quality=1&amp;danmaku=0&amp;autoplay=1&amp;muted=1&amp;mute=1" title="HagiCode 总览" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin" sandbox="allow-scripts allow-same-origin allow-presentation"></iframe></div><p>看看 HagiCode 如何让 Agentic Coding 真正运转起来。</p><a href="https://www.bilibili.com/video/BV1z4oWB3EpY/" target="_blank" rel="noopener noreferrer">在 Bilibili 观看 HagiCode 总览</a></div><a class="gallery-video-promo-alternate" href="https://www.youtube.com/watch?v=AQ8oSTW6wNQ" target="_blank" rel="noopener noreferrer">在 YouTube 观看</a></section></section><!--astro:end--></astro-island></section></main><hagilight-promoto-banner class="hagilight-promoto" data-locale="zh-CN" data-site-id="awesome-design-gallery" hidden="true"><section class="hagilight-promoto__shell" data-promoto-shell hidden aria-label="Featured promotion"><div class="hagilight-promoto__viewport"><div class="hagilight-promoto__track" data-promoto-track></div></div><nav class="hagilight-promoto__controls" data-promoto-controls aria-label="Promotion controls" hidden><button type="button" class="hagilight-promoto__control" data-promoto-previous aria-label="Previous promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="hagilight-promoto__count" data-promoto-count aria-label="Promotion progress"></span><button type="button" class="hagilight-promoto__control" data-promoto-next aria-label="Next promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="hagilight-promoto__control" data-promoto-pause aria-pressed="false" aria-label="Pause automatic promotion rotation"><svg class="hagilight-promoto__icon hagilight-promoto__icon--pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12"></path></svg><svg class="hagilight-promoto__icon hagilight-promoto__icon--play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z"></path></svg></button></nav><button type="button" class="hagilight-promoto__dismiss" data-promoto-dismiss aria-label="Dismiss promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></svg></button><span class="hagilight-promoto__progress" data-promoto-progress aria-hidden="true"></span><span class="hagilight-promoto__status" data-promoto-status aria-live="polite"></span></section></hagilight-promoto-banner><script type="module" src="/_astro/PromotoBanner.astro_astro_type_script_index_0_lang.YMDSqX7X.js"></script><footer class="hagilight-footer astro-foja5axx"><section class="hagilight-brand astro-cysah6db" lang="zh-CN" aria-labelledby="hagilight-brand-title"><div class="hagilight-brand__lead astro-cysah6db"><div class="hagilight-brand__title astro-cysah6db"><picture class="hagilight-brand__avatar astro-cysah6db" data-random-fan="[&quot;cat-head-gallery/g002-ukiyo-e-01.avif&quot;,&quot;cat-head-gallery/g003-watercolor-wash-02.avif&quot;,&quot;cat-head-gallery/g004-pixel-art-03.avif&quot;,&quot;cat-head-gallery/g005-oil-impasto-06.avif&quot;,&quot;cat-head-gallery/g006-paper-cut-layers-07.avif&quot;,&quot;cat-head-gallery/g008-low-poly-07.avif&quot;,&quot;cat-head-gallery/g009-claymation-07.avif&quot;,&quot;cat-head-gallery/g010-neon-line-07.avif&quot;,&quot;cat-head-gallery/g016-bauhaus-geometry-06.avif&quot;,&quot;cat-head-gallery/g017-cyanotype-06.avif&quot;,&quot;cat-head-gallery/g020-origami-03.avif&quot;,&quot;cat-head-gallery/g022-blueprint-03.avif&quot;,&quot;cat-head-gallery/g023-chalk-pastel-10.avif&quot;,&quot;cat-head-gallery/g025-voxel-03.avif&quot;,&quot;cat-head-gallery/g031-illuminated-manuscript-04.avif&quot;,&quot;cat-head-gallery/g034-vaporwave-04.avif&quot;,&quot;cat-head-gallery/g035-synthwave-chrome-09.avif&quot;,&quot;cat-head-gallery/g038-frosted-glass-02.avif&quot;,&quot;cat-head-gallery/g039-needle-felt-09.avif&quot;,&quot;cat-head-gallery/g041-glossy-balloon-05.avif&quot;,&quot;cat-head-gallery/g042-blue-white-porcelain-05.avif&quot;,&quot;cat-head-gallery/g043-glazed-ceramic-06.avif&quot;,&quot;cat-head-gallery/g045-impressionist-08.avif&quot;,&quot;cat-head-gallery/g047-fauvist-09.avif&quot;,&quot;cat-head-gallery/g048-cubist-10.avif&quot;,&quot;cat-head-gallery/g051-naive-folk-art-07.avif&quot;,&quot;cat-head-gallery/g056-wax-print-fabric-07.avif&quot;,&quot;cat-head-gallery/g058-red-paper-cut-10.avif&quot;,&quot;cat-head-gallery/g060-kawaii-pastel-01.avif&quot;,&quot;cat-head-gallery/g061-retro-90s-anime-01.avif&quot;,&quot;cat-head-gallery/g062-shoujo-sparkle-08.avif&quot;,&quot;cat-head-gallery/g065-saturday-cartoon-09.avif&quot;,&quot;cat-head-gallery/g067-pixar-style-3d-03.avif&quot;,&quot;cat-head-gallery/g068-toon-shaded-3d-04.avif&quot;,&quot;cat-head-gallery/g069-ps1-lowpoly-06.avif&quot;,&quot;cat-head-gallery/g070-matte-clay-render-07.avif&quot;,&quot;cat-head-gallery/g071-y2k-chrome-08.avif&quot;,&quot;cat-head-gallery/g072-glossy-3d-icon-08.avif&quot;,&quot;cat-head-gallery/g073-marble-bust-08.avif&quot;,&quot;cat-head-gallery/g075-wood-carving-10.avif&quot;,&quot;cat-head-gallery/g076-carved-jade-10.avif&quot;,&quot;cat-head-gallery/g078-toy-brick-02.avif&quot;,&quot;cat-head-gallery/g079-designer-vinyl-toy-02.avif&quot;,&quot;cat-head-gallery/g081-patchwork-quilt-03.avif&quot;,&quot;cat-head-gallery/g083-warhol-silkscreen-04.avif&quot;,&quot;cat-head-gallery/g088-vintage-lithograph-02.avif&quot;,&quot;cat-head-gallery/g090-alcohol-marker-09.avif&quot;,&quot;cat-head-gallery/g091-painterly-concept-art-09.avif&quot;,&quot;cat-head-gallery/g092-gradient-minimal-09.avif&quot;,&quot;cat-head-gallery/g095-constellation-map-09.avif&quot;]"><source type="image/avif" srcset="/_astro/avatar.BPGAI8am.avif" class="astro-cysah6db"><source type="image/webp" srcset="/_astro/avatar.BBqcj7YN.webp" class="astro-cysah6db"><img src="/_astro/avatar.BBqcj7YN.webp" width="64" height="64" alt aria-hidden="true" loading="lazy" decoding="async" class="astro-cysah6db"></picture><h2 class="hagilight-brand__headline astro-cysah6db" id="hagilight-brand-title">让想法变成真正交付的软件。</h2></div><div class="hagilight-brand__body astro-cysah6db"><p class="hagilight-brand__summary astro-cysah6db">HagiCode 是面向项目开发的 AI 编码工作台：用 OpenSpec 工作流规划变更，多 Agent 并行执行，再由 Hero Scenario 让进度一目了然，把想法变成真正交付的软件。</p><div class="hagilight-brand__actions astro-cysah6db"><a class="hagilight-brand__primary astro-cysah6db" href="https://www.hagicode.com/zh-CN/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer_brand"><span class="astro-cysah6db">下载 Hagicode</span><svg class="hagilight-brand__arrow astro-cysah6db" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="astro-cysah6db"></path></svg></a><a class="hagilight-brand__secondary astro-cysah6db" href="https://docs.hagicode.com/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer_brand">产品文档</a></div></div></div><dl class="hagilight-brand__pillars astro-cysah6db"><div class="hagilight-brand__pillar astro-cysah6db" data-pillar="smart" style="--hagilight-brand-i: 0"><dt class="astro-cysah6db">智能</dt><dd class="astro-cysah6db">OpenSpec 工作流把意图变成从提案到交付的可执行路径。</dd></div><div class="hagilight-brand__pillar astro-cysah6db" data-pillar="efficient" style="--hagilight-brand-i: 1"><dt class="astro-cysah6db">高效</dt><dd class="astro-cysah6db">多 Agent 并行推进调研、实现与审阅。</dd></div><div class="hagilight-brand__pillar astro-cysah6db" data-pillar="fun" style="--hagilight-brand-i: 2"><dt class="astro-cysah6db">有趣</dt><dd class="astro-cysah6db">丰富、便捷的界面交互，让规划、Agent 执行和项目工作更容易跟进。</dd></div></dl><script type="module">var e=/^([a-z0-9][a-z0-9_-]*)\/[a-z0-9][a-z0-9_-]*\.avif$/u;function t(t){if(!Array.isArray(t)||t.length<12||t.length>200)throw TypeError(`Hagilight random pool must list 12 to 200 R2 objects.`);let n;for(let r of t){let t=typeof r==`string`?e.exec(r):null;if(!t)throw TypeError(`Hagilight random pool entry "${String(r)}" must be an <album>/<key>.avif object path.`);if(n??=t[1],t[1]!==n)throw TypeError(`Hagilight random pool entries must all come from one album.`)}if(new Set(t).size!==t.length)throw TypeError(`Hagilight random pool entries must be unique.`);return Object.freeze([...t])}function n(e){let t=e();return Number.isFinite(t)?Math.min(Math.max(t,0),1-2**-52):0}function r(e,t,r=Math.random){let i=[...e],a=Math.min(Math.max(Math.floor(t),0),i.length);for(let e=0;e<a;e+=1){let t=e+Math.floor(n(r)*(i.length-e));[i[e],i[t]]=[i[t],i[e]]}return i.slice(0,a)}function i(e){return`https://img-gen.hagicode.com/${e}`}function a(e,t={}){return new Promise(n=>{let r=t.setTimer??((e,t)=>setTimeout(e,t)),i=t.clearTimer??(e=>clearTimeout(e)),a,o=e=>{i(a),n(e)};try{let n=t.createImage?t.createImage():new Image;n.onload=()=>o(!0),n.onerror=()=>o(!1),a=r(()=>o(!1),3e3),n.src=e}catch{o(!1)}})}function o(){return(typeof navigator>`u`?void 0:navigator.connection)?.saveData===!0}function s(e,t,n=6){return((e-t)%n+n)%n}function c(){return typeof matchMedia==`function`&&matchMedia(`(prefers-reduced-motion: reduce)`).matches}function l(e,t){if(typeof IntersectionObserver!=`function`){t(!0);return}new IntersectionObserver(e=>t(e[e.length-1]?.isIntersecting===!0),{rootMargin:`0px 0px 160px 0px`}).observe(e)}function u(e,t,n,r){let i=e.ownerDocument.createElement(`span`);i.className=`hagilight-fan`;let a=n.slice(0,r).map(n=>{let r=t?t.cloneNode(!1):e.ownerDocument.createElement(`img`);return r.removeAttribute(`srcset`),r.removeAttribute(`sizes`),r.removeAttribute(`loading`),r.setAttribute(`class`,`hagilight-fan__card`),r.setAttribute(`src`,n),i.append(r),r});return e.append(i),e.offsetWidth,t?.setAttribute(`data-fan-out`,``),a.forEach((e,t)=>e.setAttribute(`data-slot`,String(t))),a}async function d(e,n){if(e.setAttribute(`data-random-state`,`default`),(n.saveData??o)())return!1;let d;try{d=t(JSON.parse(e.getAttribute(`data-random-fan`)??`null`))}catch{return!1}let f=!1,p,m=new Promise(e=>{p=e});(n.watch??l)(e,e=>{f=e,e&&p()}),await m;let h=n.random??Math.random,g=!(n.reducedMotion??c)(),_=r(d,g?6:3,h).map(i),v=(await Promise.all(_.map(async e=>await a(e,n)?e:``))).filter(Boolean);if(v.length<3)return!1;let y=g&&v.length===6,b=u(e,e.querySelector(`img`),v,y?6:3);if(e.setAttribute(`data-random-state`,`fan`),y){let t=0,r=()=>{};r=(n.every??((e,t)=>{let n=setInterval(e,t);return()=>clearInterval(n)}))(()=>{e.isConnected===!1?r():f&&!(n.tabHidden??(()=>typeof document<`u`&&document.hidden))()&&(t+=1,b.forEach((e,n)=>e.setAttribute(`data-slot`,String(s(n,t,b.length)))))},3600)}return!0}function f(e,t={}){return Array.from(e.querySelectorAll(`[data-random-fan]:not([data-random-state])`)).map(e=>d(e,t).catch(()=>!1))}f(document);</script></section><div class="hagilight-footer__sections astro-foja5axx"><section class="astro-foja5axx"><h2 class="astro-foja5axx">生态站点</h2><nav aria-label="生态站点链接" class="astro-foja5axx"><ul class="astro-foja5axx"><li class="astro-foja5axx"><a href="https://tasks.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiTask</a></li><li class="astro-foja5axx"><a href="https://cost.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">算一算，AI会不会淘汰我</a></li><li class="astro-foja5axx"><a href="https://www.hagicode.com/zh-CN/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiCode 主站</a></li><li class="astro-foja5axx"><a href="https://newbe.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">newbe</a></li><li class="astro-foja5axx"><a href="https://index.hagicode.com/data/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Index Data Mirror</a></li><li class="astro-foja5axx"><a href="https://builder.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Docker Compose Builder</a></li><li class="astro-foja5axx"><a href="https://status.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiCode Status</a></li><li class="astro-foja5axx"><a href="https://awesome.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Awesome Sites</a></li><li class="astro-foja5axx"><a href="https://soul.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Soul Builder</a></li><li class="astro-foja5axx"><a href="https://trait.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Trait Builder</a></li><li class="astro-foja5axx"><a href="https://openspec.hagicode.com/zh-CN/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">OpenSpec 文档</a></li><li class="astro-foja5axx"><a href="https://omniroute.hagicode.com/zh-CN/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">OmniRoute 文档</a></li><li class="astro-foja5axx"><a href="https://fullstack.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiCode Fullstack</a></li><li class="astro-foja5axx"><a href="https://gallery.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiCode Gallery</a></li></ul></nav></section><section class="astro-foja5axx"><h2 class="astro-foja5axx">快速链接</h2><nav aria-label="快速链接" class="astro-foja5axx"><ul class="astro-foja5axx"><li class="astro-foja5axx"><a href="https://www.hagicode.com/zh-CN/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer" class="astro-foja5axx">下载 Hagicode</a></li><li class="astro-foja5axx"><a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" target="_blank" rel="noopener noreferrer" data-ga-category="store" data-ga-label="microsoftStore" data-ga-location="footer" class="astro-foja5axx">下载 Hagicode Windows 版本</a></li><li class="astro-foja5axx"><a href="https://docs.hagicode.com/installation/docker-compose/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="navigation" data-ga-label="dockerCompose" data-ga-location="footer" class="astro-foja5axx">Docker Compose 安装</a></li><li class="astro-foja5axx"><a href="https://docs.hagicode.com/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer" class="astro-foja5axx">产品文档</a></li><li class="astro-foja5axx"><a href="https://docs.hagicode.com/blog/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="navigation" data-ga-label="blogPosts" data-ga-location="footer" class="astro-foja5axx">博客文章</a></li><li class="astro-foja5axx"><a href="https://design.hagicode.com/rss.xml" class="astro-foja5axx">RSS 订阅</a></li><li class="astro-foja5axx"><a href="https://design.hagicode.com/rss.zh-CN.xml" class="astro-foja5axx">当前语言 RSS</a></li><li class="astro-foja5axx"><a href="/sitemap-index.xml" class="astro-foja5axx">站点地图</a></li><li class="astro-foja5axx"><a href="https://www.hagicode.com/zh-CN/about/?utm_source=awesome-design-gallery&amp;utm_medium=footer" class="astro-foja5axx">关于 HagiCode</a></li></ul></nav></section><section class="astro-foja5axx"><h2 class="astro-foja5axx">社区</h2><nav aria-label="社区链接" class="astro-foja5axx"><ul class="astro-foja5axx"><li class="astro-foja5axx"><a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="github" data-ga-location="footer" class="astro-foja5axx">GitHub</a></li><li class="astro-foja5axx"><a href="https://discord.gg/qY662sJK" target="_blank" rel="noopener noreferrer" data-ga-category="community" data-ga-label="discord" data-ga-location="footer" class="astro-foja5axx">Discord</a></li><li class="astro-foja5axx"><a href="https://github.com/HagiCode-org/site/issues" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="issueFeedback" data-ga-location="footer" class="astro-foja5axx">问题反馈</a></li><li class="astro-foja5axx"><a href="mailto:support@hagicode.com" class="astro-foja5axx">联系邮箱</a></li><li class="astro-foja5axx"><a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer" class="astro-foja5axx">QQ 群 610394020</a></li></ul></nav></section></div><nav class="hagilight-footer__filings astro-foja5axx" aria-label="查看备案信息"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="查看 ICP 备案信息" class="astro-foja5axx">闽ICP备2026004153号-1</a><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer" aria-label="查看公安备案信息" class="astro-foja5axx">闽公网安备35011102351148号</a></nav><p class="hagilight-footer__copyright astro-foja5axx"><span>© 2026 HagiCode</span> | <span class="hagilight-footer__build astro-foja5axx" data-build-field="branch">Branch: main</span> | <span class="hagilight-footer__build astro-foja5axx" data-build-field="commit" title="7d6eaf2516e6a980ae49848f21b1166108683218" data-build-commit="7d6eaf2516e6a980ae49848f21b1166108683218">Commit: 7d6eaf2</span> | <span class="hagilight-footer__build astro-foja5axx" data-build-field="builtAt">Built: <time datetime="2026-10-24T07:19:03Z" class="astro-foja5axx">2026-10-24T07:19:03Z</time></span></p></footer></div><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script>(function(){const siteId = "L6b88a5yK4h2Xnci";
+
+      LA.init({ id: siteId, ck: siteId, autoTrack: true, hashMode: true, screenRecord: true });
+    })();</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-EN03FMT2Q4"></script><script>window.dataLayer = window.dataLayer || [];
+window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.gtag('config', "G-EN03FMT2Q4");</script><script type="module" src="/_astro/GoogleAnalytics.astro_astro_type_script_index_0_lang.BA_TX3RH.js"></script></body></html><script type="module">var e=`adms-detail-layout`;function t(e){return e===`preview`||e===`docs`?e:`split`}function n(){try{return t(window.localStorage.getItem(e))}catch{return`split`}}function r(t){try{window.localStorage.setItem(e,t)}catch{}}function i(e){return e instanceof HTMLElement?e.isContentEditable||[`INPUT`,`TEXTAREA`,`SELECT`].includes(e.tagName):!1}function a(e=document){let a=e.querySelector(`[data-detail-grid]`),o=Array.from(e.querySelectorAll(`[data-detail-layout]`)),s=e.querySelector(`.site-header`),c=s&&typeof ResizeObserver<`u`?new ResizeObserver(()=>{e.documentElement.style.setProperty(`--site-header-height`,`${s.offsetHeight}px`)}):void 0;if(c?.observe(s),a&&o.length>0){let e=e=>{a.dataset.layout=e,o.forEach(t=>{let n=t.dataset.detailLayout===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-pressed`,n?`true`:`false`)})};o.forEach(n=>{n.addEventListener(`click`,()=>{let i=t(n.dataset.detailLayout);e(i),r(i)})}),e(n())}let l=t=>{if(t.defaultPrevented||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey||i(t.target))return;let n=t.key===`ArrowLeft`?`previous`:t.key===`ArrowRight`?`next`:null,r=n?e.querySelector(`[data-adjacent-link="${n}"]`):null;r&&(t.preventDefault(),r.click())};return e.addEventListener(`keydown`,l),()=>{c?.disconnect(),e.removeEventListener(`keydown`,l)}}a();</script>

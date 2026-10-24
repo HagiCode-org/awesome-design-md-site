@@ -1,0 +1,835 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v7.3.8"><meta name="theme-color" content="#000000"><title>Framer DESIGN.md • Awesome Design MD Gallery</title><meta name="description" content="Framer's website is a cinematic, tool-obsessed dark canvas that radiates the confidence of a design tool built by designers who worship craft. The entire…"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico"><link rel="stylesheet" href="/global.css"><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><link rel="canonical" href="https://design.hagicode.com/designs/framer/"><link rel="alternate" hreflang="en" href="https://design.hagicode.com/designs/framer/"><link rel="alternate" hreflang="zh-CN" href="https://design.hagicode.com/zh-CN/designs/framer/"><link rel="alternate" hreflang="zh-Hant" href="https://design.hagicode.com/zh-Hant/designs/framer/"><link rel="alternate" hreflang="ja-JP" href="https://design.hagicode.com/ja-JP/designs/framer/"><link rel="alternate" hreflang="ko-KR" href="https://design.hagicode.com/ko-KR/designs/framer/"><link rel="alternate" hreflang="de-DE" href="https://design.hagicode.com/de-DE/designs/framer/"><link rel="alternate" hreflang="fr-FR" href="https://design.hagicode.com/fr-FR/designs/framer/"><link rel="alternate" hreflang="es-ES" href="https://design.hagicode.com/es-ES/designs/framer/"><link rel="alternate" hreflang="pt-BR" href="https://design.hagicode.com/pt-BR/designs/framer/"><link rel="alternate" hreflang="ru-RU" href="https://design.hagicode.com/ru-RU/designs/framer/"><link rel="alternate" hreflang="x-default" href="https://design.hagicode.com/designs/framer/"><meta property="og:type" content="website"><meta property="og:title" content="Framer DESIGN.md • Awesome Design MD Gallery"><meta property="og:description" content="Framer's website is a cinematic, tool-obsessed dark canvas that radiates the confidence of a design tool built by designers who worship craft. The entire…"><meta property="og:url" content="https://design.hagicode.com/designs/framer/"><meta property="og:site_name" content="Awesome Design MD Gallery"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU"><meta property="og:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:secure_url" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="3137"><meta property="og:image:height" content="1235"><meta property="og:image:alt" content="Framer DESIGN.md • Awesome Design MD Gallery"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Framer DESIGN.md • Awesome Design MD Gallery"><meta name="twitter:description" content="Framer's website is a cinematic, tool-obsessed dark canvas that radiates the confidence of a design tool built by designers who worship craft. The entire…"><meta name="twitter:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta name="twitter:image:alt" content="Framer DESIGN.md • Awesome Design MD Gallery"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Framer DESIGN.md • Awesome Design MD Gallery","description":"Framer's website is a cinematic, tool-obsessed dark canvas that radiates the confidence of a design tool built by designers who worship craft. The entire…","url":"https://design.hagicode.com/designs/framer/","inLanguage":"en","image":"https://design.hagicode.com/img/hagicode/light-main.png","isPartOf":{"@type":"WebSite","name":"Awesome Design MD Gallery","url":"https://design.hagicode.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Awesome Design MD Gallery","item":"https://design.hagicode.com/"},{"@type":"ListItem","position":2,"name":"Framer","item":"https://design.hagicode.com/designs/framer/"}]}</script><script>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script>
+      // Cross-document view transition: the gallery card preview grows into the detail preview
+      // (and back). Only the one clicked card is named, so no other card is captured.
+      (() => {
+        const NAME = 'design-preview';
+        const slugOf = (href) => {
+          try {
+            const match = new URL(href, location.href).pathname.match(/\/designs\/([^/]+)\/?$/);
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch {
+            return null;
+          }
+        };
+        // On the way back the browser has not restored the scroll position yet when the page
+        // is revealed, so the returning card is named wherever it is, not only when in view.
+        const cardPreview = (slug, anywhere) => {
+          const card = Array.from(document.querySelectorAll('[data-design-card]')).find(
+            (item) => item.dataset.slug === slug,
+          );
+          const preview = card && card.querySelector('.design-card-preview');
+          if (!preview) return null;
+          const rect = preview.getBoundingClientRect();
+          return anywhere || (rect.bottom > 0 && rect.top < innerHeight) ? preview : null;
+        };
+        const name = async (element, transition) => {
+          if (!element) return;
+          element.style.viewTransitionName = NAME;
+          await transition.finished.catch(() => {});
+          element.style.viewTransitionName = '';
+        };
+
+        addEventListener('pageswap', (event) => {
+          if (!event.viewTransition || !event.activation || !event.activation.entry) return;
+          const to = slugOf(event.activation.entry.url);
+          const here = slugOf(location.href);
+          if (to && !here) name(cardPreview(to), event.viewTransition);
+          else if (!to && here) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+        });
+
+        addEventListener('pagereveal', (event) => {
+          if (!event.viewTransition) return;
+          const activation = window.navigation && window.navigation.activation;
+          if (!activation || !activation.from) return;
+          const from = slugOf(activation.from.url);
+          const here = slugOf(location.href);
+          if (here && !from) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+          else if (!here && from) name(cardPreview(from, true), event.viewTransition);
+        });
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.Ce-f4tKu.css"><script>(() => {
+  if (window.__hagilightPosthogInitialized) return;
+  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],Object.defineProperty(u,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e}}),Object.defineProperty(u.people,"toString",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+".people (stub)"}}),o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+  posthog.init("phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5", {"api_host":"https://us.i.posthog.com","defaults":"2026-05-30"});
+  window.__hagilightPosthogInitialized = true;
+})();</script></head><body><a class="skip-link" href="#main">Skip to content</a><div class="page-shell"><header class="site-header"><div class="container shell-panel header-panel"><a class="brand-mark" href="/"><img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32"><span class="brand-copy"><strong class="brand-copy-full">Awesome Design MD Gallery</strong><strong class="brand-copy-compact">ADMG</strong><small>Powered by HagiCode</small></span></a><nav class="site-nav site-nav-primary" aria-label="Primary"><a href="/" class="site-nav-link"><span class="site-nav-link-label site-nav-link-label-full">Gallery</span><span class="site-nav-link-label site-nav-link-label-compact">Gallery</span></a></nav><nav class="site-nav site-nav-repo" aria-label="Repository links"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link" target="_blank" rel="noopener"><span class="site-nav-link-label site-nav-link-label-full">Site Repo</span></a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link" target="_blank" rel="noopener noreferrer"><span class="site-nav-link-label site-nav-link-label-full">Source Repo</span></a></nav><div class="header-actions"><div class="language-select-shell"><select class="language-select" name="locale" aria-label="Language switcher" data-language-select><option value="/designs/framer/" selected lang="en">English</option><option value="/zh-CN/designs/framer/" lang="zh-CN">简体中文</option><option value="/zh-Hant/designs/framer/" lang="zh-Hant">繁體中文</option><option value="/ja-JP/designs/framer/" lang="ja-JP">日本語</option><option value="/ko-KR/designs/framer/" lang="ko-KR">한국어</option><option value="/de-DE/designs/framer/" lang="de-DE">Deutsch</option><option value="/fr-FR/designs/framer/" lang="fr-FR">Français</option><option value="/es-ES/designs/framer/" lang="es-ES">Español</option><option value="/pt-BR/designs/framer/" lang="pt-BR">Português</option><option value="/ru-RU/designs/framer/" lang="ru-RU">Русский</option></select><span class="language-select-icon" aria-hidden="true">▾</span></div><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(function(){let e=async e=>{await(await e())()};(self.Astro||(self.Astro={})).load=e,window.dispatchEvent(new Event(`astro:load`))})();</script><script>(function(){function e(t){"@babel/helpers - typeof";return e=typeof Symbol==`function`&&typeof Symbol.iterator==`symbol`?function(e){return typeof e}:function(e){return e&&typeof Symbol==`function`&&e.constructor===Symbol&&e!==Symbol.prototype?`symbol`:typeof e},e(t)}function t(t,n){if(e(t)!=`object`||!t)return t;var r=t[Symbol.toPrimitive];if(r!==void 0){var i=r.call(t,n||`default`);if(e(i)!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(t)}function n(n){var r=t(n,`string`);return e(r)==`symbol`?r:r+``}function r(e,t,r){return(t=n(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}let i=/* @__PURE__ */ new Set([`__proto__`,`constructor`,`prototype`]);{let e={0:e=>a(e),1:e=>n(e),2:e=>new RegExp(e),3:e=>new Date(e),4:e=>new Map(n(e)),5:e=>new Set(n(e)),6:e=>BigInt(e),7:e=>new URL(e),8:e=>new Uint8Array(e),9:e=>new Uint16Array(e),10:e=>new Uint32Array(e),11:e=>1/0*e},t=t=>{let[n,r]=t;return n in e?e[n](r):void 0},n=e=>e.map(t),a=e=>typeof e!=`object`||!e?e:Object.fromEntries(Object.entries(e).map(([e,n])=>[e,t(n)]));class o extends HTMLElement{constructor(...e){super(...e),r(this,`Component`,void 0),r(this,`hydrator`,void 0),r(this,`hydrate`,async()=>{var e;if(!this.hydrator||!this.isConnected)return;let t=(e=this.parentElement)==null?void 0:e.closest(`astro-island[ssr]`);if(t){t.addEventListener(`astro:hydrate`,this.hydrate,{once:!0});return}let n=this.querySelectorAll(`astro-slot`),r={},i=this.querySelectorAll(`template[data-astro-template]`);for(let e of i){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`data-astro-template`)||`default`]=e.innerHTML,e.remove())}for(let e of n){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`name`)||`default`]=e.innerHTML)}let o;try{o=this.hasAttribute(`props`)?a(JSON.parse(this.getAttribute(`props`))):{}}catch(e){let t=this.getAttribute(`component-url`)||`<unknown>`,n=this.getAttribute(`component-export`);throw n&&(t+=` (export ${n})`),console.error(`[hydrate] Error parsing props for component ${t}`,this.getAttribute(`props`),e),e}await this.hydrator(this)(this.Component,o,r,{client:this.getAttribute(`client`)}),this.removeAttribute(`ssr`),this.dispatchEvent(new CustomEvent(`astro:hydrate`))}),r(this,`unmount`,()=>{this.isConnected||this.dispatchEvent(new CustomEvent(`astro:unmount`))})}disconnectedCallback(){document.removeEventListener(`astro:after-swap`,this.unmount),document.addEventListener(`astro:after-swap`,this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute(`await-children`)||document.readyState===`interactive`||document.readyState===`complete`)this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener(`DOMContentLoaded`,e),t.disconnect(),this.childrenConnectedCallback()},t=new MutationObserver(()=>{var t;((t=this.lastChild)==null?void 0:t.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue===`astro:end`&&(this.lastChild.remove(),e())});t.observe(this,{childList:!0}),document.addEventListener(`DOMContentLoaded`,e)}}async childrenConnectedCallback(){let e=this.getAttribute(`before-hydration-url`);e&&await import(e),this.start()}getRetryImportUrl(e){let t=new URL(e,document.baseURI);return t.searchParams.set(`astro-retry`,Date.now().toString()),t.toString()}async importWithRetry(e){try{return await import(e)}catch(t){return await new Promise(e=>setTimeout(e,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let t=this.getAttribute(`component-url`),n=new CustomEvent(`astro:hydration-error`,{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:t}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${t}`,e)}async start(){let e=JSON.parse(this.getAttribute(`opts`)),t=this.getAttribute(`client`);if(Astro[t]===void 0){window.addEventListener(`astro:${t}`,()=>this.start(),{once:!0});return}try{await Astro[t](async()=>{let e=this.getAttribute(`renderer-url`);try{let[t,{default:n}]=await Promise.all([this.importWithRetry(this.getAttribute(`component-url`)),e?this.importWithRetry(e):Promise.resolve({default:()=>()=>{}})]),r=this.getAttribute(`component-export`)||`default`;if(r.includes(`.`)){this.Component=t;for(let e of r.split(`.`)){if(i.has(e)||!this.Component||typeof this.Component!=`object`&&typeof this.Component!=`function`||!Object.hasOwn(this.Component,e))throw Error(`Invalid component export path: ${r}`);this.Component=this.Component[e]}}else{if(i.has(r))throw Error(`Invalid component export path: ${r}`);this.Component=t[r]}return this.hydrator=n,this.hydrate}catch(e){return this.handleHydrationError(e),()=>{}}},e,this)}catch(e){this.handleHydrationError(e)}}attributeChangedCallback(){this.hydrate()}}r(o,`observedAttributes`,[`props`]),customElements.get(`astro-island`)||customElements.define(`astro-island`,o)}})();</script><astro-island uid="APbCD" prefix="r3" component-url="/_astro/ThemeToggle.B6702iMl.js" component-export="default" renderer-url="/_astro/client.CuuXzlfV.js" props="{&quot;locale&quot;:[0,&quot;en&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="theme-toggle" data-theme-toggle="true" aria-label="Switch to light mode"><span class="theme-toggle-label theme-toggle-label-full">Dark</span><span class="theme-toggle-label theme-toggle-label-compact">DK</span><span class="theme-toggle-glyph" aria-hidden="true">◐</span></button><!--astro:end--></astro-island></div><details class="header-utility"><summary class="header-utility-trigger" aria-label="Repository links"><span class="header-utility-trigger-label" aria-hidden="true">≡</span></summary><div class="header-utility-surface" aria-label="Repository links"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link header-utility-link" target="_blank" rel="noopener">Site Repo</a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link header-utility-link" target="_blank" rel="noopener noreferrer">Source Repo</a></div></details></div></header><script>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script><main id="main"><section class="container detail-shell"><div class="detail-header shell-panel"><div class="detail-header-bar"><a class="detail-back-link" href="/">Back to gallery</a><div class="segmented detail-layout-toggle" role="group" aria-label="Workspace layout"><button type="button" class="preview-toggle is-active" data-detail-layout="split" aria-pressed="true">Split</button><button type="button" class="preview-toggle" data-detail-layout="preview" aria-pressed="false">Preview</button><button type="button" class="preview-toggle" data-detail-layout="docs" aria-pressed="false">Docs</button></div></div><div class="detail-header-copy"><h1>Framer</h1><p class="detail-summary">DESIGN.md extracted from the public Framer website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it&#39;s a good starting point for building something similar.</p></div></div><div class="detail-grid" data-detail-grid data-layout="split"><script>
+        // Restore the saved layout before first paint so the grid does not jump.
+        try {
+          const saved = localStorage.getItem('adms-detail-layout');
+          if (saved === 'preview' || saved === 'docs') {
+            document.currentScript.parentElement.dataset.layout = saved;
+          }
+        } catch {}
+      </script><section class="preview-switcher shell-panel" data-preview-switcher data-light-url="/previews/framer/light.html" data-dark-url="/previews/framer/dark.html" data-images="{&quot;light&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/framer/light-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:6695},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/framer/light-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:7174},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/framer/light-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:8000},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/framer/light-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}},&quot;dark&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/framer/dark-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:6695},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/framer/dark-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:7174},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/framer/dark-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:8000},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/framer/dark-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}}}" data-alt-template="Framer {{variant}} preview, {{viewport}} width" data-labels="{&quot;light&quot;:&quot;Light&quot;,&quot;dark&quot;:&quot;Dark&quot;,&quot;fit&quot;:&quot;Fit&quot;,&quot;tablet&quot;:&quot;Tablet&quot;,&quot;mobile&quot;:&quot;Mobile&quot;}"><div class="preview-switcher-head"><h2>Theme-aware preview frame</h2><div class="preview-switcher-tools"><div class="segmented" role="group" aria-label="Preview theme"><button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-pressed="true">Light</button><button type="button" class="preview-toggle" data-preview-variant="dark" aria-pressed="false" title="Open dark preview">Dark</button></div><div class="segmented preview-viewport-group" role="group" aria-label="Preview width"><button type="button" class="preview-toggle is-active" data-preview-viewport="fit" aria-pressed="true">Fit</button><button type="button" class="preview-toggle" data-preview-viewport="tablet" aria-pressed="false">Tablet</button><button type="button" class="preview-toggle" data-preview-viewport="mobile" aria-pressed="false">Mobile</button></div><a class="preview-open" data-preview-open href="/previews/framer/light.html" target="_blank" rel="noopener" aria-label="Open preview in new tab" title="Open preview in new tab"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M6 3H3v10h10v-3"></path><path d="M9 2.5h4.5V7"></path><path d="M13.5 2.5 7.5 8.5"></path></svg></a></div></div><div class="preview-stage" data-preview-stage data-state="loading" aria-busy="true"><img class="detail-preview-image" data-preview-image src="/preview-images/framer/light-fit.avif" width="1440" height="6695" alt="Framer Light preview, Fit width" decoding="async"><p class="preview-error" data-preview-error hidden><span>The rendered preview could not be loaded.</span><a data-preview-live href="/previews/framer/light.html" target="_blank" rel="noopener">Open the live HTML preview</a></p></div><p class="preview-switcher-foot"><span class="preview-switcher-note">Both light and dark preview assets are available.</span><output class="preview-width-readout" data-preview-width aria-hidden="true"></output></p></section><script type="module">function e(e,t,n){e.forEach(e=>{let r=e.getAttribute(t)===n;e.classList.toggle(`is-active`,r),e.setAttribute(`aria-pressed`,r?`true`:`false`)})}function t(e){return`${Math.round(e)} px`}function n(e){if(e)try{return JSON.parse(e)}catch{return}}function r(e,t,n){return e[t][n]}function i(e,t,n){return e.replace(`{{variant}}`,t).replace(`{{viewport}}`,n)}function a(a=document){a.querySelectorAll(`[data-preview-switcher]`).forEach(o=>{let s=o.querySelector(`[data-preview-image]`),c=o.querySelector(`[data-preview-stage]`),l=o.querySelector(`[data-preview-error]`),u=o.querySelector(`[data-preview-live]`),d=Array.from(o.querySelectorAll(`[data-preview-variant]`)),f=Array.from(o.querySelectorAll(`[data-preview-viewport]`)),p=o.querySelector(`[data-preview-open]`),m=o.querySelector(`[data-preview-width]`),h=n(o.dataset.images),g=o.dataset.lightUrl??``,_=o.dataset.darkUrl||g,v=o.dataset.altTemplate??``,y=JSON.parse(o.dataset.labels??`{}`),b=`light`,x=`fit`;if(!s||!c||!h||d.length===0)return;let S=()=>{s.hidden=!1,c.dataset.state=`ready`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!0)},C=()=>{c.dataset.state=`loading`,c.setAttribute(`aria-busy`,`true`)},w=()=>{s.hidden=!0,c.dataset.state=`error`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!1)},T=()=>{let e=r(h,b,x),t=i(v,y[b]??b,y[x]??x);s.alt=t,s.width=e.width,s.height=e.height,s.getAttribute(`src`)===e.url?s.complete&&(s.naturalWidth>0?S():w()):(C(),s.src=e.url)},E=()=>{let t=b===`dark`?_:g;p&&(p.href=t),u&&(u.href=t),o.dataset.viewport=x,e(d,`data-preview-variant`,b),e(f,`data-preview-viewport`,x),T()};s.addEventListener(`load`,S),s.addEventListener(`error`,w),m&&typeof ResizeObserver<`u`&&new ResizeObserver(([e])=>{e&&(m.textContent=t(e.contentRect.width))}).observe(c),d.forEach(e=>{e.addEventListener(`click`,()=>{b=e.dataset.previewVariant===`dark`?`dark`:`light`,E()})}),f.forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.previewViewport;x=t===`tablet`||t===`mobile`?t:`fit`,E()})}),b=a.documentElement.dataset.theme===`dark`?`dark`:`light`,E()})}a();</script><section class="detail-documents" data-document-tabs data-copy-design-label="Copy DESIGN.md" data-copied-label="Copied" data-copy-failed-label="Copy failed"><h2 class="visually-hidden">README and DESIGN in one place</h2><div class="detail-documents-bar shell-panel" data-doc-bar><div class="detail-documents-head"><div class="segmented detail-tab-list" role="tablist" aria-label="Document view"><button type="button" role="tab" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">README</button><button type="button" role="tab" class="detail-tab" data-doc-tab="design" aria-selected="false">DESIGN</button></div><div class="detail-doc-controls"><button type="button" class="detail-copy-button" data-copy-design disabled aria-disabled="true" title="Copy raw DESIGN.md markdown">Copy DESIGN.md</button><a class="detail-copy-button" data-download-design href="/designs/framer/DESIGN.md" download="DESIGN.md" title="Download the canonical DESIGN.md file" aria-hidden="true" tabindex="-1">Download DESIGN.md</a></div></div><nav class="detail-outline" data-doc-outline aria-label="Jump to section" hidden></nav></div><div class="detail-doc-panels"><section class="detail-doc-panel is-active" data-doc-panel="readme"><div class="markdown-shell document-copy"><h2 id="framer-inspired-design-system">Framer Inspired Design System</h2>
+<p><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/framer/DESIGN.md">DESIGN.md</a> extracted from the public <a href="https://framer.com/">Framer</a> website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it's a good starting point for building something similar.</p>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIGN.md</code></td>
+<td>Complete design system documentation (9 sections)</td>
+</tr>
+<tr>
+<td><code>preview.html</code></td>
+<td>Interactive design token catalog (light)</td>
+</tr>
+<tr>
+<td><code>preview-dark.html</code></td>
+<td>Interactive design token catalog (dark)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/framer/DESIGN.md">DESIGN.md</a> to use as a reference for AI agents (Claude, Cursor, Stitch) to generate UI that looks like the Framer design language.</p>
+<h2 id="preview">Preview</h2>
+<p>A sample landing page built with DESIGN.md. It shows the actual colors, typography, buttons, cards, spacing, and elevation, all in one page.</p>
+<h3 id="dark-mode">Dark Mode</h3>
+<p><img src="/preview-images/framer/dark-fit.avif" alt="Framer Design System — Dark Mode" loading="lazy" decoding="async"></p>
+<h3 id="light-mode">Light Mode</h3>
+<p><img src="/preview-images/framer/light-fit.avif" alt="Framer Design System — Light Mode" loading="lazy" decoding="async"></p></div></section><section class="detail-doc-panel" data-doc-panel="design" hidden><div class="markdown-shell document-copy"><h2 id="design-system-inspiration-of-framer">Design System Inspiration of Framer</h2>
+<h2 id="1-visual-theme--atmosphere">1. Visual Theme &#x26; Atmosphere</h2>
+<p>Framer's website is a cinematic, tool-obsessed dark canvas that radiates the confidence of a design tool built by designers who worship craft. The entire experience is drenched in pure black — not a warm charcoal or a cozy dark gray, but an absolute void (<code>#000000</code>) that makes every element, every screenshot, every typographic flourish feel like it's floating in deep space. This is a website that treats its own product UI as the hero art, embedding full-fidelity screenshots and interactive demos directly into the narrative flow.</p>
+<p>The typography is the signature move: GT Walsheim with aggressively tight letter-spacing (as extreme as -5.5px on 110px display text) creates headlines that feel compressed, kinetic, almost spring-loaded — like words under pressure that might expand at any moment. The transition to Inter for body text is seamless, with extensive OpenType feature usage (<code>cv01</code>, <code>cv05</code>, <code>cv09</code>, <code>cv11</code>, <code>ss03</code>, <code>ss07</code>) that gives even small text a refined, custom feel. Framer Blue (<code>#0099ff</code>) is deployed sparingly but decisively — as link color, border accents, and subtle ring shadows — creating a cold, electric throughline against the warm-less black.</p>
+<p>The overall effect is a nightclub for web designers: dark, precise, seductive, and unapologetically product-forward. Every section exists to showcase what the tool can do, with the website itself serving as proof of concept.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Pure black (<code>#000000</code>) void canvas — absolute dark, not warm or gray-tinted</li>
+<li>GT Walsheim display font with extreme negative letter-spacing (-5.5px at 110px)</li>
+<li>Framer Blue (<code>#0099ff</code>) as the sole accent color — cold, electric, precise</li>
+<li>Pill-shaped buttons (40px–100px radius) — no sharp corners on interactive elements</li>
+<li>Product screenshots as hero art — the tool IS the marketing</li>
+<li>Frosted glass button variants using <code>rgba(255, 255, 255, 0.1)</code> on dark surfaces</li>
+<li>Extensive OpenType feature usage across Inter for refined micro-typography</li>
+</ul>
+<h2 id="2-color-palette--roles">2. Color Palette &#x26; Roles</h2>
+<h3 id="primary">Primary</h3>
+<ul>
+<li><strong>Pure Black</strong> (<code>#000000</code>): Primary background, the void canvas that defines Framer's dark-first identity</li>
+<li><strong>Pure White</strong> (<code>#ffffff</code>): Primary text color on dark surfaces, button text on accent backgrounds</li>
+<li><strong>Framer Blue</strong> (<code>#0099ff</code>): Primary accent color — links, borders, ring shadows, interactive highlights</li>
+</ul>
+<h3 id="secondary--accent">Secondary &#x26; Accent</h3>
+<ul>
+<li><strong>Muted Silver</strong> (<code>#a6a6a6</code>): Secondary text, subdued labels, dimmed descriptions on dark surfaces</li>
+<li><strong>Near Black</strong> (<code>#090909</code>): Elevated dark surface, shadow ring color for subtle depth separation</li>
+</ul>
+<h3 id="surface--background">Surface &#x26; Background</h3>
+<ul>
+<li><strong>Void Black</strong> (<code>#000000</code>): Page background, primary canvas</li>
+<li><strong>Frosted White</strong> (<code>rgba(255, 255, 255, 0.1)</code>): Translucent button backgrounds, glass-effect surfaces on dark</li>
+<li><strong>Subtle White</strong> (<code>rgba(255, 255, 255, 0.5)</code>): Slightly more opaque frosted elements for hover states</li>
+</ul>
+<h3 id="neutrals--text">Neutrals &#x26; Text</h3>
+<ul>
+<li><strong>Pure White</strong> (<code>#ffffff</code>): Heading text, high-emphasis body text</li>
+<li><strong>Muted Silver</strong> (<code>#a6a6a6</code>): Body text, descriptions, secondary information</li>
+<li><strong>Ghost White</strong> (<code>rgba(255, 255, 255, 0.6)</code>): Tertiary text, placeholders on dark surfaces</li>
+</ul>
+<h3 id="semantic--accent">Semantic &#x26; Accent</h3>
+<ul>
+<li><strong>Framer Blue</strong> (<code>#0099ff</code>): Links, interactive borders, focus rings</li>
+<li><strong>Blue Glow</strong> (<code>rgba(0, 153, 255, 0.15)</code>): Focus ring shadow, subtle blue halo around interactive elements</li>
+<li><strong>Default Link Blue</strong> (<code>#0000ee</code>): Standard browser link color (used sparingly in content areas)</li>
+</ul>
+<h3 id="gradient-system">Gradient System</h3>
+<ul>
+<li>No prominent gradient usage — Framer relies on pure flat black surfaces with occasional blue-tinted glows for depth</li>
+<li>Subtle radial glow effects behind product screenshots using Framer Blue at very low opacity</li>
+</ul>
+<h2 id="3-typography-rules">3. Typography Rules</h2>
+<h3 id="font-family">Font Family</h3>
+<ul>
+<li><strong>Display</strong>: <code>GT Walsheim Framer Medium</code> / <code>GT Walsheim Medium</code> — custom geometric sans-serif, weight 500. Fallbacks: <code>GT Walsheim Framer Medium Placeholder</code>, system sans-serif</li>
+<li><strong>Body/UI</strong>: <code>Inter Variable</code> / <code>Inter</code> — variable sans-serif with extensive OpenType features. Fallbacks: <code>Inter Placeholder</code>, <code>-apple-system</code>, <code>system-ui</code></li>
+<li><strong>Accent</strong>: <code>Mona Sans</code> — GitHub's open-source font, used for select elements at ultra-light weight (100)</li>
+<li><strong>Monospace</strong>: <code>Azeret Mono</code> — companion mono for code and technical labels</li>
+<li><strong>Rounded</strong>: <code>Open Runde</code> — small rounded companion font for micro-labels</li>
+</ul>
+<h3 id="hierarchy">Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Font</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line Height</th>
+<th>Letter Spacing</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display Hero</td>
+<td>GT Walsheim Framer Medium</td>
+<td>110px</td>
+<td>500</td>
+<td>0.85</td>
+<td>-5.5px</td>
+<td>Extreme negative tracking, compressed impact</td>
+</tr>
+<tr>
+<td>Section Display</td>
+<td>GT Walsheim Medium</td>
+<td>85px</td>
+<td>500</td>
+<td>0.95</td>
+<td>-4.25px</td>
+<td>OpenType: ss02, tnum</td>
+</tr>
+<tr>
+<td>Section Heading</td>
+<td>GT Walsheim Medium</td>
+<td>62px</td>
+<td>500</td>
+<td>1.00</td>
+<td>-3.1px</td>
+<td>OpenType: ss02</td>
+</tr>
+<tr>
+<td>Feature Heading</td>
+<td>GT Walsheim Medium</td>
+<td>32px</td>
+<td>500</td>
+<td>1.13</td>
+<td>-1px</td>
+<td>Tightest of the smaller headings</td>
+</tr>
+<tr>
+<td>Accent Display</td>
+<td>Mona Sans</td>
+<td>61.5px</td>
+<td>100</td>
+<td>1.00</td>
+<td>-3.1px</td>
+<td>Ultra-light weight, ethereal</td>
+</tr>
+<tr>
+<td>Card Title</td>
+<td>Inter Variable</td>
+<td>24px</td>
+<td>400</td>
+<td>1.30</td>
+<td>-0.01px</td>
+<td>OpenType: cv01, cv05, cv09, cv11, ss03, ss07</td>
+</tr>
+<tr>
+<td>Feature Title</td>
+<td>Inter</td>
+<td>22px</td>
+<td>700</td>
+<td>1.20</td>
+<td>-0.8px</td>
+<td>OpenType: cv05</td>
+</tr>
+<tr>
+<td>Sub-heading</td>
+<td>Inter</td>
+<td>20px</td>
+<td>600</td>
+<td>1.20</td>
+<td>-0.8px</td>
+<td>OpenType: cv01, cv09</td>
+</tr>
+<tr>
+<td>Body Large</td>
+<td>Inter Variable</td>
+<td>18px</td>
+<td>400</td>
+<td>1.30</td>
+<td>-0.01px</td>
+<td>OpenType: cv01, cv05, cv09, cv11, ss03, ss07</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Inter Variable</td>
+<td>15px</td>
+<td>400</td>
+<td>1.30</td>
+<td>-0.01px</td>
+<td>OpenType: cv11</td>
+</tr>
+<tr>
+<td>Nav/UI</td>
+<td>Inter Variable</td>
+<td>15px</td>
+<td>400</td>
+<td>1.00</td>
+<td>-0.15px</td>
+<td>OpenType: cv06, cv11, dlig, ss03</td>
+</tr>
+<tr>
+<td>Body Readable</td>
+<td>Inter Framer Regular</td>
+<td>14px</td>
+<td>400</td>
+<td>1.60</td>
+<td>normal</td>
+<td>Long-form body text</td>
+</tr>
+<tr>
+<td>Caption</td>
+<td>Inter Variable</td>
+<td>14px</td>
+<td>400</td>
+<td>1.40</td>
+<td>normal</td>
+<td>OpenType: cv01, cv06, cv09, cv11, ss03, ss07</td>
+</tr>
+<tr>
+<td>Label</td>
+<td>Inter</td>
+<td>13px</td>
+<td>500</td>
+<td>1.60</td>
+<td>normal</td>
+<td>OpenType: cv06, cv11, ss03</td>
+</tr>
+<tr>
+<td>Small Caption</td>
+<td>Inter Variable</td>
+<td>12px</td>
+<td>400</td>
+<td>1.40</td>
+<td>normal</td>
+<td>OpenType: cv01, cv06, cv09, cv11, ss03, ss07</td>
+</tr>
+<tr>
+<td>Micro Code</td>
+<td>Azeret Mono</td>
+<td>10.4px</td>
+<td>400</td>
+<td>1.60</td>
+<td>normal</td>
+<td>OpenType: cv06, cv11, ss03</td>
+</tr>
+<tr>
+<td>Badge</td>
+<td>Open Runde</td>
+<td>9px</td>
+<td>600</td>
+<td>1.11</td>
+<td>normal</td>
+<td>OpenType: cv01, cv09</td>
+</tr>
+<tr>
+<td>Micro Uppercase</td>
+<td>Inter Variable</td>
+<td>7px</td>
+<td>400</td>
+<td>1.00</td>
+<td>0.21px</td>
+<td>uppercase transform</td>
+</tr>
+</tbody>
+</table>
+<h3 id="principles">Principles</h3>
+<ul>
+<li><strong>Compression as personality</strong>: GT Walsheim's extreme negative letter-spacing (-5.5px at 110px) is the defining typographic gesture — headlines feel spring-loaded, urgent, almost breathless</li>
+<li><strong>OpenType maximalism</strong>: Inter is deployed with 6+ OpenType features simultaneously (<code>cv01</code>, <code>cv05</code>, <code>cv09</code>, <code>cv11</code>, <code>ss03</code>, <code>ss07</code>), creating a subtly custom feel even at body sizes</li>
+<li><strong>Weight restraint on display</strong>: All GT Walsheim usage is weight 500 (medium) — never bold, never regular. This creates a confident-but-not-aggressive display tone</li>
+<li><strong>Ultra-tight line heights</strong>: Display text at 0.85 line-height means letters nearly overlap vertically — intentional density that rewards reading at arm's length</li>
+</ul>
+<h2 id="4-component-stylings">4. Component Stylings</h2>
+<h3 id="buttons">Buttons</h3>
+<ul>
+<li><strong>Frosted Pill</strong>: <code>rgba(255, 255, 255, 0.1)</code> background, black text (<code>#000000</code>), pill shape (40px radius). The glass-effect button that lives on dark surfaces — translucent, ambient, subtle</li>
+<li><strong>Solid White Pill</strong>: <code>rgb(255, 255, 255)</code> background, black text (<code>#000000</code>), full pill shape (100px radius), padding <code>10px 15px</code>. The primary CTA — clean, high-contrast on dark, unmissable</li>
+<li><strong>Ghost</strong>: No visible background, white text, relies on text styling alone. Hover reveals subtle frosted background</li>
+<li><strong>Transition</strong>: Scale-based animations (matrix transform with 0.85 scale factor), opacity transitions for reveal effects</li>
+</ul>
+<h3 id="cards--containers">Cards &#x26; Containers</h3>
+<ul>
+<li><strong>Dark Surface Card</strong>: Black or near-black (<code>#090909</code>) background, <code>rgba(0, 153, 255, 0.15) 0px 0px 0px 1px</code> blue ring shadow border, rounded corners (10px–15px radius)</li>
+<li><strong>Elevated Card</strong>: Multi-layer shadow — <code>rgba(255, 255, 255, 0.1) 0px 0.5px 0px 0.5px</code> (subtle top highlight) + <code>rgba(0, 0, 0, 0.25) 0px 10px 30px</code> (deep ambient shadow)</li>
+<li><strong>Product Screenshots</strong>: Full-width or padded within dark containers, 8px–12px border-radius for software UI previews</li>
+<li><strong>Hover</strong>: Subtle glow increase on Framer Blue ring shadow, or brightness shift on frosted surfaces</li>
+</ul>
+<h3 id="inputs--forms">Inputs &#x26; Forms</h3>
+<ul>
+<li>Minimal form presence on the marketing site</li>
+<li>Input fields follow dark theme: dark background, subtle border, white text</li>
+<li>Focus state: Framer Blue (<code>#0099ff</code>) ring border, <code>1px solid #0099ff</code></li>
+<li>Placeholder text in <code>rgba(255, 255, 255, 0.4)</code></li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li><strong>Dark floating nav bar</strong>: Black background with frosted glass effect, white text links</li>
+<li><strong>Nav links</strong>: Inter at 15px, weight 400, white text with subtle hover opacity change</li>
+<li><strong>CTA button</strong>: Pill-shaped, white or frosted, positioned at right end of nav</li>
+<li><strong>Mobile</strong>: Collapses to hamburger menu, maintains dark theme</li>
+<li><strong>Sticky behavior</strong>: Nav remains fixed at top on scroll</li>
+</ul>
+<h3 id="image-treatment">Image Treatment</h3>
+<ul>
+<li><strong>Product screenshots as hero art</strong>: Full-width embedded UI screenshots with rounded corners (8px–12px)</li>
+<li><strong>Dark-on-dark composition</strong>: Screenshots placed on black backgrounds with subtle shadow for depth separation</li>
+<li><strong>16:9 and custom aspect ratios</strong>: Product demos fill their containers</li>
+<li><strong>No decorative imagery</strong>: All images are functional — showing the tool, the output, or the workflow</li>
+</ul>
+<h3 id="trust--social-proof">Trust &#x26; Social Proof</h3>
+<ul>
+<li>Customer logos and testimonials in muted gray on dark surfaces</li>
+<li>Minimal ornamentation — the product screenshots serve as the trust signal</li>
+</ul>
+<h2 id="5-layout-principles">5. Layout Principles</h2>
+<h3 id="spacing-system">Spacing System</h3>
+<ul>
+<li><strong>Base unit</strong>: 8px</li>
+<li><strong>Scale</strong>: 1px, 2px, 3px, 4px, 5px, 6px, 8px, 10px, 12px, 15px, 20px, 30px, 35px</li>
+<li><strong>Section padding</strong>: Large vertical spacing (80px–120px between sections)</li>
+<li><strong>Card padding</strong>: 15px–30px internal padding</li>
+<li><strong>Component gaps</strong>: 8px–20px between related elements</li>
+</ul>
+<h3 id="grid--container">Grid &#x26; Container</h3>
+<ul>
+<li><strong>Max width</strong>: ~1200px container, centered</li>
+<li><strong>Column patterns</strong>: Full-width hero, 2-column feature sections, single-column product showcases</li>
+<li><strong>Asymmetric layouts</strong>: Feature sections often pair text (40%) with screenshot (60%)</li>
+</ul>
+<h3 id="whitespace-philosophy">Whitespace Philosophy</h3>
+<ul>
+<li><strong>Breathe through darkness</strong>: Generous vertical spacing between sections — the black background means whitespace manifests as void, creating dramatic pauses between content blocks</li>
+<li><strong>Dense within, spacious between</strong>: Individual components are tightly composed (tight line-heights, compressed text) but float in generous surrounding space</li>
+<li><strong>Product-first density</strong>: Screenshot areas are allowed to be dense and information-rich, contrasting with the sparse marketing text</li>
+</ul>
+<h3 id="border-radius-scale">Border Radius Scale</h3>
+<ul>
+<li><strong>1px</strong>: Micro-elements, nearly squared precision edges</li>
+<li><strong>5px–7px</strong>: Small UI elements, image thumbnails — subtly softened</li>
+<li><strong>8px</strong>: Standard component radius — code blocks, buttons, interactive elements</li>
+<li><strong>10px–12px</strong>: Cards, product screenshots — comfortably rounded</li>
+<li><strong>15px–20px</strong>: Large containers, feature cards — generously rounded</li>
+<li><strong>30px–40px</strong>: Navigation pills, pagination — noticeably rounded</li>
+<li><strong>100px</strong>: Full pill shape — primary CTAs, tag elements</li>
+</ul>
+<h2 id="6-depth--elevation">6. Depth &#x26; Elevation</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Treatment</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Level 0 (Flat)</td>
+<td>No shadow, pure black surface</td>
+<td>Page background, empty areas</td>
+</tr>
+<tr>
+<td>Level 1 (Ring)</td>
+<td><code>rgba(0, 153, 255, 0.15) 0px 0px 0px 1px</code></td>
+<td>Card borders, interactive element outlines — Framer Blue glow ring</td>
+</tr>
+<tr>
+<td>Level 2 (Contained)</td>
+<td><code>rgb(9, 9, 9) 0px 0px 0px 2px</code></td>
+<td>Near-black ring for subtle containment on dark surfaces</td>
+</tr>
+<tr>
+<td>Level 3 (Floating)</td>
+<td><code>rgba(255, 255, 255, 0.1) 0px 0.5px 0px 0.5px, rgba(0, 0, 0, 0.25) 0px 10px 30px</code></td>
+<td>Elevated cards, floating elements — subtle white top-edge highlight + deep ambient shadow</td>
+</tr>
+</tbody>
+</table>
+<h3 id="shadow-philosophy">Shadow Philosophy</h3>
+<p>Framer's elevation system is inverted from traditional light-theme designs. Instead of darker shadows on light backgrounds, Framer uses:</p>
+<ul>
+<li><strong>Blue-tinted ring shadows</strong> at very low opacity (0.15) for containment — a signature move that subtly brands every bordered element</li>
+<li><strong>White edge highlights</strong> (0.5px) on the top edge of elevated elements — simulating light hitting the top surface</li>
+<li><strong>Deep ambient shadows</strong> for true floating elements — <code>rgba(0, 0, 0, 0.25)</code> at large spread (30px)</li>
+</ul>
+<h3 id="decorative-depth">Decorative Depth</h3>
+<ul>
+<li><strong>Blue glow auras</strong>: Subtle Framer Blue (<code>#0099ff</code>) radial gradients behind key interactive areas</li>
+<li><strong>No background blur/glassmorphism</strong>: Despite the frosted button effect, there's no heavy glass blur usage — the translucency is achieved through simple rgba opacity</li>
+</ul>
+<h2 id="7-dos-and-donts">7. Do's and Don'ts</h2>
+<h3 id="do">Do</h3>
+<ul>
+<li>Use pure black (<code>#000000</code>) as the primary background — not dark gray, not charcoal</li>
+<li>Apply extreme negative letter-spacing on GT Walsheim display text (-3px to -5.5px)</li>
+<li>Keep all buttons pill-shaped (40px+ radius) — never use squared or slightly-rounded buttons</li>
+<li>Use Framer Blue (<code>#0099ff</code>) exclusively for interactive accents — links, borders, focus states</li>
+<li>Deploy <code>rgba(255, 255, 255, 0.1)</code> for frosted glass surfaces on dark backgrounds</li>
+<li>Maintain GT Walsheim at weight 500 only — the medium weight IS the brand</li>
+<li>Use extensive OpenType features on Inter text (cv01, cv05, cv09, cv11, ss03, ss07)</li>
+<li>Let product screenshots be the visual centerpiece — the tool markets itself</li>
+<li>Apply blue ring shadows (<code>rgba(0, 153, 255, 0.15) 0px 0px 0px 1px</code>) for card containment</li>
+</ul>
+<h3 id="dont">Don't</h3>
+<ul>
+<li>Use warm dark backgrounds (no <code>#1a1a1a</code>, <code>#2d2d2d</code>, or brownish blacks)</li>
+<li>Apply bold (700+) weight to GT Walsheim display text — medium 500 only</li>
+<li>Introduce additional accent colors beyond Framer Blue — this is a one-accent-color system</li>
+<li>Use large border-radius on non-interactive elements (cards use 10px–15px, only buttons get 40px+)</li>
+<li>Add decorative imagery, illustrations, or icons — the product IS the illustration</li>
+<li>Use positive letter-spacing on headlines — everything is compressed, negative tracking</li>
+<li>Create heavy drop shadows — depth is communicated through subtle rings and minimal ambients</li>
+<li>Place light/white backgrounds behind content sections — the void is sacred</li>
+<li>Use serif or display-weight fonts — the system is geometric sans-serif only</li>
+</ul>
+<h2 id="8-responsive-behavior">8. Responsive Behavior</h2>
+<h3 id="breakpoints">Breakpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Width</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile</td>
+<td>&#x3C;809px</td>
+<td>Single column, stacked feature sections, reduced hero text (62px→40px), hamburger nav</td>
+</tr>
+<tr>
+<td>Tablet</td>
+<td>809px–1199px</td>
+<td>2-column features begin, nav links partially visible, screenshots scale down</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>>1199px</td>
+<td>Full layout, expanded nav with all links + CTA, 110px display hero, side-by-side features</td>
+</tr>
+</tbody>
+</table>
+<h3 id="touch-targets">Touch Targets</h3>
+<ul>
+<li>Pill buttons: minimum 40px height with 10px vertical padding — exceeds 44px WCAG minimum</li>
+<li>Nav links: 15px text with generous padding for touch accessibility</li>
+<li>Mobile CTA buttons: Full-width pills on mobile for easy thumb reach</li>
+</ul>
+<h3 id="collapsing-strategy">Collapsing Strategy</h3>
+<ul>
+<li><strong>Navigation</strong>: Full horizontal nav → hamburger menu at mobile breakpoint</li>
+<li><strong>Hero text</strong>: 110px display → 85px → 62px → ~40px across breakpoints, maintaining extreme negative tracking proportionally</li>
+<li><strong>Feature sections</strong>: Side-by-side (text + screenshot) → stacked vertically on mobile</li>
+<li><strong>Product screenshots</strong>: Scale responsively within containers, maintaining aspect ratios</li>
+<li><strong>Section spacing</strong>: Reduces proportionally — 120px desktop → 60px mobile</li>
+</ul>
+<h3 id="image-behavior">Image Behavior</h3>
+<ul>
+<li>Product screenshots are responsive, scaling within their container boundaries</li>
+<li>No art direction changes — same crops across breakpoints</li>
+<li>Dark background ensures screenshots maintain visual impact at any size</li>
+<li>Screenshots lazy-load as user scrolls into view</li>
+</ul>
+<h2 id="9-agent-prompt-guide">9. Agent Prompt Guide</h2>
+<h3 id="quick-color-reference">Quick Color Reference</h3>
+<ul>
+<li>Primary Background: Void Black (<code>#000000</code>)</li>
+<li>Primary Text: Pure White (<code>#ffffff</code>)</li>
+<li>Accent/CTA: Framer Blue (<code>#0099ff</code>)</li>
+<li>Secondary Text: Muted Silver (<code>#a6a6a6</code>)</li>
+<li>Frosted Surface: Translucent White (<code>rgba(255, 255, 255, 0.1)</code>)</li>
+<li>Elevation Ring: Blue Glow (<code>rgba(0, 153, 255, 0.15)</code>)</li>
+</ul>
+<h3 id="example-component-prompts">Example Component Prompts</h3>
+<ul>
+<li>"Create a hero section on pure black background with 110px GT Walsheim heading in white, letter-spacing -5.5px, line-height 0.85, and a pill-shaped white CTA button (100px radius) with black text"</li>
+<li>"Design a feature card on black background with a 1px Framer Blue ring shadow border (rgba(0,153,255,0.15)), 12px border-radius, white heading in Inter at 22px weight 700, and muted silver (a6a6a6) body text"</li>
+<li>"Build a navigation bar with black background, white Inter text links at 15px, and a frosted pill button (rgba(255,255,255,0.1) background, 40px radius) as the CTA"</li>
+<li>"Create a product showcase section with a full-width screenshot embedded on black, 10px border-radius, subtle multi-layer shadow (white 0.5px top highlight + rgba(0,0,0,0.25) 30px ambient)"</li>
+<li>"Design a pricing card using pure black surface, Framer Blue (#0099ff) accent for the selected plan border, white text hierarchy (24px Inter bold heading, 14px regular body), and a solid white pill CTA button"</li>
+</ul>
+<h3 id="iteration-guide">Iteration Guide</h3>
+<p>When refining existing screens generated with this design system:</p>
+<ol>
+<li>Focus on ONE component at a time — the dark canvas makes each element precious</li>
+<li>Always verify letter-spacing on GT Walsheim headings — the extreme negative tracking is non-negotiable</li>
+<li>Check that Framer Blue appears ONLY on interactive elements — never as decorative background or text color for non-links</li>
+<li>Ensure all buttons are pill-shaped — any squared corner immediately breaks the Framer aesthetic</li>
+<li>Test frosted glass surfaces by checking they have exactly <code>rgba(255, 255, 255, 0.1)</code> — too opaque looks like a bug, too transparent disappears</li>
+</ol></div></section></div><textarea hidden readonly data-design-markdown># Design System Inspiration of Framer
+
+## 1. Visual Theme &amp; Atmosphere
+
+Framer&#39;s website is a cinematic, tool-obsessed dark canvas that radiates the confidence of a design tool built by designers who worship craft. The entire experience is drenched in pure black — not a warm charcoal or a cozy dark gray, but an absolute void (`#000000`) that makes every element, every screenshot, every typographic flourish feel like it&#39;s floating in deep space. This is a website that treats its own product UI as the hero art, embedding full-fidelity screenshots and interactive demos directly into the narrative flow.
+
+The typography is the signature move: GT Walsheim with aggressively tight letter-spacing (as extreme as -5.5px on 110px display text) creates headlines that feel compressed, kinetic, almost spring-loaded — like words under pressure that might expand at any moment. The transition to Inter for body text is seamless, with extensive OpenType feature usage (`cv01`, `cv05`, `cv09`, `cv11`, `ss03`, `ss07`) that gives even small text a refined, custom feel. Framer Blue (`#0099ff`) is deployed sparingly but decisively — as link color, border accents, and subtle ring shadows — creating a cold, electric throughline against the warm-less black.
+
+The overall effect is a nightclub for web designers: dark, precise, seductive, and unapologetically product-forward. Every section exists to showcase what the tool can do, with the website itself serving as proof of concept.
+
+**Key Characteristics:**
+- Pure black (`#000000`) void canvas — absolute dark, not warm or gray-tinted
+- GT Walsheim display font with extreme negative letter-spacing (-5.5px at 110px)
+- Framer Blue (`#0099ff`) as the sole accent color — cold, electric, precise
+- Pill-shaped buttons (40px–100px radius) — no sharp corners on interactive elements
+- Product screenshots as hero art — the tool IS the marketing
+- Frosted glass button variants using `rgba(255, 255, 255, 0.1)` on dark surfaces
+- Extensive OpenType feature usage across Inter for refined micro-typography
+
+## 2. Color Palette &amp; Roles
+
+### Primary
+- **Pure Black** (`#000000`): Primary background, the void canvas that defines Framer&#39;s dark-first identity
+- **Pure White** (`#ffffff`): Primary text color on dark surfaces, button text on accent backgrounds
+- **Framer Blue** (`#0099ff`): Primary accent color — links, borders, ring shadows, interactive highlights
+
+### Secondary &amp; Accent
+- **Muted Silver** (`#a6a6a6`): Secondary text, subdued labels, dimmed descriptions on dark surfaces
+- **Near Black** (`#090909`): Elevated dark surface, shadow ring color for subtle depth separation
+
+### Surface &amp; Background
+- **Void Black** (`#000000`): Page background, primary canvas
+- **Frosted White** (`rgba(255, 255, 255, 0.1)`): Translucent button backgrounds, glass-effect surfaces on dark
+- **Subtle White** (`rgba(255, 255, 255, 0.5)`): Slightly more opaque frosted elements for hover states
+
+### Neutrals &amp; Text
+- **Pure White** (`#ffffff`): Heading text, high-emphasis body text
+- **Muted Silver** (`#a6a6a6`): Body text, descriptions, secondary information
+- **Ghost White** (`rgba(255, 255, 255, 0.6)`): Tertiary text, placeholders on dark surfaces
+
+### Semantic &amp; Accent
+- **Framer Blue** (`#0099ff`): Links, interactive borders, focus rings
+- **Blue Glow** (`rgba(0, 153, 255, 0.15)`): Focus ring shadow, subtle blue halo around interactive elements
+- **Default Link Blue** (`#0000ee`): Standard browser link color (used sparingly in content areas)
+
+### Gradient System
+- No prominent gradient usage — Framer relies on pure flat black surfaces with occasional blue-tinted glows for depth
+- Subtle radial glow effects behind product screenshots using Framer Blue at very low opacity
+
+## 3. Typography Rules
+
+### Font Family
+- **Display**: `GT Walsheim Framer Medium` / `GT Walsheim Medium` — custom geometric sans-serif, weight 500. Fallbacks: `GT Walsheim Framer Medium Placeholder`, system sans-serif
+- **Body/UI**: `Inter Variable` / `Inter` — variable sans-serif with extensive OpenType features. Fallbacks: `Inter Placeholder`, `-apple-system`, `system-ui`
+- **Accent**: `Mona Sans` — GitHub&#39;s open-source font, used for select elements at ultra-light weight (100)
+- **Monospace**: `Azeret Mono` — companion mono for code and technical labels
+- **Rounded**: `Open Runde` — small rounded companion font for micro-labels
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
+|------|------|------|--------|-------------|----------------|-------|
+| Display Hero | GT Walsheim Framer Medium | 110px | 500 | 0.85 | -5.5px | Extreme negative tracking, compressed impact |
+| Section Display | GT Walsheim Medium | 85px | 500 | 0.95 | -4.25px | OpenType: ss02, tnum |
+| Section Heading | GT Walsheim Medium | 62px | 500 | 1.00 | -3.1px | OpenType: ss02 |
+| Feature Heading | GT Walsheim Medium | 32px | 500 | 1.13 | -1px | Tightest of the smaller headings |
+| Accent Display | Mona Sans | 61.5px | 100 | 1.00 | -3.1px | Ultra-light weight, ethereal |
+| Card Title | Inter Variable | 24px | 400 | 1.30 | -0.01px | OpenType: cv01, cv05, cv09, cv11, ss03, ss07 |
+| Feature Title | Inter | 22px | 700 | 1.20 | -0.8px | OpenType: cv05 |
+| Sub-heading | Inter | 20px | 600 | 1.20 | -0.8px | OpenType: cv01, cv09 |
+| Body Large | Inter Variable | 18px | 400 | 1.30 | -0.01px | OpenType: cv01, cv05, cv09, cv11, ss03, ss07 |
+| Body | Inter Variable | 15px | 400 | 1.30 | -0.01px | OpenType: cv11 |
+| Nav/UI | Inter Variable | 15px | 400 | 1.00 | -0.15px | OpenType: cv06, cv11, dlig, ss03 |
+| Body Readable | Inter Framer Regular | 14px | 400 | 1.60 | normal | Long-form body text |
+| Caption | Inter Variable | 14px | 400 | 1.40 | normal | OpenType: cv01, cv06, cv09, cv11, ss03, ss07 |
+| Label | Inter | 13px | 500 | 1.60 | normal | OpenType: cv06, cv11, ss03 |
+| Small Caption | Inter Variable | 12px | 400 | 1.40 | normal | OpenType: cv01, cv06, cv09, cv11, ss03, ss07 |
+| Micro Code | Azeret Mono | 10.4px | 400 | 1.60 | normal | OpenType: cv06, cv11, ss03 |
+| Badge | Open Runde | 9px | 600 | 1.11 | normal | OpenType: cv01, cv09 |
+| Micro Uppercase | Inter Variable | 7px | 400 | 1.00 | 0.21px | uppercase transform |
+
+### Principles
+- **Compression as personality**: GT Walsheim&#39;s extreme negative letter-spacing (-5.5px at 110px) is the defining typographic gesture — headlines feel spring-loaded, urgent, almost breathless
+- **OpenType maximalism**: Inter is deployed with 6+ OpenType features simultaneously (`cv01`, `cv05`, `cv09`, `cv11`, `ss03`, `ss07`), creating a subtly custom feel even at body sizes
+- **Weight restraint on display**: All GT Walsheim usage is weight 500 (medium) — never bold, never regular. This creates a confident-but-not-aggressive display tone
+- **Ultra-tight line heights**: Display text at 0.85 line-height means letters nearly overlap vertically — intentional density that rewards reading at arm&#39;s length
+
+## 4. Component Stylings
+
+### Buttons
+- **Frosted Pill**: `rgba(255, 255, 255, 0.1)` background, black text (`#000000`), pill shape (40px radius). The glass-effect button that lives on dark surfaces — translucent, ambient, subtle
+- **Solid White Pill**: `rgb(255, 255, 255)` background, black text (`#000000`), full pill shape (100px radius), padding `10px 15px`. The primary CTA — clean, high-contrast on dark, unmissable
+- **Ghost**: No visible background, white text, relies on text styling alone. Hover reveals subtle frosted background
+- **Transition**: Scale-based animations (matrix transform with 0.85 scale factor), opacity transitions for reveal effects
+
+### Cards &amp; Containers
+- **Dark Surface Card**: Black or near-black (`#090909`) background, `rgba(0, 153, 255, 0.15) 0px 0px 0px 1px` blue ring shadow border, rounded corners (10px–15px radius)
+- **Elevated Card**: Multi-layer shadow — `rgba(255, 255, 255, 0.1) 0px 0.5px 0px 0.5px` (subtle top highlight) + `rgba(0, 0, 0, 0.25) 0px 10px 30px` (deep ambient shadow)
+- **Product Screenshots**: Full-width or padded within dark containers, 8px–12px border-radius for software UI previews
+- **Hover**: Subtle glow increase on Framer Blue ring shadow, or brightness shift on frosted surfaces
+
+### Inputs &amp; Forms
+- Minimal form presence on the marketing site
+- Input fields follow dark theme: dark background, subtle border, white text
+- Focus state: Framer Blue (`#0099ff`) ring border, `1px solid #0099ff`
+- Placeholder text in `rgba(255, 255, 255, 0.4)`
+
+### Navigation
+- **Dark floating nav bar**: Black background with frosted glass effect, white text links
+- **Nav links**: Inter at 15px, weight 400, white text with subtle hover opacity change
+- **CTA button**: Pill-shaped, white or frosted, positioned at right end of nav
+- **Mobile**: Collapses to hamburger menu, maintains dark theme
+- **Sticky behavior**: Nav remains fixed at top on scroll
+
+### Image Treatment
+- **Product screenshots as hero art**: Full-width embedded UI screenshots with rounded corners (8px–12px)
+- **Dark-on-dark composition**: Screenshots placed on black backgrounds with subtle shadow for depth separation
+- **16:9 and custom aspect ratios**: Product demos fill their containers
+- **No decorative imagery**: All images are functional — showing the tool, the output, or the workflow
+
+### Trust &amp; Social Proof
+- Customer logos and testimonials in muted gray on dark surfaces
+- Minimal ornamentation — the product screenshots serve as the trust signal
+
+## 5. Layout Principles
+
+### Spacing System
+- **Base unit**: 8px
+- **Scale**: 1px, 2px, 3px, 4px, 5px, 6px, 8px, 10px, 12px, 15px, 20px, 30px, 35px
+- **Section padding**: Large vertical spacing (80px–120px between sections)
+- **Card padding**: 15px–30px internal padding
+- **Component gaps**: 8px–20px between related elements
+
+### Grid &amp; Container
+- **Max width**: ~1200px container, centered
+- **Column patterns**: Full-width hero, 2-column feature sections, single-column product showcases
+- **Asymmetric layouts**: Feature sections often pair text (40%) with screenshot (60%)
+
+### Whitespace Philosophy
+- **Breathe through darkness**: Generous vertical spacing between sections — the black background means whitespace manifests as void, creating dramatic pauses between content blocks
+- **Dense within, spacious between**: Individual components are tightly composed (tight line-heights, compressed text) but float in generous surrounding space
+- **Product-first density**: Screenshot areas are allowed to be dense and information-rich, contrasting with the sparse marketing text
+
+### Border Radius Scale
+- **1px**: Micro-elements, nearly squared precision edges
+- **5px–7px**: Small UI elements, image thumbnails — subtly softened
+- **8px**: Standard component radius — code blocks, buttons, interactive elements
+- **10px–12px**: Cards, product screenshots — comfortably rounded
+- **15px–20px**: Large containers, feature cards — generously rounded
+- **30px–40px**: Navigation pills, pagination — noticeably rounded
+- **100px**: Full pill shape — primary CTAs, tag elements
+
+## 6. Depth &amp; Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| Level 0 (Flat) | No shadow, pure black surface | Page background, empty areas |
+| Level 1 (Ring) | `rgba(0, 153, 255, 0.15) 0px 0px 0px 1px` | Card borders, interactive element outlines — Framer Blue glow ring |
+| Level 2 (Contained) | `rgb(9, 9, 9) 0px 0px 0px 2px` | Near-black ring for subtle containment on dark surfaces |
+| Level 3 (Floating) | `rgba(255, 255, 255, 0.1) 0px 0.5px 0px 0.5px, rgba(0, 0, 0, 0.25) 0px 10px 30px` | Elevated cards, floating elements — subtle white top-edge highlight + deep ambient shadow |
+
+### Shadow Philosophy
+Framer&#39;s elevation system is inverted from traditional light-theme designs. Instead of darker shadows on light backgrounds, Framer uses:
+- **Blue-tinted ring shadows** at very low opacity (0.15) for containment — a signature move that subtly brands every bordered element
+- **White edge highlights** (0.5px) on the top edge of elevated elements — simulating light hitting the top surface
+- **Deep ambient shadows** for true floating elements — `rgba(0, 0, 0, 0.25)` at large spread (30px)
+
+### Decorative Depth
+- **Blue glow auras**: Subtle Framer Blue (`#0099ff`) radial gradients behind key interactive areas
+- **No background blur/glassmorphism**: Despite the frosted button effect, there&#39;s no heavy glass blur usage — the translucency is achieved through simple rgba opacity
+
+## 7. Do&#39;s and Don&#39;ts
+
+### Do
+- Use pure black (`#000000`) as the primary background — not dark gray, not charcoal
+- Apply extreme negative letter-spacing on GT Walsheim display text (-3px to -5.5px)
+- Keep all buttons pill-shaped (40px+ radius) — never use squared or slightly-rounded buttons
+- Use Framer Blue (`#0099ff`) exclusively for interactive accents — links, borders, focus states
+- Deploy `rgba(255, 255, 255, 0.1)` for frosted glass surfaces on dark backgrounds
+- Maintain GT Walsheim at weight 500 only — the medium weight IS the brand
+- Use extensive OpenType features on Inter text (cv01, cv05, cv09, cv11, ss03, ss07)
+- Let product screenshots be the visual centerpiece — the tool markets itself
+- Apply blue ring shadows (`rgba(0, 153, 255, 0.15) 0px 0px 0px 1px`) for card containment
+
+### Don&#39;t
+- Use warm dark backgrounds (no `#1a1a1a`, `#2d2d2d`, or brownish blacks)
+- Apply bold (700+) weight to GT Walsheim display text — medium 500 only
+- Introduce additional accent colors beyond Framer Blue — this is a one-accent-color system
+- Use large border-radius on non-interactive elements (cards use 10px–15px, only buttons get 40px+)
+- Add decorative imagery, illustrations, or icons — the product IS the illustration
+- Use positive letter-spacing on headlines — everything is compressed, negative tracking
+- Create heavy drop shadows — depth is communicated through subtle rings and minimal ambients
+- Place light/white backgrounds behind content sections — the void is sacred
+- Use serif or display-weight fonts — the system is geometric sans-serif only
+
+## 8. Responsive Behavior
+
+### Breakpoints
+| Name | Width | Key Changes |
+|------|-------|-------------|
+| Mobile | &lt;809px | Single column, stacked feature sections, reduced hero text (62px→40px), hamburger nav |
+| Tablet | 809px–1199px | 2-column features begin, nav links partially visible, screenshots scale down |
+| Desktop | &gt;1199px | Full layout, expanded nav with all links + CTA, 110px display hero, side-by-side features |
+
+### Touch Targets
+- Pill buttons: minimum 40px height with 10px vertical padding — exceeds 44px WCAG minimum
+- Nav links: 15px text with generous padding for touch accessibility
+- Mobile CTA buttons: Full-width pills on mobile for easy thumb reach
+
+### Collapsing Strategy
+- **Navigation**: Full horizontal nav → hamburger menu at mobile breakpoint
+- **Hero text**: 110px display → 85px → 62px → ~40px across breakpoints, maintaining extreme negative tracking proportionally
+- **Feature sections**: Side-by-side (text + screenshot) → stacked vertically on mobile
+- **Product screenshots**: Scale responsively within containers, maintaining aspect ratios
+- **Section spacing**: Reduces proportionally — 120px desktop → 60px mobile
+
+### Image Behavior
+- Product screenshots are responsive, scaling within their container boundaries
+- No art direction changes — same crops across breakpoints
+- Dark background ensures screenshots maintain visual impact at any size
+- Screenshots lazy-load as user scrolls into view
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Primary Background: Void Black (`#000000`)
+- Primary Text: Pure White (`#ffffff`)
+- Accent/CTA: Framer Blue (`#0099ff`)
+- Secondary Text: Muted Silver (`#a6a6a6`)
+- Frosted Surface: Translucent White (`rgba(255, 255, 255, 0.1)`)
+- Elevation Ring: Blue Glow (`rgba(0, 153, 255, 0.15)`)
+
+### Example Component Prompts
+- &quot;Create a hero section on pure black background with 110px GT Walsheim heading in white, letter-spacing -5.5px, line-height 0.85, and a pill-shaped white CTA button (100px radius) with black text&quot;
+- &quot;Design a feature card on black background with a 1px Framer Blue ring shadow border (rgba(0,153,255,0.15)), 12px border-radius, white heading in Inter at 22px weight 700, and muted silver (a6a6a6) body text&quot;
+- &quot;Build a navigation bar with black background, white Inter text links at 15px, and a frosted pill button (rgba(255,255,255,0.1) background, 40px radius) as the CTA&quot;
+- &quot;Create a product showcase section with a full-width screenshot embedded on black, 10px border-radius, subtle multi-layer shadow (white 0.5px top highlight + rgba(0,0,0,0.25) 30px ambient)&quot;
+- &quot;Design a pricing card using pure black surface, Framer Blue (#0099ff) accent for the selected plan border, white text hierarchy (24px Inter bold heading, 14px regular body), and a solid white pill CTA button&quot;
+
+### Iteration Guide
+When refining existing screens generated with this design system:
+1. Focus on ONE component at a time — the dark canvas makes each element precious
+2. Always verify letter-spacing on GT Walsheim headings — the extreme negative tracking is non-negotiable
+3. Check that Framer Blue appears ONLY on interactive elements — never as decorative background or text color for non-links
+4. Ensure all buttons are pill-shaped — any squared corner immediately breaks the Framer aesthetic
+5. Test frosted glass surfaces by checking they have exactly `rgba(255, 255, 255, 0.1)` — too opaque looks like a bug, too transparent disappears
+</textarea></section><script type="module">function e(e){return Array.from(e.querySelectorAll(`h2`)).map(e=>({heading:e,label:(e.textContent??``).trim()})).filter(e=>e.label.length>0)}function t(e,t){let n=-1;return e.forEach((e,r)=>{e<=t&&(n=r)}),n}function n(){return typeof window.matchMedia==`function`&&window.matchMedia(`(prefers-reduced-motion: reduce)`).matches}function r(r,i){let a=[],o=[],s=-1,c=0,l=e=>{e!==s&&(s=e,o.forEach((t,i)=>{let a=i===e;if(t.classList.toggle(`is-active`,a),a){t.setAttribute(`aria-current`,`location`);let e=t.offsetLeft-(r.clientWidth-t.offsetWidth)/2;r.scrollTo?.({left:Math.max(0,e),behavior:n()?`auto`:`smooth`})}else t.removeAttribute(`aria-current`)}))},u=()=>{if(c=0,a.length===0)return;let e=i.getBoundingClientRect().bottom+24;l(t(a.map(e=>e.heading.getBoundingClientRect().top),e))},d=()=>{c||=window.requestAnimationFrame(u)};return window.addEventListener(`scroll`,d,{passive:!0}),window.addEventListener(`resize`,d),{show(t){a=t?e(t):[],s=-1,r.replaceChildren(),o=[];let i=a.length>=2;r.hidden=!i,i&&(o=a.map(e=>{let t=document.createElement(`button`);return t.type=`button`,t.className=`detail-outline-link`,t.textContent=e.label,t.title=e.label,t.addEventListener(`click`,()=>{e.heading.scrollIntoView({behavior:n()?`auto`:`smooth`,block:`start`})}),t}),r.append(...o),r.scrollTo?.({left:0}),d())}}}function i(e,t){e&&(e.classList.toggle(`is-visible`,t),e.setAttribute(`aria-hidden`,t?`false`:`true`),e instanceof HTMLAnchorElement&&(e.tabIndex=t?0:-1))}function a(e=document){e.querySelectorAll(`[data-document-tabs]`).forEach(e=>{let t={copyDesign:e.dataset.copyDesignLabel??`Copy DESIGN.md`,copiedText:e.dataset.copiedLabel??`Copied`,copyFailedText:e.dataset.copyFailedLabel??`Copy failed`},n=Array.from(e.querySelectorAll(`[data-doc-tab]`)),a=Array.from(e.querySelectorAll(`[data-doc-panel]`)),o=e.querySelector(`[data-copy-design]`),s=e.querySelector(`[data-download-design]`),c=e.querySelector(`[data-design-markdown]`),l=e.querySelector(`[data-doc-outline]`),u=e.querySelector(`[data-doc-bar]`),d=l&&u?r(l,u):void 0;u&&typeof ResizeObserver<`u`&&new ResizeObserver(()=>{e.style.setProperty(`--doc-bar-height`,`${u.offsetHeight}px`)}).observe(u);let f=e=>{n.forEach(t=>{let n=t.getAttribute(`data-doc-tab`)===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-selected`,n?`true`:`false`)}),a.forEach(t=>{let n=t.getAttribute(`data-doc-panel`)===e;t.classList.toggle(`is-active`,n),t.toggleAttribute(`hidden`,!n)}),d?.show(a.find(t=>t.getAttribute(`data-doc-panel`)===e)??null);let r=e===`design`;o&&(o.disabled=!r,o.setAttribute(`aria-disabled`,r?`false`:`true`),o.textContent=t.copyDesign,i(o,r)),i(s,r)};n.forEach(e=>{e.addEventListener(`click`,()=>{f(e.getAttribute(`data-doc-tab`)||`readme`)})}),o&&c&&o.addEventListener(`click`,async()=>{if(!o.disabled)try{await navigator.clipboard.writeText(c.value),o.textContent=t.copiedText}catch{o.textContent=t.copyFailedText}}),f(`readme`)})}a();</script></div><nav class="detail-adjacent-nav" aria-label="Adjacent designs"><a class="detail-adjacent-link" href="/designs/figma/" data-adjacent-link="previous" aria-keyshortcuts="ArrowLeft"><span><kbd aria-hidden="true">←</kbd>Previous</span><strong>Figma</strong></a><a class="detail-adjacent-link detail-adjacent-link-next" href="/designs/hashicorp/" data-adjacent-link="next" aria-keyshortcuts="ArrowRight"><span>Next<kbd aria-hidden="true">→</kbd></span><strong>HashiCorp</strong></a></nav><astro-island uid="EaEJ7" prefix="r2" component-url="/_astro/HagiCodeShowcase.BTfkzqJ-.js" component-export="default" renderer-url="/_astro/client.CuuXzlfV.js" props="{&quot;locale&quot;:[0,&quot;en&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;HagiCodeShowcase&quot;,&quot;value&quot;:true}" await-children><section class="gallery-showcase shell-panel" aria-label="Hagicode"><div class="gallery-showcase-content"><div class="gallery-showcase-head"><div><p class="gallery-meta-label">Built with HagiCode</p><h2>Hagicode</h2></div></div><div class="gallery-showcase-copy"><p>HagiCode is an agentic coding workspace: OpenSpec workflows, multi-agent execution, and Hero Scenario views turn ideas into shipped software.</p><p>Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.</p></div><ul class="gallery-showcase-triad" aria-label="Hagicode"><li><strong>Smart</strong><span>OpenSpec turns intent into an executable path from idea to shipped change.</span></li><li><strong>Efficient</strong><span>Multi-agent workflows keep research, implementation, and review moving in parallel.</span></li><li><strong>Fun</strong><span>Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding.</span></li></ul><div class="gallery-showcase-actions"><a class="gallery-showcase-cta button-primary" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcasePrimary" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="Visit HagiCode">Visit HagiCode</a><a class="gallery-showcase-learn-more" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcaseLearnMore" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="Learn more">Learn more</a><span class="gallery-showcase-store" data-store-entry="gallery-hagicode" data-ga-category="download" data-ga-label="microsoftStore" data-ga-location="design_showcase"><ms-store-badge productid="9N3PM0N3SVDW" productname="HagiCode" window-mode="direct" theme="auto" size="small" language="en-us" animation="on" aria-label="Open HagiCode in Microsoft Store" title="Open HagiCode in Microsoft Store"></ms-store-badge></span></div></div><section class="gallery-video-promo" aria-labelledby="gallery-video-promo-title"><div class="gallery-video-promo-heading"><h3 id="gallery-video-promo-title">HagiCode promo</h3><p>See how HagiCode brings agentic coding to life.</p></div><div class="gallery-video-promo-featured"><span class="gallery-video-promo-platform">HagiCode overview</span><div class="gallery-video-promo-frame"><iframe src="https://www.youtube.com/embed/AQ8oSTW6wNQ?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="HagiCode overview" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin"></iframe></div><p>See how HagiCode brings agentic coding to life.</p><a href="https://www.youtube.com/watch?v=AQ8oSTW6wNQ" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></div><a class="gallery-video-promo-alternate" href="https://www.bilibili.com/video/BV1z4oWB3EpY/" target="_blank" rel="noopener noreferrer">Watch the HagiCode overview on Bilibili</a></section></section><!--astro:end--></astro-island></section></main><hagilight-promoto-banner class="hagilight-promoto" data-locale="en" data-site-id="awesome-design-gallery" hidden="true"><section class="hagilight-promoto__shell" data-promoto-shell hidden aria-label="Featured promotion"><div class="hagilight-promoto__viewport"><div class="hagilight-promoto__track" data-promoto-track></div></div><nav class="hagilight-promoto__controls" data-promoto-controls aria-label="Promotion controls" hidden><button type="button" class="hagilight-promoto__control" data-promoto-previous aria-label="Previous promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="hagilight-promoto__count" data-promoto-count aria-label="Promotion progress"></span><button type="button" class="hagilight-promoto__control" data-promoto-next aria-label="Next promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="hagilight-promoto__control" data-promoto-pause aria-pressed="false" aria-label="Pause automatic promotion rotation"><svg class="hagilight-promoto__icon hagilight-promoto__icon--pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12"></path></svg><svg class="hagilight-promoto__icon hagilight-promoto__icon--play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z"></path></svg></button></nav><button type="button" class="hagilight-promoto__dismiss" data-promoto-dismiss aria-label="Dismiss promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></svg></button><span class="hagilight-promoto__progress" data-promoto-progress aria-hidden="true"></span><span class="hagilight-promoto__status" data-promoto-status aria-live="polite"></span></section></hagilight-promoto-banner><script type="module" src="/_astro/PromotoBanner.astro_astro_type_script_index_0_lang.YMDSqX7X.js"></script><footer class="hagilight-footer astro-foja5axx"><section class="hagilight-brand astro-cysah6db" lang="en-US" aria-labelledby="hagilight-brand-title"><div class="hagilight-brand__lead astro-cysah6db"><div class="hagilight-brand__title astro-cysah6db"><picture class="hagilight-brand__avatar astro-cysah6db" data-random-fan="[&quot;cat-head-gallery/g002-ukiyo-e-01.avif&quot;,&quot;cat-head-gallery/g003-watercolor-wash-02.avif&quot;,&quot;cat-head-gallery/g004-pixel-art-03.avif&quot;,&quot;cat-head-gallery/g005-oil-impasto-06.avif&quot;,&quot;cat-head-gallery/g006-paper-cut-layers-07.avif&quot;,&quot;cat-head-gallery/g008-low-poly-07.avif&quot;,&quot;cat-head-gallery/g009-claymation-07.avif&quot;,&quot;cat-head-gallery/g010-neon-line-07.avif&quot;,&quot;cat-head-gallery/g016-bauhaus-geometry-06.avif&quot;,&quot;cat-head-gallery/g017-cyanotype-06.avif&quot;,&quot;cat-head-gallery/g020-origami-03.avif&quot;,&quot;cat-head-gallery/g022-blueprint-03.avif&quot;,&quot;cat-head-gallery/g023-chalk-pastel-10.avif&quot;,&quot;cat-head-gallery/g025-voxel-03.avif&quot;,&quot;cat-head-gallery/g031-illuminated-manuscript-04.avif&quot;,&quot;cat-head-gallery/g034-vaporwave-04.avif&quot;,&quot;cat-head-gallery/g035-synthwave-chrome-09.avif&quot;,&quot;cat-head-gallery/g038-frosted-glass-02.avif&quot;,&quot;cat-head-gallery/g039-needle-felt-09.avif&quot;,&quot;cat-head-gallery/g041-glossy-balloon-05.avif&quot;,&quot;cat-head-gallery/g042-blue-white-porcelain-05.avif&quot;,&quot;cat-head-gallery/g043-glazed-ceramic-06.avif&quot;,&quot;cat-head-gallery/g045-impressionist-08.avif&quot;,&quot;cat-head-gallery/g047-fauvist-09.avif&quot;,&quot;cat-head-gallery/g048-cubist-10.avif&quot;,&quot;cat-head-gallery/g051-naive-folk-art-07.avif&quot;,&quot;cat-head-gallery/g056-wax-print-fabric-07.avif&quot;,&quot;cat-head-gallery/g058-red-paper-cut-10.avif&quot;,&quot;cat-head-gallery/g060-kawaii-pastel-01.avif&quot;,&quot;cat-head-gallery/g061-retro-90s-anime-01.avif&quot;,&quot;cat-head-gallery/g062-shoujo-sparkle-08.avif&quot;,&quot;cat-head-gallery/g065-saturday-cartoon-09.avif&quot;,&quot;cat-head-gallery/g067-pixar-style-3d-03.avif&quot;,&quot;cat-head-gallery/g068-toon-shaded-3d-04.avif&quot;,&quot;cat-head-gallery/g069-ps1-lowpoly-06.avif&quot;,&quot;cat-head-gallery/g070-matte-clay-render-07.avif&quot;,&quot;cat-head-gallery/g071-y2k-chrome-08.avif&quot;,&quot;cat-head-gallery/g072-glossy-3d-icon-08.avif&quot;,&quot;cat-head-gallery/g073-marble-bust-08.avif&quot;,&quot;cat-head-gallery/g075-wood-carving-10.avif&quot;,&quot;cat-head-gallery/g076-carved-jade-10.avif&quot;,&quot;cat-head-gallery/g078-toy-brick-02.avif&quot;,&quot;cat-head-gallery/g079-designer-vinyl-toy-02.avif&quot;,&quot;cat-head-gallery/g081-patchwork-quilt-03.avif&quot;,&quot;cat-head-gallery/g083-warhol-silkscreen-04.avif&quot;,&quot;cat-head-gallery/g088-vintage-lithograph-02.avif&quot;,&quot;cat-head-gallery/g090-alcohol-marker-09.avif&quot;,&quot;cat-head-gallery/g091-painterly-concept-art-09.avif&quot;,&quot;cat-head-gallery/g092-gradient-minimal-09.avif&quot;,&quot;cat-head-gallery/g095-constellation-map-09.avif&quot;]"><source type="image/avif" srcset="/_astro/avatar.BPGAI8am.avif" class="astro-cysah6db"><source type="image/webp" srcset="/_astro/avatar.BBqcj7YN.webp" class="astro-cysah6db"><img src="/_astro/avatar.BBqcj7YN.webp" width="64" height="64" alt aria-hidden="true" loading="lazy" decoding="async" class="astro-cysah6db"></picture><h2 class="hagilight-brand__headline astro-cysah6db" id="hagilight-brand-title">Turn ideas into shipped software.</h2></div><div class="hagilight-brand__body astro-cysah6db"><p class="hagilight-brand__summary astro-cysah6db">HagiCode is an agentic coding workspace. OpenSpec workflows plan the change, multi-agent execution carries it out, and Hero Scenario makes the long run visible, so ideas become shipped software.</p><div class="hagilight-brand__actions astro-cysah6db"><a class="hagilight-brand__primary astro-cysah6db" href="https://www.hagicode.com/en-US/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer_brand"><span class="astro-cysah6db">Download Hagicode</span><svg class="hagilight-brand__arrow astro-cysah6db" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="astro-cysah6db"></path></svg></a><a class="hagilight-brand__secondary astro-cysah6db" href="https://docs.hagicode.com/en-US/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer_brand">Product Docs</a></div></div></div><dl class="hagilight-brand__pillars astro-cysah6db"><div class="hagilight-brand__pillar astro-cysah6db" data-pillar="smart" style="--hagilight-brand-i: 0"><dt class="astro-cysah6db">Smart</dt><dd class="astro-cysah6db">OpenSpec workflows turn intent into a path from proposal to shipped change.</dd></div><div class="hagilight-brand__pillar astro-cysah6db" data-pillar="efficient" style="--hagilight-brand-i: 1"><dt class="astro-cysah6db">Efficient</dt><dd class="astro-cysah6db">Multi-agent execution runs research, build, and review in parallel.</dd></div><div class="hagilight-brand__pillar astro-cysah6db" data-pillar="fun" style="--hagilight-brand-i: 2"><dt class="astro-cysah6db">Fun</dt><dd class="astro-cysah6db">Rich UI interactions make planning, agent work, and projects easier to follow.</dd></div></dl><script type="module">var e=/^([a-z0-9][a-z0-9_-]*)\/[a-z0-9][a-z0-9_-]*\.avif$/u;function t(t){if(!Array.isArray(t)||t.length<12||t.length>200)throw TypeError(`Hagilight random pool must list 12 to 200 R2 objects.`);let n;for(let r of t){let t=typeof r==`string`?e.exec(r):null;if(!t)throw TypeError(`Hagilight random pool entry "${String(r)}" must be an <album>/<key>.avif object path.`);if(n??=t[1],t[1]!==n)throw TypeError(`Hagilight random pool entries must all come from one album.`)}if(new Set(t).size!==t.length)throw TypeError(`Hagilight random pool entries must be unique.`);return Object.freeze([...t])}function n(e){let t=e();return Number.isFinite(t)?Math.min(Math.max(t,0),1-2**-52):0}function r(e,t,r=Math.random){let i=[...e],a=Math.min(Math.max(Math.floor(t),0),i.length);for(let e=0;e<a;e+=1){let t=e+Math.floor(n(r)*(i.length-e));[i[e],i[t]]=[i[t],i[e]]}return i.slice(0,a)}function i(e){return`https://img-gen.hagicode.com/${e}`}function a(e,t={}){return new Promise(n=>{let r=t.setTimer??((e,t)=>setTimeout(e,t)),i=t.clearTimer??(e=>clearTimeout(e)),a,o=e=>{i(a),n(e)};try{let n=t.createImage?t.createImage():new Image;n.onload=()=>o(!0),n.onerror=()=>o(!1),a=r(()=>o(!1),3e3),n.src=e}catch{o(!1)}})}function o(){return(typeof navigator>`u`?void 0:navigator.connection)?.saveData===!0}function s(e,t,n=6){return((e-t)%n+n)%n}function c(){return typeof matchMedia==`function`&&matchMedia(`(prefers-reduced-motion: reduce)`).matches}function l(e,t){if(typeof IntersectionObserver!=`function`){t(!0);return}new IntersectionObserver(e=>t(e[e.length-1]?.isIntersecting===!0),{rootMargin:`0px 0px 160px 0px`}).observe(e)}function u(e,t,n,r){let i=e.ownerDocument.createElement(`span`);i.className=`hagilight-fan`;let a=n.slice(0,r).map(n=>{let r=t?t.cloneNode(!1):e.ownerDocument.createElement(`img`);return r.removeAttribute(`srcset`),r.removeAttribute(`sizes`),r.removeAttribute(`loading`),r.setAttribute(`class`,`hagilight-fan__card`),r.setAttribute(`src`,n),i.append(r),r});return e.append(i),e.offsetWidth,t?.setAttribute(`data-fan-out`,``),a.forEach((e,t)=>e.setAttribute(`data-slot`,String(t))),a}async function d(e,n){if(e.setAttribute(`data-random-state`,`default`),(n.saveData??o)())return!1;let d;try{d=t(JSON.parse(e.getAttribute(`data-random-fan`)??`null`))}catch{return!1}let f=!1,p,m=new Promise(e=>{p=e});(n.watch??l)(e,e=>{f=e,e&&p()}),await m;let h=n.random??Math.random,g=!(n.reducedMotion??c)(),_=r(d,g?6:3,h).map(i),v=(await Promise.all(_.map(async e=>await a(e,n)?e:``))).filter(Boolean);if(v.length<3)return!1;let y=g&&v.length===6,b=u(e,e.querySelector(`img`),v,y?6:3);if(e.setAttribute(`data-random-state`,`fan`),y){let t=0,r=()=>{};r=(n.every??((e,t)=>{let n=setInterval(e,t);return()=>clearInterval(n)}))(()=>{e.isConnected===!1?r():f&&!(n.tabHidden??(()=>typeof document<`u`&&document.hidden))()&&(t+=1,b.forEach((e,n)=>e.setAttribute(`data-slot`,String(s(n,t,b.length)))))},3600)}return!0}function f(e,t={}){return Array.from(e.querySelectorAll(`[data-random-fan]:not([data-random-state])`)).map(e=>d(e,t).catch(()=>!1))}f(document);</script></section><div class="hagilight-footer__sections astro-foja5axx"><section class="astro-foja5axx"><h2 class="astro-foja5axx">Ecosystem Sites</h2><nav aria-label="Ecosystem site links" class="astro-foja5axx"><ul class="astro-foja5axx"><li class="astro-foja5axx"><a href="https://tasks.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiTask</a></li><li class="astro-foja5axx"><a href="https://cost.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Will AI Replace Me?</a></li><li class="astro-foja5axx"><a href="https://www.hagicode.com/en-US/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiCode Main Site</a></li><li class="astro-foja5axx"><a href="https://newbe.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">newbe</a></li><li class="astro-foja5axx"><a href="https://index.hagicode.com/data/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Index Data Mirror</a></li><li class="astro-foja5axx"><a href="https://builder.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Docker Compose Builder</a></li><li class="astro-foja5axx"><a href="https://status.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiCode Status</a></li><li class="astro-foja5axx"><a href="https://awesome.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Awesome Sites</a></li><li class="astro-foja5axx"><a href="https://soul.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Soul Builder</a></li><li class="astro-foja5axx"><a href="https://trait.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">Trait Builder</a></li><li class="astro-foja5axx"><a href="https://openspec.hagicode.com/en-US/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">OpenSpec Docs</a></li><li class="astro-foja5axx"><a href="https://omniroute.hagicode.com/en-US/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">OmniRoute Docs</a></li><li class="astro-foja5axx"><a href="https://fullstack.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiCode Fullstack</a></li><li class="astro-foja5axx"><a href="https://gallery.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer" target="_blank" rel="noopener" class="astro-foja5axx">HagiCode Gallery</a></li></ul></nav></section><section class="astro-foja5axx"><h2 class="astro-foja5axx">Quick Links</h2><nav aria-label="Quick links" class="astro-foja5axx"><ul class="astro-foja5axx"><li class="astro-foja5axx"><a href="https://www.hagicode.com/en-US/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer" class="astro-foja5axx">Download Hagicode</a></li><li class="astro-foja5axx"><a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" target="_blank" rel="noopener noreferrer" data-ga-category="store" data-ga-label="microsoftStore" data-ga-location="footer" class="astro-foja5axx">Download Hagicode for Windows</a></li><li class="astro-foja5axx"><a href="https://docs.hagicode.com/en-US/installation/docker-compose/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="navigation" data-ga-label="dockerCompose" data-ga-location="footer" class="astro-foja5axx">Docker Compose Installation</a></li><li class="astro-foja5axx"><a href="https://docs.hagicode.com/en-US/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer" class="astro-foja5axx">Product Docs</a></li><li class="astro-foja5axx"><a href="https://docs.hagicode.com/en-US/blog/?utm_source=awesome-design-gallery&amp;utm_medium=footer" data-ga-category="navigation" data-ga-label="blogPosts" data-ga-location="footer" class="astro-foja5axx">Blog Posts</a></li><li class="astro-foja5axx"><a href="https://design.hagicode.com/rss.xml" class="astro-foja5axx">RSS Feed</a></li><li class="astro-foja5axx"><a href="/sitemap-index.xml" class="astro-foja5axx">Sitemap</a></li><li class="astro-foja5axx"><a href="https://www.hagicode.com/en-US/about/?utm_source=awesome-design-gallery&amp;utm_medium=footer" class="astro-foja5axx">About HagiCode</a></li></ul></nav></section><section class="astro-foja5axx"><h2 class="astro-foja5axx">Community</h2><nav aria-label="Community links" class="astro-foja5axx"><ul class="astro-foja5axx"><li class="astro-foja5axx"><a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="github" data-ga-location="footer" class="astro-foja5axx">GitHub</a></li><li class="astro-foja5axx"><a href="https://discord.gg/qY662sJK" target="_blank" rel="noopener noreferrer" data-ga-category="community" data-ga-label="discord" data-ga-location="footer" class="astro-foja5axx">Discord</a></li><li class="astro-foja5axx"><a href="https://github.com/HagiCode-org/site/issues" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="issueFeedback" data-ga-location="footer" class="astro-foja5axx">Issue Feedback</a></li><li class="astro-foja5axx"><a href="mailto:support@hagicode.com" class="astro-foja5axx">Contact Email</a></li><li class="astro-foja5axx"><a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer" class="astro-foja5axx">QQ Group 610394020</a></li></ul></nav></section></div><nav class="hagilight-footer__filings astro-foja5axx" aria-label="View filing information"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="View ICP filing information" class="astro-foja5axx">ICP Filing 闽ICP备2026004153号-1</a><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer" aria-label="View public security filing information" class="astro-foja5axx">Public Security Filing 闽公网安备35011102351148号</a></nav><p class="hagilight-footer__copyright astro-foja5axx"><span>© 2026 HagiCode</span> | <span class="hagilight-footer__build astro-foja5axx" data-build-field="branch">Branch: main</span> | <span class="hagilight-footer__build astro-foja5axx" data-build-field="commit" title="7d6eaf2516e6a980ae49848f21b1166108683218" data-build-commit="7d6eaf2516e6a980ae49848f21b1166108683218">Commit: 7d6eaf2</span> | <span class="hagilight-footer__build astro-foja5axx" data-build-field="builtAt">Built: <time datetime="2026-10-24T07:19:03Z" class="astro-foja5axx">2026-10-24T07:19:03Z</time></span></p></footer></div><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script>(function(){const siteId = "L6b88a5yK4h2Xnci";
+
+      LA.init({ id: siteId, ck: siteId, autoTrack: true, hashMode: true, screenRecord: true });
+    })();</script><script async src="https://www.googletagmanager.com/gtag/js?id=G-EN03FMT2Q4"></script><script>window.dataLayer = window.dataLayer || [];
+window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.gtag('config', "G-EN03FMT2Q4");</script><script type="module" src="/_astro/GoogleAnalytics.astro_astro_type_script_index_0_lang.BA_TX3RH.js"></script></body></html><script type="module">var e=`adms-detail-layout`;function t(e){return e===`preview`||e===`docs`?e:`split`}function n(){try{return t(window.localStorage.getItem(e))}catch{return`split`}}function r(t){try{window.localStorage.setItem(e,t)}catch{}}function i(e){return e instanceof HTMLElement?e.isContentEditable||[`INPUT`,`TEXTAREA`,`SELECT`].includes(e.tagName):!1}function a(e=document){let a=e.querySelector(`[data-detail-grid]`),o=Array.from(e.querySelectorAll(`[data-detail-layout]`)),s=e.querySelector(`.site-header`),c=s&&typeof ResizeObserver<`u`?new ResizeObserver(()=>{e.documentElement.style.setProperty(`--site-header-height`,`${s.offsetHeight}px`)}):void 0;if(c?.observe(s),a&&o.length>0){let e=e=>{a.dataset.layout=e,o.forEach(t=>{let n=t.dataset.detailLayout===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-pressed`,n?`true`:`false`)})};o.forEach(n=>{n.addEventListener(`click`,()=>{let i=t(n.dataset.detailLayout);e(i),r(i)})}),e(n())}let l=t=>{if(t.defaultPrevented||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey||i(t.target))return;let n=t.key===`ArrowLeft`?`previous`:t.key===`ArrowRight`?`next`:null,r=n?e.querySelector(`[data-adjacent-link="${n}"]`):null;r&&(t.preventDefault(),r.click())};return e.addEventListener(`keydown`,l),()=>{c?.disconnect(),e.removeEventListener(`keydown`,l)}}a();</script>
