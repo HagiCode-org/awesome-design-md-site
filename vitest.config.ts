@@ -8,6 +8,10 @@ export default defineConfig({
     },
   },
   test: {
+    // Memory bound: cap the worker count and give every worker a V8 heap ceiling, so a leaking test file fails with an OOM
+    // instead of exhausting the machine.
+    maxWorkers: 4,
+    execArgv: ['--max-old-space-size=4096'],
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
   },
