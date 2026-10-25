@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "npm run prepare:i18n && astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
     "start": "npm run prepare:i18n && astro dev --host 0.0.0.0",
-    "build": "export NODE_ENV=\"${NODE_ENV:-production}\"; npm run prepare:i18n && npm run previews:verify && astro build && node ./scripts/verify-promoto-build.mjs && node ./scripts/verify-footer-build.mjs",
+    "build": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; export NODE_ENV=\"${NODE_ENV:-production}\"; npm run prepare:i18n && npm run previews:verify && astro build && node ./scripts/verify-promoto-build.mjs && node ./scripts/verify-footer-build.mjs",
     "preview": "astro preview --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
     "previews:render": "node ./scripts/render-preview-images.mjs",
     "previews:verify": "node ./scripts/verify-preview-images.mjs",
@@ -23,7 +23,7 @@
     "prepare:i18n": "npm run i18n:generate",
     "i18n:check": "npm run i18n:audit && npm run i18n:doctor && npm run prepare:i18n && node ./scripts/generate-i18n-resources.mjs --check",
     "test": "npm run prepare:i18n && vitest run",
-    "typecheck": "npm run prepare:i18n && astro check",
+    "typecheck": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; npm run prepare:i18n && astro check",
     "clean": "rm -rf .astro dist"
   },
   "dependencies": {
