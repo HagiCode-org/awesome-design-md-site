@@ -49,6 +49,19 @@ Requires Node.js 24+. `npm run build` first runs `previews:verify`, then also ru
 - Use `npm run i18n:check` to validate locale consistency.
 - Footer, favicon, analytics, RSS and `llms.txt` come from `@hagicode/hagilight` / `hagilight-core` (configured in `astro.config.mjs`); upgrade them together and adjust the build verification scripts if footer or promoto output changes. Analytics renders the shared `@hagicode/hagilight-core` components directly (no local wrappers; PostHog is injected by `hagilight()`), and the site identifies itself to the footer/promoto banner with `siteId` `awesome-design-gallery` so it is absent from its own Ecosystem Sites list.
 
+## PostHog Events
+
+Site-level events are sent only through `captureSiteEvent` in `src/lib/posthog-events.ts`, which reads the frozen `SITE_POSTHOG_EVENTS` table. The wrapper never throws, sends nothing without `window.posthog` or when the visitor has opted out, and drops every property that is not allowlisted (strings are capped at 128 characters). Event names are snake_case, object first. Tests in `src/lib/posthog-events.test.ts` cover the wrapper contract and the exact allowlisted payloads.
+
+| Event | Fires when | Properties |
+|-------|-----------|------------|
+| `design_doc_tab_changed` | The visitor selects a document tab that differs from the active one (re-selecting the active tab sends nothing) | `tab`: `readme` or `design` |
+| `design_md_copied` | The DESIGN.md copy succeeds (a failed copy sends nothing) | `slug`: directory entry slug |
+| `design_md_downloaded` | A `[data-download-design]` link is activated, including clicks on elements nested inside it | `slug`: directory entry slug |
+| `design_search_used` | The search query settles (400 ms without change) to a non-empty value that differs from the last reported settled query; the query restored from `?q=` on load is not counted | `results_count`: non-negative integer |
+
+Deduplication rule: the four events above are the canonical record of those actions. The DESIGN tab, copy and download controls currently carry no `data-ga-*` marker, so no `cta_click` event is produced for them; if a marker is added later, a click may produce both the business event and `cta_click`. Dashboards must not add these business events to `cta_click` counts. The search term and any URL are never sent.
+
 ## References
 
 - `README.md`
