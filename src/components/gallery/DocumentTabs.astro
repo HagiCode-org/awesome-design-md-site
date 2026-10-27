@@ -2,6 +2,7 @@
 import { localeCopy, type SupportedLocale } from '@/config/site';
 
 interface Props {
+  slug: string;
   readmeHtml: string;
   designHtml: string;
   designMarkdown: string;
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const {
+  slug,
   readmeHtml,
   designHtml,
   designMarkdown,
@@ -22,6 +24,7 @@ const copy = localeCopy[locale].documents;
 <section
   class="detail-documents"
   data-document-tabs
+  data-design-slug={slug}
   data-copy-design-label={copy.copyDesign}
   data-copied-label={copy.copied}
   data-copy-failed-label={copy.copyFailed}

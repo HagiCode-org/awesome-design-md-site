@@ -1,4 +1,5 @@
 import { createDocOutline } from '@/components/gallery/doc-outline';
+import { captureSiteEvent } from '@/lib/posthog-events';
 
 interface DocumentTabLabels {
   copyDesign: string;
@@ -34,6 +35,8 @@ export function initializeDocumentTabs(rootDocument: Document = document) {
     const outlineNav = root.querySelector<HTMLElement>('[data-doc-outline]');
     const bar = root.querySelector<HTMLElement>('[data-doc-bar]');
     const outline = outlineNav && bar ? createDocOutline(outlineNav, bar) : undefined;
+    const designSlug = root.dataset.designSlug ?? '';
+    let activeTab = 'readme';
 
     // Scrolled-to headings must clear both the site header and this bar.
     if (bar && typeof ResizeObserver !== 'undefined') {
@@ -43,6 +46,7 @@ export function initializeDocumentTabs(rootDocument: Document = document) {
     }
 
     const activate = (target: string) => {
+      activeTab = target;
       tabs.forEach((tab) => {
         const active = tab.getAttribute('data-doc-tab') === target;
         tab.classList.toggle('is-active', active);
@@ -71,7 +75,15 @@ export function initializeDocumentTabs(rootDocument: Document = document) {
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
-        activate(tab.getAttribute('data-doc-tab') || 'readme');
+        const target = tab.getAttribute('data-doc-tab') || 'readme';
+        const changed = target !== activeTab;
+
+        activate(target);
+
+        // Re-selecting the active tab keeps the old behavior but is not a tab change.
+        if (changed) {
+          captureSiteEvent('design_doc_tab_changed', { tab: target });
+        }
       });
     });
 
@@ -84,11 +96,25 @@ export function initializeDocumentTabs(rootDocument: Document = document) {
         try {
           await navigator.clipboard.writeText(designMarkdown.value);
           copyButton.textContent = labels.copiedText;
+          captureSiteEvent('design_md_copied', { slug: designSlug });
         } catch {
           copyButton.textContent = labels.copyFailedText;
         }
       });
     }
+
+    // One delegated listener covers the download link and any element nested inside it.
+    root.addEventListener('click', (event) => {
+      const target = event.target;
+
+      if (!(target instanceof Element)) {
+        return;
+      }
+
+      if (target.closest('[data-download-design]')) {
+        captureSiteEvent('design_md_downloaded', { slug: designSlug });
+      }
+    });
 
     activate('readme');
   });

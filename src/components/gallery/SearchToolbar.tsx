@@ -1,5 +1,9 @@
 import { startTransition, useEffect, useEffectEvent, useId, useRef, useState } from 'react';
 import { getSearchSummary, localeCopy, type SupportedLocale } from '@/config/site';
+import { captureSiteEvent } from '@/lib/posthog-events';
+
+// How long the query must stay unchanged before it counts as a settled search for analytics.
+export const SEARCH_EVENT_SETTLE_MS = 400;
 
 export interface SearchToolbarEntry {
   slug: string;
@@ -171,6 +175,32 @@ export default function SearchToolbar({ entries, totalCount, locale = 'en' }: Pr
     syncCards(visibleEntries.map((entry) => entry.slug));
     syncUrl(normalizedQuery);
   }, [normalizedQuery, ready, syncCards, syncUrl, visibleEntries]);
+
+  // Analytics only: one event per settled, non-empty query that differs from the last reported one.
+  // The query restored from ?q= on load is the baseline, so opening a URL never counts as a search.
+  const reportedQueryRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (!ready) {
+      return;
+    }
+
+    if (reportedQueryRef.current === null) {
+      reportedQueryRef.current = normalizedQuery;
+      return;
+    }
+
+    const timer = window.setTimeout(() => {
+      const previous = reportedQueryRef.current;
+      reportedQueryRef.current = normalizedQuery;
+
+      if (normalizedQuery && normalizedQuery !== previous) {
+        captureSiteEvent('design_search_used', { results_count: resultCount });
+      }
+    }, SEARCH_EVENT_SETTLE_MS);
+
+    return () => window.clearTimeout(timer);
+  }, [ready, normalizedQuery, resultCount]);
 
   const summary = getSearchSummary(
     locale,
