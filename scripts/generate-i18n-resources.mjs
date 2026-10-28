@@ -247,7 +247,7 @@ export async function verifyGeneratedI18nResources(options = {}) {
   assert.equal(
     actualModule,
     expectedModule,
-    `${relativeToSiteRoot(metadata.generatedPath)} is stale; rerun npm run i18n:generate`,
+    `${relativeToSiteRoot(metadata.generatedPath)} is stale; rerun pnpm run i18n:generate`,
   );
 
   return {

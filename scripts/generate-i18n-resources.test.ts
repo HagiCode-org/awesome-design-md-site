@@ -102,6 +102,6 @@ describe('generate-i18n-resources', () => {
         localesRoot: fixture.localesRoot,
         generatedPath: fixture.generatedPath,
       }),
-    ).rejects.toThrow('is stale; rerun npm run i18n:generate');
+    ).rejects.toThrow('is stale; rerun pnpm run i18n:generate');
   });
 });

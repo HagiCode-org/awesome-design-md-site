@@ -119,7 +119,7 @@ describe('verifyPreviewImages', () => {
     const { failures } = await verifyPreviewImages({ root });
 
     expect(failures).toEqual([
-      'Preview images are missing for design entry "gamma". Run: npm run previews:render -- --only gamma',
+      'Preview images are missing for design entry "gamma". Run: pnpm run previews:render --only gamma',
     ]);
   }, 30_000);
 
@@ -130,7 +130,7 @@ describe('verifyPreviewImages', () => {
     const { failures } = await verifyPreviewImages({ root });
 
     expect(failures).toEqual([
-      expect.stringContaining('Missing preview image "alpha" (dark, mobile): alpha/dark-mobile.avif. Run: npm run previews:render -- --only alpha'),
+      expect.stringContaining('Missing preview image "alpha" (dark, mobile): alpha/dark-mobile.avif. Run: pnpm run previews:render --only alpha'),
     ]);
   }, 30_000);
 
@@ -172,7 +172,7 @@ describe('verifyPreviewImages', () => {
     expect(failures).toEqual([
       expect.stringContaining('Preview images for "alpha" (dark) are stale'),
     ]);
-    expect(failures[0]).toContain('npm run previews:render -- --only alpha');
+    expect(failures[0]).toContain('pnpm run previews:render --only alpha');
   }, 30_000);
 
   it('reports image files that no entry references as orphans', async () => {

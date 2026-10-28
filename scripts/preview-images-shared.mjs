@@ -4,7 +4,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 export const DEFAULT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-export const RENDER_COMMAND = 'npm run previews:render';
+export const RENDER_COMMAND = 'pnpm run previews:render';
 export const MANIFEST_VERSION = 1;
 export const VARIANTS = ['light', 'dark'];
 export const SOURCE_FILES = { light: 'preview.html', dark: 'preview-dark.html' };
