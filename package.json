@@ -3,11 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "packageManager": "npm@11.10.1",
+  "packageManager": "pnpm@12.16.1",
   "scripts": {
-    "dev": "npm run prepare:i18n && astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
-    "start": "npm run prepare:i18n && astro dev --host 0.0.0.0",
-    "build": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; export NODE_ENV=\"${NODE_ENV:-production}\"; npm run prepare:i18n && npm run previews:verify && astro build && node ./scripts/verify-promoto-build.mjs && node ./scripts/verify-footer-build.mjs",
+    "dev": "pnpm run prepare:i18n && astro dev --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
+    "start": "pnpm run prepare:i18n && astro dev --host 0.0.0.0",
+    "build": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; export NODE_ENV=\"${NODE_ENV:-production}\"; pnpm run prepare:i18n && pnpm run previews:verify && astro build && node ./scripts/verify-promoto-build.mjs && node ./scripts/verify-footer-build.mjs",
     "preview": "astro preview --host 0.0.0.0 --port ${PORT_WEBSITE:-4321}",
     "previews:render": "node ./scripts/render-preview-images.mjs",
     "previews:verify": "node ./scripts/verify-preview-images.mjs",
@@ -20,11 +20,13 @@
     "i18n:prune": "hagi18n prune --config hagi18n.yaml --from en-US --dry-run",
     "i18n:prune:write": "hagi18n prune --config hagi18n.yaml --from en-US --write",
     "i18n:generate": "node ./scripts/generate-i18n-resources.mjs",
-    "prepare:i18n": "npm run i18n:generate",
-    "i18n:check": "npm run i18n:audit && npm run i18n:doctor && npm run prepare:i18n && node ./scripts/generate-i18n-resources.mjs --check",
-    "test": "npm run prepare:i18n && vitest run",
-    "typecheck": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; npm run prepare:i18n && astro check",
-    "clean": "rm -rf .astro dist"
+    "prepare:i18n": "pnpm run i18n:generate",
+    "i18n:check": "pnpm run i18n:audit && pnpm run i18n:doctor && pnpm run prepare:i18n && node ./scripts/generate-i18n-resources.mjs --check",
+    "test": "pnpm run prepare:i18n && vitest run",
+    "typecheck": "export NODE_OPTIONS=\"${NODE_OPTIONS:-} --max-old-space-size=8192\"; pnpm run prepare:i18n && astro check",
+    "clean": "rm -rf .astro dist",
+    "check:registry": "node scripts/check-registry-neutrality.mjs",
+    "test:registry": "node --test scripts/check-registry-neutrality.node-test.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^8.0.2",
@@ -60,6 +62,6 @@
   },
   "engines": {
     "node": ">=24.0.0",
-    "npm": ">=10.0.0"
+    "pnpm": ">=12.16.1"
   }
 }
