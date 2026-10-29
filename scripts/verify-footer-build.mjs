@@ -27,13 +27,18 @@ for (const page of pages) {
   const isZhCn = page.pathname.includes('/zh-CN/');
 
   assert.equal([...html.matchAll(/<footer\b[^>]*class="[^"]*\bhagilight-footer\b[^"]*"/gu)].length, 1);
-  // The site must not list itself under Ecosystem Sites (it identifies itself with siteId), while
-  // other ecosystem sites stay listed.
+  // Hagilight groups footer links into purpose-based columns (`nav[data-column]`), so ecosystem sites
+  // are no longer under their own heading. The site must not link to itself from a column (it identifies
+  // itself with siteId), while other HagiCode sites stay listed. The feeds nav links to this site's own
+  // RSS and sitemap, so it is deliberately left out.
   const footer = html.match(/<footer\b[^>]*class="[^"]*\bhagilight-footer\b[^"]*"[\s\S]*?<\/footer>/u)?.[0] ?? '';
-  const related = footer.match(/<h2\b[^>]*>[^<]*<\/h2>\s*<nav\b[\s\S]*?<\/nav>/u)?.[0] ?? '';
-  const relatedHosts = [...related.matchAll(/<a href="(https?:\/\/[^"]+)"/gu)].map((match) => new URL(match[1]).host);
-  assert.ok(relatedHosts.includes('www.hagicode.com'), 'Ecosystem Sites must list other HagiCode sites');
-  assert.ok(!relatedHosts.includes(new URL(siteOrigin).host), 'Ecosystem Sites must not list this site itself');
+  const columns = [...footer.matchAll(/<nav\b[^>]*\bdata-column="[^"]+"[^>]*>[\s\S]*?<\/nav>/gu)].map((match) => match[0]);
+  assert.ok(columns.length > 0, 'The footer must render its link columns');
+  const relatedHosts = columns
+    .flatMap((column) => [...column.matchAll(/<a href="(https?:\/\/[^"]+)"/gu)])
+    .map((match) => new URL(match[1]).host);
+  assert.ok(relatedHosts.includes('www.hagicode.com'), 'Footer columns must list other HagiCode sites');
+  assert.ok(!relatedHosts.includes(new URL(siteOrigin).host), 'Footer columns must not list this site itself');
   const icons = [...html.matchAll(/<link\b[^>]*\brel="icon"[^>]*>/gu)];
   assert.equal(icons.length, 1);
   assert.ok(icons[0][0].includes(`href="${hagilightFaviconUrl}"`));
