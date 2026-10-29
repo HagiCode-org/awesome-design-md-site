@@ -35,9 +35,9 @@ const englishGuide: GettingStartedGuideContent = {
       title: 'i18n workflow',
       items: [
         'Edit first-party UI strings and locale metadata in src/i18n/locales/<locale>/*.yml.',
-        'Run npm run i18n:audit or npm run i18n:doctor before regenerating runtime resources.',
-        'Run npm run i18n:generate to refresh src/i18n/generated/site-locale-resources.ts.',
-        'Run npm run i18n:check to combine audit, doctor, generation, and stale-resource verification.',
+        'Run pnpm run i18n:audit or pnpm run i18n:doctor before regenerating runtime resources.',
+        'Run pnpm run i18n:generate to refresh src/i18n/generated/site-locale-resources.ts.',
+        'Run pnpm run i18n:check to combine audit, doctor, generation, and stale-resource verification.',
       ],
     },
     {
@@ -61,10 +61,10 @@ const englishGuide: GettingStartedGuideContent = {
   commands: [
     'npm install',
     'git submodule update --init --recursive',
-    'npm run i18n:check',
-    'npm run test',
-    'npm run typecheck',
-    'SITE_URL=https://your-domain.example npm run build',
+    'pnpm run i18n:check',
+    'pnpm run test',
+    'pnpm run typecheck',
+    'SITE_URL=https://your-domain.example pnpm run build',
   ],
 };
 
@@ -88,9 +88,9 @@ const simplifiedChineseGuide: GettingStartedGuideContent = {
       title: 'i18n 维护流程',
       items: [
         '在 src/i18n/locales/<locale>/*.yml 中维护第一方 UI 文案与语言元数据。',
-        '生成运行时资源前，先运行 npm run i18n:audit 或 npm run i18n:doctor。',
-        '通过 npm run i18n:generate 刷新 src/i18n/generated/site-locale-resources.ts。',
-        '通过 npm run i18n:check 串联 audit、doctor、生成与资源陈旧校验。',
+        '生成运行时资源前，先运行 pnpm run i18n:audit 或 pnpm run i18n:doctor。',
+        '通过 pnpm run i18n:generate 刷新 src/i18n/generated/site-locale-resources.ts。',
+        '通过 pnpm run i18n:check 串联 audit、doctor、生成与资源陈旧校验。',
       ],
     },
     {
@@ -114,10 +114,10 @@ const simplifiedChineseGuide: GettingStartedGuideContent = {
   commands: [
     'npm install',
     'git submodule update --init --recursive',
-    'npm run i18n:check',
-    'npm run test',
-    'npm run typecheck',
-    'SITE_URL=https://your-domain.example npm run build',
+    'pnpm run i18n:check',
+    'pnpm run test',
+    'pnpm run typecheck',
+    'SITE_URL=https://your-domain.example pnpm run build',
   ],
 };
 

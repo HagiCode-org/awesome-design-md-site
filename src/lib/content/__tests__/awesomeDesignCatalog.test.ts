@@ -203,7 +203,7 @@ describe('awesomeDesignCatalog', () => {
     });
 
     await expect(getAwesomeDesignCatalog({ sourceRoot, previewImageManifest: { version: 1, entries: {} } })).rejects.toThrow(
-      'Preview images are missing for design entry "stripe". Run `npm run previews:render -- --only stripe`',
+      'Preview images are missing for design entry "stripe". Run `pnpm run previews:render --only stripe`',
     );
   });
 

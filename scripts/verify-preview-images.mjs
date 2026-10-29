@@ -18,7 +18,7 @@ import {
 } from './preview-images-shared.mjs';
 
 function renderHint(slug) {
-  return `Run: ${RENDER_COMMAND} -- --only ${slug}`;
+  return `Run: ${RENDER_COMMAND} --only ${slug}`;
 }
 
 export function isAvifBytes(bytes) {

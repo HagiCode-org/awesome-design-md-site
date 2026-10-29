@@ -35,7 +35,7 @@ export default function HeroPanel({ content }: Props) {
           </div>
           <pre>
             <code>{`npm install
-npm run dev
+pnpm run dev
 edit src/config/site.ts
 replace sample sections`}</code>
           </pre>

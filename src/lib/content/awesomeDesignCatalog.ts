@@ -338,7 +338,7 @@ function resolvePreviewImages(
 }
 
 function missingPreviewImagesMessage(slug: string): string {
-  return `Preview images are missing for design entry "${slug}". Run \`npm run previews:render -- --only ${slug}\` and commit the output.`;
+  return `Preview images are missing for design entry "${slug}". Run \`pnpm run previews:render --only ${slug}\` and commit the output.`;
 }
 
 function toPreviewImageSet(files: Record<PreviewImageName, PreviewImageFileRecord>): PreviewImageSet {
