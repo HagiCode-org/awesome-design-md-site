@@ -1,0 +1,515 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v7.3.8"><meta name="theme-color" content="#000000"><title>Intercom DESIGN.md • Awesome Design MD Gallery</title><meta name="description" content="Intercom's website is a warm, confident customer service platform that communicates &quot;AI-first helpdesk&quot; through a clean, editorial design language. The…"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico"><link rel="stylesheet" href="/global.css"><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><link rel="canonical" href="https://design.hagicode.com/designs/intercom/"><link rel="alternate" hreflang="en" href="https://design.hagicode.com/designs/intercom/"><link rel="alternate" hreflang="zh-CN" href="https://design.hagicode.com/zh-CN/designs/intercom/"><link rel="alternate" hreflang="zh-Hant" href="https://design.hagicode.com/zh-Hant/designs/intercom/"><link rel="alternate" hreflang="ja-JP" href="https://design.hagicode.com/ja-JP/designs/intercom/"><link rel="alternate" hreflang="ko-KR" href="https://design.hagicode.com/ko-KR/designs/intercom/"><link rel="alternate" hreflang="de-DE" href="https://design.hagicode.com/de-DE/designs/intercom/"><link rel="alternate" hreflang="fr-FR" href="https://design.hagicode.com/fr-FR/designs/intercom/"><link rel="alternate" hreflang="es-ES" href="https://design.hagicode.com/es-ES/designs/intercom/"><link rel="alternate" hreflang="pt-BR" href="https://design.hagicode.com/pt-BR/designs/intercom/"><link rel="alternate" hreflang="ru-RU" href="https://design.hagicode.com/ru-RU/designs/intercom/"><link rel="alternate" hreflang="x-default" href="https://design.hagicode.com/designs/intercom/"><meta property="og:type" content="website"><meta property="og:title" content="Intercom DESIGN.md • Awesome Design MD Gallery"><meta property="og:description" content="Intercom's website is a warm, confident customer service platform that communicates &quot;AI-first helpdesk&quot; through a clean, editorial design language. The…"><meta property="og:url" content="https://design.hagicode.com/designs/intercom/"><meta property="og:site_name" content="Awesome Design MD Gallery"><meta property="og:locale" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU"><meta property="og:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:secure_url" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="3137"><meta property="og:image:height" content="1235"><meta property="og:image:alt" content="Intercom DESIGN.md • Awesome Design MD Gallery"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Intercom DESIGN.md • Awesome Design MD Gallery"><meta name="twitter:description" content="Intercom's website is a warm, confident customer service platform that communicates &quot;AI-first helpdesk&quot; through a clean, editorial design language. The…"><meta name="twitter:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta name="twitter:image:alt" content="Intercom DESIGN.md • Awesome Design MD Gallery"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Intercom DESIGN.md • Awesome Design MD Gallery","description":"Intercom's website is a warm, confident customer service platform that communicates \"AI-first helpdesk\" through a clean, editorial design language. The…","url":"https://design.hagicode.com/designs/intercom/","inLanguage":"en","image":"https://design.hagicode.com/img/hagicode/light-main.png","isPartOf":{"@type":"WebSite","name":"Awesome Design MD Gallery","url":"https://design.hagicode.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Awesome Design MD Gallery","item":"https://design.hagicode.com/"},{"@type":"ListItem","position":2,"name":"Intercom","item":"https://design.hagicode.com/designs/intercom/"}]}</script><script>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script>
+      // Cross-document view transition: the gallery card preview grows into the detail preview
+      // (and back). Only the one clicked card is named, so no other card is captured.
+      (() => {
+        const NAME = 'design-preview';
+        const slugOf = (href) => {
+          try {
+            const match = new URL(href, location.href).pathname.match(/\/designs\/([^/]+)\/?$/);
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch {
+            return null;
+          }
+        };
+        // On the way back the browser has not restored the scroll position yet when the page
+        // is revealed, so the returning card is named wherever it is, not only when in view.
+        const cardPreview = (slug, anywhere) => {
+          const card = Array.from(document.querySelectorAll('[data-design-card]')).find(
+            (item) => item.dataset.slug === slug,
+          );
+          const preview = card && card.querySelector('.design-card-preview');
+          if (!preview) return null;
+          const rect = preview.getBoundingClientRect();
+          return anywhere || (rect.bottom > 0 && rect.top < innerHeight) ? preview : null;
+        };
+        const name = async (element, transition) => {
+          if (!element) return;
+          element.style.viewTransitionName = NAME;
+          await transition.finished.catch(() => {});
+          element.style.viewTransitionName = '';
+        };
+
+        addEventListener('pageswap', (event) => {
+          if (!event.viewTransition || !event.activation || !event.activation.entry) return;
+          const to = slugOf(event.activation.entry.url);
+          const here = slugOf(location.href);
+          if (to && !here) name(cardPreview(to), event.viewTransition);
+          else if (!to && here) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+        });
+
+        addEventListener('pagereveal', (event) => {
+          if (!event.viewTransition) return;
+          const activation = window.navigation && window.navigation.activation;
+          if (!activation || !activation.from) return;
+          const from = slugOf(activation.from.url);
+          const here = slugOf(location.href);
+          if (here && !from) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+          else if (!here && from) name(cardPreview(from, true), event.viewTransition);
+        });
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.bD5iggdr.css"><script type="module" src="/_astro/page.KebScxdP.js"></script><script>(function(){document.head.insertAdjacentHTML('beforeend', '\u003cscript type="application/json" data-hagilight-analytics="posthog">{"apiKey":"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5","loader":"(() => {\\n  if (window.__hagilightPosthogInitialized) return;\\n  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\\".\\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\\"script\\")).type=\\"text/javascript\\",p.crossOrigin=\\"anonymous\\",p.async=!0,p.src=s.api_host.replace(\\".i.posthog.com\\",\\"-assets.i.posthog.com\\")+\\"/static/array.js\\",(r=t.getElementsByTagName(\\"script\\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\\"posthog\\",u.people=u.people||[],Object.defineProperty(u,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e=\\"posthog\\";return\\"posthog\\"!==a&&(e+=\\".\\"+a),t||(e+=\\" (stub)\\"),e}}),Object.defineProperty(u.people,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+\\".people (stub)\\"}}),o=\\"init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug\\".split(\\" \\"),n=0;n\\u003co.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);\\n  posthog.init(\\"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5\\", {\\"api_host\\":\\"https://t.hagicode.com\\",\\"ui_host\\":\\"https://us.posthog.com\\",\\"defaults\\":\\"2026-05-30\\",\\"person_profiles\\":\\"identified_only\\",\\"capture_exceptions\\":true});\\n  (() => {\\n    const context = {\\"siteId\\":\\"design.hagicode.com\\",\\"framework\\":\\"astro\\",\\"version\\":\\"0.20.0\\"};\\n    const pageTypes = [\\"home\\",\\"docs\\",\\"blog\\",\\"compare\\",\\"404\\",\\"other\\"];\\n    const metaPageType = document.querySelector(\'meta[name=\\"hagilight:page-type\\"]\')?.getAttribute(\'content\');\\n    const superProperties = {\\n      site_id: context.siteId || window.location.hostname,\\n      site_framework: context.framework,\\n      hagilight_version: context.version,\\n      locale: document.documentElement.lang,\\n      page_type: [context.pageType, metaPageType].find((value) => pageTypes.includes(value)) ?? \'other\',\\n    };\\n    posthog.register(Object.fromEntries(Object.entries(superProperties).filter(([, value]) => typeof value === \'string\' && value !== \'\')));\\n  })();\\n  window.__hagilightPosthogInitialized = true;\\n})();"}\u003c/script>\u003cscript type="application/json" id="hagilight-consent-config">{"policyVersion":"1","privacyUrl":null,"providers":["posthog"],"locale":"en-US"}\u003c/script>');})();</script></head><body><a class="skip-link" href="#main">Skip to content</a><div class="page-shell"><header class="site-header"><div class="container shell-panel header-panel"><a class="brand-mark" href="/"><img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32"><span class="brand-copy"><strong class="brand-copy-full">Awesome Design MD Gallery</strong><strong class="brand-copy-compact">ADMG</strong><small>Powered by HagiCode</small></span></a><nav class="site-nav site-nav-primary" aria-label="Primary"><a href="/" class="site-nav-link"><span class="site-nav-link-label site-nav-link-label-full">Gallery</span><span class="site-nav-link-label site-nav-link-label-compact">Gallery</span></a></nav><nav class="site-nav site-nav-repo" aria-label="Repository links"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link" target="_blank" rel="noopener"><span class="site-nav-link-label site-nav-link-label-full">Site Repo</span></a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link" target="_blank" rel="noopener noreferrer"><span class="site-nav-link-label site-nav-link-label-full">Source Repo</span></a></nav><div class="header-actions"><div class="language-select-shell"><select class="language-select" name="locale" aria-label="Language switcher" data-language-select><option value="/designs/intercom/" selected lang="en">English</option><option value="/zh-CN/designs/intercom/" lang="zh-CN">简体中文</option><option value="/zh-Hant/designs/intercom/" lang="zh-Hant">繁體中文</option><option value="/ja-JP/designs/intercom/" lang="ja-JP">日本語</option><option value="/ko-KR/designs/intercom/" lang="ko-KR">한국어</option><option value="/de-DE/designs/intercom/" lang="de-DE">Deutsch</option><option value="/fr-FR/designs/intercom/" lang="fr-FR">Français</option><option value="/es-ES/designs/intercom/" lang="es-ES">Español</option><option value="/pt-BR/designs/intercom/" lang="pt-BR">Português</option><option value="/ru-RU/designs/intercom/" lang="ru-RU">Русский</option></select><span class="language-select-icon" aria-hidden="true">▾</span></div><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(function(){let e=async e=>{await(await e())()};(self.Astro||(self.Astro={})).load=e,window.dispatchEvent(new Event(`astro:load`))})();</script><script>(function(){function e(t){"@babel/helpers - typeof";return e=typeof Symbol==`function`&&typeof Symbol.iterator==`symbol`?function(e){return typeof e}:function(e){return e&&typeof Symbol==`function`&&e.constructor===Symbol&&e!==Symbol.prototype?`symbol`:typeof e},e(t)}function t(t,n){if(e(t)!=`object`||!t)return t;var r=t[Symbol.toPrimitive];if(r!==void 0){var i=r.call(t,n||`default`);if(e(i)!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(t)}function n(n){var r=t(n,`string`);return e(r)==`symbol`?r:r+``}function r(e,t,r){return(t=n(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}let i=/* @__PURE__ */ new Set([`__proto__`,`constructor`,`prototype`]);{let e={0:e=>a(e),1:e=>n(e),2:e=>new RegExp(e),3:e=>new Date(e),4:e=>new Map(n(e)),5:e=>new Set(n(e)),6:e=>BigInt(e),7:e=>new URL(e),8:e=>new Uint8Array(e),9:e=>new Uint16Array(e),10:e=>new Uint32Array(e),11:e=>1/0*e},t=t=>{let[n,r]=t;return n in e?e[n](r):void 0},n=e=>e.map(t),a=e=>typeof e!=`object`||!e?e:Object.fromEntries(Object.entries(e).map(([e,n])=>[e,t(n)]));class o extends HTMLElement{constructor(...e){super(...e),r(this,`Component`,void 0),r(this,`hydrator`,void 0),r(this,`hydrate`,async()=>{var e;if(!this.hydrator||!this.isConnected)return;let t=(e=this.parentElement)==null?void 0:e.closest(`astro-island[ssr]`);if(t){t.addEventListener(`astro:hydrate`,this.hydrate,{once:!0});return}let n=this.querySelectorAll(`astro-slot`),r={},i=this.querySelectorAll(`template[data-astro-template]`);for(let e of i){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`data-astro-template`)||`default`]=e.innerHTML,e.remove())}for(let e of n){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`name`)||`default`]=e.innerHTML)}let o;try{o=this.hasAttribute(`props`)?a(JSON.parse(this.getAttribute(`props`))):{}}catch(e){let t=this.getAttribute(`component-url`)||`<unknown>`,n=this.getAttribute(`component-export`);throw n&&(t+=` (export ${n})`),console.error(`[hydrate] Error parsing props for component ${t}`,this.getAttribute(`props`),e),e}await this.hydrator(this)(this.Component,o,r,{client:this.getAttribute(`client`)}),this.removeAttribute(`ssr`),this.dispatchEvent(new CustomEvent(`astro:hydrate`))}),r(this,`unmount`,()=>{this.isConnected||this.dispatchEvent(new CustomEvent(`astro:unmount`))})}disconnectedCallback(){document.removeEventListener(`astro:after-swap`,this.unmount),document.addEventListener(`astro:after-swap`,this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute(`await-children`)||document.readyState===`interactive`||document.readyState===`complete`)this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener(`DOMContentLoaded`,e),t.disconnect(),this.childrenConnectedCallback()},t=new MutationObserver(()=>{var t;((t=this.lastChild)==null?void 0:t.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue===`astro:end`&&(this.lastChild.remove(),e())});t.observe(this,{childList:!0}),document.addEventListener(`DOMContentLoaded`,e)}}async childrenConnectedCallback(){let e=this.getAttribute(`before-hydration-url`);e&&await import(e),this.start()}getRetryImportUrl(e){let t=new URL(e,document.baseURI);return t.searchParams.set(`astro-retry`,Date.now().toString()),t.toString()}async importWithRetry(e){try{return await import(e)}catch(t){return await new Promise(e=>setTimeout(e,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let t=this.getAttribute(`component-url`),n=new CustomEvent(`astro:hydration-error`,{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:t}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${t}`,e)}async start(){let e=JSON.parse(this.getAttribute(`opts`)),t=this.getAttribute(`client`);if(Astro[t]===void 0){window.addEventListener(`astro:${t}`,()=>this.start(),{once:!0});return}try{await Astro[t](async()=>{let e=this.getAttribute(`renderer-url`);try{let[t,{default:n}]=await Promise.all([this.importWithRetry(this.getAttribute(`component-url`)),e?this.importWithRetry(e):Promise.resolve({default:()=>()=>{}})]),r=this.getAttribute(`component-export`)||`default`;if(r.includes(`.`)){this.Component=t;for(let e of r.split(`.`)){if(i.has(e)||!this.Component||typeof this.Component!=`object`&&typeof this.Component!=`function`||!Object.hasOwn(this.Component,e))throw Error(`Invalid component export path: ${r}`);this.Component=this.Component[e]}}else{if(i.has(r))throw Error(`Invalid component export path: ${r}`);this.Component=t[r]}return this.hydrator=n,this.hydrate}catch(e){return this.handleHydrationError(e),()=>{}}},e,this)}catch(e){this.handleHydrationError(e)}}attributeChangedCallback(){this.hydrate()}}r(o,`observedAttributes`,[`props`]),customElements.get(`astro-island`)||customElements.define(`astro-island`,o)}})();</script><astro-island uid="APbCD" prefix="r3" component-url="/_astro/ThemeToggle.BU4lQzY7.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;en&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="theme-toggle" data-theme-toggle="true" aria-label="Switch to light mode"><span class="theme-toggle-label theme-toggle-label-full">Dark</span><span class="theme-toggle-label theme-toggle-label-compact">DK</span><span class="theme-toggle-glyph" aria-hidden="true">◐</span></button><!--astro:end--></astro-island></div><details class="header-utility"><summary class="header-utility-trigger" aria-label="Repository links"><span class="header-utility-trigger-label" aria-hidden="true">≡</span></summary><div class="header-utility-surface" aria-label="Repository links"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link header-utility-link" target="_blank" rel="noopener">Site Repo</a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link header-utility-link" target="_blank" rel="noopener noreferrer">Source Repo</a></div></details></div></header><script>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script><main id="main"><section class="container detail-shell"><div class="detail-header shell-panel"><div class="detail-header-bar"><a class="detail-back-link" href="/">Back to gallery</a><div class="segmented detail-layout-toggle" role="group" aria-label="Workspace layout"><button type="button" class="preview-toggle is-active" data-detail-layout="split" aria-pressed="true">Split</button><button type="button" class="preview-toggle" data-detail-layout="preview" aria-pressed="false">Preview</button><button type="button" class="preview-toggle" data-detail-layout="docs" aria-pressed="false">Docs</button></div></div><div class="detail-header-copy"><h1>Intercom</h1><p class="detail-summary">DESIGN.md extracted from the public Intercom website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it&#39;s a good starting point for building something similar.</p></div></div><div class="detail-grid" data-detail-grid data-layout="split"><script>
+        // Restore the saved layout before first paint so the grid does not jump.
+        try {
+          const saved = localStorage.getItem('adms-detail-layout');
+          if (saved === 'preview' || saved === 'docs') {
+            document.currentScript.parentElement.dataset.layout = saved;
+          }
+        } catch {}
+      </script><section class="preview-switcher shell-panel" data-preview-switcher data-light-url="/previews/intercom/light.html" data-dark-url="/previews/intercom/dark.html" data-images="{&quot;light&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/intercom/light-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:4110},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/intercom/light-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:4236},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/intercom/light-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:5021},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/intercom/light-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}},&quot;dark&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/intercom/dark-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:4110},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/intercom/dark-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:4236},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/intercom/dark-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:5021},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/intercom/dark-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}}}" data-alt-template="Intercom {{variant}} preview, {{viewport}} width" data-labels="{&quot;light&quot;:&quot;Light&quot;,&quot;dark&quot;:&quot;Dark&quot;,&quot;fit&quot;:&quot;Fit&quot;,&quot;tablet&quot;:&quot;Tablet&quot;,&quot;mobile&quot;:&quot;Mobile&quot;}"><div class="preview-switcher-head"><h2>Theme-aware preview frame</h2><div class="preview-switcher-tools"><div class="segmented" role="group" aria-label="Preview theme"><button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-pressed="true">Light</button><button type="button" class="preview-toggle" data-preview-variant="dark" aria-pressed="false" title="Open dark preview">Dark</button></div><div class="segmented preview-viewport-group" role="group" aria-label="Preview width"><button type="button" class="preview-toggle is-active" data-preview-viewport="fit" aria-pressed="true">Fit</button><button type="button" class="preview-toggle" data-preview-viewport="tablet" aria-pressed="false">Tablet</button><button type="button" class="preview-toggle" data-preview-viewport="mobile" aria-pressed="false">Mobile</button></div><a class="preview-open" data-preview-open href="/previews/intercom/light.html" target="_blank" rel="noopener" aria-label="Open preview in new tab" title="Open preview in new tab"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M6 3H3v10h10v-3"></path><path d="M9 2.5h4.5V7"></path><path d="M13.5 2.5 7.5 8.5"></path></svg></a></div></div><div class="preview-stage" data-preview-stage data-state="loading" aria-busy="true"><img class="detail-preview-image" data-preview-image src="/preview-images/intercom/light-fit.avif" width="1440" height="4110" alt="Intercom Light preview, Fit width" decoding="async"><p class="preview-error" data-preview-error hidden><span>The rendered preview could not be loaded.</span><a data-preview-live href="/previews/intercom/light.html" target="_blank" rel="noopener">Open the live HTML preview</a></p></div><p class="preview-switcher-foot"><span class="preview-switcher-note">Both light and dark preview assets are available.</span><output class="preview-width-readout" data-preview-width aria-hidden="true"></output></p></section><script type="module">function e(e,t,n){e.forEach(e=>{let r=e.getAttribute(t)===n;e.classList.toggle(`is-active`,r),e.setAttribute(`aria-pressed`,r?`true`:`false`)})}function t(e){return`${Math.round(e)} px`}function n(e){if(e)try{return JSON.parse(e)}catch{return}}function r(e,t,n){return e[t][n]}function i(e,t,n){return e.replace(`{{variant}}`,t).replace(`{{viewport}}`,n)}function a(a=document){a.querySelectorAll(`[data-preview-switcher]`).forEach(o=>{let s=o.querySelector(`[data-preview-image]`),c=o.querySelector(`[data-preview-stage]`),l=o.querySelector(`[data-preview-error]`),u=o.querySelector(`[data-preview-live]`),d=Array.from(o.querySelectorAll(`[data-preview-variant]`)),f=Array.from(o.querySelectorAll(`[data-preview-viewport]`)),p=o.querySelector(`[data-preview-open]`),m=o.querySelector(`[data-preview-width]`),h=n(o.dataset.images),g=o.dataset.lightUrl??``,_=o.dataset.darkUrl||g,v=o.dataset.altTemplate??``,y=JSON.parse(o.dataset.labels??`{}`),b=`light`,x=`fit`;if(!s||!c||!h||d.length===0)return;let S=()=>{s.hidden=!1,c.dataset.state=`ready`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!0)},C=()=>{c.dataset.state=`loading`,c.setAttribute(`aria-busy`,`true`)},w=()=>{s.hidden=!0,c.dataset.state=`error`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!1)},T=()=>{let e=r(h,b,x),t=i(v,y[b]??b,y[x]??x);s.alt=t,s.width=e.width,s.height=e.height,s.getAttribute(`src`)===e.url?s.complete&&(s.naturalWidth>0?S():w()):(C(),s.src=e.url)},E=()=>{let t=b===`dark`?_:g;p&&(p.href=t),u&&(u.href=t),o.dataset.viewport=x,e(d,`data-preview-variant`,b),e(f,`data-preview-viewport`,x),T()};s.addEventListener(`load`,S),s.addEventListener(`error`,w),m&&typeof ResizeObserver<`u`&&new ResizeObserver(([e])=>{e&&(m.textContent=t(e.contentRect.width))}).observe(c),d.forEach(e=>{e.addEventListener(`click`,()=>{b=e.dataset.previewVariant===`dark`?`dark`:`light`,E()})}),f.forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.previewViewport;x=t===`tablet`||t===`mobile`?t:`fit`,E()})}),b=a.documentElement.dataset.theme===`dark`?`dark`:`light`,E()})}a();</script><section class="detail-documents" data-document-tabs data-design-slug="intercom" data-copy-design-label="Copy DESIGN.md" data-copied-label="Copied" data-copy-failed-label="Copy failed"><h2 class="visually-hidden">README and DESIGN in one place</h2><div class="detail-documents-bar shell-panel" data-doc-bar><div class="detail-documents-head"><div class="segmented detail-tab-list" role="tablist" aria-label="Document view"><button type="button" role="tab" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">README</button><button type="button" role="tab" class="detail-tab" data-doc-tab="design" aria-selected="false">DESIGN</button></div><div class="detail-doc-controls"><button type="button" class="detail-copy-button" data-copy-design disabled aria-disabled="true" title="Copy raw DESIGN.md markdown">Copy DESIGN.md</button><a class="detail-copy-button" data-download-design href="/designs/intercom/DESIGN.md" download="DESIGN.md" title="Download the canonical DESIGN.md file" aria-hidden="true" tabindex="-1">Download DESIGN.md</a></div></div><nav class="detail-outline" data-doc-outline aria-label="Jump to section" hidden></nav></div><div class="detail-doc-panels"><section class="detail-doc-panel is-active" data-doc-panel="readme"><div class="markdown-shell document-copy"><h2 id="intercom-inspired-design-system">Intercom Inspired Design System</h2>
+<p><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/intercom/DESIGN.md">DESIGN.md</a> extracted from the public <a href="https://intercom.com/">Intercom</a> website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it's a good starting point for building something similar.</p>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIGN.md</code></td>
+<td>Complete design system documentation (9 sections)</td>
+</tr>
+<tr>
+<td><code>preview.html</code></td>
+<td>Interactive design token catalog (light)</td>
+</tr>
+<tr>
+<td><code>preview-dark.html</code></td>
+<td>Interactive design token catalog (dark)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/intercom/DESIGN.md">DESIGN.md</a> to use as a reference for AI agents (Claude, Cursor, Stitch) to generate UI that looks like the Intercom design language.</p>
+<h2 id="preview">Preview</h2>
+<p>A sample landing page built with DESIGN.md. It shows the actual colors, typography, buttons, cards, spacing, and elevation, all in one page.</p>
+<h3 id="dark-mode">Dark Mode</h3>
+<p><img src="/preview-images/intercom/dark-fit.avif" alt="Intercom Design System — Dark Mode" loading="lazy" decoding="async"></p>
+<h3 id="light-mode">Light Mode</h3>
+<p><img src="/preview-images/intercom/light-fit.avif" alt="Intercom Design System — Light Mode" loading="lazy" decoding="async"></p></div></section><section class="detail-doc-panel" data-doc-panel="design" hidden><div class="markdown-shell document-copy"><h2 id="design-system-inspiration-of-intercom">Design System Inspiration of Intercom</h2>
+<h2 id="1-visual-theme--atmosphere">1. Visual Theme &#x26; Atmosphere</h2>
+<p>Intercom's website is a warm, confident customer service platform that communicates "AI-first helpdesk" through a clean, editorial design language. The page operates on a warm off-white canvas (<code>#faf9f6</code>) with off-black (<code>#111111</code>) text, creating an intimate, magazine-like reading experience. The signature Fin Orange (<code>#ff5600</code>) — named after Intercom's AI agent — serves as the singular vibrant accent against the warm neutral palette.</p>
+<p>The typography uses Saans — a custom geometric sans-serif with aggressive negative letter-spacing (-2.4px at 80px, -0.48px at 24px) and a consistent 1.00 line-height across all heading sizes. This creates ultra-compressed, billboard-like headlines that feel engineered and precise. Serrif provides the serif companion for editorial moments, and SaansMono handles code and uppercase technical labels. MediumLL and LLMedium appear for specific UI contexts, creating a rich five-font ecosystem.</p>
+<p>What distinguishes Intercom is its remarkably sharp geometry — 4px border-radius on buttons creates near-rectangular interactive elements that feel industrial and precise, contrasting with the warm surface colors. Button hover states use <code>scale(1.1)</code> expansion, creating a physical "growing" interaction. The border system uses warm oat tones (<code>#dedbd6</code>) and oklab-based opacity values for sophisticated color management.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Warm off-white canvas (<code>#faf9f6</code>) with oat-toned borders (<code>#dedbd6</code>)</li>
+<li>Saans font with extreme negative tracking (-2.4px at 80px) and 1.00 line-height</li>
+<li>Fin Orange (<code>#ff5600</code>) as singular brand accent</li>
+<li>Sharp 4px border-radius — near-rectangular buttons and elements</li>
+<li>Scale(1.1) hover with scale(0.85) active — physical button interaction</li>
+<li>SaansMono uppercase labels with wide tracking (0.6px–1.2px)</li>
+<li>Rich multi-color report palette (blue, green, red, pink, lime, orange)</li>
+<li>oklab color values for sophisticated opacity management</li>
+</ul>
+<h2 id="2-color-palette--roles">2. Color Palette &#x26; Roles</h2>
+<h3 id="primary">Primary</h3>
+<ul>
+<li><strong>Off Black</strong> (<code>#111111</code>): <code>--color-off-black</code>, primary text, button backgrounds</li>
+<li><strong>Pure White</strong> (<code>#ffffff</code>): <code>--wsc-color-content-primary</code>, primary surface</li>
+<li><strong>Warm Cream</strong> (<code>#faf9f6</code>): Button backgrounds, card surfaces</li>
+<li><strong>Fin Orange</strong> (<code>#ff5600</code>): <code>--color-fin</code>, primary brand accent</li>
+<li><strong>Report Orange</strong> (<code>#fe4c02</code>): <code>--color-report-orange</code>, data visualization</li>
+</ul>
+<h3 id="report-palette">Report Palette</h3>
+<ul>
+<li><strong>Report Blue</strong> (<code>#65b5ff</code>): <code>--color-report-blue</code></li>
+<li><strong>Report Green</strong> (<code>#0bdf50</code>): <code>--color-report-green</code></li>
+<li><strong>Report Red</strong> (<code>#c41c1c</code>): <code>--color-report-red</code></li>
+<li><strong>Report Pink</strong> (<code>#ff2067</code>): <code>--color-report-pink</code></li>
+<li><strong>Report Lime</strong> (<code>#b3e01c</code>): <code>--color-report-lime-300</code></li>
+<li><strong>Green</strong> (<code>#00da00</code>): <code>--color-green</code></li>
+<li><strong>Deep Blue</strong> (<code>#0007cb</code>): Deep blue accent</li>
+</ul>
+<h3 id="neutral-scale-warm">Neutral Scale (Warm)</h3>
+<ul>
+<li><strong>Black 80</strong> (<code>#313130</code>): <code>--wsc-color-black-80</code>, dark neutral</li>
+<li><strong>Black 60</strong> (<code>#626260</code>): <code>--wsc-color-black-60</code>, mid neutral</li>
+<li><strong>Black 50</strong> (<code>#7b7b78</code>): <code>--wsc-color-black-50</code>, muted text</li>
+<li><strong>Content Tertiary</strong> (<code>#9c9fa5</code>): <code>--wsc-color-content-tertiary</code></li>
+<li><strong>Oat Border</strong> (<code>#dedbd6</code>): Warm border color</li>
+<li><strong>Warm Sand</strong> (<code>#d3cec6</code>): Light warm neutral</li>
+</ul>
+<h2 id="3-typography-rules">3. Typography Rules</h2>
+<h3 id="font-families">Font Families</h3>
+<ul>
+<li><strong>Primary</strong>: <code>Saans</code>, fallbacks: <code>Saans Fallback, ui-sans-serif, system-ui</code></li>
+<li><strong>Serif</strong>: <code>Serrif</code>, fallbacks: <code>Serrif Fallback, ui-serif, Georgia</code></li>
+<li><strong>Monospace</strong>: <code>SaansMono</code>, fallbacks: <code>SaansMono Fallback, ui-monospace</code></li>
+<li><strong>UI</strong>: <code>MediumLL</code> / <code>LLMedium</code>, fallbacks: <code>system-ui, -apple-system</code></li>
+</ul>
+<h3 id="hierarchy">Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Font</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line Height</th>
+<th>Letter Spacing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display Hero</td>
+<td>Saans</td>
+<td>80px</td>
+<td>400</td>
+<td>1.00 (tight)</td>
+<td>-2.4px</td>
+</tr>
+<tr>
+<td>Section Heading</td>
+<td>Saans</td>
+<td>54px</td>
+<td>400</td>
+<td>1.00</td>
+<td>-1.6px</td>
+</tr>
+<tr>
+<td>Sub-heading</td>
+<td>Saans</td>
+<td>40px</td>
+<td>400</td>
+<td>1.00</td>
+<td>-1.2px</td>
+</tr>
+<tr>
+<td>Card Title</td>
+<td>Saans</td>
+<td>32px</td>
+<td>400</td>
+<td>1.00</td>
+<td>-0.96px</td>
+</tr>
+<tr>
+<td>Feature Title</td>
+<td>Saans</td>
+<td>24px</td>
+<td>400</td>
+<td>1.00</td>
+<td>-0.48px</td>
+</tr>
+<tr>
+<td>Body Emphasis</td>
+<td>Saans</td>
+<td>20px</td>
+<td>400</td>
+<td>0.95</td>
+<td>-0.2px</td>
+</tr>
+<tr>
+<td>Nav / UI</td>
+<td>Saans</td>
+<td>18px</td>
+<td>400</td>
+<td>1.00</td>
+<td>normal</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Saans</td>
+<td>16px</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+</tr>
+<tr>
+<td>Body Light</td>
+<td>Saans</td>
+<td>14px</td>
+<td>300</td>
+<td>1.40</td>
+<td>normal</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>Saans</td>
+<td>16px / 14px</td>
+<td>400</td>
+<td>1.50 / 1.43</td>
+<td>normal</td>
+</tr>
+<tr>
+<td>Button Bold</td>
+<td>LLMedium</td>
+<td>16px</td>
+<td>700</td>
+<td>1.20</td>
+<td>0.16px</td>
+</tr>
+<tr>
+<td>Serif Body</td>
+<td>Serrif</td>
+<td>16px</td>
+<td>300</td>
+<td>1.40</td>
+<td>-0.16px</td>
+</tr>
+<tr>
+<td>Mono Label</td>
+<td>SaansMono</td>
+<td>12px</td>
+<td>400–500</td>
+<td>1.00–1.30</td>
+<td>0.6px–1.2px uppercase</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-component-stylings">4. Component Stylings</h2>
+<h3 id="buttons">Buttons</h3>
+<p><strong>Primary Dark</strong></p>
+<ul>
+<li>Background: <code>#111111</code></li>
+<li>Text: <code>#ffffff</code></li>
+<li>Padding: 0px 14px</li>
+<li>Radius: 4px</li>
+<li>Hover: white background, dark text, scale(1.1)</li>
+<li>Active: green background (<code>#2c6415</code>), scale(0.85)</li>
+</ul>
+<p><strong>Outlined</strong></p>
+<ul>
+<li>Background: transparent</li>
+<li>Text: <code>#111111</code></li>
+<li>Border: <code>1px solid #111111</code></li>
+<li>Radius: 4px</li>
+<li>Same scale hover/active behavior</li>
+</ul>
+<p><strong>Warm Card Button</strong></p>
+<ul>
+<li>Background: <code>#faf9f6</code></li>
+<li>Text: <code>#111111</code></li>
+<li>Padding: 16px</li>
+<li>Border: <code>1px solid oklab(... / 0.1)</code></li>
+</ul>
+<h3 id="cards--containers">Cards &#x26; Containers</h3>
+<ul>
+<li>Background: <code>#faf9f6</code> (warm cream)</li>
+<li>Border: <code>1px solid #dedbd6</code> (warm oat)</li>
+<li>Radius: 8px</li>
+<li>No visible shadows</li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li>Saans 16px for links</li>
+<li>Off-black text on white</li>
+<li>Small 4px–6px radius buttons</li>
+<li>Orange Fin accent for AI features</li>
+</ul>
+<h2 id="5-layout-principles">5. Layout Principles</h2>
+<h3 id="spacing-8px-10px-12px-14px-16px-20px-24px-32px-40px-48px-60px-64px-80px-96px">Spacing: 8px, 10px, 12px, 14px, 16px, 20px, 24px, 32px, 40px, 48px, 60px, 64px, 80px, 96px</h3>
+<h3 id="border-radius-4px-buttons-6px-nav-items-8px-cards-containers">Border Radius: 4px (buttons), 6px (nav items), 8px (cards, containers)</h3>
+<h2 id="6-depth--elevation">6. Depth &#x26; Elevation</h2>
+<p>Minimal shadows. Depth through warm border colors and surface tints.</p>
+<h2 id="7-dos-and-donts">7. Do's and Don'ts</h2>
+<h3 id="do">Do</h3>
+<ul>
+<li>Use Saans with 1.00 line-height and negative tracking on all headings</li>
+<li>Apply 4px radius on buttons — sharp geometry is the identity</li>
+<li>Use Fin Orange (#ff5600) for AI/brand accent only</li>
+<li>Apply scale(1.1) hover on buttons</li>
+<li>Use warm neutrals (#faf9f6, #dedbd6)</li>
+</ul>
+<h3 id="dont">Don't</h3>
+<ul>
+<li>Don't round buttons beyond 4px</li>
+<li>Don't use Fin Orange decoratively</li>
+<li>Don't use cool gray borders — always warm oat tones</li>
+<li>Don't skip the negative tracking on headings</li>
+</ul>
+<h2 id="8-responsive-behavior">8. Responsive Behavior</h2>
+<p>Breakpoints: 425px, 530px, 600px, 640px, 768px, 896px</p>
+<h2 id="9-agent-prompt-guide">9. Agent Prompt Guide</h2>
+<h3 id="quick-color-reference">Quick Color Reference</h3>
+<ul>
+<li>Text: Off Black (<code>#111111</code>)</li>
+<li>Background: Warm Cream (<code>#faf9f6</code>)</li>
+<li>Accent: Fin Orange (<code>#ff5600</code>)</li>
+<li>Border: Oat (<code>#dedbd6</code>)</li>
+<li>Muted: <code>#7b7b78</code></li>
+</ul>
+<h3 id="example-component-prompts">Example Component Prompts</h3>
+<ul>
+<li>"Create hero: warm cream (#faf9f6) background. Saans 80px weight 400, line-height 1.00, letter-spacing -2.4px, #111111. Dark button (#111111, 4px radius). Hover: scale(1.1), white bg."</li>
+</ul></div></section></div><textarea hidden readonly data-design-markdown># Design System Inspiration of Intercom
+
+## 1. Visual Theme &amp; Atmosphere
+
+Intercom&#39;s website is a warm, confident customer service platform that communicates &quot;AI-first helpdesk&quot; through a clean, editorial design language. The page operates on a warm off-white canvas (`#faf9f6`) with off-black (`#111111`) text, creating an intimate, magazine-like reading experience. The signature Fin Orange (`#ff5600`) — named after Intercom&#39;s AI agent — serves as the singular vibrant accent against the warm neutral palette.
+
+The typography uses Saans — a custom geometric sans-serif with aggressive negative letter-spacing (-2.4px at 80px, -0.48px at 24px) and a consistent 1.00 line-height across all heading sizes. This creates ultra-compressed, billboard-like headlines that feel engineered and precise. Serrif provides the serif companion for editorial moments, and SaansMono handles code and uppercase technical labels. MediumLL and LLMedium appear for specific UI contexts, creating a rich five-font ecosystem.
+
+What distinguishes Intercom is its remarkably sharp geometry — 4px border-radius on buttons creates near-rectangular interactive elements that feel industrial and precise, contrasting with the warm surface colors. Button hover states use `scale(1.1)` expansion, creating a physical &quot;growing&quot; interaction. The border system uses warm oat tones (`#dedbd6`) and oklab-based opacity values for sophisticated color management.
+
+**Key Characteristics:**
+- Warm off-white canvas (`#faf9f6`) with oat-toned borders (`#dedbd6`)
+- Saans font with extreme negative tracking (-2.4px at 80px) and 1.00 line-height
+- Fin Orange (`#ff5600`) as singular brand accent
+- Sharp 4px border-radius — near-rectangular buttons and elements
+- Scale(1.1) hover with scale(0.85) active — physical button interaction
+- SaansMono uppercase labels with wide tracking (0.6px–1.2px)
+- Rich multi-color report palette (blue, green, red, pink, lime, orange)
+- oklab color values for sophisticated opacity management
+
+## 2. Color Palette &amp; Roles
+
+### Primary
+- **Off Black** (`#111111`): `--color-off-black`, primary text, button backgrounds
+- **Pure White** (`#ffffff`): `--wsc-color-content-primary`, primary surface
+- **Warm Cream** (`#faf9f6`): Button backgrounds, card surfaces
+- **Fin Orange** (`#ff5600`): `--color-fin`, primary brand accent
+- **Report Orange** (`#fe4c02`): `--color-report-orange`, data visualization
+
+### Report Palette
+- **Report Blue** (`#65b5ff`): `--color-report-blue`
+- **Report Green** (`#0bdf50`): `--color-report-green`
+- **Report Red** (`#c41c1c`): `--color-report-red`
+- **Report Pink** (`#ff2067`): `--color-report-pink`
+- **Report Lime** (`#b3e01c`): `--color-report-lime-300`
+- **Green** (`#00da00`): `--color-green`
+- **Deep Blue** (`#0007cb`): Deep blue accent
+
+### Neutral Scale (Warm)
+- **Black 80** (`#313130`): `--wsc-color-black-80`, dark neutral
+- **Black 60** (`#626260`): `--wsc-color-black-60`, mid neutral
+- **Black 50** (`#7b7b78`): `--wsc-color-black-50`, muted text
+- **Content Tertiary** (`#9c9fa5`): `--wsc-color-content-tertiary`
+- **Oat Border** (`#dedbd6`): Warm border color
+- **Warm Sand** (`#d3cec6`): Light warm neutral
+
+## 3. Typography Rules
+
+### Font Families
+- **Primary**: `Saans`, fallbacks: `Saans Fallback, ui-sans-serif, system-ui`
+- **Serif**: `Serrif`, fallbacks: `Serrif Fallback, ui-serif, Georgia`
+- **Monospace**: `SaansMono`, fallbacks: `SaansMono Fallback, ui-monospace`
+- **UI**: `MediumLL` / `LLMedium`, fallbacks: `system-ui, -apple-system`
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing |
+|------|------|------|--------|-------------|----------------|
+| Display Hero | Saans | 80px | 400 | 1.00 (tight) | -2.4px |
+| Section Heading | Saans | 54px | 400 | 1.00 | -1.6px |
+| Sub-heading | Saans | 40px | 400 | 1.00 | -1.2px |
+| Card Title | Saans | 32px | 400 | 1.00 | -0.96px |
+| Feature Title | Saans | 24px | 400 | 1.00 | -0.48px |
+| Body Emphasis | Saans | 20px | 400 | 0.95 | -0.2px |
+| Nav / UI | Saans | 18px | 400 | 1.00 | normal |
+| Body | Saans | 16px | 400 | 1.50 | normal |
+| Body Light | Saans | 14px | 300 | 1.40 | normal |
+| Button | Saans | 16px / 14px | 400 | 1.50 / 1.43 | normal |
+| Button Bold | LLMedium | 16px | 700 | 1.20 | 0.16px |
+| Serif Body | Serrif | 16px | 300 | 1.40 | -0.16px |
+| Mono Label | SaansMono | 12px | 400–500 | 1.00–1.30 | 0.6px–1.2px uppercase |
+
+## 4. Component Stylings
+
+### Buttons
+
+**Primary Dark**
+- Background: `#111111`
+- Text: `#ffffff`
+- Padding: 0px 14px
+- Radius: 4px
+- Hover: white background, dark text, scale(1.1)
+- Active: green background (`#2c6415`), scale(0.85)
+
+**Outlined**
+- Background: transparent
+- Text: `#111111`
+- Border: `1px solid #111111`
+- Radius: 4px
+- Same scale hover/active behavior
+
+**Warm Card Button**
+- Background: `#faf9f6`
+- Text: `#111111`
+- Padding: 16px
+- Border: `1px solid oklab(... / 0.1)`
+
+### Cards &amp; Containers
+- Background: `#faf9f6` (warm cream)
+- Border: `1px solid #dedbd6` (warm oat)
+- Radius: 8px
+- No visible shadows
+
+### Navigation
+- Saans 16px for links
+- Off-black text on white
+- Small 4px–6px radius buttons
+- Orange Fin accent for AI features
+
+## 5. Layout Principles
+
+### Spacing: 8px, 10px, 12px, 14px, 16px, 20px, 24px, 32px, 40px, 48px, 60px, 64px, 80px, 96px
+### Border Radius: 4px (buttons), 6px (nav items), 8px (cards, containers)
+
+## 6. Depth &amp; Elevation
+Minimal shadows. Depth through warm border colors and surface tints.
+
+## 7. Do&#39;s and Don&#39;ts
+
+### Do
+- Use Saans with 1.00 line-height and negative tracking on all headings
+- Apply 4px radius on buttons — sharp geometry is the identity
+- Use Fin Orange (#ff5600) for AI/brand accent only
+- Apply scale(1.1) hover on buttons
+- Use warm neutrals (#faf9f6, #dedbd6)
+
+### Don&#39;t
+- Don&#39;t round buttons beyond 4px
+- Don&#39;t use Fin Orange decoratively
+- Don&#39;t use cool gray borders — always warm oat tones
+- Don&#39;t skip the negative tracking on headings
+
+## 8. Responsive Behavior
+Breakpoints: 425px, 530px, 600px, 640px, 768px, 896px
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Text: Off Black (`#111111`)
+- Background: Warm Cream (`#faf9f6`)
+- Accent: Fin Orange (`#ff5600`)
+- Border: Oat (`#dedbd6`)
+- Muted: `#7b7b78`
+
+### Example Component Prompts
+- &quot;Create hero: warm cream (#faf9f6) background. Saans 80px weight 400, line-height 1.00, letter-spacing -2.4px, #111111. Dark button (#111111, 4px radius). Hover: scale(1.1), white bg.&quot;
+</textarea></section><script type="module" src="/_astro/DocumentTabs.astro_astro_type_script_index_0_lang.CqDIfMN7.js"></script></div><nav class="detail-adjacent-nav" aria-label="Adjacent designs"><a class="detail-adjacent-link" href="/designs/ibm/" data-adjacent-link="previous" aria-keyshortcuts="ArrowLeft"><span><kbd aria-hidden="true">←</kbd>Previous</span><strong>IBM</strong></a><a class="detail-adjacent-link detail-adjacent-link-next" href="/designs/kraken/" data-adjacent-link="next" aria-keyshortcuts="ArrowRight"><span>Next<kbd aria-hidden="true">→</kbd></span><strong>Kraken</strong></a></nav><astro-island uid="EaEJ7" prefix="r2" component-url="/_astro/HagiCodeShowcase.SrqTGUpG.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;en&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;HagiCodeShowcase&quot;,&quot;value&quot;:true}" await-children><section class="gallery-showcase shell-panel" aria-label="Hagicode"><div class="gallery-showcase-content"><div class="gallery-showcase-head"><div><p class="gallery-meta-label">Built with HagiCode</p><h2>Hagicode</h2></div></div><div class="gallery-showcase-copy"><p>HagiCode is an agentic coding workspace: OpenSpec workflows, multi-agent execution, and Hero Scenario views turn ideas into shipped software.</p><p>Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.</p></div><ul class="gallery-showcase-triad" aria-label="Hagicode"><li><strong>Smart</strong><span>OpenSpec turns intent into an executable path from idea to shipped change.</span></li><li><strong>Efficient</strong><span>Multi-agent workflows keep research, implementation, and review moving in parallel.</span></li><li><strong>Fun</strong><span>Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding.</span></li></ul><div class="gallery-showcase-actions"><a class="gallery-showcase-cta button-primary" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcasePrimary" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="Visit HagiCode">Visit HagiCode</a><a class="gallery-showcase-learn-more" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcaseLearnMore" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="Learn more">Learn more</a><span class="gallery-showcase-store" data-store-entry="gallery-hagicode" data-ga-category="download" data-ga-label="microsoftStore" data-ga-location="design_showcase"><ms-store-badge productid="9N3PM0N3SVDW" productname="HagiCode" window-mode="direct" theme="auto" size="small" language="en-us" animation="on" aria-label="Open HagiCode in Microsoft Store" title="Open HagiCode in Microsoft Store"></ms-store-badge></span></div></div><section class="gallery-video-promo" aria-labelledby="gallery-video-promo-title"><div class="gallery-video-promo-heading"><h3 id="gallery-video-promo-title">HagiCode promo</h3><p>See how HagiCode brings agentic coding to life.</p></div><div class="gallery-video-promo-featured"><span class="gallery-video-promo-platform">HagiCode overview</span><div class="gallery-video-promo-frame"><iframe src="https://www.youtube.com/embed/AQ8oSTW6wNQ?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="HagiCode overview" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin"></iframe></div><p>See how HagiCode brings agentic coding to life.</p><a href="https://www.youtube.com/watch?v=AQ8oSTW6wNQ" target="_blank" rel="noopener noreferrer">Watch on YouTube</a></div><a class="gallery-video-promo-alternate" href="https://www.bilibili.com/video/BV1z4oWB3EpY/" target="_blank" rel="noopener noreferrer">Watch the HagiCode overview on Bilibili</a></section></section><!--astro:end--></astro-island></section></main><hagilight-promoto-banner class="hagilight-promoto" data-locale="en" data-site-id="awesome-design-gallery" hidden="true"><section class="hagilight-promoto__shell" data-promoto-shell hidden aria-label="Featured promotion"><div class="hagilight-promoto__viewport"><div class="hagilight-promoto__track" data-promoto-track></div></div><nav class="hagilight-promoto__controls" data-promoto-controls aria-label="Promotion controls" hidden><button type="button" class="hagilight-promoto__control" data-promoto-previous aria-label="Previous promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="hagilight-promoto__count" data-promoto-count aria-label="Promotion progress"></span><button type="button" class="hagilight-promoto__control" data-promoto-next aria-label="Next promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="hagilight-promoto__control" data-promoto-pause aria-pressed="false" aria-label="Pause automatic promotion rotation"><svg class="hagilight-promoto__icon hagilight-promoto__icon--pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12"></path></svg><svg class="hagilight-promoto__icon hagilight-promoto__icon--play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z"></path></svg></button></nav><button type="button" class="hagilight-promoto__dismiss" data-promoto-dismiss aria-label="Dismiss promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></svg></button><span class="hagilight-promoto__progress" data-promoto-progress aria-hidden="true"></span><span class="hagilight-promoto__status" data-promoto-status aria-live="polite"></span></section></hagilight-promoto-banner><script type="module" src="/_astro/PromotoBanner.astro_astro_type_script_index_0_lang.DP3NpmJD.js"></script><footer class="hagilight-footer astro-w3irp4ng"><section class="hagilight-brand astro-wxz55yp2" lang="en-US" aria-labelledby="hagilight-brand-title"><div class="hagilight-brand__lead astro-wxz55yp2"><div class="hagilight-brand__title astro-wxz55yp2"><picture class="hagilight-brand__avatar astro-wxz55yp2" data-random-fan="[&quot;cat-head-gallery/g002-ukiyo-e-01.avif&quot;,&quot;cat-head-gallery/g003-watercolor-wash-02.avif&quot;,&quot;cat-head-gallery/g004-pixel-art-03.avif&quot;,&quot;cat-head-gallery/g005-oil-impasto-06.avif&quot;,&quot;cat-head-gallery/g006-paper-cut-layers-07.avif&quot;,&quot;cat-head-gallery/g008-low-poly-07.avif&quot;,&quot;cat-head-gallery/g009-claymation-07.avif&quot;,&quot;cat-head-gallery/g010-neon-line-07.avif&quot;,&quot;cat-head-gallery/g016-bauhaus-geometry-06.avif&quot;,&quot;cat-head-gallery/g017-cyanotype-06.avif&quot;,&quot;cat-head-gallery/g020-origami-03.avif&quot;,&quot;cat-head-gallery/g022-blueprint-03.avif&quot;,&quot;cat-head-gallery/g023-chalk-pastel-10.avif&quot;,&quot;cat-head-gallery/g025-voxel-03.avif&quot;,&quot;cat-head-gallery/g031-illuminated-manuscript-04.avif&quot;,&quot;cat-head-gallery/g034-vaporwave-04.avif&quot;,&quot;cat-head-gallery/g035-synthwave-chrome-09.avif&quot;,&quot;cat-head-gallery/g038-frosted-glass-02.avif&quot;,&quot;cat-head-gallery/g039-needle-felt-09.avif&quot;,&quot;cat-head-gallery/g041-glossy-balloon-05.avif&quot;,&quot;cat-head-gallery/g042-blue-white-porcelain-05.avif&quot;,&quot;cat-head-gallery/g043-glazed-ceramic-06.avif&quot;,&quot;cat-head-gallery/g045-impressionist-08.avif&quot;,&quot;cat-head-gallery/g047-fauvist-09.avif&quot;,&quot;cat-head-gallery/g048-cubist-10.avif&quot;,&quot;cat-head-gallery/g051-naive-folk-art-07.avif&quot;,&quot;cat-head-gallery/g056-wax-print-fabric-07.avif&quot;,&quot;cat-head-gallery/g058-red-paper-cut-10.avif&quot;,&quot;cat-head-gallery/g060-kawaii-pastel-01.avif&quot;,&quot;cat-head-gallery/g061-retro-90s-anime-01.avif&quot;,&quot;cat-head-gallery/g062-shoujo-sparkle-08.avif&quot;,&quot;cat-head-gallery/g065-saturday-cartoon-09.avif&quot;,&quot;cat-head-gallery/g067-pixar-style-3d-03.avif&quot;,&quot;cat-head-gallery/g068-toon-shaded-3d-04.avif&quot;,&quot;cat-head-gallery/g069-ps1-lowpoly-06.avif&quot;,&quot;cat-head-gallery/g070-matte-clay-render-07.avif&quot;,&quot;cat-head-gallery/g071-y2k-chrome-08.avif&quot;,&quot;cat-head-gallery/g072-glossy-3d-icon-08.avif&quot;,&quot;cat-head-gallery/g073-marble-bust-08.avif&quot;,&quot;cat-head-gallery/g075-wood-carving-10.avif&quot;,&quot;cat-head-gallery/g076-carved-jade-10.avif&quot;,&quot;cat-head-gallery/g078-toy-brick-02.avif&quot;,&quot;cat-head-gallery/g079-designer-vinyl-toy-02.avif&quot;,&quot;cat-head-gallery/g081-patchwork-quilt-03.avif&quot;,&quot;cat-head-gallery/g083-warhol-silkscreen-04.avif&quot;,&quot;cat-head-gallery/g088-vintage-lithograph-02.avif&quot;,&quot;cat-head-gallery/g090-alcohol-marker-09.avif&quot;,&quot;cat-head-gallery/g091-painterly-concept-art-09.avif&quot;,&quot;cat-head-gallery/g092-gradient-minimal-09.avif&quot;,&quot;cat-head-gallery/g095-constellation-map-09.avif&quot;]"><source type="image/avif" srcset="/_astro/avatar.BPGAI8am.avif" class="astro-wxz55yp2"><source type="image/webp" srcset="/_astro/avatar.BBqcj7YN.webp" class="astro-wxz55yp2"><img src="/_astro/avatar.BBqcj7YN.webp" width="64" height="64" alt aria-hidden="true" loading="lazy" decoding="async" class="astro-wxz55yp2"></picture><h2 class="hagilight-brand__headline astro-wxz55yp2" id="hagilight-brand-title">Turn ideas into shipped software.</h2></div><div class="hagilight-brand__body astro-wxz55yp2"><p class="hagilight-brand__summary astro-wxz55yp2">HagiCode is an agentic coding workspace. OpenSpec workflows plan the change, multi-agent execution carries it out, and Hero Scenario makes the long run visible, so ideas become shipped software.</p><div class="hagilight-brand__actions astro-wxz55yp2"><a class="hagilight-brand__primary astro-wxz55yp2" href="https://www.hagicode.com/en-US/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer_brand" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer_brand"><span class="astro-wxz55yp2">Download HagiCode</span><svg class="hagilight-brand__arrow astro-wxz55yp2" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="astro-wxz55yp2"></path></svg></a><a class="hagilight-brand__secondary astro-wxz55yp2" href="https://docs.hagicode.com/en-US/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer_brand" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer_brand">Product Docs</a></div></div></div><dl class="hagilight-brand__pillars astro-wxz55yp2"><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="smart" style="--hagilight-brand-i: 0"><dt class="astro-wxz55yp2">Smart</dt><dd class="astro-wxz55yp2">OpenSpec workflows turn intent into a path from proposal to shipped change.</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="efficient" style="--hagilight-brand-i: 1"><dt class="astro-wxz55yp2">Efficient</dt><dd class="astro-wxz55yp2">Multi-agent execution runs research, build, and review in parallel.</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="fun" style="--hagilight-brand-i: 2"><dt class="astro-wxz55yp2">Fun</dt><dd class="astro-wxz55yp2">Rich UI interactions make planning, agent work, and projects easier to follow.</dd></div></dl><script type="module">var e=/^([a-z0-9][a-z0-9_-]*)\/[a-z0-9][a-z0-9_-]*\.avif$/u;function t(t){if(!Array.isArray(t)||t.length<12||t.length>200)throw TypeError(`Hagilight random pool must list 12 to 200 R2 objects.`);let n;for(let r of t){let t=typeof r==`string`?e.exec(r):null;if(!t)throw TypeError(`Hagilight random pool entry "${String(r)}" must be an <album>/<key>.avif object path.`);if(n??=t[1],t[1]!==n)throw TypeError(`Hagilight random pool entries must all come from one album.`)}if(new Set(t).size!==t.length)throw TypeError(`Hagilight random pool entries must be unique.`);return Object.freeze([...t])}function n(e){let t=e();return Number.isFinite(t)?Math.min(Math.max(t,0),1-2**-52):0}function r(e,t,r=Math.random){let i=[...e],a=Math.min(Math.max(Math.floor(t),0),i.length);for(let e=0;e<a;e+=1){let t=e+Math.floor(n(r)*(i.length-e));[i[e],i[t]]=[i[t],i[e]]}return i.slice(0,a)}function i(e){return`https://img-gen.hagicode.com/${e}`}function a(e,t={}){return new Promise(n=>{let r=t.setTimer??((e,t)=>setTimeout(e,t)),i=t.clearTimer??(e=>clearTimeout(e)),a,o=e=>{i(a),n(e)};try{let n=t.createImage?t.createImage():new Image;n.onload=()=>o(!0),n.onerror=()=>o(!1),a=r(()=>o(!1),3e3),n.src=e}catch{o(!1)}})}function o(){return(typeof navigator>`u`?void 0:navigator.connection)?.saveData===!0}function s(e,t,n=6){return((e-t)%n+n)%n}function c(){return typeof matchMedia==`function`&&matchMedia(`(prefers-reduced-motion: reduce)`).matches}function l(e,t){if(typeof IntersectionObserver!=`function`){t(!0);return}new IntersectionObserver(e=>t(e[e.length-1]?.isIntersecting===!0),{rootMargin:`0px 0px 160px 0px`}).observe(e)}function u(e,t,n,r){let i=e.ownerDocument.createElement(`span`);i.className=`hagilight-fan`;let a=n.slice(0,r).map(n=>{let r=t?t.cloneNode(!1):e.ownerDocument.createElement(`img`);return r.removeAttribute(`srcset`),r.removeAttribute(`sizes`),r.removeAttribute(`loading`),r.setAttribute(`class`,`hagilight-fan__card`),r.setAttribute(`src`,n),i.append(r),r});return e.append(i),e.offsetWidth,t?.setAttribute(`data-fan-out`,``),a.forEach((e,t)=>e.setAttribute(`data-slot`,String(t))),a}async function d(e,n){if(e.setAttribute(`data-random-state`,`default`),(n.saveData??o)())return!1;let d;try{d=t(JSON.parse(e.getAttribute(`data-random-fan`)??`null`))}catch{return!1}let f=!1,p,m=new Promise(e=>{p=e});(n.watch??l)(e,e=>{f=e,e&&p()}),await m;let h=n.random??Math.random,g=!(n.reducedMotion??c)(),_=r(d,g?6:3,h).map(i),v=(await Promise.all(_.map(async e=>await a(e,n)?e:``))).filter(Boolean);if(v.length<3)return!1;let y=g&&v.length===6,b=u(e,e.querySelector(`img`),v,y?6:3);if(e.setAttribute(`data-random-state`,`fan`),y){let t=0,r=()=>{};r=(n.every??((e,t)=>{let n=setInterval(e,t);return()=>clearInterval(n)}))(()=>{e.isConnected===!1?r():f&&!(n.tabHidden??(()=>typeof document<`u`&&document.hidden))()&&(t+=1,b.forEach((e,n)=>e.setAttribute(`data-slot`,String(s(n,t,b.length)))))},3600)}return!0}function f(e,t={}){return Array.from(e.querySelectorAll(`[data-random-fan]:not([data-random-state])`)).map(e=>d(e,t).catch(()=>!1))}f(document);</script></section><div class="hagilight-footer__sections astro-w3irp4ng"><div class="hagilight-cols astro-w3irp4ng"><nav class="hagilight-col astro-w3irp4ng" data-column="start" style="--hagilight-col-i: 0" aria-labelledby="hagilight-col-start"><h2 id="hagilight-col-start" class="astro-w3irp4ng">Get Started</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/en-US/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer" class="astro-w3irp4ng">Download HagiCode</a></li><li class="astro-w3irp4ng"><a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" target="_blank" rel="noopener noreferrer" data-ga-category="store" data-ga-label="microsoftStore" data-ga-location="footer" class="astro-w3irp4ng">Download HagiCode for Windows</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/en-US/installation/docker-compose/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=dockerCompose&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="dockerCompose" data-ga-location="footer" class="astro-w3irp4ng">Docker Compose Installation</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/en-US/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer" class="astro-w3irp4ng">Product Docs</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/en-US/about/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=about&amp;utm_content=footer" class="astro-w3irp4ng">About HagiCode</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/en-US/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagicode-main&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Main Site</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="learn" style="--hagilight-col-i: 1" aria-labelledby="hagilight-col-learn"><h2 id="hagilight-col-learn" class="astro-w3irp4ng">Learn &amp; Docs</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/en-US/blog/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=blogPosts&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="blogPosts" data-ga-location="footer" class="astro-w3irp4ng">Blog Posts</a></li><li class="astro-w3irp4ng"><a href="https://openspec.hagicode.com/en-US/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=openspec-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">OpenSpec Docs</a></li><li class="astro-w3irp4ng"><a href="https://omniroute.hagicode.com/en-US/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=omniroute-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">OmniRoute Docs</a></li><li class="astro-w3irp4ng"><a href="https://fullstack.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=fullstack-tutorial&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Fullstack</a></li><li class="astro-w3irp4ng"><a href="https://impeccable.hagicode.com/en-US/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=impeccable-site&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Impeccable Commands</a></li><li class="astro-w3irp4ng"><a href="https://awesome.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=awesome-sites&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Awesome Sites</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="build" style="--hagilight-col-i: 2" aria-labelledby="hagilight-col-build"><h2 id="hagilight-col-build" class="astro-w3irp4ng">Tools &amp; Resources</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://tasks.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagitask&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiTask</a></li><li class="astro-w3irp4ng"><a href="https://builder.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=compose-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Docker Compose Builder</a></li><li class="astro-w3irp4ng"><a href="https://soul.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=soul-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Soul Builder</a></li><li class="astro-w3irp4ng"><a href="https://trait.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=trait-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Trait Builder</a></li><li class="astro-w3irp4ng"><a href="https://cost.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=costCalculator&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Will AI Replace Me?</a></li><li class="astro-w3irp4ng"><a href="https://gallery.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=gallery&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Gallery</a></li><li class="astro-w3irp4ng"><a href="https://index.hagicode.com/data/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=index-data&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Index Data Mirror</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="community" style="--hagilight-col-i: 3" aria-labelledby="hagilight-col-community"><h2 id="hagilight-col-community" class="astro-w3irp4ng">Community &amp; Support</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="github" data-ga-location="footer" class="astro-w3irp4ng">GitHub</a></li><li class="astro-w3irp4ng"><a href="https://discord.gg/qY662sJK" target="_blank" rel="noopener noreferrer" data-ga-category="community" data-ga-label="discord" data-ga-location="footer" class="astro-w3irp4ng">Discord</a></li><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site/issues" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="issueFeedback" data-ga-location="footer" class="astro-w3irp4ng">Issue Feedback</a></li><li class="astro-w3irp4ng"><a href="mailto:support@hagicode.com" class="astro-w3irp4ng">Contact Email</a></li><li class="astro-w3irp4ng"><a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer" class="astro-w3irp4ng">QQ Group 610394020</a></li><li class="astro-w3irp4ng"><a href="https://newbe.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=newbe-blog&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">newbe</a></li><li class="astro-w3irp4ng"><a href="https://status.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=status-page&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Status</a></li></ul></nav></div></div><div class="hagilight-footer__base astro-w3irp4ng"><nav class="hagilight-footer__feeds astro-w3irp4ng" aria-label="Feeds and sitemap"><a href="https://design.hagicode.com/rss.xml" class="astro-w3irp4ng">RSS Feed</a><a href="/sitemap-index.xml" class="astro-w3irp4ng">Sitemap</a></nav><nav class="hagilight-footer__filings astro-w3irp4ng" aria-label="View filing information"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="View ICP filing information" class="astro-w3irp4ng">ICP Filing 闽ICP备2026004153号-1</a><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer" aria-label="View public security filing information" class="astro-w3irp4ng">Public Security Filing 闽公网安备35011102351148号</a></nav></div><p class="hagilight-footer__copyright astro-w3irp4ng"><span>© 2026 HagiCode</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="branch">Branch: main</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="commit" title="6d161862d30281253ed8c05b55200240fb019d04" data-build-commit="6d161862d30281253ed8c05b55200240fb019d04">Commit: 6d16186</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="builtAt">Built: <time datetime="2026-10-30T16:30:59Z" class="astro-w3irp4ng">2026-10-30T16:30:59Z</time></span></p></footer></div><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script>(function(){const siteId = "L6b88a5yK4h2Xnci";
+
+      LA.init({ id: siteId, ck: siteId, autoTrack: true, hashMode: true });
+    })();</script><script type="module" src="/_astro/Analytics51LA.astro_astro_type_script_index_0_lang.R1vpCc6_.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-EN03FMT2Q4"></script><script>window.dataLayer = window.dataLayer || [];
+window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.gtag('config', "G-EN03FMT2Q4");</script><script type="module" src="/_astro/GoogleAnalytics.astro_astro_type_script_index_0_lang.CWqY6pzt.js"></script></body></html><script type="module">var e=`adms-detail-layout`;function t(e){return e===`preview`||e===`docs`?e:`split`}function n(){try{return t(window.localStorage.getItem(e))}catch{return`split`}}function r(t){try{window.localStorage.setItem(e,t)}catch{}}function i(e){return e instanceof HTMLElement?e.isContentEditable||[`INPUT`,`TEXTAREA`,`SELECT`].includes(e.tagName):!1}function a(e=document){let a=e.querySelector(`[data-detail-grid]`),o=Array.from(e.querySelectorAll(`[data-detail-layout]`)),s=e.querySelector(`.site-header`),c=s&&typeof ResizeObserver<`u`?new ResizeObserver(()=>{e.documentElement.style.setProperty(`--site-header-height`,`${s.offsetHeight}px`)}):void 0;if(c?.observe(s),a&&o.length>0){let e=e=>{a.dataset.layout=e,o.forEach(t=>{let n=t.dataset.detailLayout===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-pressed`,n?`true`:`false`)})};o.forEach(n=>{n.addEventListener(`click`,()=>{let i=t(n.dataset.detailLayout);e(i),r(i)})}),e(n())}let l=t=>{if(t.defaultPrevented||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey||i(t.target))return;let n=t.key===`ArrowLeft`?`previous`:t.key===`ArrowRight`?`next`:null,r=n?e.querySelector(`[data-adjacent-link="${n}"]`):null;r&&(t.preventDefault(),r.click())};return e.addEventListener(`keydown`,l),()=>{c?.disconnect(),e.removeEventListener(`keydown`,l)}}a();</script>

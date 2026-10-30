@@ -1,0 +1,794 @@
+<!DOCTYPE html><html lang="ja-JP" dir="ltr" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v7.3.8"><meta name="theme-color" content="#000000"><title>Replicate DESIGN.md • Awesome Design MD ギャラリー</title><meta name="description" content="Replicate のプレビュー、README、DESIGN ドキュメント。"><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico"><link rel="stylesheet" href="/global.css"><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><link rel="canonical" href="https://design.hagicode.com/ja-JP/designs/replicate/"><link rel="alternate" hreflang="en" href="https://design.hagicode.com/designs/replicate/"><link rel="alternate" hreflang="zh-CN" href="https://design.hagicode.com/zh-CN/designs/replicate/"><link rel="alternate" hreflang="zh-Hant" href="https://design.hagicode.com/zh-Hant/designs/replicate/"><link rel="alternate" hreflang="ja-JP" href="https://design.hagicode.com/ja-JP/designs/replicate/"><link rel="alternate" hreflang="ko-KR" href="https://design.hagicode.com/ko-KR/designs/replicate/"><link rel="alternate" hreflang="de-DE" href="https://design.hagicode.com/de-DE/designs/replicate/"><link rel="alternate" hreflang="fr-FR" href="https://design.hagicode.com/fr-FR/designs/replicate/"><link rel="alternate" hreflang="es-ES" href="https://design.hagicode.com/es-ES/designs/replicate/"><link rel="alternate" hreflang="pt-BR" href="https://design.hagicode.com/pt-BR/designs/replicate/"><link rel="alternate" hreflang="ru-RU" href="https://design.hagicode.com/ru-RU/designs/replicate/"><link rel="alternate" hreflang="x-default" href="https://design.hagicode.com/designs/replicate/"><meta property="og:type" content="website"><meta property="og:title" content="Replicate DESIGN.md • Awesome Design MD ギャラリー"><meta property="og:description" content="Replicate のプレビュー、README、DESIGN ドキュメント。"><meta property="og:url" content="https://design.hagicode.com/ja-JP/designs/replicate/"><meta property="og:site_name" content="Awesome Design MD ギャラリー"><meta property="og:locale" content="ja_JP"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU"><meta property="og:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:secure_url" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="3137"><meta property="og:image:height" content="1235"><meta property="og:image:alt" content="Replicate DESIGN.md • Awesome Design MD ギャラリー"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Replicate DESIGN.md • Awesome Design MD ギャラリー"><meta name="twitter:description" content="Replicate のプレビュー、README、DESIGN ドキュメント。"><meta name="twitter:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta name="twitter:image:alt" content="Replicate DESIGN.md • Awesome Design MD ギャラリー"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Replicate DESIGN.md • Awesome Design MD ギャラリー","description":"Replicate のプレビュー、README、DESIGN ドキュメント。","url":"https://design.hagicode.com/ja-JP/designs/replicate/","inLanguage":"ja-JP","image":"https://design.hagicode.com/img/hagicode/light-main.png","isPartOf":{"@type":"WebSite","name":"Awesome Design MD ギャラリー","url":"https://design.hagicode.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Awesome Design MD ギャラリー","item":"https://design.hagicode.com/ja-JP/"},{"@type":"ListItem","position":2,"name":"Replicate","item":"https://design.hagicode.com/ja-JP/designs/replicate/"}]}</script><script>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script>
+      // Cross-document view transition: the gallery card preview grows into the detail preview
+      // (and back). Only the one clicked card is named, so no other card is captured.
+      (() => {
+        const NAME = 'design-preview';
+        const slugOf = (href) => {
+          try {
+            const match = new URL(href, location.href).pathname.match(/\/designs\/([^/]+)\/?$/);
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch {
+            return null;
+          }
+        };
+        // On the way back the browser has not restored the scroll position yet when the page
+        // is revealed, so the returning card is named wherever it is, not only when in view.
+        const cardPreview = (slug, anywhere) => {
+          const card = Array.from(document.querySelectorAll('[data-design-card]')).find(
+            (item) => item.dataset.slug === slug,
+          );
+          const preview = card && card.querySelector('.design-card-preview');
+          if (!preview) return null;
+          const rect = preview.getBoundingClientRect();
+          return anywhere || (rect.bottom > 0 && rect.top < innerHeight) ? preview : null;
+        };
+        const name = async (element, transition) => {
+          if (!element) return;
+          element.style.viewTransitionName = NAME;
+          await transition.finished.catch(() => {});
+          element.style.viewTransitionName = '';
+        };
+
+        addEventListener('pageswap', (event) => {
+          if (!event.viewTransition || !event.activation || !event.activation.entry) return;
+          const to = slugOf(event.activation.entry.url);
+          const here = slugOf(location.href);
+          if (to && !here) name(cardPreview(to), event.viewTransition);
+          else if (!to && here) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+        });
+
+        addEventListener('pagereveal', (event) => {
+          if (!event.viewTransition) return;
+          const activation = window.navigation && window.navigation.activation;
+          if (!activation || !activation.from) return;
+          const from = slugOf(activation.from.url);
+          const here = slugOf(location.href);
+          if (here && !from) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+          else if (!here && from) name(cardPreview(from, true), event.viewTransition);
+        });
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.bD5iggdr.css"><script type="module" src="/_astro/page.KebScxdP.js"></script><script>(function(){document.head.insertAdjacentHTML('beforeend', '\u003cscript type="application/json" data-hagilight-analytics="posthog">{"apiKey":"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5","loader":"(() => {\\n  if (window.__hagilightPosthogInitialized) return;\\n  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\\".\\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\\"script\\")).type=\\"text/javascript\\",p.crossOrigin=\\"anonymous\\",p.async=!0,p.src=s.api_host.replace(\\".i.posthog.com\\",\\"-assets.i.posthog.com\\")+\\"/static/array.js\\",(r=t.getElementsByTagName(\\"script\\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\\"posthog\\",u.people=u.people||[],Object.defineProperty(u,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e=\\"posthog\\";return\\"posthog\\"!==a&&(e+=\\".\\"+a),t||(e+=\\" (stub)\\"),e}}),Object.defineProperty(u.people,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+\\".people (stub)\\"}}),o=\\"init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug\\".split(\\" \\"),n=0;n\\u003co.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);\\n  posthog.init(\\"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5\\", {\\"api_host\\":\\"https://t.hagicode.com\\",\\"ui_host\\":\\"https://us.posthog.com\\",\\"defaults\\":\\"2026-05-30\\",\\"person_profiles\\":\\"identified_only\\",\\"capture_exceptions\\":true});\\n  (() => {\\n    const context = {\\"siteId\\":\\"design.hagicode.com\\",\\"framework\\":\\"astro\\",\\"version\\":\\"0.20.0\\"};\\n    const pageTypes = [\\"home\\",\\"docs\\",\\"blog\\",\\"compare\\",\\"404\\",\\"other\\"];\\n    const metaPageType = document.querySelector(\'meta[name=\\"hagilight:page-type\\"]\')?.getAttribute(\'content\');\\n    const superProperties = {\\n      site_id: context.siteId || window.location.hostname,\\n      site_framework: context.framework,\\n      hagilight_version: context.version,\\n      locale: document.documentElement.lang,\\n      page_type: [context.pageType, metaPageType].find((value) => pageTypes.includes(value)) ?? \'other\',\\n    };\\n    posthog.register(Object.fromEntries(Object.entries(superProperties).filter(([, value]) => typeof value === \'string\' && value !== \'\')));\\n  })();\\n  window.__hagilightPosthogInitialized = true;\\n})();"}\u003c/script>\u003cscript type="application/json" id="hagilight-consent-config">{"policyVersion":"1","privacyUrl":null,"providers":["posthog"],"locale":"en-US"}\u003c/script>');})();</script></head><body><a class="skip-link" href="#main">本文へスキップ</a><div class="page-shell"><header class="site-header"><div class="container shell-panel header-panel"><a class="brand-mark" href="/ja-JP/"><img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32"><span class="brand-copy"><strong class="brand-copy-full">Awesome Design MD ギャラリー</strong><strong class="brand-copy-compact">ADMG</strong><small>Powered by HagiCode</small></span></a><nav class="site-nav site-nav-primary" aria-label="メイン"><a href="/ja-JP/" class="site-nav-link"><span class="site-nav-link-label site-nav-link-label-full">ギャラリー</span><span class="site-nav-link-label site-nav-link-label-compact">一覧</span></a></nav><nav class="site-nav site-nav-repo" aria-label="リポジトリリンク"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link" target="_blank" rel="noopener"><span class="site-nav-link-label site-nav-link-label-full">サイトリポジトリ</span></a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link" target="_blank" rel="noopener noreferrer"><span class="site-nav-link-label site-nav-link-label-full">ソースリポジトリ</span></a></nav><div class="header-actions"><div class="language-select-shell"><select class="language-select" name="locale" aria-label="言語切り替え" data-language-select><option value="/designs/replicate/" lang="en">English</option><option value="/zh-CN/designs/replicate/" lang="zh-CN">简体中文</option><option value="/zh-Hant/designs/replicate/" lang="zh-Hant">繁體中文</option><option value="/ja-JP/designs/replicate/" selected lang="ja-JP">日本語</option><option value="/ko-KR/designs/replicate/" lang="ko-KR">한국어</option><option value="/de-DE/designs/replicate/" lang="de-DE">Deutsch</option><option value="/fr-FR/designs/replicate/" lang="fr-FR">Français</option><option value="/es-ES/designs/replicate/" lang="es-ES">Español</option><option value="/pt-BR/designs/replicate/" lang="pt-BR">Português</option><option value="/ru-RU/designs/replicate/" lang="ru-RU">Русский</option></select><span class="language-select-icon" aria-hidden="true">▾</span></div><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(function(){let e=async e=>{await(await e())()};(self.Astro||(self.Astro={})).load=e,window.dispatchEvent(new Event(`astro:load`))})();</script><script>(function(){function e(t){"@babel/helpers - typeof";return e=typeof Symbol==`function`&&typeof Symbol.iterator==`symbol`?function(e){return typeof e}:function(e){return e&&typeof Symbol==`function`&&e.constructor===Symbol&&e!==Symbol.prototype?`symbol`:typeof e},e(t)}function t(t,n){if(e(t)!=`object`||!t)return t;var r=t[Symbol.toPrimitive];if(r!==void 0){var i=r.call(t,n||`default`);if(e(i)!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(t)}function n(n){var r=t(n,`string`);return e(r)==`symbol`?r:r+``}function r(e,t,r){return(t=n(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}let i=/* @__PURE__ */ new Set([`__proto__`,`constructor`,`prototype`]);{let e={0:e=>a(e),1:e=>n(e),2:e=>new RegExp(e),3:e=>new Date(e),4:e=>new Map(n(e)),5:e=>new Set(n(e)),6:e=>BigInt(e),7:e=>new URL(e),8:e=>new Uint8Array(e),9:e=>new Uint16Array(e),10:e=>new Uint32Array(e),11:e=>1/0*e},t=t=>{let[n,r]=t;return n in e?e[n](r):void 0},n=e=>e.map(t),a=e=>typeof e!=`object`||!e?e:Object.fromEntries(Object.entries(e).map(([e,n])=>[e,t(n)]));class o extends HTMLElement{constructor(...e){super(...e),r(this,`Component`,void 0),r(this,`hydrator`,void 0),r(this,`hydrate`,async()=>{var e;if(!this.hydrator||!this.isConnected)return;let t=(e=this.parentElement)==null?void 0:e.closest(`astro-island[ssr]`);if(t){t.addEventListener(`astro:hydrate`,this.hydrate,{once:!0});return}let n=this.querySelectorAll(`astro-slot`),r={},i=this.querySelectorAll(`template[data-astro-template]`);for(let e of i){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`data-astro-template`)||`default`]=e.innerHTML,e.remove())}for(let e of n){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`name`)||`default`]=e.innerHTML)}let o;try{o=this.hasAttribute(`props`)?a(JSON.parse(this.getAttribute(`props`))):{}}catch(e){let t=this.getAttribute(`component-url`)||`<unknown>`,n=this.getAttribute(`component-export`);throw n&&(t+=` (export ${n})`),console.error(`[hydrate] Error parsing props for component ${t}`,this.getAttribute(`props`),e),e}await this.hydrator(this)(this.Component,o,r,{client:this.getAttribute(`client`)}),this.removeAttribute(`ssr`),this.dispatchEvent(new CustomEvent(`astro:hydrate`))}),r(this,`unmount`,()=>{this.isConnected||this.dispatchEvent(new CustomEvent(`astro:unmount`))})}disconnectedCallback(){document.removeEventListener(`astro:after-swap`,this.unmount),document.addEventListener(`astro:after-swap`,this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute(`await-children`)||document.readyState===`interactive`||document.readyState===`complete`)this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener(`DOMContentLoaded`,e),t.disconnect(),this.childrenConnectedCallback()},t=new MutationObserver(()=>{var t;((t=this.lastChild)==null?void 0:t.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue===`astro:end`&&(this.lastChild.remove(),e())});t.observe(this,{childList:!0}),document.addEventListener(`DOMContentLoaded`,e)}}async childrenConnectedCallback(){let e=this.getAttribute(`before-hydration-url`);e&&await import(e),this.start()}getRetryImportUrl(e){let t=new URL(e,document.baseURI);return t.searchParams.set(`astro-retry`,Date.now().toString()),t.toString()}async importWithRetry(e){try{return await import(e)}catch(t){return await new Promise(e=>setTimeout(e,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let t=this.getAttribute(`component-url`),n=new CustomEvent(`astro:hydration-error`,{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:t}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${t}`,e)}async start(){let e=JSON.parse(this.getAttribute(`opts`)),t=this.getAttribute(`client`);if(Astro[t]===void 0){window.addEventListener(`astro:${t}`,()=>this.start(),{once:!0});return}try{await Astro[t](async()=>{let e=this.getAttribute(`renderer-url`);try{let[t,{default:n}]=await Promise.all([this.importWithRetry(this.getAttribute(`component-url`)),e?this.importWithRetry(e):Promise.resolve({default:()=>()=>{}})]),r=this.getAttribute(`component-export`)||`default`;if(r.includes(`.`)){this.Component=t;for(let e of r.split(`.`)){if(i.has(e)||!this.Component||typeof this.Component!=`object`&&typeof this.Component!=`function`||!Object.hasOwn(this.Component,e))throw Error(`Invalid component export path: ${r}`);this.Component=this.Component[e]}}else{if(i.has(r))throw Error(`Invalid component export path: ${r}`);this.Component=t[r]}return this.hydrator=n,this.hydrate}catch(e){return this.handleHydrationError(e),()=>{}}},e,this)}catch(e){this.handleHydrationError(e)}}attributeChangedCallback(){this.hydrate()}}r(o,`observedAttributes`,[`props`]),customElements.get(`astro-island`)||customElements.define(`astro-island`,o)}})();</script><astro-island uid="ZNp1tE" prefix="r3" component-url="/_astro/ThemeToggle.BU4lQzY7.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;ja-JP&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="theme-toggle" data-theme-toggle="true" aria-label="ライトモードに切り替え"><span class="theme-toggle-label theme-toggle-label-full">ダーク</span><span class="theme-toggle-label theme-toggle-label-compact">暗</span><span class="theme-toggle-glyph" aria-hidden="true">◐</span></button><!--astro:end--></astro-island></div><details class="header-utility"><summary class="header-utility-trigger" aria-label="リポジトリリンク"><span class="header-utility-trigger-label" aria-hidden="true">≡</span></summary><div class="header-utility-surface" aria-label="リポジトリリンク"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link header-utility-link" target="_blank" rel="noopener">サイトリポジトリ</a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link header-utility-link" target="_blank" rel="noopener noreferrer">ソースリポジトリ</a></div></details></div></header><script>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script><main id="main"><section class="container detail-shell"><div class="detail-header shell-panel"><div class="detail-header-bar"><a class="detail-back-link" href="/ja-JP/">ギャラリーへ戻る</a><div class="segmented detail-layout-toggle" role="group" aria-label="ワークスペースのレイアウト"><button type="button" class="preview-toggle is-active" data-detail-layout="split" aria-pressed="true">分割</button><button type="button" class="preview-toggle" data-detail-layout="preview" aria-pressed="false">プレビュー</button><button type="button" class="preview-toggle" data-detail-layout="docs" aria-pressed="false">ドキュメント</button></div></div><div class="detail-header-copy"><h1>Replicate</h1><p class="detail-summary">DESIGN.md extracted from the public Replicate website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it&#39;s a good starting point for building something similar.</p></div></div><div class="detail-grid" data-detail-grid data-layout="split"><script>
+        // Restore the saved layout before first paint so the grid does not jump.
+        try {
+          const saved = localStorage.getItem('adms-detail-layout');
+          if (saved === 'preview' || saved === 'docs') {
+            document.currentScript.parentElement.dataset.layout = saved;
+          }
+        } catch {}
+      </script><section class="preview-switcher shell-panel" data-preview-switcher data-light-url="/previews/replicate/light.html" data-dark-url="/previews/replicate/dark.html" data-images="{&quot;light&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/replicate/light-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:6334},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/replicate/light-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:7125},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/replicate/light-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:8000},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/replicate/light-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}},&quot;dark&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/replicate/dark-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:6353},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/replicate/dark-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:7125},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/replicate/dark-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:8000},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/replicate/dark-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}}}" data-alt-template="Replicate {{variant}}プレビュー、{{viewport}}幅" data-labels="{&quot;light&quot;:&quot;ライト&quot;,&quot;dark&quot;:&quot;ダーク&quot;,&quot;fit&quot;:&quot;自動&quot;,&quot;tablet&quot;:&quot;タブレット&quot;,&quot;mobile&quot;:&quot;モバイル&quot;}"><div class="preview-switcher-head"><h2>テーマ対応プレビューフレーム</h2><div class="preview-switcher-tools"><div class="segmented" role="group" aria-label="プレビューテーマ"><button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-pressed="true">ライト</button><button type="button" class="preview-toggle" data-preview-variant="dark" aria-pressed="false" title="ダークプレビューを開く">ダーク</button></div><div class="segmented preview-viewport-group" role="group" aria-label="プレビュー幅"><button type="button" class="preview-toggle is-active" data-preview-viewport="fit" aria-pressed="true">自動</button><button type="button" class="preview-toggle" data-preview-viewport="tablet" aria-pressed="false">タブレット</button><button type="button" class="preview-toggle" data-preview-viewport="mobile" aria-pressed="false">モバイル</button></div><a class="preview-open" data-preview-open href="/previews/replicate/light.html" target="_blank" rel="noopener" aria-label="プレビューを新しいタブで開く" title="プレビューを新しいタブで開く"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M6 3H3v10h10v-3"></path><path d="M9 2.5h4.5V7"></path><path d="M13.5 2.5 7.5 8.5"></path></svg></a></div></div><div class="preview-stage" data-preview-stage data-state="loading" aria-busy="true"><img class="detail-preview-image" data-preview-image src="/preview-images/replicate/light-fit.avif" width="1440" height="6334" alt="Replicate ライトプレビュー、自動幅" decoding="async"><p class="preview-error" data-preview-error hidden><span>レンダリング済みプレビューを読み込めませんでした。</span><a data-preview-live href="/previews/replicate/light.html" target="_blank" rel="noopener">ライブ HTML プレビューを開く</a></p></div><p class="preview-switcher-foot"><span class="preview-switcher-note">ライトとダークのプレビュー素材が利用できます。</span><output class="preview-width-readout" data-preview-width aria-hidden="true"></output></p></section><script type="module">function e(e,t,n){e.forEach(e=>{let r=e.getAttribute(t)===n;e.classList.toggle(`is-active`,r),e.setAttribute(`aria-pressed`,r?`true`:`false`)})}function t(e){return`${Math.round(e)} px`}function n(e){if(e)try{return JSON.parse(e)}catch{return}}function r(e,t,n){return e[t][n]}function i(e,t,n){return e.replace(`{{variant}}`,t).replace(`{{viewport}}`,n)}function a(a=document){a.querySelectorAll(`[data-preview-switcher]`).forEach(o=>{let s=o.querySelector(`[data-preview-image]`),c=o.querySelector(`[data-preview-stage]`),l=o.querySelector(`[data-preview-error]`),u=o.querySelector(`[data-preview-live]`),d=Array.from(o.querySelectorAll(`[data-preview-variant]`)),f=Array.from(o.querySelectorAll(`[data-preview-viewport]`)),p=o.querySelector(`[data-preview-open]`),m=o.querySelector(`[data-preview-width]`),h=n(o.dataset.images),g=o.dataset.lightUrl??``,_=o.dataset.darkUrl||g,v=o.dataset.altTemplate??``,y=JSON.parse(o.dataset.labels??`{}`),b=`light`,x=`fit`;if(!s||!c||!h||d.length===0)return;let S=()=>{s.hidden=!1,c.dataset.state=`ready`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!0)},C=()=>{c.dataset.state=`loading`,c.setAttribute(`aria-busy`,`true`)},w=()=>{s.hidden=!0,c.dataset.state=`error`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!1)},T=()=>{let e=r(h,b,x),t=i(v,y[b]??b,y[x]??x);s.alt=t,s.width=e.width,s.height=e.height,s.getAttribute(`src`)===e.url?s.complete&&(s.naturalWidth>0?S():w()):(C(),s.src=e.url)},E=()=>{let t=b===`dark`?_:g;p&&(p.href=t),u&&(u.href=t),o.dataset.viewport=x,e(d,`data-preview-variant`,b),e(f,`data-preview-viewport`,x),T()};s.addEventListener(`load`,S),s.addEventListener(`error`,w),m&&typeof ResizeObserver<`u`&&new ResizeObserver(([e])=>{e&&(m.textContent=t(e.contentRect.width))}).observe(c),d.forEach(e=>{e.addEventListener(`click`,()=>{b=e.dataset.previewVariant===`dark`?`dark`:`light`,E()})}),f.forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.previewViewport;x=t===`tablet`||t===`mobile`?t:`fit`,E()})}),b=a.documentElement.dataset.theme===`dark`?`dark`:`light`,E()})}a();</script><section class="detail-documents" data-document-tabs data-design-slug="replicate" data-copy-design-label="DESIGN.md をコピー" data-copied-label="コピー済み" data-copy-failed-label="コピー失敗"><h2 class="visually-hidden">README と DESIGN をまとめて表示</h2><div class="detail-documents-bar shell-panel" data-doc-bar><div class="detail-documents-head"><div class="segmented detail-tab-list" role="tablist" aria-label="ドキュメント表示"><button type="button" role="tab" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">README</button><button type="button" role="tab" class="detail-tab" data-doc-tab="design" aria-selected="false">DESIGN</button></div><div class="detail-doc-controls"><button type="button" class="detail-copy-button" data-copy-design disabled aria-disabled="true" title="生の DESIGN.md Markdown をコピー">DESIGN.md をコピー</button><a class="detail-copy-button" data-download-design href="/designs/replicate/DESIGN.md" download="DESIGN.md" title="canonical DESIGN.md ファイルをダウンロード" aria-hidden="true" tabindex="-1">DESIGN.md をダウンロード</a></div></div><nav class="detail-outline" data-doc-outline aria-label="セクションへ移動" hidden></nav></div><div class="detail-doc-panels"><section class="detail-doc-panel is-active" data-doc-panel="readme"><div class="markdown-shell document-copy"><h2 id="replicate-inspired-design-system">Replicate Inspired Design System</h2>
+<p><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/replicate/DESIGN.md">DESIGN.md</a> extracted from the public <a href="https://replicate.com/">Replicate</a> website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it's a good starting point for building something similar.</p>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIGN.md</code></td>
+<td>Complete design system documentation (9 sections)</td>
+</tr>
+<tr>
+<td><code>preview.html</code></td>
+<td>Interactive design token catalog (light)</td>
+</tr>
+<tr>
+<td><code>preview-dark.html</code></td>
+<td>Interactive design token catalog (dark)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/replicate/DESIGN.md">DESIGN.md</a> to use as a reference for AI agents (Claude, Cursor, Stitch) to generate UI that looks like the Replicate design language.</p>
+<h2 id="preview">Preview</h2>
+<p>A sample landing page built with DESIGN.md. It shows the actual colors, typography, buttons, cards, spacing, and elevation, all in one page.</p>
+<h3 id="dark-mode">Dark Mode</h3>
+<p><img src="/preview-images/replicate/dark-fit.avif" alt="Replicate Design System — Dark Mode" loading="lazy" decoding="async"></p>
+<h3 id="light-mode">Light Mode</h3>
+<p><img src="/preview-images/replicate/light-fit.avif" alt="Replicate Design System — Light Mode" loading="lazy" decoding="async"></p></div></section><section class="detail-doc-panel" data-doc-panel="design" hidden><div class="markdown-shell document-copy"><h2 id="design-system-inspiration-of-replicate">Design System Inspiration of Replicate</h2>
+<h2 id="1-visual-theme--atmosphere">1. Visual Theme &#x26; Atmosphere</h2>
+<p>Replicate's interface is a developer playground crackling with creative energy — a bold, high-contrast design that feels more like a music festival poster than a typical API platform. The hero section explodes with a vibrant orange-red-magenta gradient that immediately signals "this is where AI models come alive," while the body of the page grounds itself in a clean white canvas where code snippets and model galleries take center stage.</p>
+<p>The design personality is defined by two extreme choices: <strong>massive display typography</strong> (up to 128px) using the custom rb-freigeist-neue face, and <strong>exclusively pill-shaped geometry</strong> (9999px radius on everything). The display font is thick, bold, and confident — its heavy weight at enormous sizes creates text that feels like it's shouting with joy rather than whispering authority. Combined with basier-square for body text (a clean geometric sans) and JetBrains Mono for code, the system serves developers who want power and playfulness in equal measure.</p>
+<p>What makes Replicate distinctive is its community-powered energy. The model gallery with AI-generated images, the dotted-underline links, the green status badges, and the "Imagine what you can build" closing manifesto all create a space that feels alive and participatory — not a corporate product page but a launchpad for creative developers.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Explosive orange-red-magenta gradient hero (#ea2804 brand anchor)</li>
+<li>Massive display typography (128px) in heavy rb-freigeist-neue</li>
+<li>Exclusively pill-shaped geometry: 9999px radius on EVERYTHING</li>
+<li>High-contrast black (#202020) and white palette with red brand accent</li>
+<li>Developer-community energy: model galleries, code examples, dotted-underline links</li>
+<li>Green status badges (#2b9a66) for live/operational indicators</li>
+<li>Bold/heavy font weights (600-700) creating maximum typographic impact</li>
+<li>Playful closing manifesto: "Imagine what you can build."</li>
+</ul>
+<h2 id="2-color-palette--roles">2. Color Palette &#x26; Roles</h2>
+<h3 id="primary">Primary</h3>
+<ul>
+<li><strong>Replicate Dark</strong> (<code>#202020</code>): The primary text color and dark surface — a near-black that's the anchor of all text and borders. Slightly warmer than pure #000.</li>
+<li><strong>Replicate Red</strong> (<code>#ea2804</code>): The core brand color — a vivid, saturated orange-red used in the hero gradient, accent borders, and high-signal moments.</li>
+<li><strong>Secondary Red</strong> (<code>#dd4425</code>): A slightly warmer variant for button borders and link hover states.</li>
+</ul>
+<h3 id="secondary--accent">Secondary &#x26; Accent</h3>
+<ul>
+<li><strong>Status Green</strong> (<code>#2b9a66</code>): Badge/pill background for "running" or operational status indicators.</li>
+<li><strong>GitHub Dark</strong> (<code>#24292e</code>): A blue-tinted dark used for code block backgrounds and developer contexts.</li>
+</ul>
+<h3 id="surface--background">Surface &#x26; Background</h3>
+<ul>
+<li><strong>Pure White</strong> (<code>#ffffff</code>): The primary page body background.</li>
+<li><strong>Near White</strong> (<code>#fcfcfc</code>): Button text on dark surfaces and the lightest content.</li>
+<li><strong>Hero Gradient</strong>: A dramatic orange → red → magenta → pink gradient for the hero section. Transitions from warm (#ea2804 family) through hot pink.</li>
+</ul>
+<h3 id="neutrals--text">Neutrals &#x26; Text</h3>
+<ul>
+<li><strong>Medium Gray</strong> (<code>#646464</code>): Secondary body text and de-emphasized content.</li>
+<li><strong>Warm Gray</strong> (<code>#4e4e4e</code>): Emphasized secondary text.</li>
+<li><strong>Mid Silver</strong> (<code>#8d8d8d</code>): Tertiary text, footnotes.</li>
+<li><strong>Light Silver</strong> (<code>#bbbbbb</code>): Dotted-underline link decoration color, muted metadata.</li>
+<li><strong>Pure Black</strong> (<code>#000000</code>): Maximum-emphasis borders and occasional text.</li>
+</ul>
+<h3 id="gradient-system">Gradient System</h3>
+<ul>
+<li><strong>Hero Blaze</strong>: A dramatic multi-stop gradient flowing through orange (<code>#ea2804</code>) → red → magenta → hot pink. This gradient occupies the full hero section and is the most visually dominant element on the page.</li>
+<li><strong>Dark Sections</strong>: Deep dark (#202020) sections with white/near-white text provide contrast against the white body.</li>
+</ul>
+<h2 id="3-typography-rules">3. Typography Rules</h2>
+<h3 id="font-family">Font Family</h3>
+<ul>
+<li><strong>Display</strong>: <code>rb-freigeist-neue</code>, with fallbacks: <code>ui-sans-serif, system-ui</code></li>
+<li><strong>Body / UI</strong>: <code>basier-square</code>, with fallbacks: <code>ui-sans-serif, system-ui</code></li>
+<li><strong>Code</strong>: <code>jetbrains-mono</code>, with fallbacks: <code>ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New</code></li>
+</ul>
+<h3 id="hierarchy">Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Font</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line Height</th>
+<th>Letter Spacing</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display Mega</td>
+<td>rb-freigeist-neue</td>
+<td>128px (8rem)</td>
+<td>700</td>
+<td>1.00 (tight)</td>
+<td>normal</td>
+<td>The maximum: closing manifesto</td>
+</tr>
+<tr>
+<td>Display / Hero</td>
+<td>rb-freigeist-neue</td>
+<td>72px (4.5rem)</td>
+<td>700</td>
+<td>1.00 (tight)</td>
+<td>-1.8px</td>
+<td>Hero section headline</td>
+</tr>
+<tr>
+<td>Section Heading</td>
+<td>rb-freigeist-neue</td>
+<td>48px (3rem)</td>
+<td>400–700</td>
+<td>1.00 (tight)</td>
+<td>normal</td>
+<td>Feature section titles</td>
+</tr>
+<tr>
+<td>Sub-heading</td>
+<td>rb-freigeist-neue</td>
+<td>30px (1.88rem)</td>
+<td>600</td>
+<td>1.20 (tight)</td>
+<td>normal</td>
+<td>Card headings</td>
+</tr>
+<tr>
+<td>Sub-heading Sans</td>
+<td>basier-square</td>
+<td>38.4px (2.4rem)</td>
+<td>400</td>
+<td>0.83 (ultra-tight)</td>
+<td>normal</td>
+<td>Large body headings</td>
+</tr>
+<tr>
+<td>Feature Title</td>
+<td>basier-square / rb-freigeist-neue</td>
+<td>18px (1.13rem)</td>
+<td>600</td>
+<td>1.56</td>
+<td>normal</td>
+<td>Small section titles, labels</td>
+</tr>
+<tr>
+<td>Body Large</td>
+<td>basier-square</td>
+<td>20px (1.25rem)</td>
+<td>400</td>
+<td>1.40</td>
+<td>normal</td>
+<td>Intro paragraphs</td>
+</tr>
+<tr>
+<td>Body / Button</td>
+<td>basier-square</td>
+<td>16–18px (1–1.13rem)</td>
+<td>400–600</td>
+<td>1.50–1.56</td>
+<td>normal</td>
+<td>Standard text, buttons</td>
+</tr>
+<tr>
+<td>Caption</td>
+<td>basier-square</td>
+<td>14px (0.88rem)</td>
+<td>400–600</td>
+<td>1.43</td>
+<td>-0.35px to normal</td>
+<td>Metadata, descriptions</td>
+</tr>
+<tr>
+<td>Small / Tag</td>
+<td>basier-square</td>
+<td>12px (0.75rem)</td>
+<td>400</td>
+<td>1.33</td>
+<td>normal</td>
+<td>Tags (lowercase transform)</td>
+</tr>
+<tr>
+<td>Code</td>
+<td>jetbrains-mono</td>
+<td>14px (0.88rem)</td>
+<td>400</td>
+<td>1.43</td>
+<td>normal</td>
+<td>Code snippets, API examples</td>
+</tr>
+<tr>
+<td>Code Small</td>
+<td>jetbrains-mono</td>
+<td>11px (0.69rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+<td>Tiny code references</td>
+</tr>
+</tbody>
+</table>
+<h3 id="principles">Principles</h3>
+<ul>
+<li><strong>Heavy display, light body</strong>: rb-freigeist-neue at 700 weight creates thundering headlines, while basier-square at 400 handles body text with quiet efficiency. The contrast is extreme and intentional.</li>
+<li><strong>128px is a real size</strong>: The closing manifesto "Imagine what you can build." uses 128px — bigger than most mobile screens. This is the design equivalent of shouting from a rooftop.</li>
+<li><strong>Negative tracking on hero</strong>: -1.8px letter-spacing at 72px creates dense, impactful hero text.</li>
+<li><strong>Lowercase tags</strong>: 12px basier-square uses <code>text-transform: lowercase</code> — an unusual choice that creates a casual, developer-friendly vibe.</li>
+<li><strong>Weight 600 as emphasis</strong>: When basier-square needs emphasis, it uses 600 (semibold) — never bold (700), which is reserved for rb-freigeist-neue display text.</li>
+</ul>
+<h2 id="4-component-stylings">4. Component Stylings</h2>
+<h3 id="buttons">Buttons</h3>
+<p><strong>Dark Solid</strong></p>
+<ul>
+<li>Background: Replicate Dark (<code>#202020</code>)</li>
+<li>Text: Near White (<code>#fcfcfc</code>)</li>
+<li>Padding: 0px 4px (extremely compact)</li>
+<li>Outline: Replicate Dark 4px solid</li>
+<li>Radius: pill-shaped (implied by system)</li>
+<li>Maximum emphasis — dark pill on light surface</li>
+</ul>
+<p><strong>White Outlined</strong></p>
+<ul>
+<li>Background: Pure White (<code>#ffffff</code>)</li>
+<li>Text: Replicate Dark (<code>#202020</code>)</li>
+<li>Border: <code>1px solid #202020</code></li>
+<li>Radius: pill-shaped</li>
+<li>Clean outlined pill for secondary actions</li>
+</ul>
+<p><strong>Transparent Glass</strong></p>
+<ul>
+<li>Background: <code>rgba(255, 255, 255, 0.1)</code> (frosted glass)</li>
+<li>Text: Replicate Dark (<code>#202020</code>)</li>
+<li>Padding: 6px 56px 6px 28px (asymmetric — icon/search layout)</li>
+<li>Border: transparent</li>
+<li>Outline: Light Silver (<code>#bbbbbb</code>) 1px solid</li>
+<li>Used for search/input-like buttons</li>
+</ul>
+<h3 id="cards--containers">Cards &#x26; Containers</h3>
+<ul>
+<li>Background: Pure White or subtle gray</li>
+<li>Border: <code>1px solid #202020</code> for prominent containment</li>
+<li>Radius: pill-shaped (9999px) for badges, labels, images</li>
+<li>Shadow: minimal standard shadows</li>
+<li>Model gallery: grid of AI-generated image thumbnails</li>
+<li>Accent border: <code>1px solid #ea2804</code> for highlighted/featured items</li>
+</ul>
+<h3 id="inputs--forms">Inputs &#x26; Forms</h3>
+<ul>
+<li>Background: <code>rgba(255, 255, 255, 0.1)</code> (frosted glass)</li>
+<li>Text: Replicate Dark (<code>#202020</code>)</li>
+<li>Border: transparent with outline</li>
+<li>Padding: 6px 56px 6px 28px (search-bar style)</li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li>Clean horizontal nav on white</li>
+<li>Logo: Replicate wordmark in dark</li>
+<li>Links: dark text with dotted underline on hover</li>
+<li>CTA: Dark pill button</li>
+<li>GitHub link and sign-in</li>
+</ul>
+<h3 id="image-treatment">Image Treatment</h3>
+<ul>
+<li>AI-generated model output images in a gallery grid</li>
+<li>Pill-shaped image containers (9999px)</li>
+<li>Full-width gradient hero section</li>
+<li>Product screenshots with dark backgrounds</li>
+</ul>
+<h3 id="distinctive-components">Distinctive Components</h3>
+<p><strong>Model Gallery Grid</strong></p>
+<ul>
+<li>Horizontal scrolling or grid of AI-generated images</li>
+<li>Each image in a pill-shaped container</li>
+<li>Model names and run counts displayed</li>
+<li>The visual heart of the community platform</li>
+</ul>
+<p><strong>Dotted Underline Links</strong></p>
+<ul>
+<li>Links use <code>text-decoration: underline dotted #bbbbbb</code></li>
+<li>A distinctive, developer-notebook aesthetic</li>
+<li>Lighter and more casual than solid underlines</li>
+</ul>
+<p><strong>Status Badges</strong></p>
+<ul>
+<li>Status Green (<code>#2b9a66</code>) background with white text</li>
+<li>Pill-shaped (9999px)</li>
+<li>14px font size</li>
+<li>Indicates model availability/operational status</li>
+</ul>
+<p><strong>Manifesto Section</strong></p>
+<ul>
+<li>"Imagine what you can build." at 128px</li>
+<li>Dark background with white text</li>
+<li>Images embedded between words</li>
+<li>The emotional climax of the page</li>
+</ul>
+<h2 id="5-layout-principles">5. Layout Principles</h2>
+<h3 id="spacing-system">Spacing System</h3>
+<ul>
+<li>Base unit: 8px</li>
+<li>Scale: 1px, 2px, 4px, 6px, 8px, 10px, 12px, 16px, 24px, 32px, 48px, 64px, 96px, 160px, 192px</li>
+<li>Button padding: varies widely (0px 4px to 6px 56px)</li>
+<li>Section vertical spacing: very generous (96–192px)</li>
+</ul>
+<h3 id="grid--container">Grid &#x26; Container</h3>
+<ul>
+<li>Fluid width with responsive constraints</li>
+<li>Hero: full-width gradient with centered content</li>
+<li>Model gallery: multi-column responsive grid</li>
+<li>Feature sections: mixed layouts</li>
+<li>Code examples: contained dark blocks</li>
+</ul>
+<h3 id="whitespace-philosophy">Whitespace Philosophy</h3>
+<ul>
+<li><strong>Bold and generous</strong>: Massive spacing between sections (up to 192px) creates distinct zones.</li>
+<li><strong>Dense within galleries</strong>: Model images are tightly packed in the grid for browsable density.</li>
+<li><strong>The gradient IS the whitespace</strong>: The hero gradient section occupies significant vertical space as a colored void.</li>
+</ul>
+<h3 id="border-radius-scale">Border Radius Scale</h3>
+<ul>
+<li><strong>Pill (9999px)</strong>: The ONLY radius in the system. Everything interactive, every image, every badge, every label, every container uses 9999px. This is the most extreme pill-radius commitment in any major tech brand.</li>
+</ul>
+<h2 id="6-depth--elevation">6. Depth &#x26; Elevation</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Treatment</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat (Level 0)</td>
+<td>No shadow</td>
+<td>White body, text blocks</td>
+</tr>
+<tr>
+<td>Bordered (Level 1)</td>
+<td><code>1px solid #202020</code></td>
+<td>Cards, buttons, containers</td>
+</tr>
+<tr>
+<td>Accent Border (Level 2)</td>
+<td><code>1px solid #ea2804</code></td>
+<td>Featured/highlighted items</td>
+</tr>
+<tr>
+<td>Gradient Hero (Level 3)</td>
+<td>Full-width blaze gradient</td>
+<td>Hero section, maximum visual impact</td>
+</tr>
+<tr>
+<td>Dark Section (Level 4)</td>
+<td>Dark bg (#202020) with light text</td>
+<td>Manifesto, footer, feature sections</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shadow Philosophy</strong>: Replicate relies on <strong>borders and background color</strong> for depth rather than shadows. The <code>1px solid #202020</code> border is the primary containment mechanism. The dramatic gradient hero and dark/light section alternation provide all the depth the design needs.</p>
+<h2 id="7-dos-and-donts">7. Do's and Don'ts</h2>
+<h3 id="do">Do</h3>
+<ul>
+<li>Use pill-shaped (9999px) radius on EVERYTHING — buttons, images, badges, containers</li>
+<li>Use rb-freigeist-neue at weight 700 for display text — go big (72px+) or go home</li>
+<li>Use the orange-red brand gradient for hero sections</li>
+<li>Use Replicate Dark (#202020) as the primary dark — not pure black</li>
+<li>Apply dotted underline decoration on text links (#bbbbbb)</li>
+<li>Use Status Green (#2b9a66) for operational/success badges</li>
+<li>Keep body text in basier-square at 400–600 weight</li>
+<li>Use JetBrains Mono for all code content</li>
+<li>Create a "manifesto" section with 128px type for emotional impact</li>
+</ul>
+<h3 id="dont">Don't</h3>
+<ul>
+<li>Don't use any border-radius other than 9999px — the pill system is absolute</li>
+<li>Don't use the brand red (#ea2804) as a surface/background color — it's for gradients and accent borders</li>
+<li>Don't reduce display text below 48px on desktop — the heavy display font needs size to breathe</li>
+<li>Don't use light/thin font weights on rb-freigeist-neue — 600–700 is the range</li>
+<li>Don't use solid underlines on links — dotted is the signature</li>
+<li>Don't add drop shadows — depth comes from borders and background color</li>
+<li>Don't use warm neutrals — the gray scale is purely neutral (#202020 → #bbbbbb)</li>
+<li>Don't skip the code examples — they're primary content, not decoration</li>
+<li>Don't make the hero gradient subtle — it should be BOLD and vibrant</li>
+</ul>
+<h2 id="8-responsive-behavior">8. Responsive Behavior</h2>
+<h3 id="breakpoints">Breakpoints</h3>
+<p><em>No explicit breakpoints detected — likely using fluid/container-query responsive system.</em></p>
+<h3 id="touch-targets">Touch Targets</h3>
+<ul>
+<li>Pill buttons with generous padding</li>
+<li>Gallery images as large touch targets</li>
+<li>Navigation adequately spaced</li>
+</ul>
+<h3 id="collapsing-strategy">Collapsing Strategy</h3>
+<ul>
+<li><strong>Hero text</strong>: 128px → 72px → 48px progressive scaling</li>
+<li><strong>Model gallery</strong>: Grid reduces columns</li>
+<li><strong>Navigation</strong>: Collapses to hamburger</li>
+<li><strong>Manifesto</strong>: Scales down but maintains impact</li>
+</ul>
+<h3 id="image-behavior">Image Behavior</h3>
+<ul>
+<li>AI-generated images scale within pill containers</li>
+<li>Gallery reflows to fewer columns on narrow screens</li>
+<li>Hero gradient maintained at all sizes</li>
+</ul>
+<h2 id="9-agent-prompt-guide">9. Agent Prompt Guide</h2>
+<h3 id="quick-color-reference">Quick Color Reference</h3>
+<ul>
+<li>Primary Text: "Replicate Dark (#202020)"</li>
+<li>Page Background: "Pure White (#ffffff)"</li>
+<li>Brand Accent: "Replicate Red (#ea2804)"</li>
+<li>Secondary Text: "Medium Gray (#646464)"</li>
+<li>Muted/Decoration: "Light Silver (#bbbbbb)"</li>
+<li>Status: "Status Green (#2b9a66)"</li>
+<li>Dark Surface: "Replicate Dark (#202020)"</li>
+</ul>
+<h3 id="example-component-prompts">Example Component Prompts</h3>
+<ul>
+<li>"Create a hero section with a vibrant orange-red-magenta gradient background. Headline at 72px rb-freigeist-neue weight 700, white text, -1.8px letter-spacing. Include a dark pill CTA button and a white outlined pill button."</li>
+<li>"Design a model card with pill-shaped (9999px) image container, model name at 16px basier-square weight 600, run count at 14px in Medium Gray. Border: 1px solid #202020."</li>
+<li>"Build a status badge: pill-shaped (9999px), Status Green (#2b9a66) background, white text at 14px basier-square."</li>
+<li>"Create a manifesto section on Replicate Dark (#202020) with 'Imagine what you can build.' at 128px rb-freigeist-neue weight 700, white text. Embed small AI-generated images between the words."</li>
+<li>"Design a code block: dark background (#24292e), JetBrains Mono at 14px, white text. Pill-shaped container."</li>
+</ul>
+<h3 id="iteration-guide">Iteration Guide</h3>
+<ol>
+<li>Everything is pill-shaped — never specify any other border-radius</li>
+<li>Display text is HEAVY — weight 700, sizes 48px+</li>
+<li>Links use dotted underline (#bbbbbb) — never solid</li>
+<li>The gradient hero is the visual anchor — make it bold</li>
+<li>Use basier-square for body, rb-freigeist-neue for display, JetBrains Mono for code</li>
+</ol></div></section></div><textarea hidden readonly data-design-markdown># Design System Inspiration of Replicate
+
+## 1. Visual Theme &amp; Atmosphere
+
+Replicate&#39;s interface is a developer playground crackling with creative energy — a bold, high-contrast design that feels more like a music festival poster than a typical API platform. The hero section explodes with a vibrant orange-red-magenta gradient that immediately signals &quot;this is where AI models come alive,&quot; while the body of the page grounds itself in a clean white canvas where code snippets and model galleries take center stage.
+
+The design personality is defined by two extreme choices: **massive display typography** (up to 128px) using the custom rb-freigeist-neue face, and **exclusively pill-shaped geometry** (9999px radius on everything). The display font is thick, bold, and confident — its heavy weight at enormous sizes creates text that feels like it&#39;s shouting with joy rather than whispering authority. Combined with basier-square for body text (a clean geometric sans) and JetBrains Mono for code, the system serves developers who want power and playfulness in equal measure.
+
+What makes Replicate distinctive is its community-powered energy. The model gallery with AI-generated images, the dotted-underline links, the green status badges, and the &quot;Imagine what you can build&quot; closing manifesto all create a space that feels alive and participatory — not a corporate product page but a launchpad for creative developers.
+
+**Key Characteristics:**
+- Explosive orange-red-magenta gradient hero (#ea2804 brand anchor)
+- Massive display typography (128px) in heavy rb-freigeist-neue
+- Exclusively pill-shaped geometry: 9999px radius on EVERYTHING
+- High-contrast black (#202020) and white palette with red brand accent
+- Developer-community energy: model galleries, code examples, dotted-underline links
+- Green status badges (#2b9a66) for live/operational indicators
+- Bold/heavy font weights (600-700) creating maximum typographic impact
+- Playful closing manifesto: &quot;Imagine what you can build.&quot;
+
+## 2. Color Palette &amp; Roles
+
+### Primary
+- **Replicate Dark** (`#202020`): The primary text color and dark surface — a near-black that&#39;s the anchor of all text and borders. Slightly warmer than pure #000.
+- **Replicate Red** (`#ea2804`): The core brand color — a vivid, saturated orange-red used in the hero gradient, accent borders, and high-signal moments.
+- **Secondary Red** (`#dd4425`): A slightly warmer variant for button borders and link hover states.
+
+### Secondary &amp; Accent
+- **Status Green** (`#2b9a66`): Badge/pill background for &quot;running&quot; or operational status indicators.
+- **GitHub Dark** (`#24292e`): A blue-tinted dark used for code block backgrounds and developer contexts.
+
+### Surface &amp; Background
+- **Pure White** (`#ffffff`): The primary page body background.
+- **Near White** (`#fcfcfc`): Button text on dark surfaces and the lightest content.
+- **Hero Gradient**: A dramatic orange → red → magenta → pink gradient for the hero section. Transitions from warm (#ea2804 family) through hot pink.
+
+### Neutrals &amp; Text
+- **Medium Gray** (`#646464`): Secondary body text and de-emphasized content.
+- **Warm Gray** (`#4e4e4e`): Emphasized secondary text.
+- **Mid Silver** (`#8d8d8d`): Tertiary text, footnotes.
+- **Light Silver** (`#bbbbbb`): Dotted-underline link decoration color, muted metadata.
+- **Pure Black** (`#000000`): Maximum-emphasis borders and occasional text.
+
+### Gradient System
+- **Hero Blaze**: A dramatic multi-stop gradient flowing through orange (`#ea2804`) → red → magenta → hot pink. This gradient occupies the full hero section and is the most visually dominant element on the page.
+- **Dark Sections**: Deep dark (#202020) sections with white/near-white text provide contrast against the white body.
+
+## 3. Typography Rules
+
+### Font Family
+- **Display**: `rb-freigeist-neue`, with fallbacks: `ui-sans-serif, system-ui`
+- **Body / UI**: `basier-square`, with fallbacks: `ui-sans-serif, system-ui`
+- **Code**: `jetbrains-mono`, with fallbacks: `ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New`
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
+|------|------|------|--------|-------------|----------------|-------|
+| Display Mega | rb-freigeist-neue | 128px (8rem) | 700 | 1.00 (tight) | normal | The maximum: closing manifesto |
+| Display / Hero | rb-freigeist-neue | 72px (4.5rem) | 700 | 1.00 (tight) | -1.8px | Hero section headline |
+| Section Heading | rb-freigeist-neue | 48px (3rem) | 400–700 | 1.00 (tight) | normal | Feature section titles |
+| Sub-heading | rb-freigeist-neue | 30px (1.88rem) | 600 | 1.20 (tight) | normal | Card headings |
+| Sub-heading Sans | basier-square | 38.4px (2.4rem) | 400 | 0.83 (ultra-tight) | normal | Large body headings |
+| Feature Title | basier-square / rb-freigeist-neue | 18px (1.13rem) | 600 | 1.56 | normal | Small section titles, labels |
+| Body Large | basier-square | 20px (1.25rem) | 400 | 1.40 | normal | Intro paragraphs |
+| Body / Button | basier-square | 16–18px (1–1.13rem) | 400–600 | 1.50–1.56 | normal | Standard text, buttons |
+| Caption | basier-square | 14px (0.88rem) | 400–600 | 1.43 | -0.35px to normal | Metadata, descriptions |
+| Small / Tag | basier-square | 12px (0.75rem) | 400 | 1.33 | normal | Tags (lowercase transform) |
+| Code | jetbrains-mono | 14px (0.88rem) | 400 | 1.43 | normal | Code snippets, API examples |
+| Code Small | jetbrains-mono | 11px (0.69rem) | 400 | 1.50 | normal | Tiny code references |
+
+### Principles
+- **Heavy display, light body**: rb-freigeist-neue at 700 weight creates thundering headlines, while basier-square at 400 handles body text with quiet efficiency. The contrast is extreme and intentional.
+- **128px is a real size**: The closing manifesto &quot;Imagine what you can build.&quot; uses 128px — bigger than most mobile screens. This is the design equivalent of shouting from a rooftop.
+- **Negative tracking on hero**: -1.8px letter-spacing at 72px creates dense, impactful hero text.
+- **Lowercase tags**: 12px basier-square uses `text-transform: lowercase` — an unusual choice that creates a casual, developer-friendly vibe.
+- **Weight 600 as emphasis**: When basier-square needs emphasis, it uses 600 (semibold) — never bold (700), which is reserved for rb-freigeist-neue display text.
+
+## 4. Component Stylings
+
+### Buttons
+
+**Dark Solid**
+- Background: Replicate Dark (`#202020`)
+- Text: Near White (`#fcfcfc`)
+- Padding: 0px 4px (extremely compact)
+- Outline: Replicate Dark 4px solid
+- Radius: pill-shaped (implied by system)
+- Maximum emphasis — dark pill on light surface
+
+**White Outlined**
+- Background: Pure White (`#ffffff`)
+- Text: Replicate Dark (`#202020`)
+- Border: `1px solid #202020`
+- Radius: pill-shaped
+- Clean outlined pill for secondary actions
+
+**Transparent Glass**
+- Background: `rgba(255, 255, 255, 0.1)` (frosted glass)
+- Text: Replicate Dark (`#202020`)
+- Padding: 6px 56px 6px 28px (asymmetric — icon/search layout)
+- Border: transparent
+- Outline: Light Silver (`#bbbbbb`) 1px solid
+- Used for search/input-like buttons
+
+### Cards &amp; Containers
+- Background: Pure White or subtle gray
+- Border: `1px solid #202020` for prominent containment
+- Radius: pill-shaped (9999px) for badges, labels, images
+- Shadow: minimal standard shadows
+- Model gallery: grid of AI-generated image thumbnails
+- Accent border: `1px solid #ea2804` for highlighted/featured items
+
+### Inputs &amp; Forms
+- Background: `rgba(255, 255, 255, 0.1)` (frosted glass)
+- Text: Replicate Dark (`#202020`)
+- Border: transparent with outline
+- Padding: 6px 56px 6px 28px (search-bar style)
+
+### Navigation
+- Clean horizontal nav on white
+- Logo: Replicate wordmark in dark
+- Links: dark text with dotted underline on hover
+- CTA: Dark pill button
+- GitHub link and sign-in
+
+### Image Treatment
+- AI-generated model output images in a gallery grid
+- Pill-shaped image containers (9999px)
+- Full-width gradient hero section
+- Product screenshots with dark backgrounds
+
+### Distinctive Components
+
+**Model Gallery Grid**
+- Horizontal scrolling or grid of AI-generated images
+- Each image in a pill-shaped container
+- Model names and run counts displayed
+- The visual heart of the community platform
+
+**Dotted Underline Links**
+- Links use `text-decoration: underline dotted #bbbbbb`
+- A distinctive, developer-notebook aesthetic
+- Lighter and more casual than solid underlines
+
+**Status Badges**
+- Status Green (`#2b9a66`) background with white text
+- Pill-shaped (9999px)
+- 14px font size
+- Indicates model availability/operational status
+
+**Manifesto Section**
+- &quot;Imagine what you can build.&quot; at 128px
+- Dark background with white text
+- Images embedded between words
+- The emotional climax of the page
+
+## 5. Layout Principles
+
+### Spacing System
+- Base unit: 8px
+- Scale: 1px, 2px, 4px, 6px, 8px, 10px, 12px, 16px, 24px, 32px, 48px, 64px, 96px, 160px, 192px
+- Button padding: varies widely (0px 4px to 6px 56px)
+- Section vertical spacing: very generous (96–192px)
+
+### Grid &amp; Container
+- Fluid width with responsive constraints
+- Hero: full-width gradient with centered content
+- Model gallery: multi-column responsive grid
+- Feature sections: mixed layouts
+- Code examples: contained dark blocks
+
+### Whitespace Philosophy
+- **Bold and generous**: Massive spacing between sections (up to 192px) creates distinct zones.
+- **Dense within galleries**: Model images are tightly packed in the grid for browsable density.
+- **The gradient IS the whitespace**: The hero gradient section occupies significant vertical space as a colored void.
+
+### Border Radius Scale
+- **Pill (9999px)**: The ONLY radius in the system. Everything interactive, every image, every badge, every label, every container uses 9999px. This is the most extreme pill-radius commitment in any major tech brand.
+
+## 6. Depth &amp; Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| Flat (Level 0) | No shadow | White body, text blocks |
+| Bordered (Level 1) | `1px solid #202020` | Cards, buttons, containers |
+| Accent Border (Level 2) | `1px solid #ea2804` | Featured/highlighted items |
+| Gradient Hero (Level 3) | Full-width blaze gradient | Hero section, maximum visual impact |
+| Dark Section (Level 4) | Dark bg (#202020) with light text | Manifesto, footer, feature sections |
+
+**Shadow Philosophy**: Replicate relies on **borders and background color** for depth rather than shadows. The `1px solid #202020` border is the primary containment mechanism. The dramatic gradient hero and dark/light section alternation provide all the depth the design needs.
+
+## 7. Do&#39;s and Don&#39;ts
+
+### Do
+- Use pill-shaped (9999px) radius on EVERYTHING — buttons, images, badges, containers
+- Use rb-freigeist-neue at weight 700 for display text — go big (72px+) or go home
+- Use the orange-red brand gradient for hero sections
+- Use Replicate Dark (#202020) as the primary dark — not pure black
+- Apply dotted underline decoration on text links (#bbbbbb)
+- Use Status Green (#2b9a66) for operational/success badges
+- Keep body text in basier-square at 400–600 weight
+- Use JetBrains Mono for all code content
+- Create a &quot;manifesto&quot; section with 128px type for emotional impact
+
+### Don&#39;t
+- Don&#39;t use any border-radius other than 9999px — the pill system is absolute
+- Don&#39;t use the brand red (#ea2804) as a surface/background color — it&#39;s for gradients and accent borders
+- Don&#39;t reduce display text below 48px on desktop — the heavy display font needs size to breathe
+- Don&#39;t use light/thin font weights on rb-freigeist-neue — 600–700 is the range
+- Don&#39;t use solid underlines on links — dotted is the signature
+- Don&#39;t add drop shadows — depth comes from borders and background color
+- Don&#39;t use warm neutrals — the gray scale is purely neutral (#202020 → #bbbbbb)
+- Don&#39;t skip the code examples — they&#39;re primary content, not decoration
+- Don&#39;t make the hero gradient subtle — it should be BOLD and vibrant
+
+## 8. Responsive Behavior
+
+### Breakpoints
+*No explicit breakpoints detected — likely using fluid/container-query responsive system.*
+
+### Touch Targets
+- Pill buttons with generous padding
+- Gallery images as large touch targets
+- Navigation adequately spaced
+
+### Collapsing Strategy
+- **Hero text**: 128px → 72px → 48px progressive scaling
+- **Model gallery**: Grid reduces columns
+- **Navigation**: Collapses to hamburger
+- **Manifesto**: Scales down but maintains impact
+
+### Image Behavior
+- AI-generated images scale within pill containers
+- Gallery reflows to fewer columns on narrow screens
+- Hero gradient maintained at all sizes
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Primary Text: &quot;Replicate Dark (#202020)&quot;
+- Page Background: &quot;Pure White (#ffffff)&quot;
+- Brand Accent: &quot;Replicate Red (#ea2804)&quot;
+- Secondary Text: &quot;Medium Gray (#646464)&quot;
+- Muted/Decoration: &quot;Light Silver (#bbbbbb)&quot;
+- Status: &quot;Status Green (#2b9a66)&quot;
+- Dark Surface: &quot;Replicate Dark (#202020)&quot;
+
+### Example Component Prompts
+- &quot;Create a hero section with a vibrant orange-red-magenta gradient background. Headline at 72px rb-freigeist-neue weight 700, white text, -1.8px letter-spacing. Include a dark pill CTA button and a white outlined pill button.&quot;
+- &quot;Design a model card with pill-shaped (9999px) image container, model name at 16px basier-square weight 600, run count at 14px in Medium Gray. Border: 1px solid #202020.&quot;
+- &quot;Build a status badge: pill-shaped (9999px), Status Green (#2b9a66) background, white text at 14px basier-square.&quot;
+- &quot;Create a manifesto section on Replicate Dark (#202020) with &#39;Imagine what you can build.&#39; at 128px rb-freigeist-neue weight 700, white text. Embed small AI-generated images between the words.&quot;
+- &quot;Design a code block: dark background (#24292e), JetBrains Mono at 14px, white text. Pill-shaped container.&quot;
+
+### Iteration Guide
+1. Everything is pill-shaped — never specify any other border-radius
+2. Display text is HEAVY — weight 700, sizes 48px+
+3. Links use dotted underline (#bbbbbb) — never solid
+4. The gradient hero is the visual anchor — make it bold
+5. Use basier-square for body, rb-freigeist-neue for display, JetBrains Mono for code
+</textarea></section><script type="module" src="/_astro/DocumentTabs.astro_astro_type_script_index_0_lang.CqDIfMN7.js"></script></div><nav class="detail-adjacent-nav" aria-label="前後のデザイン"><a class="detail-adjacent-link" href="/ja-JP/designs/renault/" data-adjacent-link="previous" aria-keyshortcuts="ArrowLeft"><span><kbd aria-hidden="true">←</kbd>前へ</span><strong>Renault</strong></a><a class="detail-adjacent-link detail-adjacent-link-next" href="/ja-JP/designs/resend/" data-adjacent-link="next" aria-keyshortcuts="ArrowRight"><span>次へ<kbd aria-hidden="true">→</kbd></span><strong>Resend</strong></a></nav><astro-island uid="ZK1al2" prefix="r2" component-url="/_astro/HagiCodeShowcase.SrqTGUpG.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;ja-JP&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;HagiCodeShowcase&quot;,&quot;value&quot;:true}" await-children><section class="gallery-showcase shell-panel" aria-label="Hagicode"><div class="gallery-showcase-content"><div class="gallery-showcase-head"><div><p class="gallery-meta-label">HagiCode で構築</p><h2>Hagicode</h2></div></div><div class="gallery-showcase-copy"><p>OpenSpec ワークフロー、マルチエージェント実行、Hero シナリオ インターフェイスの考え方をこのギャラリーシェルに再利用しています。</p><p>よりスマートで高速、そして楽しいエージェンティックコーディングのワークフローで、アイデアを洗練された使えるソフトウェアに変えます。</p></div><ul class="gallery-showcase-triad" aria-label="Hagicode"><li><strong>Smart</strong><span>OpenSpec は意図を、アイデアから出荷までの実行可能な道筋に変えます。</span></li><li><strong>Efficient</strong><span>マルチエージェントのワークフローにより、調査・実装・レビューが並行して進みます。</span></li><li><strong>Fun</strong><span>Hero Scenario のインターフェースが、長時間のコーディングセッションを視覚的で協調的、そして達成感のあるものにします。</span></li></ul><div class="gallery-showcase-actions"><a class="gallery-showcase-cta button-primary" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcasePrimary" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="HagiCode を見る">HagiCode を見る</a><a class="gallery-showcase-learn-more" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcaseLearnMore" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="詳しく見る">詳しく見る</a><span class="gallery-showcase-store" data-store-entry="gallery-hagicode" data-ga-category="download" data-ga-label="microsoftStore" data-ga-location="design_showcase"><ms-store-badge productid="9N3PM0N3SVDW" productname="HagiCode" window-mode="direct" theme="auto" size="small" language="ja" animation="on" aria-label="Open HagiCode in Microsoft Store" title="Open HagiCode in Microsoft Store"></ms-store-badge></span></div></div><section class="gallery-video-promo" aria-labelledby="gallery-video-promo-title"><div class="gallery-video-promo-heading"><h3 id="gallery-video-promo-title">HagiCode プロモーション</h3><p>HagiCode がエージェンティックコーディングをどう実現するかご覧ください。</p></div><div class="gallery-video-promo-featured"><span class="gallery-video-promo-platform">HagiCode 概要</span><div class="gallery-video-promo-frame"><iframe src="https://www.youtube.com/embed/AQ8oSTW6wNQ?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="HagiCode 概要" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin"></iframe></div><p>HagiCode がエージェンティックコーディングをどう実現するかご覧ください。</p><a href="https://www.youtube.com/watch?v=AQ8oSTW6wNQ" target="_blank" rel="noopener noreferrer">YouTube で見る</a></div><a class="gallery-video-promo-alternate" href="https://www.bilibili.com/video/BV1z4oWB3EpY/" target="_blank" rel="noopener noreferrer">Bilibili で HagiCode 概要を見る</a></section></section><!--astro:end--></astro-island></section></main><hagilight-promoto-banner class="hagilight-promoto" data-locale="ja-JP" data-site-id="awesome-design-gallery" hidden="true"><section class="hagilight-promoto__shell" data-promoto-shell hidden aria-label="Featured promotion"><div class="hagilight-promoto__viewport"><div class="hagilight-promoto__track" data-promoto-track></div></div><nav class="hagilight-promoto__controls" data-promoto-controls aria-label="Promotion controls" hidden><button type="button" class="hagilight-promoto__control" data-promoto-previous aria-label="Previous promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="hagilight-promoto__count" data-promoto-count aria-label="Promotion progress"></span><button type="button" class="hagilight-promoto__control" data-promoto-next aria-label="Next promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="hagilight-promoto__control" data-promoto-pause aria-pressed="false" aria-label="Pause automatic promotion rotation"><svg class="hagilight-promoto__icon hagilight-promoto__icon--pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12"></path></svg><svg class="hagilight-promoto__icon hagilight-promoto__icon--play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z"></path></svg></button></nav><button type="button" class="hagilight-promoto__dismiss" data-promoto-dismiss aria-label="Dismiss promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></svg></button><span class="hagilight-promoto__progress" data-promoto-progress aria-hidden="true"></span><span class="hagilight-promoto__status" data-promoto-status aria-live="polite"></span></section></hagilight-promoto-banner><script type="module" src="/_astro/PromotoBanner.astro_astro_type_script_index_0_lang.DP3NpmJD.js"></script><footer class="hagilight-footer astro-w3irp4ng"><section class="hagilight-brand astro-wxz55yp2" lang="ja-JP" aria-labelledby="hagilight-brand-title"><div class="hagilight-brand__lead astro-wxz55yp2"><div class="hagilight-brand__title astro-wxz55yp2"><picture class="hagilight-brand__avatar astro-wxz55yp2" data-random-fan="[&quot;cat-head-gallery/g002-ukiyo-e-01.avif&quot;,&quot;cat-head-gallery/g003-watercolor-wash-02.avif&quot;,&quot;cat-head-gallery/g004-pixel-art-03.avif&quot;,&quot;cat-head-gallery/g005-oil-impasto-06.avif&quot;,&quot;cat-head-gallery/g006-paper-cut-layers-07.avif&quot;,&quot;cat-head-gallery/g008-low-poly-07.avif&quot;,&quot;cat-head-gallery/g009-claymation-07.avif&quot;,&quot;cat-head-gallery/g010-neon-line-07.avif&quot;,&quot;cat-head-gallery/g016-bauhaus-geometry-06.avif&quot;,&quot;cat-head-gallery/g017-cyanotype-06.avif&quot;,&quot;cat-head-gallery/g020-origami-03.avif&quot;,&quot;cat-head-gallery/g022-blueprint-03.avif&quot;,&quot;cat-head-gallery/g023-chalk-pastel-10.avif&quot;,&quot;cat-head-gallery/g025-voxel-03.avif&quot;,&quot;cat-head-gallery/g031-illuminated-manuscript-04.avif&quot;,&quot;cat-head-gallery/g034-vaporwave-04.avif&quot;,&quot;cat-head-gallery/g035-synthwave-chrome-09.avif&quot;,&quot;cat-head-gallery/g038-frosted-glass-02.avif&quot;,&quot;cat-head-gallery/g039-needle-felt-09.avif&quot;,&quot;cat-head-gallery/g041-glossy-balloon-05.avif&quot;,&quot;cat-head-gallery/g042-blue-white-porcelain-05.avif&quot;,&quot;cat-head-gallery/g043-glazed-ceramic-06.avif&quot;,&quot;cat-head-gallery/g045-impressionist-08.avif&quot;,&quot;cat-head-gallery/g047-fauvist-09.avif&quot;,&quot;cat-head-gallery/g048-cubist-10.avif&quot;,&quot;cat-head-gallery/g051-naive-folk-art-07.avif&quot;,&quot;cat-head-gallery/g056-wax-print-fabric-07.avif&quot;,&quot;cat-head-gallery/g058-red-paper-cut-10.avif&quot;,&quot;cat-head-gallery/g060-kawaii-pastel-01.avif&quot;,&quot;cat-head-gallery/g061-retro-90s-anime-01.avif&quot;,&quot;cat-head-gallery/g062-shoujo-sparkle-08.avif&quot;,&quot;cat-head-gallery/g065-saturday-cartoon-09.avif&quot;,&quot;cat-head-gallery/g067-pixar-style-3d-03.avif&quot;,&quot;cat-head-gallery/g068-toon-shaded-3d-04.avif&quot;,&quot;cat-head-gallery/g069-ps1-lowpoly-06.avif&quot;,&quot;cat-head-gallery/g070-matte-clay-render-07.avif&quot;,&quot;cat-head-gallery/g071-y2k-chrome-08.avif&quot;,&quot;cat-head-gallery/g072-glossy-3d-icon-08.avif&quot;,&quot;cat-head-gallery/g073-marble-bust-08.avif&quot;,&quot;cat-head-gallery/g075-wood-carving-10.avif&quot;,&quot;cat-head-gallery/g076-carved-jade-10.avif&quot;,&quot;cat-head-gallery/g078-toy-brick-02.avif&quot;,&quot;cat-head-gallery/g079-designer-vinyl-toy-02.avif&quot;,&quot;cat-head-gallery/g081-patchwork-quilt-03.avif&quot;,&quot;cat-head-gallery/g083-warhol-silkscreen-04.avif&quot;,&quot;cat-head-gallery/g088-vintage-lithograph-02.avif&quot;,&quot;cat-head-gallery/g090-alcohol-marker-09.avif&quot;,&quot;cat-head-gallery/g091-painterly-concept-art-09.avif&quot;,&quot;cat-head-gallery/g092-gradient-minimal-09.avif&quot;,&quot;cat-head-gallery/g095-constellation-map-09.avif&quot;]"><source type="image/avif" srcset="/_astro/avatar.BPGAI8am.avif" class="astro-wxz55yp2"><source type="image/webp" srcset="/_astro/avatar.BBqcj7YN.webp" class="astro-wxz55yp2"><img src="/_astro/avatar.BBqcj7YN.webp" width="64" height="64" alt aria-hidden="true" loading="lazy" decoding="async" class="astro-wxz55yp2"></picture><h2 class="hagilight-brand__headline astro-wxz55yp2" id="hagilight-brand-title">アイデアを、出荷できるソフトウェアへ。</h2></div><div class="hagilight-brand__body astro-wxz55yp2"><p class="hagilight-brand__summary astro-wxz55yp2">HagiCode はエージェント型コーディングワークスペースです。OpenSpec ワークフローで変更を計画し、マルチエージェント実行で進め、Hero Scenario で長い作業の進み具合を見える化して、アイデアを出荷できるソフトウェアにします。</p><div class="hagilight-brand__actions astro-wxz55yp2"><a class="hagilight-brand__primary astro-wxz55yp2" href="https://www.hagicode.com/ja-JP/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer_brand" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer_brand"><span class="astro-wxz55yp2">HagiCode をダウンロード</span><svg class="hagilight-brand__arrow astro-wxz55yp2" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="astro-wxz55yp2"></path></svg></a><a class="hagilight-brand__secondary astro-wxz55yp2" href="https://docs.hagicode.com/ja-JP/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer_brand" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer_brand">製品ドキュメント</a></div></div></div><dl class="hagilight-brand__pillars astro-wxz55yp2"><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="smart" style="--hagilight-brand-i: 0"><dt class="astro-wxz55yp2">スマート</dt><dd class="astro-wxz55yp2">OpenSpec ワークフローが、意図を提案からリリースまでの実行可能な道筋にします。</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="efficient" style="--hagilight-brand-i: 1"><dt class="astro-wxz55yp2">効率的</dt><dd class="astro-wxz55yp2">マルチエージェント実行で、調査・実装・レビューを並行して進めます。</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="fun" style="--hagilight-brand-i: 2"><dt class="astro-wxz55yp2">楽しい</dt><dd class="astro-wxz55yp2">使いやすい UI で、計画・Agent 実行・プロジェクト作業を進めやすくします。</dd></div></dl><script type="module">var e=/^([a-z0-9][a-z0-9_-]*)\/[a-z0-9][a-z0-9_-]*\.avif$/u;function t(t){if(!Array.isArray(t)||t.length<12||t.length>200)throw TypeError(`Hagilight random pool must list 12 to 200 R2 objects.`);let n;for(let r of t){let t=typeof r==`string`?e.exec(r):null;if(!t)throw TypeError(`Hagilight random pool entry "${String(r)}" must be an <album>/<key>.avif object path.`);if(n??=t[1],t[1]!==n)throw TypeError(`Hagilight random pool entries must all come from one album.`)}if(new Set(t).size!==t.length)throw TypeError(`Hagilight random pool entries must be unique.`);return Object.freeze([...t])}function n(e){let t=e();return Number.isFinite(t)?Math.min(Math.max(t,0),1-2**-52):0}function r(e,t,r=Math.random){let i=[...e],a=Math.min(Math.max(Math.floor(t),0),i.length);for(let e=0;e<a;e+=1){let t=e+Math.floor(n(r)*(i.length-e));[i[e],i[t]]=[i[t],i[e]]}return i.slice(0,a)}function i(e){return`https://img-gen.hagicode.com/${e}`}function a(e,t={}){return new Promise(n=>{let r=t.setTimer??((e,t)=>setTimeout(e,t)),i=t.clearTimer??(e=>clearTimeout(e)),a,o=e=>{i(a),n(e)};try{let n=t.createImage?t.createImage():new Image;n.onload=()=>o(!0),n.onerror=()=>o(!1),a=r(()=>o(!1),3e3),n.src=e}catch{o(!1)}})}function o(){return(typeof navigator>`u`?void 0:navigator.connection)?.saveData===!0}function s(e,t,n=6){return((e-t)%n+n)%n}function c(){return typeof matchMedia==`function`&&matchMedia(`(prefers-reduced-motion: reduce)`).matches}function l(e,t){if(typeof IntersectionObserver!=`function`){t(!0);return}new IntersectionObserver(e=>t(e[e.length-1]?.isIntersecting===!0),{rootMargin:`0px 0px 160px 0px`}).observe(e)}function u(e,t,n,r){let i=e.ownerDocument.createElement(`span`);i.className=`hagilight-fan`;let a=n.slice(0,r).map(n=>{let r=t?t.cloneNode(!1):e.ownerDocument.createElement(`img`);return r.removeAttribute(`srcset`),r.removeAttribute(`sizes`),r.removeAttribute(`loading`),r.setAttribute(`class`,`hagilight-fan__card`),r.setAttribute(`src`,n),i.append(r),r});return e.append(i),e.offsetWidth,t?.setAttribute(`data-fan-out`,``),a.forEach((e,t)=>e.setAttribute(`data-slot`,String(t))),a}async function d(e,n){if(e.setAttribute(`data-random-state`,`default`),(n.saveData??o)())return!1;let d;try{d=t(JSON.parse(e.getAttribute(`data-random-fan`)??`null`))}catch{return!1}let f=!1,p,m=new Promise(e=>{p=e});(n.watch??l)(e,e=>{f=e,e&&p()}),await m;let h=n.random??Math.random,g=!(n.reducedMotion??c)(),_=r(d,g?6:3,h).map(i),v=(await Promise.all(_.map(async e=>await a(e,n)?e:``))).filter(Boolean);if(v.length<3)return!1;let y=g&&v.length===6,b=u(e,e.querySelector(`img`),v,y?6:3);if(e.setAttribute(`data-random-state`,`fan`),y){let t=0,r=()=>{};r=(n.every??((e,t)=>{let n=setInterval(e,t);return()=>clearInterval(n)}))(()=>{e.isConnected===!1?r():f&&!(n.tabHidden??(()=>typeof document<`u`&&document.hidden))()&&(t+=1,b.forEach((e,n)=>e.setAttribute(`data-slot`,String(s(n,t,b.length)))))},3600)}return!0}function f(e,t={}){return Array.from(e.querySelectorAll(`[data-random-fan]:not([data-random-state])`)).map(e=>d(e,t).catch(()=>!1))}f(document);</script></section><div class="hagilight-footer__sections astro-w3irp4ng"><div class="hagilight-cols astro-w3irp4ng"><nav class="hagilight-col astro-w3irp4ng" data-column="start" style="--hagilight-col-i: 0" aria-labelledby="hagilight-col-start"><h2 id="hagilight-col-start" class="astro-w3irp4ng">はじめる</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/ja-JP/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer" class="astro-w3irp4ng">HagiCode をダウンロード</a></li><li class="astro-w3irp4ng"><a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" target="_blank" rel="noopener noreferrer" data-ga-category="store" data-ga-label="microsoftStore" data-ga-location="footer" class="astro-w3irp4ng">HagiCode for Windows をダウンロード</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/ja-JP/installation/docker-compose/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=dockerCompose&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="dockerCompose" data-ga-location="footer" class="astro-w3irp4ng">Docker Compose インストール</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/ja-JP/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer" class="astro-w3irp4ng">製品ドキュメント</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/ja-JP/about/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=about&amp;utm_content=footer" class="astro-w3irp4ng">HagiCode について</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/ja-JP/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagicode-main&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode 公式サイト</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="learn" style="--hagilight-col-i: 1" aria-labelledby="hagilight-col-learn"><h2 id="hagilight-col-learn" class="astro-w3irp4ng">学ぶ・ドキュメント</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/ja-JP/blog/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=blogPosts&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="blogPosts" data-ga-location="footer" class="astro-w3irp4ng">ブログ記事</a></li><li class="astro-w3irp4ng"><a href="https://openspec.hagicode.com/ja-JP/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=openspec-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">OpenSpec ドキュメント</a></li><li class="astro-w3irp4ng"><a href="https://omniroute.hagicode.com/ja-JP/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=omniroute-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">OmniRoute ドキュメント</a></li><li class="astro-w3irp4ng"><a href="https://fullstack.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=fullstack-tutorial&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Fullstack</a></li><li class="astro-w3irp4ng"><a href="https://impeccable.hagicode.com/ja-JP/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=impeccable-site&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Impeccable Commands</a></li><li class="astro-w3irp4ng"><a href="https://awesome.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=awesome-sites&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Awesome Sites</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="build" style="--hagilight-col-i: 2" aria-labelledby="hagilight-col-build"><h2 id="hagilight-col-build" class="astro-w3irp4ng">ツールとリソース</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://tasks.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagitask&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiTask</a></li><li class="astro-w3irp4ng"><a href="https://builder.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=compose-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Docker Compose Builder</a></li><li class="astro-w3irp4ng"><a href="https://soul.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=soul-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Soul Builder</a></li><li class="astro-w3irp4ng"><a href="https://trait.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=trait-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Trait Builder</a></li><li class="astro-w3irp4ng"><a href="https://cost.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=costCalculator&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">AI に置き換えられるか診断</a></li><li class="astro-w3irp4ng"><a href="https://gallery.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=gallery&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Gallery</a></li><li class="astro-w3irp4ng"><a href="https://index.hagicode.com/data/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=index-data&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Index Data Mirror</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="community" style="--hagilight-col-i: 3" aria-labelledby="hagilight-col-community"><h2 id="hagilight-col-community" class="astro-w3irp4ng">コミュニティとサポート</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="github" data-ga-location="footer" class="astro-w3irp4ng">GitHub</a></li><li class="astro-w3irp4ng"><a href="https://discord.gg/qY662sJK" target="_blank" rel="noopener noreferrer" data-ga-category="community" data-ga-label="discord" data-ga-location="footer" class="astro-w3irp4ng">Discord</a></li><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site/issues" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="issueFeedback" data-ga-location="footer" class="astro-w3irp4ng">問題の報告</a></li><li class="astro-w3irp4ng"><a href="mailto:support@hagicode.com" class="astro-w3irp4ng">連絡先メール</a></li><li class="astro-w3irp4ng"><a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer" class="astro-w3irp4ng">QQ グループ 610394020</a></li><li class="astro-w3irp4ng"><a href="https://newbe.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=newbe-blog&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">newbe</a></li><li class="astro-w3irp4ng"><a href="https://status.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=status-page&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Status</a></li></ul></nav></div></div><div class="hagilight-footer__base astro-w3irp4ng"><nav class="hagilight-footer__feeds astro-w3irp4ng" aria-label="配信とサイトマップ"><a href="https://design.hagicode.com/rss.xml" class="astro-w3irp4ng">RSS 配信</a><a href="https://design.hagicode.com/rss.ja-JP.xml" class="astro-w3irp4ng">現在の言語 RSS</a><a href="/sitemap-index.xml" class="astro-w3irp4ng">サイトマップ</a></nav><nav class="hagilight-footer__filings astro-w3irp4ng" aria-label="登録情報を表示"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="ICP 登録情報を表示" class="astro-w3irp4ng">ICP届出 闽ICP备2026004153号-1</a><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer" aria-label="公安登録情報を表示" class="astro-w3irp4ng">公安届出 闽公网安备35011102351148号</a></nav></div><p class="hagilight-footer__copyright astro-w3irp4ng"><span>© 2026 HagiCode</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="branch">Branch: main</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="commit" title="6d161862d30281253ed8c05b55200240fb019d04" data-build-commit="6d161862d30281253ed8c05b55200240fb019d04">Commit: 6d16186</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="builtAt">Built: <time datetime="2026-10-30T16:30:59Z" class="astro-w3irp4ng">2026-10-30T16:30:59Z</time></span></p></footer></div><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script>(function(){const siteId = "L6b88a5yK4h2Xnci";
+
+      LA.init({ id: siteId, ck: siteId, autoTrack: true, hashMode: true });
+    })();</script><script type="module" src="/_astro/Analytics51LA.astro_astro_type_script_index_0_lang.R1vpCc6_.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-EN03FMT2Q4"></script><script>window.dataLayer = window.dataLayer || [];
+window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.gtag('config', "G-EN03FMT2Q4");</script><script type="module" src="/_astro/GoogleAnalytics.astro_astro_type_script_index_0_lang.CWqY6pzt.js"></script></body></html><script type="module">var e=`adms-detail-layout`;function t(e){return e===`preview`||e===`docs`?e:`split`}function n(){try{return t(window.localStorage.getItem(e))}catch{return`split`}}function r(t){try{window.localStorage.setItem(e,t)}catch{}}function i(e){return e instanceof HTMLElement?e.isContentEditable||[`INPUT`,`TEXTAREA`,`SELECT`].includes(e.tagName):!1}function a(e=document){let a=e.querySelector(`[data-detail-grid]`),o=Array.from(e.querySelectorAll(`[data-detail-layout]`)),s=e.querySelector(`.site-header`),c=s&&typeof ResizeObserver<`u`?new ResizeObserver(()=>{e.documentElement.style.setProperty(`--site-header-height`,`${s.offsetHeight}px`)}):void 0;if(c?.observe(s),a&&o.length>0){let e=e=>{a.dataset.layout=e,o.forEach(t=>{let n=t.dataset.detailLayout===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-pressed`,n?`true`:`false`)})};o.forEach(n=>{n.addEventListener(`click`,()=>{let i=t(n.dataset.detailLayout);e(i),r(i)})}),e(n())}let l=t=>{if(t.defaultPrevented||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey||i(t.target))return;let n=t.key===`ArrowLeft`?`previous`:t.key===`ArrowRight`?`next`:null,r=n?e.querySelector(`[data-adjacent-link="${n}"]`):null;r&&(t.preventDefault(),r.click())};return e.addEventListener(`keydown`,l),()=>{c?.disconnect(),e.removeEventListener(`keydown`,l)}}a();</script>

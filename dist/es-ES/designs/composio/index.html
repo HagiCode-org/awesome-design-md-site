@@ -1,0 +1,974 @@
+<!DOCTYPE html><html lang="es-ES" dir="ltr" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v7.3.8"><meta name="theme-color" content="#000000"><title>Composio DESIGN.md • Galería Awesome Design MD</title><meta name="description" content="Vista previa, README y documentación DESIGN de Composio."><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico"><link rel="stylesheet" href="/global.css"><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><link rel="canonical" href="https://design.hagicode.com/es-ES/designs/composio/"><link rel="alternate" hreflang="en" href="https://design.hagicode.com/designs/composio/"><link rel="alternate" hreflang="zh-CN" href="https://design.hagicode.com/zh-CN/designs/composio/"><link rel="alternate" hreflang="zh-Hant" href="https://design.hagicode.com/zh-Hant/designs/composio/"><link rel="alternate" hreflang="ja-JP" href="https://design.hagicode.com/ja-JP/designs/composio/"><link rel="alternate" hreflang="ko-KR" href="https://design.hagicode.com/ko-KR/designs/composio/"><link rel="alternate" hreflang="de-DE" href="https://design.hagicode.com/de-DE/designs/composio/"><link rel="alternate" hreflang="fr-FR" href="https://design.hagicode.com/fr-FR/designs/composio/"><link rel="alternate" hreflang="es-ES" href="https://design.hagicode.com/es-ES/designs/composio/"><link rel="alternate" hreflang="pt-BR" href="https://design.hagicode.com/pt-BR/designs/composio/"><link rel="alternate" hreflang="ru-RU" href="https://design.hagicode.com/ru-RU/designs/composio/"><link rel="alternate" hreflang="x-default" href="https://design.hagicode.com/designs/composio/"><meta property="og:type" content="website"><meta property="og:title" content="Composio DESIGN.md • Galería Awesome Design MD"><meta property="og:description" content="Vista previa, README y documentación DESIGN de Composio."><meta property="og:url" content="https://design.hagicode.com/es-ES/designs/composio/"><meta property="og:site_name" content="Galería Awesome Design MD"><meta property="og:locale" content="es_ES"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU"><meta property="og:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:secure_url" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="3137"><meta property="og:image:height" content="1235"><meta property="og:image:alt" content="Composio DESIGN.md • Galería Awesome Design MD"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Composio DESIGN.md • Galería Awesome Design MD"><meta name="twitter:description" content="Vista previa, README y documentación DESIGN de Composio."><meta name="twitter:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta name="twitter:image:alt" content="Composio DESIGN.md • Galería Awesome Design MD"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Composio DESIGN.md • Galería Awesome Design MD","description":"Vista previa, README y documentación DESIGN de Composio.","url":"https://design.hagicode.com/es-ES/designs/composio/","inLanguage":"es-ES","image":"https://design.hagicode.com/img/hagicode/light-main.png","isPartOf":{"@type":"WebSite","name":"Galería Awesome Design MD","url":"https://design.hagicode.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Galería Awesome Design MD","item":"https://design.hagicode.com/es-ES/"},{"@type":"ListItem","position":2,"name":"Composio","item":"https://design.hagicode.com/es-ES/designs/composio/"}]}</script><script>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script>
+      // Cross-document view transition: the gallery card preview grows into the detail preview
+      // (and back). Only the one clicked card is named, so no other card is captured.
+      (() => {
+        const NAME = 'design-preview';
+        const slugOf = (href) => {
+          try {
+            const match = new URL(href, location.href).pathname.match(/\/designs\/([^/]+)\/?$/);
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch {
+            return null;
+          }
+        };
+        // On the way back the browser has not restored the scroll position yet when the page
+        // is revealed, so the returning card is named wherever it is, not only when in view.
+        const cardPreview = (slug, anywhere) => {
+          const card = Array.from(document.querySelectorAll('[data-design-card]')).find(
+            (item) => item.dataset.slug === slug,
+          );
+          const preview = card && card.querySelector('.design-card-preview');
+          if (!preview) return null;
+          const rect = preview.getBoundingClientRect();
+          return anywhere || (rect.bottom > 0 && rect.top < innerHeight) ? preview : null;
+        };
+        const name = async (element, transition) => {
+          if (!element) return;
+          element.style.viewTransitionName = NAME;
+          await transition.finished.catch(() => {});
+          element.style.viewTransitionName = '';
+        };
+
+        addEventListener('pageswap', (event) => {
+          if (!event.viewTransition || !event.activation || !event.activation.entry) return;
+          const to = slugOf(event.activation.entry.url);
+          const here = slugOf(location.href);
+          if (to && !here) name(cardPreview(to), event.viewTransition);
+          else if (!to && here) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+        });
+
+        addEventListener('pagereveal', (event) => {
+          if (!event.viewTransition) return;
+          const activation = window.navigation && window.navigation.activation;
+          if (!activation || !activation.from) return;
+          const from = slugOf(activation.from.url);
+          const here = slugOf(location.href);
+          if (here && !from) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+          else if (!here && from) name(cardPreview(from, true), event.viewTransition);
+        });
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.bD5iggdr.css"><script type="module" src="/_astro/page.KebScxdP.js"></script><script>(function(){document.head.insertAdjacentHTML('beforeend', '\u003cscript type="application/json" data-hagilight-analytics="posthog">{"apiKey":"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5","loader":"(() => {\\n  if (window.__hagilightPosthogInitialized) return;\\n  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\\".\\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\\"script\\")).type=\\"text/javascript\\",p.crossOrigin=\\"anonymous\\",p.async=!0,p.src=s.api_host.replace(\\".i.posthog.com\\",\\"-assets.i.posthog.com\\")+\\"/static/array.js\\",(r=t.getElementsByTagName(\\"script\\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\\"posthog\\",u.people=u.people||[],Object.defineProperty(u,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e=\\"posthog\\";return\\"posthog\\"!==a&&(e+=\\".\\"+a),t||(e+=\\" (stub)\\"),e}}),Object.defineProperty(u.people,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+\\".people (stub)\\"}}),o=\\"init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug\\".split(\\" \\"),n=0;n\\u003co.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);\\n  posthog.init(\\"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5\\", {\\"api_host\\":\\"https://t.hagicode.com\\",\\"ui_host\\":\\"https://us.posthog.com\\",\\"defaults\\":\\"2026-05-30\\",\\"person_profiles\\":\\"identified_only\\",\\"capture_exceptions\\":true});\\n  (() => {\\n    const context = {\\"siteId\\":\\"design.hagicode.com\\",\\"framework\\":\\"astro\\",\\"version\\":\\"0.20.0\\"};\\n    const pageTypes = [\\"home\\",\\"docs\\",\\"blog\\",\\"compare\\",\\"404\\",\\"other\\"];\\n    const metaPageType = document.querySelector(\'meta[name=\\"hagilight:page-type\\"]\')?.getAttribute(\'content\');\\n    const superProperties = {\\n      site_id: context.siteId || window.location.hostname,\\n      site_framework: context.framework,\\n      hagilight_version: context.version,\\n      locale: document.documentElement.lang,\\n      page_type: [context.pageType, metaPageType].find((value) => pageTypes.includes(value)) ?? \'other\',\\n    };\\n    posthog.register(Object.fromEntries(Object.entries(superProperties).filter(([, value]) => typeof value === \'string\' && value !== \'\')));\\n  })();\\n  window.__hagilightPosthogInitialized = true;\\n})();"}\u003c/script>\u003cscript type="application/json" id="hagilight-consent-config">{"policyVersion":"1","privacyUrl":null,"providers":["posthog"],"locale":"en-US"}\u003c/script>');})();</script></head><body><a class="skip-link" href="#main">Saltar al contenido</a><div class="page-shell"><header class="site-header"><div class="container shell-panel header-panel"><a class="brand-mark" href="/es-ES/"><img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32"><span class="brand-copy"><strong class="brand-copy-full">Galería Awesome Design MD</strong><strong class="brand-copy-compact">ADMG</strong><small>Powered by HagiCode</small></span></a><nav class="site-nav site-nav-primary" aria-label="Principal"><a href="/es-ES/" class="site-nav-link"><span class="site-nav-link-label site-nav-link-label-full">Galería</span><span class="site-nav-link-label site-nav-link-label-compact">Galería</span></a></nav><nav class="site-nav site-nav-repo" aria-label="Enlaces de repositorio"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link" target="_blank" rel="noopener"><span class="site-nav-link-label site-nav-link-label-full">Repo del sitio</span></a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link" target="_blank" rel="noopener noreferrer"><span class="site-nav-link-label site-nav-link-label-full">Repo fuente</span></a></nav><div class="header-actions"><div class="language-select-shell"><select class="language-select" name="locale" aria-label="Selector de idioma" data-language-select><option value="/designs/composio/" lang="en">English</option><option value="/zh-CN/designs/composio/" lang="zh-CN">简体中文</option><option value="/zh-Hant/designs/composio/" lang="zh-Hant">繁體中文</option><option value="/ja-JP/designs/composio/" lang="ja-JP">日本語</option><option value="/ko-KR/designs/composio/" lang="ko-KR">한국어</option><option value="/de-DE/designs/composio/" lang="de-DE">Deutsch</option><option value="/fr-FR/designs/composio/" lang="fr-FR">Français</option><option value="/es-ES/designs/composio/" selected lang="es-ES">Español</option><option value="/pt-BR/designs/composio/" lang="pt-BR">Português</option><option value="/ru-RU/designs/composio/" lang="ru-RU">Русский</option></select><span class="language-select-icon" aria-hidden="true">▾</span></div><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(function(){let e=async e=>{await(await e())()};(self.Astro||(self.Astro={})).load=e,window.dispatchEvent(new Event(`astro:load`))})();</script><script>(function(){function e(t){"@babel/helpers - typeof";return e=typeof Symbol==`function`&&typeof Symbol.iterator==`symbol`?function(e){return typeof e}:function(e){return e&&typeof Symbol==`function`&&e.constructor===Symbol&&e!==Symbol.prototype?`symbol`:typeof e},e(t)}function t(t,n){if(e(t)!=`object`||!t)return t;var r=t[Symbol.toPrimitive];if(r!==void 0){var i=r.call(t,n||`default`);if(e(i)!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(t)}function n(n){var r=t(n,`string`);return e(r)==`symbol`?r:r+``}function r(e,t,r){return(t=n(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}let i=/* @__PURE__ */ new Set([`__proto__`,`constructor`,`prototype`]);{let e={0:e=>a(e),1:e=>n(e),2:e=>new RegExp(e),3:e=>new Date(e),4:e=>new Map(n(e)),5:e=>new Set(n(e)),6:e=>BigInt(e),7:e=>new URL(e),8:e=>new Uint8Array(e),9:e=>new Uint16Array(e),10:e=>new Uint32Array(e),11:e=>1/0*e},t=t=>{let[n,r]=t;return n in e?e[n](r):void 0},n=e=>e.map(t),a=e=>typeof e!=`object`||!e?e:Object.fromEntries(Object.entries(e).map(([e,n])=>[e,t(n)]));class o extends HTMLElement{constructor(...e){super(...e),r(this,`Component`,void 0),r(this,`hydrator`,void 0),r(this,`hydrate`,async()=>{var e;if(!this.hydrator||!this.isConnected)return;let t=(e=this.parentElement)==null?void 0:e.closest(`astro-island[ssr]`);if(t){t.addEventListener(`astro:hydrate`,this.hydrate,{once:!0});return}let n=this.querySelectorAll(`astro-slot`),r={},i=this.querySelectorAll(`template[data-astro-template]`);for(let e of i){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`data-astro-template`)||`default`]=e.innerHTML,e.remove())}for(let e of n){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`name`)||`default`]=e.innerHTML)}let o;try{o=this.hasAttribute(`props`)?a(JSON.parse(this.getAttribute(`props`))):{}}catch(e){let t=this.getAttribute(`component-url`)||`<unknown>`,n=this.getAttribute(`component-export`);throw n&&(t+=` (export ${n})`),console.error(`[hydrate] Error parsing props for component ${t}`,this.getAttribute(`props`),e),e}await this.hydrator(this)(this.Component,o,r,{client:this.getAttribute(`client`)}),this.removeAttribute(`ssr`),this.dispatchEvent(new CustomEvent(`astro:hydrate`))}),r(this,`unmount`,()=>{this.isConnected||this.dispatchEvent(new CustomEvent(`astro:unmount`))})}disconnectedCallback(){document.removeEventListener(`astro:after-swap`,this.unmount),document.addEventListener(`astro:after-swap`,this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute(`await-children`)||document.readyState===`interactive`||document.readyState===`complete`)this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener(`DOMContentLoaded`,e),t.disconnect(),this.childrenConnectedCallback()},t=new MutationObserver(()=>{var t;((t=this.lastChild)==null?void 0:t.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue===`astro:end`&&(this.lastChild.remove(),e())});t.observe(this,{childList:!0}),document.addEventListener(`DOMContentLoaded`,e)}}async childrenConnectedCallback(){let e=this.getAttribute(`before-hydration-url`);e&&await import(e),this.start()}getRetryImportUrl(e){let t=new URL(e,document.baseURI);return t.searchParams.set(`astro-retry`,Date.now().toString()),t.toString()}async importWithRetry(e){try{return await import(e)}catch(t){return await new Promise(e=>setTimeout(e,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let t=this.getAttribute(`component-url`),n=new CustomEvent(`astro:hydration-error`,{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:t}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${t}`,e)}async start(){let e=JSON.parse(this.getAttribute(`opts`)),t=this.getAttribute(`client`);if(Astro[t]===void 0){window.addEventListener(`astro:${t}`,()=>this.start(),{once:!0});return}try{await Astro[t](async()=>{let e=this.getAttribute(`renderer-url`);try{let[t,{default:n}]=await Promise.all([this.importWithRetry(this.getAttribute(`component-url`)),e?this.importWithRetry(e):Promise.resolve({default:()=>()=>{}})]),r=this.getAttribute(`component-export`)||`default`;if(r.includes(`.`)){this.Component=t;for(let e of r.split(`.`)){if(i.has(e)||!this.Component||typeof this.Component!=`object`&&typeof this.Component!=`function`||!Object.hasOwn(this.Component,e))throw Error(`Invalid component export path: ${r}`);this.Component=this.Component[e]}}else{if(i.has(r))throw Error(`Invalid component export path: ${r}`);this.Component=t[r]}return this.hydrator=n,this.hydrate}catch(e){return this.handleHydrationError(e),()=>{}}},e,this)}catch(e){this.handleHydrationError(e)}}attributeChangedCallback(){this.hydrate()}}r(o,`observedAttributes`,[`props`]),customElements.get(`astro-island`)||customElements.define(`astro-island`,o)}})();</script><astro-island uid="1gXM83" prefix="r3" component-url="/_astro/ThemeToggle.BU4lQzY7.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;es-ES&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="theme-toggle" data-theme-toggle="true" aria-label="Cambiar a modo claro"><span class="theme-toggle-label theme-toggle-label-full">Oscuro</span><span class="theme-toggle-label theme-toggle-label-compact">OS</span><span class="theme-toggle-glyph" aria-hidden="true">◐</span></button><!--astro:end--></astro-island></div><details class="header-utility"><summary class="header-utility-trigger" aria-label="Enlaces de repositorio"><span class="header-utility-trigger-label" aria-hidden="true">≡</span></summary><div class="header-utility-surface" aria-label="Enlaces de repositorio"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link header-utility-link" target="_blank" rel="noopener">Repo del sitio</a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link header-utility-link" target="_blank" rel="noopener noreferrer">Repo fuente</a></div></details></div></header><script>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script><main id="main"><section class="container detail-shell"><div class="detail-header shell-panel"><div class="detail-header-bar"><a class="detail-back-link" href="/es-ES/">Volver a la galería</a><div class="segmented detail-layout-toggle" role="group" aria-label="Diseño del espacio de trabajo"><button type="button" class="preview-toggle is-active" data-detail-layout="split" aria-pressed="true">Dividido</button><button type="button" class="preview-toggle" data-detail-layout="preview" aria-pressed="false">Vista previa</button><button type="button" class="preview-toggle" data-detail-layout="docs" aria-pressed="false">Docs</button></div></div><div class="detail-header-copy"><h1>Composio</h1><p class="detail-summary">DESIGN.md extracted from the public Composio website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it&#39;s a good starting point for building something similar.</p></div></div><div class="detail-grid" data-detail-grid data-layout="split"><script>
+        // Restore the saved layout before first paint so the grid does not jump.
+        try {
+          const saved = localStorage.getItem('adms-detail-layout');
+          if (saved === 'preview' || saved === 'docs') {
+            document.currentScript.parentElement.dataset.layout = saved;
+          }
+        } catch {}
+      </script><section class="preview-switcher shell-panel" data-preview-switcher data-light-url="/previews/composio/light.html" data-dark-url="/previews/composio/dark.html" data-images="{&quot;light&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/composio/light-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:7660},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/composio/light-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:8000},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/composio/light-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:8000},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/composio/light-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}},&quot;dark&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/composio/dark-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:7660},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/composio/dark-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:8000},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/composio/dark-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:8000},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/composio/dark-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}}}" data-alt-template="Vista previa {{variant}} de Composio, ancho {{viewport}}" data-labels="{&quot;light&quot;:&quot;Claro&quot;,&quot;dark&quot;:&quot;Oscuro&quot;,&quot;fit&quot;:&quot;Ajustar&quot;,&quot;tablet&quot;:&quot;Tableta&quot;,&quot;mobile&quot;:&quot;Móvil&quot;}"><div class="preview-switcher-head"><h2>Marco de vista previa con tema</h2><div class="preview-switcher-tools"><div class="segmented" role="group" aria-label="Tema de vista previa"><button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-pressed="true">Claro</button><button type="button" class="preview-toggle" data-preview-variant="dark" aria-pressed="false" title="Abrir vista previa oscura">Oscuro</button></div><div class="segmented preview-viewport-group" role="group" aria-label="Ancho de la vista previa"><button type="button" class="preview-toggle is-active" data-preview-viewport="fit" aria-pressed="true">Ajustar</button><button type="button" class="preview-toggle" data-preview-viewport="tablet" aria-pressed="false">Tableta</button><button type="button" class="preview-toggle" data-preview-viewport="mobile" aria-pressed="false">Móvil</button></div><a class="preview-open" data-preview-open href="/previews/composio/light.html" target="_blank" rel="noopener" aria-label="Abrir la vista previa en una pestaña nueva" title="Abrir la vista previa en una pestaña nueva"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M6 3H3v10h10v-3"></path><path d="M9 2.5h4.5V7"></path><path d="M13.5 2.5 7.5 8.5"></path></svg></a></div></div><div class="preview-stage" data-preview-stage data-state="loading" aria-busy="true"><img class="detail-preview-image" data-preview-image src="/preview-images/composio/light-fit.avif" width="1440" height="7660" alt="Vista previa Claro de Composio, ancho Ajustar" decoding="async"><p class="preview-error" data-preview-error hidden><span>No se pudo cargar la vista previa renderizada.</span><a data-preview-live href="/previews/composio/light.html" target="_blank" rel="noopener">Abrir la vista previa HTML en vivo</a></p></div><p class="preview-switcher-foot"><span class="preview-switcher-note">Hay recursos de vista previa clara y oscura disponibles.</span><output class="preview-width-readout" data-preview-width aria-hidden="true"></output></p></section><script type="module">function e(e,t,n){e.forEach(e=>{let r=e.getAttribute(t)===n;e.classList.toggle(`is-active`,r),e.setAttribute(`aria-pressed`,r?`true`:`false`)})}function t(e){return`${Math.round(e)} px`}function n(e){if(e)try{return JSON.parse(e)}catch{return}}function r(e,t,n){return e[t][n]}function i(e,t,n){return e.replace(`{{variant}}`,t).replace(`{{viewport}}`,n)}function a(a=document){a.querySelectorAll(`[data-preview-switcher]`).forEach(o=>{let s=o.querySelector(`[data-preview-image]`),c=o.querySelector(`[data-preview-stage]`),l=o.querySelector(`[data-preview-error]`),u=o.querySelector(`[data-preview-live]`),d=Array.from(o.querySelectorAll(`[data-preview-variant]`)),f=Array.from(o.querySelectorAll(`[data-preview-viewport]`)),p=o.querySelector(`[data-preview-open]`),m=o.querySelector(`[data-preview-width]`),h=n(o.dataset.images),g=o.dataset.lightUrl??``,_=o.dataset.darkUrl||g,v=o.dataset.altTemplate??``,y=JSON.parse(o.dataset.labels??`{}`),b=`light`,x=`fit`;if(!s||!c||!h||d.length===0)return;let S=()=>{s.hidden=!1,c.dataset.state=`ready`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!0)},C=()=>{c.dataset.state=`loading`,c.setAttribute(`aria-busy`,`true`)},w=()=>{s.hidden=!0,c.dataset.state=`error`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!1)},T=()=>{let e=r(h,b,x),t=i(v,y[b]??b,y[x]??x);s.alt=t,s.width=e.width,s.height=e.height,s.getAttribute(`src`)===e.url?s.complete&&(s.naturalWidth>0?S():w()):(C(),s.src=e.url)},E=()=>{let t=b===`dark`?_:g;p&&(p.href=t),u&&(u.href=t),o.dataset.viewport=x,e(d,`data-preview-variant`,b),e(f,`data-preview-viewport`,x),T()};s.addEventListener(`load`,S),s.addEventListener(`error`,w),m&&typeof ResizeObserver<`u`&&new ResizeObserver(([e])=>{e&&(m.textContent=t(e.contentRect.width))}).observe(c),d.forEach(e=>{e.addEventListener(`click`,()=>{b=e.dataset.previewVariant===`dark`?`dark`:`light`,E()})}),f.forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.previewViewport;x=t===`tablet`||t===`mobile`?t:`fit`,E()})}),b=a.documentElement.dataset.theme===`dark`?`dark`:`light`,E()})}a();</script><section class="detail-documents" data-document-tabs data-design-slug="composio" data-copy-design-label="Copiar DESIGN.md" data-copied-label="Copiado" data-copy-failed-label="Error al copiar"><h2 class="visually-hidden">README y DESIGN en un lugar</h2><div class="detail-documents-bar shell-panel" data-doc-bar><div class="detail-documents-head"><div class="segmented detail-tab-list" role="tablist" aria-label="Vista de documento"><button type="button" role="tab" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">README</button><button type="button" role="tab" class="detail-tab" data-doc-tab="design" aria-selected="false">DESIGN</button></div><div class="detail-doc-controls"><button type="button" class="detail-copy-button" data-copy-design disabled aria-disabled="true" title="Copiar Markdown DESIGN.md sin procesar">Copiar DESIGN.md</button><a class="detail-copy-button" data-download-design href="/designs/composio/DESIGN.md" download="DESIGN.md" title="Descargar el archivo DESIGN.md canónico" aria-hidden="true" tabindex="-1">Descargar DESIGN.md</a></div></div><nav class="detail-outline" data-doc-outline aria-label="Ir a la sección" hidden></nav></div><div class="detail-doc-panels"><section class="detail-doc-panel is-active" data-doc-panel="readme"><div class="markdown-shell document-copy"><h2 id="composio-inspired-design-system">Composio Inspired Design System</h2>
+<p><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/composio/DESIGN.md">DESIGN.md</a> extracted from the public <a href="https://composio.dev/">Composio</a> website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it's a good starting point for building something similar.</p>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIGN.md</code></td>
+<td>Complete design system documentation (9 sections)</td>
+</tr>
+<tr>
+<td><code>preview.html</code></td>
+<td>Interactive design token catalog (light)</td>
+</tr>
+<tr>
+<td><code>preview-dark.html</code></td>
+<td>Interactive design token catalog (dark)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/composio/DESIGN.md">DESIGN.md</a> to use as a reference for AI agents (Claude, Cursor, Stitch) to generate UI that looks like the Composio design language.</p>
+<h2 id="preview">Preview</h2>
+<p>A sample landing page built with DESIGN.md. It shows the actual colors, typography, buttons, cards, spacing, and elevation, all in one page.</p>
+<h3 id="dark-mode">Dark Mode</h3>
+<p><img src="/preview-images/composio/dark-fit.avif" alt="Composio Design System — Dark Mode" loading="lazy" decoding="async"></p>
+<h3 id="light-mode">Light Mode</h3>
+<p><img src="/preview-images/composio/light-fit.avif" alt="Composio Design System — Light Mode" loading="lazy" decoding="async"></p></div></section><section class="detail-doc-panel" data-doc-panel="design" hidden><div class="markdown-shell document-copy"><h2 id="design-system-inspiration-of-composio">Design System Inspiration of Composio</h2>
+<h2 id="1-visual-theme--atmosphere">1. Visual Theme &#x26; Atmosphere</h2>
+<p>Composio's interface is a nocturnal command center — a dense, developer-focused darkness punctuated by electric cyan and deep cobalt signals. The entire experience is built on an almost-pure-black canvas (<code>#0f0f0f</code>) where content floats within barely-visible containment borders, creating the feeling of a high-tech control panel rather than a traditional marketing page. It's a site that whispers authority to developers who live in dark terminals.</p>
+<p>The visual language leans heavily into the aesthetic of code editors and terminal windows. JetBrains Mono appears alongside the geometric precision of abcDiatype, reinforcing the message that this is a tool built <em>by</em> developers <em>for</em> developers. Decorative elements are restrained but impactful — subtle cyan-blue gradient glows emanate from cards and sections like bioluminescent organisms in deep water, while hard-offset shadows (<code>4px 4px</code>) on select elements add a raw, brutalist edge that prevents the design from feeling sterile.</p>
+<p>What makes Composio distinctive is its tension between extreme minimalism and strategic bursts of luminous color. The site never shouts — headings use tight line-heights (0.87) that compress text into dense, authoritative blocks. Color is rationed like a rare resource: white text for primary content, semi-transparent white (<code>rgba(255,255,255,0.5-0.6)</code>) for secondary, and brand blue (<code>#0007cd</code>) or electric cyan (<code>#00ffff</code>) reserved exclusively for interactive moments and accent glows.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Pitch-black canvas with near-invisible white-border containment (4-12% opacity)</li>
+<li>Dual-font identity: geometric sans-serif (abcDiatype) for content, monospace (JetBrains Mono) for technical credibility</li>
+<li>Ultra-tight heading line-heights (0.87-1.0) creating compressed, impactful text blocks</li>
+<li>Bioluminescent accent strategy — cyan and blue glows that feel like they're emitting light from within</li>
+<li>Hard-offset brutalist shadows (<code>4px 4px</code>) on select interactive elements</li>
+<li>Monochrome hierarchy with color used only at the highest-signal moments</li>
+<li>Developer-terminal aesthetic that bridges marketing and documentation</li>
+</ul>
+<h2 id="2-color-palette--roles">2. Color Palette &#x26; Roles</h2>
+<h3 id="primary">Primary</h3>
+<ul>
+<li><strong>Composio Cobalt</strong> (<code>#0007cd</code>): The core brand color — a deep, saturated blue used sparingly for high-priority interactive elements and brand moments. It anchors the identity with quiet intensity.</li>
+</ul>
+<h3 id="secondary--accent">Secondary &#x26; Accent</h3>
+<ul>
+<li><strong>Electric Cyan</strong> (<code>#00ffff</code>): The attention-grabbing accent — used at low opacity (<code>rgba(0,255,255,0.12)</code>) for glowing button backgrounds and card highlights. At full saturation, it serves as the energetic counterpoint to the dark canvas.</li>
+<li><strong>Signal Blue</strong> (<code>#0089ff</code> / <code>rgb(0,137,255)</code>): Used for select button borders and interactive focus states, bridging the gap between Cobalt and Cyan.</li>
+<li><strong>Ocean Blue</strong> (<code>#0096ff</code> / <code>rgb(0,150,255)</code>): Accent border color on CTA buttons, slightly warmer than Signal Blue.</li>
+</ul>
+<h3 id="surface--background">Surface &#x26; Background</h3>
+<ul>
+<li><strong>Void Black</strong> (<code>#0f0f0f</code>): The primary page background — not pure black, but a hair warmer, reducing eye strain on dark displays.</li>
+<li><strong>Pure Black</strong> (<code>#000000</code>): Used for card interiors and deep-nested containers, creating a subtle depth distinction from the page background.</li>
+<li><strong>Charcoal</strong> (<code>#2c2c2c</code> / <code>rgb(44,44,44)</code>): Used for secondary button borders and divider lines on dark surfaces.</li>
+</ul>
+<h3 id="neutrals--text">Neutrals &#x26; Text</h3>
+<ul>
+<li><strong>Pure White</strong> (<code>#ffffff</code>): Primary heading and high-emphasis text color on dark surfaces.</li>
+<li><strong>Muted Smoke</strong> (<code>#444444</code>): De-emphasized body text, metadata, and tertiary content.</li>
+<li><strong>Ghost White</strong> (<code>rgba(255,255,255,0.6)</code>): Secondary body text and link labels — visible but deliberately receded.</li>
+<li><strong>Whisper White</strong> (<code>rgba(255,255,255,0.5)</code>): Tertiary button text and placeholder content.</li>
+<li><strong>Phantom White</strong> (<code>rgba(255,255,255,0.2)</code>): Subtle button backgrounds and deeply receded UI chrome.</li>
+</ul>
+<h3 id="semantic--accent">Semantic &#x26; Accent</h3>
+<ul>
+<li><strong>Border Mist 12</strong> (<code>rgba(255,255,255,0.12)</code>): Highest-opacity border treatment — used for prominent card edges and content separators.</li>
+<li><strong>Border Mist 10</strong> (<code>rgba(255,255,255,0.10)</code>): Standard container borders on dark surfaces.</li>
+<li><strong>Border Mist 08</strong> (<code>rgba(255,255,255,0.08)</code>): Subtle section dividers and secondary card edges.</li>
+<li><strong>Border Mist 06</strong> (<code>rgba(255,255,255,0.06)</code>): Near-invisible containment borders for background groupings.</li>
+<li><strong>Border Mist 04</strong> (<code>rgba(255,255,255,0.04)</code>): The faintest border — used for atmospheric separation only.</li>
+<li><strong>Light Border</strong> (<code>#e0e0e0</code> / <code>rgb(224,224,224)</code>): Reserved for light-surface contexts (rare on this site).</li>
+</ul>
+<h3 id="gradient-system">Gradient System</h3>
+<ul>
+<li><strong>Cyan Glow</strong>: Radial gradients using <code>#00ffff</code> at very low opacity, creating bioluminescent halos behind cards and feature sections.</li>
+<li><strong>Blue-to-Black Fade</strong>: Linear gradients from Composio Cobalt (<code>#0007cd</code>) fading into Void Black (<code>#0f0f0f</code>), used in hero backgrounds and section transitions.</li>
+<li><strong>White Fog</strong>: Bottom-of-page gradient transitioning from dark to a diffused white/gray, creating an atmospheric "horizon line" effect near the footer.</li>
+</ul>
+<h2 id="3-typography-rules">3. Typography Rules</h2>
+<h3 id="font-family">Font Family</h3>
+<ul>
+<li><strong>Primary</strong>: <code>abcDiatype</code>, with fallbacks: <code>abcDiatype Fallback, ui-sans-serif, system-ui, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji</code></li>
+<li><strong>Monospace</strong>: <code>JetBrains Mono</code>, with fallbacks: <code>JetBrains Mono Fallback, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New</code></li>
+<li><strong>System Monospace</strong> (fallback): <code>Menlo</code>, <code>monospace</code> for smallest inline code</li>
+</ul>
+<h3 id="hierarchy">Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Font</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line Height</th>
+<th>Letter Spacing</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display / Hero</td>
+<td>abcDiatype</td>
+<td>64px (4rem)</td>
+<td>400</td>
+<td>0.87 (ultra-tight)</td>
+<td>normal</td>
+<td>Massive, compressed headings</td>
+</tr>
+<tr>
+<td>Section Heading</td>
+<td>abcDiatype</td>
+<td>48px (3rem)</td>
+<td>400</td>
+<td>1.00 (tight)</td>
+<td>normal</td>
+<td>Major feature section titles</td>
+</tr>
+<tr>
+<td>Sub-heading Large</td>
+<td>abcDiatype</td>
+<td>40px (2.5rem)</td>
+<td>400</td>
+<td>1.00 (tight)</td>
+<td>normal</td>
+<td>Secondary section markers</td>
+</tr>
+<tr>
+<td>Sub-heading</td>
+<td>abcDiatype</td>
+<td>28px (1.75rem)</td>
+<td>400</td>
+<td>1.20 (tight)</td>
+<td>normal</td>
+<td>Card titles, feature names</td>
+</tr>
+<tr>
+<td>Card Title</td>
+<td>abcDiatype</td>
+<td>24px (1.5rem)</td>
+<td>500</td>
+<td>1.20 (tight)</td>
+<td>normal</td>
+<td>Medium-emphasis card headings</td>
+</tr>
+<tr>
+<td>Feature Label</td>
+<td>abcDiatype</td>
+<td>20px (1.25rem)</td>
+<td>500</td>
+<td>1.20 (tight)</td>
+<td>normal</td>
+<td>Smaller card titles, labels</td>
+</tr>
+<tr>
+<td>Body Large</td>
+<td>abcDiatype</td>
+<td>18px (1.125rem)</td>
+<td>400</td>
+<td>1.20 (tight)</td>
+<td>normal</td>
+<td>Intro paragraphs</td>
+</tr>
+<tr>
+<td>Body / Button</td>
+<td>abcDiatype</td>
+<td>16px (1rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+<td>Standard body text, nav links, buttons</td>
+</tr>
+<tr>
+<td>Body Small</td>
+<td>abcDiatype</td>
+<td>15px (0.94rem)</td>
+<td>400</td>
+<td>1.63 (relaxed)</td>
+<td>normal</td>
+<td>Longer-form body text</td>
+</tr>
+<tr>
+<td>Caption</td>
+<td>abcDiatype</td>
+<td>14px (0.875rem)</td>
+<td>400</td>
+<td>1.63 (relaxed)</td>
+<td>normal</td>
+<td>Descriptions, metadata</td>
+</tr>
+<tr>
+<td>Label</td>
+<td>abcDiatype</td>
+<td>13px (0.81rem)</td>
+<td>500</td>
+<td>1.50</td>
+<td>normal</td>
+<td>UI labels, badges</td>
+</tr>
+<tr>
+<td>Tag / Overline</td>
+<td>abcDiatype</td>
+<td>12px (0.75rem)</td>
+<td>500</td>
+<td>1.00 (tight)</td>
+<td>0.3px</td>
+<td>Uppercase overline labels</td>
+</tr>
+<tr>
+<td>Micro</td>
+<td>abcDiatype</td>
+<td>12px (0.75rem)</td>
+<td>400</td>
+<td>1.00 (tight)</td>
+<td>0.3px</td>
+<td>Smallest sans-serif text</td>
+</tr>
+<tr>
+<td>Code Body</td>
+<td>JetBrains Mono</td>
+<td>16px (1rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>-0.32px</td>
+<td>Inline code, terminal output</td>
+</tr>
+<tr>
+<td>Code Small</td>
+<td>JetBrains Mono</td>
+<td>14px (0.875rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>-0.28px</td>
+<td>Code snippets, technical labels</td>
+</tr>
+<tr>
+<td>Code Caption</td>
+<td>JetBrains Mono</td>
+<td>12px (0.75rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>-0.28px</td>
+<td>Small code references</td>
+</tr>
+<tr>
+<td>Code Overline</td>
+<td>JetBrains Mono</td>
+<td>14px (0.875rem)</td>
+<td>400</td>
+<td>1.43</td>
+<td>0.7px</td>
+<td>Uppercase technical labels</td>
+</tr>
+<tr>
+<td>Code Micro</td>
+<td>JetBrains Mono</td>
+<td>11px (0.69rem)</td>
+<td>400</td>
+<td>1.33</td>
+<td>0.55px</td>
+<td>Tiny uppercase code tags</td>
+</tr>
+<tr>
+<td>Code Nano</td>
+<td>JetBrains Mono</td>
+<td>9-10px</td>
+<td>400</td>
+<td>1.33</td>
+<td>0.45-0.5px</td>
+<td>Smallest monospace text</td>
+</tr>
+</tbody>
+</table>
+<h3 id="principles">Principles</h3>
+<ul>
+<li><strong>Compression creates authority</strong>: Heading line-heights are drastically tight (0.87-1.0), making large text feel dense and commanding rather than airy and decorative.</li>
+<li><strong>Dual personality</strong>: abcDiatype carries the marketing voice — geometric, precise, friendly. JetBrains Mono carries the technical voice — credible, functional, familiar to developers.</li>
+<li><strong>Weight restraint</strong>: Almost everything is weight 400 (regular). Weight 500 (medium) is reserved for small labels, badges, and select card titles. Weight 700 (bold) appears only in microscopic system-monospace contexts.</li>
+<li><strong>Negative letter-spacing on code</strong>: JetBrains Mono uses negative letter-spacing (-0.28px to -0.98px) for dense, compact code blocks that feel like a real IDE.</li>
+<li><strong>Uppercase is earned</strong>: The <code>uppercase</code> + <code>letter-spacing</code> treatment is reserved exclusively for tiny overline labels and technical tags — never for headings.</li>
+</ul>
+<h2 id="4-component-stylings">4. Component Stylings</h2>
+<h3 id="buttons">Buttons</h3>
+<p><strong>Primary CTA (White Fill)</strong></p>
+<ul>
+<li>Background: Pure White (<code>#ffffff</code>)</li>
+<li>Text: Near Black (<code>oklch(0.145 0 0)</code>)</li>
+<li>Padding: comfortable (8px 24px)</li>
+<li>Border: none</li>
+<li>Radius: subtly rounded (likely 4px based on token scale)</li>
+<li>Hover: likely subtle opacity reduction or slight gray shift</li>
+</ul>
+<p><strong>Cyan Accent CTA</strong></p>
+<ul>
+<li>Background: Electric Cyan at 12% opacity (<code>rgba(0,255,255,0.12)</code>)</li>
+<li>Text: Near Black (<code>oklch(0.145 0 0)</code>)</li>
+<li>Padding: comfortable (8px 24px)</li>
+<li>Border: thin solid Ocean Blue (<code>1px solid rgb(0,150,255)</code>)</li>
+<li>Radius: subtly rounded (4px)</li>
+<li>Creates a "glowing from within" effect on dark backgrounds</li>
+</ul>
+<p><strong>Ghost / Outline (Signal Blue)</strong></p>
+<ul>
+<li>Background: transparent</li>
+<li>Text: Near Black (<code>oklch(0.145 0 0)</code>)</li>
+<li>Padding: balanced (10px)</li>
+<li>Border: thin solid Signal Blue (<code>1px solid rgb(0,137,255)</code>)</li>
+<li>Hover: likely fill or border color shift</li>
+</ul>
+<p><strong>Ghost / Outline (Charcoal)</strong></p>
+<ul>
+<li>Background: transparent</li>
+<li>Text: Near Black (<code>oklch(0.145 0 0)</code>)</li>
+<li>Padding: balanced (10px)</li>
+<li>Border: thin solid Charcoal (<code>1px solid rgb(44,44,44)</code>)</li>
+<li>For secondary/tertiary actions on dark surfaces</li>
+</ul>
+<p><strong>Phantom Button</strong></p>
+<ul>
+<li>Background: Phantom White (<code>rgba(255,255,255,0.2)</code>)</li>
+<li>Text: Whisper White (<code>rgba(255,255,255,0.5)</code>)</li>
+<li>No visible border</li>
+<li>Used for deeply de-emphasized actions</li>
+</ul>
+<h3 id="cards--containers">Cards &#x26; Containers</h3>
+<ul>
+<li>Background: Pure Black (<code>#000000</code>) or transparent</li>
+<li>Border: white at very low opacity, ranging from Border Mist 04 (<code>rgba(255,255,255,0.04)</code>) to Border Mist 12 (<code>rgba(255,255,255,0.12)</code>) depending on prominence</li>
+<li>Radius: barely rounded corners (2px for inline elements, 4px for content cards)</li>
+<li>Shadow: select cards use the hard-offset brutalist shadow (<code>rgba(0,0,0,0.15) 4px 4px 0px 0px</code>) — a distinctive design choice that adds raw depth</li>
+<li>Elevation shadow: deeper containers use soft diffuse shadow (<code>rgba(0,0,0,0.5) 0px 8px 32px</code>)</li>
+<li>Hover behavior: likely subtle border opacity increase or faint glow effect</li>
+</ul>
+<h3 id="inputs--forms">Inputs &#x26; Forms</h3>
+<ul>
+<li>No explicit input token data extracted — inputs likely follow the dark-surface pattern with:
+<ul>
+<li>Background: transparent or Pure Black</li>
+<li>Border: Border Mist 10 (<code>rgba(255,255,255,0.10)</code>)</li>
+<li>Focus: border shifts to Signal Blue (<code>#0089ff</code>) or Electric Cyan</li>
+<li>Text: Pure White with Ghost White placeholder</li>
+</ul>
+</li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li>Sticky top nav bar on dark/black background</li>
+<li>Logo (white SVG): Composio wordmark on the left</li>
+<li>Nav links: Pure White (<code>#ffffff</code>) at standard body size (16px, abcDiatype)</li>
+<li>CTA button in the nav: White Fill Primary style</li>
+<li>Mobile: collapses to hamburger menu, single-column layout</li>
+<li>Subtle bottom border on nav (Border Mist 06-08)</li>
+</ul>
+<h3 id="image-treatment">Image Treatment</h3>
+<ul>
+<li>Dark-themed product screenshots and UI mockups dominate</li>
+<li>Images sit within bordered containers matching the card system</li>
+<li>Blue/cyan gradient glows behind or beneath feature images</li>
+<li>No visible border-radius on images beyond container rounding (4px)</li>
+<li>Full-bleed within their card containers</li>
+</ul>
+<h3 id="distinctive-components">Distinctive Components</h3>
+<p><strong>Stats/Metrics Display</strong></p>
+<ul>
+<li>Large monospace numbers (JetBrains Mono) — "10k+" style</li>
+<li>Tight layout with subtle label text beneath</li>
+</ul>
+<p><strong>Code Blocks / Terminal Previews</strong></p>
+<ul>
+<li>Dark containers with JetBrains Mono</li>
+<li>Syntax-highlighted content</li>
+<li>Subtle bordered containers (Border Mist 10)</li>
+</ul>
+<p><strong>Integration/Partner Logos Grid</strong></p>
+<ul>
+<li>Grid layout of tool logos on dark surface</li>
+<li>Contained within bordered card</li>
+<li>Demonstrates ecosystem breadth</li>
+</ul>
+<p><strong>"COMPOSIO" Brand Display</strong></p>
+<ul>
+<li>Oversized brand typography — likely the largest text on the page</li>
+<li>Used as a section divider/brand statement</li>
+<li>Stark white on black</li>
+</ul>
+<h2 id="5-layout-principles">5. Layout Principles</h2>
+<h3 id="spacing-system">Spacing System</h3>
+<ul>
+<li>Base unit: 8px</li>
+<li>Scale: 1px, 2px, 4px, 6px, 8px, 10px, 12px, 14px, 16px, 18px, 20px, 24px, 30px, 32px, 40px</li>
+<li>Component padding: typically 10px (buttons) to 24px (CTA buttons horizontal)</li>
+<li>Section padding: generous vertical spacing (estimated 80-120px between major sections)</li>
+<li>Card internal padding: approximately 24-32px</li>
+</ul>
+<h3 id="grid--container">Grid &#x26; Container</h3>
+<ul>
+<li>Max container width: approximately 1200px, centered</li>
+<li>Content sections use single-column or 2-3 column grids for feature cards</li>
+<li>Hero: centered single-column with maximum impact</li>
+<li>Feature sections: asymmetric layouts mixing text blocks with product screenshots</li>
+</ul>
+<h3 id="whitespace-philosophy">Whitespace Philosophy</h3>
+<ul>
+<li><strong>Breathing room between sections</strong>: Large vertical gaps create distinct "chapters" in the page scroll.</li>
+<li><strong>Dense within components</strong>: Cards and text blocks are internally compact (tight line-heights, minimal internal padding), creating focused information nodes.</li>
+<li><strong>Contrast-driven separation</strong>: Rather than relying solely on whitespace, Composio uses border opacity differences and subtle background shifts to delineate content zones.</li>
+</ul>
+<h3 id="border-radius-scale">Border Radius Scale</h3>
+<ul>
+<li>Nearly squared (2px): Inline code spans, small tags, pre blocks — the sharpest treatment, conveying technical precision</li>
+<li>Subtly rounded (4px): Content cards, images, standard containers — the workhorse radius</li>
+<li>Pill-shaped (37px): Select buttons and badges — creates a softer, more approachable feel for key CTAs</li>
+<li>Full round (9999px+): Circular elements, avatar-like containers, decorative dots</li>
+</ul>
+<h2 id="6-depth--elevation">6. Depth &#x26; Elevation</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Treatment</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat (Level 0)</td>
+<td>No shadow, no border</td>
+<td>Page background, inline text</td>
+</tr>
+<tr>
+<td>Contained (Level 1)</td>
+<td>Border Mist 04-08, no shadow</td>
+<td>Background groupings, subtle sections</td>
+</tr>
+<tr>
+<td>Card (Level 2)</td>
+<td>Border Mist 10-12, no shadow</td>
+<td>Standard content cards, code blocks</td>
+</tr>
+<tr>
+<td>Brutalist (Level 3)</td>
+<td>Hard offset shadow (<code>4px 4px</code>, 15% black)</td>
+<td>Select interactive cards, distinctive feature highlights</td>
+</tr>
+<tr>
+<td>Floating (Level 4)</td>
+<td>Soft diffuse shadow (<code>0px 8px 32px</code>, 50% black)</td>
+<td>Modals, overlays, deeply elevated content</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shadow Philosophy</strong>: Composio uses shadows sparingly and with deliberate contrast. The hard-offset brutalist shadow is the signature — it breaks the sleek darkness with a raw, almost retro-computing feel. The soft diffuse shadow is reserved for truly floating elements. Most depth is communicated through border opacity gradations rather than shadows.</p>
+<h3 id="decorative-depth">Decorative Depth</h3>
+<ul>
+<li><strong>Cyan Glow Halos</strong>: Radial gradient halos using Electric Cyan at low opacity behind feature cards and images. Creates a "screen glow" effect as if the UI elements are emitting light.</li>
+<li><strong>Blue-Black Gradient Washes</strong>: Linear gradients from Composio Cobalt to Void Black used as section backgrounds, adding subtle color temperature shifts.</li>
+<li><strong>White Fog Horizon</strong>: A gradient from dark to diffused white/gray at the bottom of the page, creating an atmospheric "dawn" effect before the footer.</li>
+</ul>
+<h2 id="7-dos-and-donts">7. Do's and Don'ts</h2>
+<h3 id="do">Do</h3>
+<ul>
+<li>Use Void Black (<code>#0f0f0f</code>) as the primary page background — never pure white for main surfaces</li>
+<li>Keep heading line-heights ultra-tight (0.87-1.0) for compressed, authoritative text blocks</li>
+<li>Use white-opacity borders (4-12%) for containment — they're more important than shadows here</li>
+<li>Reserve Electric Cyan (<code>#00ffff</code>) for high-signal moments only — CTAs, glows, interactive accents</li>
+<li>Pair abcDiatype with JetBrains Mono to reinforce the developer-tool identity</li>
+<li>Use the hard-offset shadow (<code>4px 4px</code>) intentionally on select elements for brutalist personality</li>
+<li>Keep button text dark (<code>oklch(0.145 0 0)</code>) even on the darkest backgrounds — buttons carry their own surface</li>
+<li>Layer opacity-based borders to create subtle depth without shadows</li>
+<li>Use uppercase + letter-spacing only for tiny overline labels (12px or smaller)</li>
+</ul>
+<h3 id="dont">Don't</h3>
+<ul>
+<li>Don't use bright backgrounds or light surfaces as primary containers</li>
+<li>Don't apply heavy shadows everywhere — depth comes from border opacity, not box-shadow</li>
+<li>Don't use Composio Cobalt (<code>#0007cd</code>) as a text color — it's too dark on dark and too saturated on light</li>
+<li>Don't increase heading line-heights beyond 1.2 — the compressed feel is core to the identity</li>
+<li>Don't use bold (700) weight for body or heading text — 400-500 is the ceiling</li>
+<li>Don't mix warm colors — the palette is strictly cool (blue, cyan, white, black)</li>
+<li>Don't use border-radius larger than 4px on content cards — the precision of near-square corners is intentional</li>
+<li>Don't place Electric Cyan at full opacity on large surfaces — it's an accent, used at 12% max for backgrounds</li>
+<li>Don't use decorative serif or handwritten fonts — the entire identity is geometric sans + monospace</li>
+<li>Don't skip the monospace font for technical content — JetBrains Mono is not decorative, it's a credibility signal</li>
+</ul>
+<h2 id="8-responsive-behavior">8. Responsive Behavior</h2>
+<h3 id="breakpoints">Breakpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Width</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile</td>
+<td>&#x3C;768px</td>
+<td>Single column, hamburger nav, full-width cards, reduced section padding, hero text scales down to ~28-40px</td>
+</tr>
+<tr>
+<td>Tablet</td>
+<td>768-1024px</td>
+<td>2-column grid for cards, condensed nav, slightly reduced hero text</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>1024-1440px</td>
+<td>Full multi-column layout, expanded nav with all links visible, large hero typography (64px)</td>
+</tr>
+<tr>
+<td>Large Desktop</td>
+<td>>1440px</td>
+<td>Max-width container centered, generous horizontal margins</td>
+</tr>
+</tbody>
+</table>
+<h3 id="touch-targets">Touch Targets</h3>
+<ul>
+<li>Minimum touch target: 44x44px for all interactive elements</li>
+<li>Buttons use comfortable padding (8px 24px minimum) ensuring adequate touch area</li>
+<li>Nav links spaced with sufficient gap for thumb navigation</li>
+</ul>
+<h3 id="collapsing-strategy">Collapsing Strategy</h3>
+<ul>
+<li><strong>Navigation</strong>: Full horizontal nav on desktop collapses to hamburger on mobile</li>
+<li><strong>Feature grids</strong>: 3-column → 2-column → single-column stacking</li>
+<li><strong>Hero text</strong>: 64px → 40px → 28px progressive scaling</li>
+<li><strong>Section padding</strong>: Reduces proportionally but maintains generous vertical rhythm</li>
+<li><strong>Cards</strong>: Stack vertically on mobile with full-width treatment</li>
+<li><strong>Code blocks</strong>: Horizontal scroll on smaller viewports rather than wrapping</li>
+</ul>
+<h3 id="image-behavior">Image Behavior</h3>
+<ul>
+<li>Product screenshots scale proportionally within their containers</li>
+<li>Dark-themed images maintain contrast on the dark background at all sizes</li>
+<li>Gradient glow effects scale with container size</li>
+<li>No visible art direction changes between breakpoints — same crops, proportional scaling</li>
+</ul>
+<h2 id="9-agent-prompt-guide">9. Agent Prompt Guide</h2>
+<h3 id="quick-color-reference">Quick Color Reference</h3>
+<ul>
+<li>Primary CTA: "Pure White (#ffffff)"</li>
+<li>Page Background: "Void Black (#0f0f0f)"</li>
+<li>Brand Accent: "Composio Cobalt (#0007cd)"</li>
+<li>Glow Accent: "Electric Cyan (#00ffff)"</li>
+<li>Heading Text: "Pure White (#ffffff)"</li>
+<li>Body Text: "Ghost White (rgba(255,255,255,0.6))"</li>
+<li>Card Border: "Border Mist 10 (rgba(255,255,255,0.10))"</li>
+<li>Button Border: "Signal Blue (#0089ff)"</li>
+</ul>
+<h3 id="example-component-prompts">Example Component Prompts</h3>
+<ul>
+<li>"Create a feature card with a near-black background (#000000), barely visible white border at 10% opacity, subtly rounded corners (4px), and a hard-offset shadow (4px right, 4px down, 15% black). Use Pure White for the title in abcDiatype at 24px weight 500, and Ghost White (60% opacity) for the description at 16px."</li>
+<li>"Design a primary CTA button with a solid white background, near-black text, comfortable padding (8px vertical, 24px horizontal), and subtly rounded corners. Place it next to a secondary button with transparent background, Signal Blue border, and matching padding."</li>
+<li>"Build a hero section on Void Black (#0f0f0f) with a massive heading at 64px, line-height 0.87, in abcDiatype. Center the text. Add a subtle blue-to-black gradient glow behind the content. Include a white CTA button and a cyan-accented secondary button below."</li>
+<li>"Create a code snippet display using JetBrains Mono at 14px with -0.28px letter-spacing on a black background. Add a Border Mist 10 border (rgba(255,255,255,0.10)) and 4px radius. Show syntax-highlighted content with white and cyan text."</li>
+<li>"Design a navigation bar on Void Black with the Composio wordmark in white on the left, 4-5 nav links in white abcDiatype at 16px, and a white-fill CTA button on the right. Add a Border Mist 06 bottom border."</li>
+</ul>
+<h3 id="iteration-guide">Iteration Guide</h3>
+<p>When refining existing screens generated with this design system:</p>
+<ol>
+<li>Focus on ONE component at a time</li>
+<li>Reference specific color names and hex codes from this document — "use Ghost White (rgba(255,255,255,0.6))" not "make it lighter"</li>
+<li>Use natural language descriptions — "make the border barely visible" = Border Mist 04-06</li>
+<li>Describe the desired "feel" alongside specific measurements — "compressed and authoritative heading at 48px with line-height 1.0"</li>
+<li>For glow effects, specify "Electric Cyan at 12% opacity as a radial gradient behind the element"</li>
+<li>Always specify which font — abcDiatype for marketing, JetBrains Mono for technical/code content</li>
+</ol></div></section></div><textarea hidden readonly data-design-markdown># Design System Inspiration of Composio
+
+## 1. Visual Theme &amp; Atmosphere
+
+Composio&#39;s interface is a nocturnal command center — a dense, developer-focused darkness punctuated by electric cyan and deep cobalt signals. The entire experience is built on an almost-pure-black canvas (`#0f0f0f`) where content floats within barely-visible containment borders, creating the feeling of a high-tech control panel rather than a traditional marketing page. It&#39;s a site that whispers authority to developers who live in dark terminals.
+
+The visual language leans heavily into the aesthetic of code editors and terminal windows. JetBrains Mono appears alongside the geometric precision of abcDiatype, reinforcing the message that this is a tool built *by* developers *for* developers. Decorative elements are restrained but impactful — subtle cyan-blue gradient glows emanate from cards and sections like bioluminescent organisms in deep water, while hard-offset shadows (`4px 4px`) on select elements add a raw, brutalist edge that prevents the design from feeling sterile.
+
+What makes Composio distinctive is its tension between extreme minimalism and strategic bursts of luminous color. The site never shouts — headings use tight line-heights (0.87) that compress text into dense, authoritative blocks. Color is rationed like a rare resource: white text for primary content, semi-transparent white (`rgba(255,255,255,0.5-0.6)`) for secondary, and brand blue (`#0007cd`) or electric cyan (`#00ffff`) reserved exclusively for interactive moments and accent glows.
+
+**Key Characteristics:**
+- Pitch-black canvas with near-invisible white-border containment (4-12% opacity)
+- Dual-font identity: geometric sans-serif (abcDiatype) for content, monospace (JetBrains Mono) for technical credibility
+- Ultra-tight heading line-heights (0.87-1.0) creating compressed, impactful text blocks
+- Bioluminescent accent strategy — cyan and blue glows that feel like they&#39;re emitting light from within
+- Hard-offset brutalist shadows (`4px 4px`) on select interactive elements
+- Monochrome hierarchy with color used only at the highest-signal moments
+- Developer-terminal aesthetic that bridges marketing and documentation
+
+## 2. Color Palette &amp; Roles
+
+### Primary
+- **Composio Cobalt** (`#0007cd`): The core brand color — a deep, saturated blue used sparingly for high-priority interactive elements and brand moments. It anchors the identity with quiet intensity.
+
+### Secondary &amp; Accent
+- **Electric Cyan** (`#00ffff`): The attention-grabbing accent — used at low opacity (`rgba(0,255,255,0.12)`) for glowing button backgrounds and card highlights. At full saturation, it serves as the energetic counterpoint to the dark canvas.
+- **Signal Blue** (`#0089ff` / `rgb(0,137,255)`): Used for select button borders and interactive focus states, bridging the gap between Cobalt and Cyan.
+- **Ocean Blue** (`#0096ff` / `rgb(0,150,255)`): Accent border color on CTA buttons, slightly warmer than Signal Blue.
+
+### Surface &amp; Background
+- **Void Black** (`#0f0f0f`): The primary page background — not pure black, but a hair warmer, reducing eye strain on dark displays.
+- **Pure Black** (`#000000`): Used for card interiors and deep-nested containers, creating a subtle depth distinction from the page background.
+- **Charcoal** (`#2c2c2c` / `rgb(44,44,44)`): Used for secondary button borders and divider lines on dark surfaces.
+
+### Neutrals &amp; Text
+- **Pure White** (`#ffffff`): Primary heading and high-emphasis text color on dark surfaces.
+- **Muted Smoke** (`#444444`): De-emphasized body text, metadata, and tertiary content.
+- **Ghost White** (`rgba(255,255,255,0.6)`): Secondary body text and link labels — visible but deliberately receded.
+- **Whisper White** (`rgba(255,255,255,0.5)`): Tertiary button text and placeholder content.
+- **Phantom White** (`rgba(255,255,255,0.2)`): Subtle button backgrounds and deeply receded UI chrome.
+
+### Semantic &amp; Accent
+- **Border Mist 12** (`rgba(255,255,255,0.12)`): Highest-opacity border treatment — used for prominent card edges and content separators.
+- **Border Mist 10** (`rgba(255,255,255,0.10)`): Standard container borders on dark surfaces.
+- **Border Mist 08** (`rgba(255,255,255,0.08)`): Subtle section dividers and secondary card edges.
+- **Border Mist 06** (`rgba(255,255,255,0.06)`): Near-invisible containment borders for background groupings.
+- **Border Mist 04** (`rgba(255,255,255,0.04)`): The faintest border — used for atmospheric separation only.
+- **Light Border** (`#e0e0e0` / `rgb(224,224,224)`): Reserved for light-surface contexts (rare on this site).
+
+### Gradient System
+- **Cyan Glow**: Radial gradients using `#00ffff` at very low opacity, creating bioluminescent halos behind cards and feature sections.
+- **Blue-to-Black Fade**: Linear gradients from Composio Cobalt (`#0007cd`) fading into Void Black (`#0f0f0f`), used in hero backgrounds and section transitions.
+- **White Fog**: Bottom-of-page gradient transitioning from dark to a diffused white/gray, creating an atmospheric &quot;horizon line&quot; effect near the footer.
+
+## 3. Typography Rules
+
+### Font Family
+- **Primary**: `abcDiatype`, with fallbacks: `abcDiatype Fallback, ui-sans-serif, system-ui, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji`
+- **Monospace**: `JetBrains Mono`, with fallbacks: `JetBrains Mono Fallback, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New`
+- **System Monospace** (fallback): `Menlo`, `monospace` for smallest inline code
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
+|------|------|------|--------|-------------|----------------|-------|
+| Display / Hero | abcDiatype | 64px (4rem) | 400 | 0.87 (ultra-tight) | normal | Massive, compressed headings |
+| Section Heading | abcDiatype | 48px (3rem) | 400 | 1.00 (tight) | normal | Major feature section titles |
+| Sub-heading Large | abcDiatype | 40px (2.5rem) | 400 | 1.00 (tight) | normal | Secondary section markers |
+| Sub-heading | abcDiatype | 28px (1.75rem) | 400 | 1.20 (tight) | normal | Card titles, feature names |
+| Card Title | abcDiatype | 24px (1.5rem) | 500 | 1.20 (tight) | normal | Medium-emphasis card headings |
+| Feature Label | abcDiatype | 20px (1.25rem) | 500 | 1.20 (tight) | normal | Smaller card titles, labels |
+| Body Large | abcDiatype | 18px (1.125rem) | 400 | 1.20 (tight) | normal | Intro paragraphs |
+| Body / Button | abcDiatype | 16px (1rem) | 400 | 1.50 | normal | Standard body text, nav links, buttons |
+| Body Small | abcDiatype | 15px (0.94rem) | 400 | 1.63 (relaxed) | normal | Longer-form body text |
+| Caption | abcDiatype | 14px (0.875rem) | 400 | 1.63 (relaxed) | normal | Descriptions, metadata |
+| Label | abcDiatype | 13px (0.81rem) | 500 | 1.50 | normal | UI labels, badges |
+| Tag / Overline | abcDiatype | 12px (0.75rem) | 500 | 1.00 (tight) | 0.3px | Uppercase overline labels |
+| Micro | abcDiatype | 12px (0.75rem) | 400 | 1.00 (tight) | 0.3px | Smallest sans-serif text |
+| Code Body | JetBrains Mono | 16px (1rem) | 400 | 1.50 | -0.32px | Inline code, terminal output |
+| Code Small | JetBrains Mono | 14px (0.875rem) | 400 | 1.50 | -0.28px | Code snippets, technical labels |
+| Code Caption | JetBrains Mono | 12px (0.75rem) | 400 | 1.50 | -0.28px | Small code references |
+| Code Overline | JetBrains Mono | 14px (0.875rem) | 400 | 1.43 | 0.7px | Uppercase technical labels |
+| Code Micro | JetBrains Mono | 11px (0.69rem) | 400 | 1.33 | 0.55px | Tiny uppercase code tags |
+| Code Nano | JetBrains Mono | 9-10px | 400 | 1.33 | 0.45-0.5px | Smallest monospace text |
+
+### Principles
+- **Compression creates authority**: Heading line-heights are drastically tight (0.87-1.0), making large text feel dense and commanding rather than airy and decorative.
+- **Dual personality**: abcDiatype carries the marketing voice — geometric, precise, friendly. JetBrains Mono carries the technical voice — credible, functional, familiar to developers.
+- **Weight restraint**: Almost everything is weight 400 (regular). Weight 500 (medium) is reserved for small labels, badges, and select card titles. Weight 700 (bold) appears only in microscopic system-monospace contexts.
+- **Negative letter-spacing on code**: JetBrains Mono uses negative letter-spacing (-0.28px to -0.98px) for dense, compact code blocks that feel like a real IDE.
+- **Uppercase is earned**: The `uppercase` + `letter-spacing` treatment is reserved exclusively for tiny overline labels and technical tags — never for headings.
+
+## 4. Component Stylings
+
+### Buttons
+
+**Primary CTA (White Fill)**
+- Background: Pure White (`#ffffff`)
+- Text: Near Black (`oklch(0.145 0 0)`)
+- Padding: comfortable (8px 24px)
+- Border: none
+- Radius: subtly rounded (likely 4px based on token scale)
+- Hover: likely subtle opacity reduction or slight gray shift
+
+**Cyan Accent CTA**
+- Background: Electric Cyan at 12% opacity (`rgba(0,255,255,0.12)`)
+- Text: Near Black (`oklch(0.145 0 0)`)
+- Padding: comfortable (8px 24px)
+- Border: thin solid Ocean Blue (`1px solid rgb(0,150,255)`)
+- Radius: subtly rounded (4px)
+- Creates a &quot;glowing from within&quot; effect on dark backgrounds
+
+**Ghost / Outline (Signal Blue)**
+- Background: transparent
+- Text: Near Black (`oklch(0.145 0 0)`)
+- Padding: balanced (10px)
+- Border: thin solid Signal Blue (`1px solid rgb(0,137,255)`)
+- Hover: likely fill or border color shift
+
+**Ghost / Outline (Charcoal)**
+- Background: transparent
+- Text: Near Black (`oklch(0.145 0 0)`)
+- Padding: balanced (10px)
+- Border: thin solid Charcoal (`1px solid rgb(44,44,44)`)
+- For secondary/tertiary actions on dark surfaces
+
+**Phantom Button**
+- Background: Phantom White (`rgba(255,255,255,0.2)`)
+- Text: Whisper White (`rgba(255,255,255,0.5)`)
+- No visible border
+- Used for deeply de-emphasized actions
+
+### Cards &amp; Containers
+- Background: Pure Black (`#000000`) or transparent
+- Border: white at very low opacity, ranging from Border Mist 04 (`rgba(255,255,255,0.04)`) to Border Mist 12 (`rgba(255,255,255,0.12)`) depending on prominence
+- Radius: barely rounded corners (2px for inline elements, 4px for content cards)
+- Shadow: select cards use the hard-offset brutalist shadow (`rgba(0,0,0,0.15) 4px 4px 0px 0px`) — a distinctive design choice that adds raw depth
+- Elevation shadow: deeper containers use soft diffuse shadow (`rgba(0,0,0,0.5) 0px 8px 32px`)
+- Hover behavior: likely subtle border opacity increase or faint glow effect
+
+### Inputs &amp; Forms
+- No explicit input token data extracted — inputs likely follow the dark-surface pattern with:
+  - Background: transparent or Pure Black
+  - Border: Border Mist 10 (`rgba(255,255,255,0.10)`)
+  - Focus: border shifts to Signal Blue (`#0089ff`) or Electric Cyan
+  - Text: Pure White with Ghost White placeholder
+
+### Navigation
+- Sticky top nav bar on dark/black background
+- Logo (white SVG): Composio wordmark on the left
+- Nav links: Pure White (`#ffffff`) at standard body size (16px, abcDiatype)
+- CTA button in the nav: White Fill Primary style
+- Mobile: collapses to hamburger menu, single-column layout
+- Subtle bottom border on nav (Border Mist 06-08)
+
+### Image Treatment
+- Dark-themed product screenshots and UI mockups dominate
+- Images sit within bordered containers matching the card system
+- Blue/cyan gradient glows behind or beneath feature images
+- No visible border-radius on images beyond container rounding (4px)
+- Full-bleed within their card containers
+
+### Distinctive Components
+
+**Stats/Metrics Display**
+- Large monospace numbers (JetBrains Mono) — &quot;10k+&quot; style
+- Tight layout with subtle label text beneath
+
+**Code Blocks / Terminal Previews**
+- Dark containers with JetBrains Mono
+- Syntax-highlighted content
+- Subtle bordered containers (Border Mist 10)
+
+**Integration/Partner Logos Grid**
+- Grid layout of tool logos on dark surface
+- Contained within bordered card
+- Demonstrates ecosystem breadth
+
+**&quot;COMPOSIO&quot; Brand Display**
+- Oversized brand typography — likely the largest text on the page
+- Used as a section divider/brand statement
+- Stark white on black
+
+## 5. Layout Principles
+
+### Spacing System
+- Base unit: 8px
+- Scale: 1px, 2px, 4px, 6px, 8px, 10px, 12px, 14px, 16px, 18px, 20px, 24px, 30px, 32px, 40px
+- Component padding: typically 10px (buttons) to 24px (CTA buttons horizontal)
+- Section padding: generous vertical spacing (estimated 80-120px between major sections)
+- Card internal padding: approximately 24-32px
+
+### Grid &amp; Container
+- Max container width: approximately 1200px, centered
+- Content sections use single-column or 2-3 column grids for feature cards
+- Hero: centered single-column with maximum impact
+- Feature sections: asymmetric layouts mixing text blocks with product screenshots
+
+### Whitespace Philosophy
+- **Breathing room between sections**: Large vertical gaps create distinct &quot;chapters&quot; in the page scroll.
+- **Dense within components**: Cards and text blocks are internally compact (tight line-heights, minimal internal padding), creating focused information nodes.
+- **Contrast-driven separation**: Rather than relying solely on whitespace, Composio uses border opacity differences and subtle background shifts to delineate content zones.
+
+### Border Radius Scale
+- Nearly squared (2px): Inline code spans, small tags, pre blocks — the sharpest treatment, conveying technical precision
+- Subtly rounded (4px): Content cards, images, standard containers — the workhorse radius
+- Pill-shaped (37px): Select buttons and badges — creates a softer, more approachable feel for key CTAs
+- Full round (9999px+): Circular elements, avatar-like containers, decorative dots
+
+## 6. Depth &amp; Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| Flat (Level 0) | No shadow, no border | Page background, inline text |
+| Contained (Level 1) | Border Mist 04-08, no shadow | Background groupings, subtle sections |
+| Card (Level 2) | Border Mist 10-12, no shadow | Standard content cards, code blocks |
+| Brutalist (Level 3) | Hard offset shadow (`4px 4px`, 15% black) | Select interactive cards, distinctive feature highlights |
+| Floating (Level 4) | Soft diffuse shadow (`0px 8px 32px`, 50% black) | Modals, overlays, deeply elevated content |
+
+**Shadow Philosophy**: Composio uses shadows sparingly and with deliberate contrast. The hard-offset brutalist shadow is the signature — it breaks the sleek darkness with a raw, almost retro-computing feel. The soft diffuse shadow is reserved for truly floating elements. Most depth is communicated through border opacity gradations rather than shadows.
+
+### Decorative Depth
+- **Cyan Glow Halos**: Radial gradient halos using Electric Cyan at low opacity behind feature cards and images. Creates a &quot;screen glow&quot; effect as if the UI elements are emitting light.
+- **Blue-Black Gradient Washes**: Linear gradients from Composio Cobalt to Void Black used as section backgrounds, adding subtle color temperature shifts.
+- **White Fog Horizon**: A gradient from dark to diffused white/gray at the bottom of the page, creating an atmospheric &quot;dawn&quot; effect before the footer.
+
+## 7. Do&#39;s and Don&#39;ts
+
+### Do
+- Use Void Black (`#0f0f0f`) as the primary page background — never pure white for main surfaces
+- Keep heading line-heights ultra-tight (0.87-1.0) for compressed, authoritative text blocks
+- Use white-opacity borders (4-12%) for containment — they&#39;re more important than shadows here
+- Reserve Electric Cyan (`#00ffff`) for high-signal moments only — CTAs, glows, interactive accents
+- Pair abcDiatype with JetBrains Mono to reinforce the developer-tool identity
+- Use the hard-offset shadow (`4px 4px`) intentionally on select elements for brutalist personality
+- Keep button text dark (`oklch(0.145 0 0)`) even on the darkest backgrounds — buttons carry their own surface
+- Layer opacity-based borders to create subtle depth without shadows
+- Use uppercase + letter-spacing only for tiny overline labels (12px or smaller)
+
+### Don&#39;t
+- Don&#39;t use bright backgrounds or light surfaces as primary containers
+- Don&#39;t apply heavy shadows everywhere — depth comes from border opacity, not box-shadow
+- Don&#39;t use Composio Cobalt (`#0007cd`) as a text color — it&#39;s too dark on dark and too saturated on light
+- Don&#39;t increase heading line-heights beyond 1.2 — the compressed feel is core to the identity
+- Don&#39;t use bold (700) weight for body or heading text — 400-500 is the ceiling
+- Don&#39;t mix warm colors — the palette is strictly cool (blue, cyan, white, black)
+- Don&#39;t use border-radius larger than 4px on content cards — the precision of near-square corners is intentional
+- Don&#39;t place Electric Cyan at full opacity on large surfaces — it&#39;s an accent, used at 12% max for backgrounds
+- Don&#39;t use decorative serif or handwritten fonts — the entire identity is geometric sans + monospace
+- Don&#39;t skip the monospace font for technical content — JetBrains Mono is not decorative, it&#39;s a credibility signal
+
+## 8. Responsive Behavior
+
+### Breakpoints
+| Name | Width | Key Changes |
+|------|-------|-------------|
+| Mobile | &lt;768px | Single column, hamburger nav, full-width cards, reduced section padding, hero text scales down to ~28-40px |
+| Tablet | 768-1024px | 2-column grid for cards, condensed nav, slightly reduced hero text |
+| Desktop | 1024-1440px | Full multi-column layout, expanded nav with all links visible, large hero typography (64px) |
+| Large Desktop | &gt;1440px | Max-width container centered, generous horizontal margins |
+
+### Touch Targets
+- Minimum touch target: 44x44px for all interactive elements
+- Buttons use comfortable padding (8px 24px minimum) ensuring adequate touch area
+- Nav links spaced with sufficient gap for thumb navigation
+
+### Collapsing Strategy
+- **Navigation**: Full horizontal nav on desktop collapses to hamburger on mobile
+- **Feature grids**: 3-column → 2-column → single-column stacking
+- **Hero text**: 64px → 40px → 28px progressive scaling
+- **Section padding**: Reduces proportionally but maintains generous vertical rhythm
+- **Cards**: Stack vertically on mobile with full-width treatment
+- **Code blocks**: Horizontal scroll on smaller viewports rather than wrapping
+
+### Image Behavior
+- Product screenshots scale proportionally within their containers
+- Dark-themed images maintain contrast on the dark background at all sizes
+- Gradient glow effects scale with container size
+- No visible art direction changes between breakpoints — same crops, proportional scaling
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Primary CTA: &quot;Pure White (#ffffff)&quot;
+- Page Background: &quot;Void Black (#0f0f0f)&quot;
+- Brand Accent: &quot;Composio Cobalt (#0007cd)&quot;
+- Glow Accent: &quot;Electric Cyan (#00ffff)&quot;
+- Heading Text: &quot;Pure White (#ffffff)&quot;
+- Body Text: &quot;Ghost White (rgba(255,255,255,0.6))&quot;
+- Card Border: &quot;Border Mist 10 (rgba(255,255,255,0.10))&quot;
+- Button Border: &quot;Signal Blue (#0089ff)&quot;
+
+### Example Component Prompts
+- &quot;Create a feature card with a near-black background (#000000), barely visible white border at 10% opacity, subtly rounded corners (4px), and a hard-offset shadow (4px right, 4px down, 15% black). Use Pure White for the title in abcDiatype at 24px weight 500, and Ghost White (60% opacity) for the description at 16px.&quot;
+- &quot;Design a primary CTA button with a solid white background, near-black text, comfortable padding (8px vertical, 24px horizontal), and subtly rounded corners. Place it next to a secondary button with transparent background, Signal Blue border, and matching padding.&quot;
+- &quot;Build a hero section on Void Black (#0f0f0f) with a massive heading at 64px, line-height 0.87, in abcDiatype. Center the text. Add a subtle blue-to-black gradient glow behind the content. Include a white CTA button and a cyan-accented secondary button below.&quot;
+- &quot;Create a code snippet display using JetBrains Mono at 14px with -0.28px letter-spacing on a black background. Add a Border Mist 10 border (rgba(255,255,255,0.10)) and 4px radius. Show syntax-highlighted content with white and cyan text.&quot;
+- &quot;Design a navigation bar on Void Black with the Composio wordmark in white on the left, 4-5 nav links in white abcDiatype at 16px, and a white-fill CTA button on the right. Add a Border Mist 06 bottom border.&quot;
+
+### Iteration Guide
+When refining existing screens generated with this design system:
+1. Focus on ONE component at a time
+2. Reference specific color names and hex codes from this document — &quot;use Ghost White (rgba(255,255,255,0.6))&quot; not &quot;make it lighter&quot;
+3. Use natural language descriptions — &quot;make the border barely visible&quot; = Border Mist 04-06
+4. Describe the desired &quot;feel&quot; alongside specific measurements — &quot;compressed and authoritative heading at 48px with line-height 1.0&quot;
+5. For glow effects, specify &quot;Electric Cyan at 12% opacity as a radial gradient behind the element&quot;
+6. Always specify which font — abcDiatype for marketing, JetBrains Mono for technical/code content
+</textarea></section><script type="module" src="/_astro/DocumentTabs.astro_astro_type_script_index_0_lang.CqDIfMN7.js"></script></div><nav class="detail-adjacent-nav" aria-label="Diseños adyacentes"><a class="detail-adjacent-link" href="/es-ES/designs/coinbase/" data-adjacent-link="previous" aria-keyshortcuts="ArrowLeft"><span><kbd aria-hidden="true">←</kbd>Anterior</span><strong>Coinbase</strong></a><a class="detail-adjacent-link detail-adjacent-link-next" href="/es-ES/designs/cursor/" data-adjacent-link="next" aria-keyshortcuts="ArrowRight"><span>Siguiente<kbd aria-hidden="true">→</kbd></span><strong>Cursor</strong></a></nav><astro-island uid="2dvGDr" prefix="r2" component-url="/_astro/HagiCodeShowcase.SrqTGUpG.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;es-ES&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;HagiCodeShowcase&quot;,&quot;value&quot;:true}" await-children><section class="gallery-showcase shell-panel" aria-label="Hagicode"><div class="gallery-showcase-content"><div class="gallery-showcase-head"><div><p class="gallery-meta-label">Construido con HagiCode</p><h2>Hagicode</h2></div></div><div class="gallery-showcase-copy"><p>El flujo OpenSpec, la ejecución multiagente y las interfaces Hero Escenario son ideas reutilizadas para construir esta galería.</p><p>Convierte tus ideas en software pulido y útil con un flujo de codificación agéntica más inteligente, rápido y agradable.</p></div><ul class="gallery-showcase-triad" aria-label="Hagicode"><li><strong>Smart</strong><span>OpenSpec convierte la intención en un camino ejecutable desde la idea hasta el cambio entregado.</span></li><li><strong>Efficient</strong><span>Los flujos multiagente mantienen en paralelo la investigación, la implementación y la revisión.</span></li><li><strong>Fun</strong><span>Las interfaces Hero Scenario hacen que las sesiones largas de programación sean visuales, colaborativas y gratificantes.</span></li></ul><div class="gallery-showcase-actions"><a class="gallery-showcase-cta button-primary" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcasePrimary" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="Visitar HagiCode">Visitar HagiCode</a><a class="gallery-showcase-learn-more" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcaseLearnMore" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="Más información">Más información</a><span class="gallery-showcase-store" data-store-entry="gallery-hagicode" data-ga-category="download" data-ga-label="microsoftStore" data-ga-location="design_showcase"><ms-store-badge productid="9N3PM0N3SVDW" productname="HagiCode" window-mode="direct" theme="auto" size="small" language="es" animation="on" aria-label="Open HagiCode in Microsoft Store" title="Open HagiCode in Microsoft Store"></ms-store-badge></span></div></div><section class="gallery-video-promo" aria-labelledby="gallery-video-promo-title"><div class="gallery-video-promo-heading"><h3 id="gallery-video-promo-title">Vídeo promocional de HagiCode</h3><p>Descubre cómo HagiCode da vida a la codificación agéntica.</p></div><div class="gallery-video-promo-featured"><span class="gallery-video-promo-platform">Descripción general de HagiCode</span><div class="gallery-video-promo-frame"><iframe src="https://www.youtube.com/embed/AQ8oSTW6wNQ?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="Descripción general de HagiCode" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin"></iframe></div><p>Descubre cómo HagiCode da vida a la codificación agéntica.</p><a href="https://www.youtube.com/watch?v=AQ8oSTW6wNQ" target="_blank" rel="noopener noreferrer">Ver en YouTube</a></div><a class="gallery-video-promo-alternate" href="https://www.bilibili.com/video/BV1z4oWB3EpY/" target="_blank" rel="noopener noreferrer">Ver la descripción general de HagiCode en Bilibili</a></section></section><!--astro:end--></astro-island></section></main><hagilight-promoto-banner class="hagilight-promoto" data-locale="es-ES" data-site-id="awesome-design-gallery" hidden="true"><section class="hagilight-promoto__shell" data-promoto-shell hidden aria-label="Featured promotion"><div class="hagilight-promoto__viewport"><div class="hagilight-promoto__track" data-promoto-track></div></div><nav class="hagilight-promoto__controls" data-promoto-controls aria-label="Promotion controls" hidden><button type="button" class="hagilight-promoto__control" data-promoto-previous aria-label="Previous promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="hagilight-promoto__count" data-promoto-count aria-label="Promotion progress"></span><button type="button" class="hagilight-promoto__control" data-promoto-next aria-label="Next promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="hagilight-promoto__control" data-promoto-pause aria-pressed="false" aria-label="Pause automatic promotion rotation"><svg class="hagilight-promoto__icon hagilight-promoto__icon--pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12"></path></svg><svg class="hagilight-promoto__icon hagilight-promoto__icon--play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z"></path></svg></button></nav><button type="button" class="hagilight-promoto__dismiss" data-promoto-dismiss aria-label="Dismiss promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></svg></button><span class="hagilight-promoto__progress" data-promoto-progress aria-hidden="true"></span><span class="hagilight-promoto__status" data-promoto-status aria-live="polite"></span></section></hagilight-promoto-banner><script type="module" src="/_astro/PromotoBanner.astro_astro_type_script_index_0_lang.DP3NpmJD.js"></script><footer class="hagilight-footer astro-w3irp4ng"><section class="hagilight-brand astro-wxz55yp2" lang="es-ES" aria-labelledby="hagilight-brand-title"><div class="hagilight-brand__lead astro-wxz55yp2"><div class="hagilight-brand__title astro-wxz55yp2"><picture class="hagilight-brand__avatar astro-wxz55yp2" data-random-fan="[&quot;cat-head-gallery/g002-ukiyo-e-01.avif&quot;,&quot;cat-head-gallery/g003-watercolor-wash-02.avif&quot;,&quot;cat-head-gallery/g004-pixel-art-03.avif&quot;,&quot;cat-head-gallery/g005-oil-impasto-06.avif&quot;,&quot;cat-head-gallery/g006-paper-cut-layers-07.avif&quot;,&quot;cat-head-gallery/g008-low-poly-07.avif&quot;,&quot;cat-head-gallery/g009-claymation-07.avif&quot;,&quot;cat-head-gallery/g010-neon-line-07.avif&quot;,&quot;cat-head-gallery/g016-bauhaus-geometry-06.avif&quot;,&quot;cat-head-gallery/g017-cyanotype-06.avif&quot;,&quot;cat-head-gallery/g020-origami-03.avif&quot;,&quot;cat-head-gallery/g022-blueprint-03.avif&quot;,&quot;cat-head-gallery/g023-chalk-pastel-10.avif&quot;,&quot;cat-head-gallery/g025-voxel-03.avif&quot;,&quot;cat-head-gallery/g031-illuminated-manuscript-04.avif&quot;,&quot;cat-head-gallery/g034-vaporwave-04.avif&quot;,&quot;cat-head-gallery/g035-synthwave-chrome-09.avif&quot;,&quot;cat-head-gallery/g038-frosted-glass-02.avif&quot;,&quot;cat-head-gallery/g039-needle-felt-09.avif&quot;,&quot;cat-head-gallery/g041-glossy-balloon-05.avif&quot;,&quot;cat-head-gallery/g042-blue-white-porcelain-05.avif&quot;,&quot;cat-head-gallery/g043-glazed-ceramic-06.avif&quot;,&quot;cat-head-gallery/g045-impressionist-08.avif&quot;,&quot;cat-head-gallery/g047-fauvist-09.avif&quot;,&quot;cat-head-gallery/g048-cubist-10.avif&quot;,&quot;cat-head-gallery/g051-naive-folk-art-07.avif&quot;,&quot;cat-head-gallery/g056-wax-print-fabric-07.avif&quot;,&quot;cat-head-gallery/g058-red-paper-cut-10.avif&quot;,&quot;cat-head-gallery/g060-kawaii-pastel-01.avif&quot;,&quot;cat-head-gallery/g061-retro-90s-anime-01.avif&quot;,&quot;cat-head-gallery/g062-shoujo-sparkle-08.avif&quot;,&quot;cat-head-gallery/g065-saturday-cartoon-09.avif&quot;,&quot;cat-head-gallery/g067-pixar-style-3d-03.avif&quot;,&quot;cat-head-gallery/g068-toon-shaded-3d-04.avif&quot;,&quot;cat-head-gallery/g069-ps1-lowpoly-06.avif&quot;,&quot;cat-head-gallery/g070-matte-clay-render-07.avif&quot;,&quot;cat-head-gallery/g071-y2k-chrome-08.avif&quot;,&quot;cat-head-gallery/g072-glossy-3d-icon-08.avif&quot;,&quot;cat-head-gallery/g073-marble-bust-08.avif&quot;,&quot;cat-head-gallery/g075-wood-carving-10.avif&quot;,&quot;cat-head-gallery/g076-carved-jade-10.avif&quot;,&quot;cat-head-gallery/g078-toy-brick-02.avif&quot;,&quot;cat-head-gallery/g079-designer-vinyl-toy-02.avif&quot;,&quot;cat-head-gallery/g081-patchwork-quilt-03.avif&quot;,&quot;cat-head-gallery/g083-warhol-silkscreen-04.avif&quot;,&quot;cat-head-gallery/g088-vintage-lithograph-02.avif&quot;,&quot;cat-head-gallery/g090-alcohol-marker-09.avif&quot;,&quot;cat-head-gallery/g091-painterly-concept-art-09.avif&quot;,&quot;cat-head-gallery/g092-gradient-minimal-09.avif&quot;,&quot;cat-head-gallery/g095-constellation-map-09.avif&quot;]"><source type="image/avif" srcset="/_astro/avatar.BPGAI8am.avif" class="astro-wxz55yp2"><source type="image/webp" srcset="/_astro/avatar.BBqcj7YN.webp" class="astro-wxz55yp2"><img src="/_astro/avatar.BBqcj7YN.webp" width="64" height="64" alt aria-hidden="true" loading="lazy" decoding="async" class="astro-wxz55yp2"></picture><h2 class="hagilight-brand__headline astro-wxz55yp2" id="hagilight-brand-title">Convierte ideas en software entregado.</h2></div><div class="hagilight-brand__body astro-wxz55yp2"><p class="hagilight-brand__summary astro-wxz55yp2">HagiCode es un espacio de trabajo de programación con agentes: los flujos de trabajo de OpenSpec planifican el cambio, la ejecución multiagente lo lleva a cabo y Hero Scenario hace visible el largo recorrido, para convertir ideas en software entregado.</p><div class="hagilight-brand__actions astro-wxz55yp2"><a class="hagilight-brand__primary astro-wxz55yp2" href="https://www.hagicode.com/es-ES/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer_brand" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer_brand"><span class="astro-wxz55yp2">Descargar HagiCode</span><svg class="hagilight-brand__arrow astro-wxz55yp2" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="astro-wxz55yp2"></path></svg></a><a class="hagilight-brand__secondary astro-wxz55yp2" href="https://docs.hagicode.com/es-ES/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer_brand" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer_brand">Documentación del producto</a></div></div></div><dl class="hagilight-brand__pillars astro-wxz55yp2"><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="smart" style="--hagilight-brand-i: 0"><dt class="astro-wxz55yp2">Inteligente</dt><dd class="astro-wxz55yp2">Los flujos de OpenSpec convierten la intención en un camino de la propuesta a la entrega.</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="efficient" style="--hagilight-brand-i: 1"><dt class="astro-wxz55yp2">Eficiente</dt><dd class="astro-wxz55yp2">La ejecución multiagente avanza en paralelo con investigación, implementación y revisión.</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="fun" style="--hagilight-brand-i: 2"><dt class="astro-wxz55yp2">Divertido</dt><dd class="astro-wxz55yp2">Las interacciones de interfaz facilitan la planificación, los agentes y el trabajo en proyectos.</dd></div></dl><script type="module">var e=/^([a-z0-9][a-z0-9_-]*)\/[a-z0-9][a-z0-9_-]*\.avif$/u;function t(t){if(!Array.isArray(t)||t.length<12||t.length>200)throw TypeError(`Hagilight random pool must list 12 to 200 R2 objects.`);let n;for(let r of t){let t=typeof r==`string`?e.exec(r):null;if(!t)throw TypeError(`Hagilight random pool entry "${String(r)}" must be an <album>/<key>.avif object path.`);if(n??=t[1],t[1]!==n)throw TypeError(`Hagilight random pool entries must all come from one album.`)}if(new Set(t).size!==t.length)throw TypeError(`Hagilight random pool entries must be unique.`);return Object.freeze([...t])}function n(e){let t=e();return Number.isFinite(t)?Math.min(Math.max(t,0),1-2**-52):0}function r(e,t,r=Math.random){let i=[...e],a=Math.min(Math.max(Math.floor(t),0),i.length);for(let e=0;e<a;e+=1){let t=e+Math.floor(n(r)*(i.length-e));[i[e],i[t]]=[i[t],i[e]]}return i.slice(0,a)}function i(e){return`https://img-gen.hagicode.com/${e}`}function a(e,t={}){return new Promise(n=>{let r=t.setTimer??((e,t)=>setTimeout(e,t)),i=t.clearTimer??(e=>clearTimeout(e)),a,o=e=>{i(a),n(e)};try{let n=t.createImage?t.createImage():new Image;n.onload=()=>o(!0),n.onerror=()=>o(!1),a=r(()=>o(!1),3e3),n.src=e}catch{o(!1)}})}function o(){return(typeof navigator>`u`?void 0:navigator.connection)?.saveData===!0}function s(e,t,n=6){return((e-t)%n+n)%n}function c(){return typeof matchMedia==`function`&&matchMedia(`(prefers-reduced-motion: reduce)`).matches}function l(e,t){if(typeof IntersectionObserver!=`function`){t(!0);return}new IntersectionObserver(e=>t(e[e.length-1]?.isIntersecting===!0),{rootMargin:`0px 0px 160px 0px`}).observe(e)}function u(e,t,n,r){let i=e.ownerDocument.createElement(`span`);i.className=`hagilight-fan`;let a=n.slice(0,r).map(n=>{let r=t?t.cloneNode(!1):e.ownerDocument.createElement(`img`);return r.removeAttribute(`srcset`),r.removeAttribute(`sizes`),r.removeAttribute(`loading`),r.setAttribute(`class`,`hagilight-fan__card`),r.setAttribute(`src`,n),i.append(r),r});return e.append(i),e.offsetWidth,t?.setAttribute(`data-fan-out`,``),a.forEach((e,t)=>e.setAttribute(`data-slot`,String(t))),a}async function d(e,n){if(e.setAttribute(`data-random-state`,`default`),(n.saveData??o)())return!1;let d;try{d=t(JSON.parse(e.getAttribute(`data-random-fan`)??`null`))}catch{return!1}let f=!1,p,m=new Promise(e=>{p=e});(n.watch??l)(e,e=>{f=e,e&&p()}),await m;let h=n.random??Math.random,g=!(n.reducedMotion??c)(),_=r(d,g?6:3,h).map(i),v=(await Promise.all(_.map(async e=>await a(e,n)?e:``))).filter(Boolean);if(v.length<3)return!1;let y=g&&v.length===6,b=u(e,e.querySelector(`img`),v,y?6:3);if(e.setAttribute(`data-random-state`,`fan`),y){let t=0,r=()=>{};r=(n.every??((e,t)=>{let n=setInterval(e,t);return()=>clearInterval(n)}))(()=>{e.isConnected===!1?r():f&&!(n.tabHidden??(()=>typeof document<`u`&&document.hidden))()&&(t+=1,b.forEach((e,n)=>e.setAttribute(`data-slot`,String(s(n,t,b.length)))))},3600)}return!0}function f(e,t={}){return Array.from(e.querySelectorAll(`[data-random-fan]:not([data-random-state])`)).map(e=>d(e,t).catch(()=>!1))}f(document);</script></section><div class="hagilight-footer__sections astro-w3irp4ng"><div class="hagilight-cols astro-w3irp4ng"><nav class="hagilight-col astro-w3irp4ng" data-column="start" style="--hagilight-col-i: 0" aria-labelledby="hagilight-col-start"><h2 id="hagilight-col-start" class="astro-w3irp4ng">Empezar</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/es-ES/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer" class="astro-w3irp4ng">Descargar HagiCode</a></li><li class="astro-w3irp4ng"><a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" target="_blank" rel="noopener noreferrer" data-ga-category="store" data-ga-label="microsoftStore" data-ga-location="footer" class="astro-w3irp4ng">Descargar HagiCode para Windows</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/es-ES/installation/docker-compose/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=dockerCompose&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="dockerCompose" data-ga-location="footer" class="astro-w3irp4ng">Instalación de Docker Compose</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/es-ES/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer" class="astro-w3irp4ng">Documentación del producto</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/es-ES/about/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=about&amp;utm_content=footer" class="astro-w3irp4ng">Acerca de HagiCode</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/es-ES/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagicode-main&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Sitio principal de HagiCode</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="learn" style="--hagilight-col-i: 1" aria-labelledby="hagilight-col-learn"><h2 id="hagilight-col-learn" class="astro-w3irp4ng">Aprender y docs</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/es-ES/blog/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=blogPosts&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="blogPosts" data-ga-location="footer" class="astro-w3irp4ng">Artículos del blog</a></li><li class="astro-w3irp4ng"><a href="https://openspec.hagicode.com/es-ES/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=openspec-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Documentación de OpenSpec</a></li><li class="astro-w3irp4ng"><a href="https://omniroute.hagicode.com/es-ES/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=omniroute-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Documentación de OmniRoute</a></li><li class="astro-w3irp4ng"><a href="https://fullstack.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=fullstack-tutorial&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Fullstack</a></li><li class="astro-w3irp4ng"><a href="https://impeccable.hagicode.com/es-ES/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=impeccable-site&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Impeccable Commands</a></li><li class="astro-w3irp4ng"><a href="https://awesome.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=awesome-sites&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Awesome Sites</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="build" style="--hagilight-col-i: 2" aria-labelledby="hagilight-col-build"><h2 id="hagilight-col-build" class="astro-w3irp4ng">Herramientas y recursos</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://tasks.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagitask&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiTask</a></li><li class="astro-w3irp4ng"><a href="https://builder.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=compose-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Docker Compose Builder</a></li><li class="astro-w3irp4ng"><a href="https://soul.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=soul-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Soul Builder</a></li><li class="astro-w3irp4ng"><a href="https://trait.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=trait-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Trait Builder</a></li><li class="astro-w3irp4ng"><a href="https://cost.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=costCalculator&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Me reemplazará la IA?</a></li><li class="astro-w3irp4ng"><a href="https://gallery.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=gallery&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Gallery</a></li><li class="astro-w3irp4ng"><a href="https://index.hagicode.com/data/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=index-data&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Index Data Mirror</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="community" style="--hagilight-col-i: 3" aria-labelledby="hagilight-col-community"><h2 id="hagilight-col-community" class="astro-w3irp4ng">Comunidad y soporte</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="github" data-ga-location="footer" class="astro-w3irp4ng">GitHub</a></li><li class="astro-w3irp4ng"><a href="https://discord.gg/qY662sJK" target="_blank" rel="noopener noreferrer" data-ga-category="community" data-ga-label="discord" data-ga-location="footer" class="astro-w3irp4ng">Discord</a></li><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site/issues" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="issueFeedback" data-ga-location="footer" class="astro-w3irp4ng">Reportar un problema</a></li><li class="astro-w3irp4ng"><a href="mailto:support@hagicode.com" class="astro-w3irp4ng">Correo de contacto</a></li><li class="astro-w3irp4ng"><a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer" class="astro-w3irp4ng">Grupo QQ 610394020</a></li><li class="astro-w3irp4ng"><a href="https://newbe.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=newbe-blog&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">newbe</a></li><li class="astro-w3irp4ng"><a href="https://status.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=status-page&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Status</a></li></ul></nav></div></div><div class="hagilight-footer__base astro-w3irp4ng"><nav class="hagilight-footer__feeds astro-w3irp4ng" aria-label="Feeds y mapa del sitio"><a href="https://design.hagicode.com/rss.xml" class="astro-w3irp4ng">RSS</a><a href="https://design.hagicode.com/rss.es-ES.xml" class="astro-w3irp4ng">RSS del idioma actual</a><a href="/sitemap-index.xml" class="astro-w3irp4ng">Mapa del sitio</a></nav><nav class="hagilight-footer__filings astro-w3irp4ng" aria-label="Ver información de registro"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="Ver la información de registro ICP" class="astro-w3irp4ng">Registro ICP 闽ICP备2026004153号-1</a><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer" aria-label="Ver la información de registro de seguridad pública" class="astro-w3irp4ng">Registro de seguridad pública 闽公网安备35011102351148号</a></nav></div><p class="hagilight-footer__copyright astro-w3irp4ng"><span>© 2026 HagiCode</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="branch">Branch: main</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="commit" title="6d161862d30281253ed8c05b55200240fb019d04" data-build-commit="6d161862d30281253ed8c05b55200240fb019d04">Commit: 6d16186</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="builtAt">Built: <time datetime="2026-10-30T16:30:59Z" class="astro-w3irp4ng">2026-10-30T16:30:59Z</time></span></p></footer></div><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script>(function(){const siteId = "L6b88a5yK4h2Xnci";
+
+      LA.init({ id: siteId, ck: siteId, autoTrack: true, hashMode: true });
+    })();</script><script type="module" src="/_astro/Analytics51LA.astro_astro_type_script_index_0_lang.R1vpCc6_.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-EN03FMT2Q4"></script><script>window.dataLayer = window.dataLayer || [];
+window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.gtag('config', "G-EN03FMT2Q4");</script><script type="module" src="/_astro/GoogleAnalytics.astro_astro_type_script_index_0_lang.CWqY6pzt.js"></script></body></html><script type="module">var e=`adms-detail-layout`;function t(e){return e===`preview`||e===`docs`?e:`split`}function n(){try{return t(window.localStorage.getItem(e))}catch{return`split`}}function r(t){try{window.localStorage.setItem(e,t)}catch{}}function i(e){return e instanceof HTMLElement?e.isContentEditable||[`INPUT`,`TEXTAREA`,`SELECT`].includes(e.tagName):!1}function a(e=document){let a=e.querySelector(`[data-detail-grid]`),o=Array.from(e.querySelectorAll(`[data-detail-layout]`)),s=e.querySelector(`.site-header`),c=s&&typeof ResizeObserver<`u`?new ResizeObserver(()=>{e.documentElement.style.setProperty(`--site-header-height`,`${s.offsetHeight}px`)}):void 0;if(c?.observe(s),a&&o.length>0){let e=e=>{a.dataset.layout=e,o.forEach(t=>{let n=t.dataset.detailLayout===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-pressed`,n?`true`:`false`)})};o.forEach(n=>{n.addEventListener(`click`,()=>{let i=t(n.dataset.detailLayout);e(i),r(i)})}),e(n())}let l=t=>{if(t.defaultPrevented||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey||i(t.target))return;let n=t.key===`ArrowLeft`?`previous`:t.key===`ArrowRight`?`next`:null,r=n?e.querySelector(`[data-adjacent-link="${n}"]`):null;r&&(t.preventDefault(),r.click())};return e.addEventListener(`keydown`,l),()=>{c?.disconnect(),e.removeEventListener(`keydown`,l)}}a();</script>

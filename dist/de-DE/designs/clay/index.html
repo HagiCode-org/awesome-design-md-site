@@ -1,0 +1,954 @@
+<!DOCTYPE html><html lang="de-DE" dir="ltr" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v7.3.8"><meta name="theme-color" content="#000000"><title>Clay DESIGN.md • Awesome Design MD Galerie</title><meta name="description" content="Clay Vorschau, README und DESIGN-Dokumentation."><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico"><link rel="stylesheet" href="/global.css"><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><link rel="canonical" href="https://design.hagicode.com/de-DE/designs/clay/"><link rel="alternate" hreflang="en" href="https://design.hagicode.com/designs/clay/"><link rel="alternate" hreflang="zh-CN" href="https://design.hagicode.com/zh-CN/designs/clay/"><link rel="alternate" hreflang="zh-Hant" href="https://design.hagicode.com/zh-Hant/designs/clay/"><link rel="alternate" hreflang="ja-JP" href="https://design.hagicode.com/ja-JP/designs/clay/"><link rel="alternate" hreflang="ko-KR" href="https://design.hagicode.com/ko-KR/designs/clay/"><link rel="alternate" hreflang="de-DE" href="https://design.hagicode.com/de-DE/designs/clay/"><link rel="alternate" hreflang="fr-FR" href="https://design.hagicode.com/fr-FR/designs/clay/"><link rel="alternate" hreflang="es-ES" href="https://design.hagicode.com/es-ES/designs/clay/"><link rel="alternate" hreflang="pt-BR" href="https://design.hagicode.com/pt-BR/designs/clay/"><link rel="alternate" hreflang="ru-RU" href="https://design.hagicode.com/ru-RU/designs/clay/"><link rel="alternate" hreflang="x-default" href="https://design.hagicode.com/designs/clay/"><meta property="og:type" content="website"><meta property="og:title" content="Clay DESIGN.md • Awesome Design MD Galerie"><meta property="og:description" content="Clay Vorschau, README und DESIGN-Dokumentation."><meta property="og:url" content="https://design.hagicode.com/de-DE/designs/clay/"><meta property="og:site_name" content="Awesome Design MD Galerie"><meta property="og:locale" content="de_DE"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="fr_FR"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU"><meta property="og:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:secure_url" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="3137"><meta property="og:image:height" content="1235"><meta property="og:image:alt" content="Clay DESIGN.md • Awesome Design MD Galerie"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Clay DESIGN.md • Awesome Design MD Galerie"><meta name="twitter:description" content="Clay Vorschau, README und DESIGN-Dokumentation."><meta name="twitter:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta name="twitter:image:alt" content="Clay DESIGN.md • Awesome Design MD Galerie"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Clay DESIGN.md • Awesome Design MD Galerie","description":"Clay Vorschau, README und DESIGN-Dokumentation.","url":"https://design.hagicode.com/de-DE/designs/clay/","inLanguage":"de-DE","image":"https://design.hagicode.com/img/hagicode/light-main.png","isPartOf":{"@type":"WebSite","name":"Awesome Design MD Galerie","url":"https://design.hagicode.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Awesome Design MD Galerie","item":"https://design.hagicode.com/de-DE/"},{"@type":"ListItem","position":2,"name":"Clay","item":"https://design.hagicode.com/de-DE/designs/clay/"}]}</script><script>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script>
+      // Cross-document view transition: the gallery card preview grows into the detail preview
+      // (and back). Only the one clicked card is named, so no other card is captured.
+      (() => {
+        const NAME = 'design-preview';
+        const slugOf = (href) => {
+          try {
+            const match = new URL(href, location.href).pathname.match(/\/designs\/([^/]+)\/?$/);
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch {
+            return null;
+          }
+        };
+        // On the way back the browser has not restored the scroll position yet when the page
+        // is revealed, so the returning card is named wherever it is, not only when in view.
+        const cardPreview = (slug, anywhere) => {
+          const card = Array.from(document.querySelectorAll('[data-design-card]')).find(
+            (item) => item.dataset.slug === slug,
+          );
+          const preview = card && card.querySelector('.design-card-preview');
+          if (!preview) return null;
+          const rect = preview.getBoundingClientRect();
+          return anywhere || (rect.bottom > 0 && rect.top < innerHeight) ? preview : null;
+        };
+        const name = async (element, transition) => {
+          if (!element) return;
+          element.style.viewTransitionName = NAME;
+          await transition.finished.catch(() => {});
+          element.style.viewTransitionName = '';
+        };
+
+        addEventListener('pageswap', (event) => {
+          if (!event.viewTransition || !event.activation || !event.activation.entry) return;
+          const to = slugOf(event.activation.entry.url);
+          const here = slugOf(location.href);
+          if (to && !here) name(cardPreview(to), event.viewTransition);
+          else if (!to && here) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+        });
+
+        addEventListener('pagereveal', (event) => {
+          if (!event.viewTransition) return;
+          const activation = window.navigation && window.navigation.activation;
+          if (!activation || !activation.from) return;
+          const from = slugOf(activation.from.url);
+          const here = slugOf(location.href);
+          if (here && !from) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+          else if (!here && from) name(cardPreview(from, true), event.viewTransition);
+        });
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.bD5iggdr.css"><script type="module" src="/_astro/page.KebScxdP.js"></script><script>(function(){document.head.insertAdjacentHTML('beforeend', '\u003cscript type="application/json" data-hagilight-analytics="posthog">{"apiKey":"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5","loader":"(() => {\\n  if (window.__hagilightPosthogInitialized) return;\\n  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\\".\\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\\"script\\")).type=\\"text/javascript\\",p.crossOrigin=\\"anonymous\\",p.async=!0,p.src=s.api_host.replace(\\".i.posthog.com\\",\\"-assets.i.posthog.com\\")+\\"/static/array.js\\",(r=t.getElementsByTagName(\\"script\\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\\"posthog\\",u.people=u.people||[],Object.defineProperty(u,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e=\\"posthog\\";return\\"posthog\\"!==a&&(e+=\\".\\"+a),t||(e+=\\" (stub)\\"),e}}),Object.defineProperty(u.people,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+\\".people (stub)\\"}}),o=\\"init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug\\".split(\\" \\"),n=0;n\\u003co.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);\\n  posthog.init(\\"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5\\", {\\"api_host\\":\\"https://t.hagicode.com\\",\\"ui_host\\":\\"https://us.posthog.com\\",\\"defaults\\":\\"2026-05-30\\",\\"person_profiles\\":\\"identified_only\\",\\"capture_exceptions\\":true});\\n  (() => {\\n    const context = {\\"siteId\\":\\"design.hagicode.com\\",\\"framework\\":\\"astro\\",\\"version\\":\\"0.20.0\\"};\\n    const pageTypes = [\\"home\\",\\"docs\\",\\"blog\\",\\"compare\\",\\"404\\",\\"other\\"];\\n    const metaPageType = document.querySelector(\'meta[name=\\"hagilight:page-type\\"]\')?.getAttribute(\'content\');\\n    const superProperties = {\\n      site_id: context.siteId || window.location.hostname,\\n      site_framework: context.framework,\\n      hagilight_version: context.version,\\n      locale: document.documentElement.lang,\\n      page_type: [context.pageType, metaPageType].find((value) => pageTypes.includes(value)) ?? \'other\',\\n    };\\n    posthog.register(Object.fromEntries(Object.entries(superProperties).filter(([, value]) => typeof value === \'string\' && value !== \'\')));\\n  })();\\n  window.__hagilightPosthogInitialized = true;\\n})();"}\u003c/script>\u003cscript type="application/json" id="hagilight-consent-config">{"policyVersion":"1","privacyUrl":null,"providers":["posthog"],"locale":"en-US"}\u003c/script>');})();</script></head><body><a class="skip-link" href="#main">Zum Inhalt springen</a><div class="page-shell"><header class="site-header"><div class="container shell-panel header-panel"><a class="brand-mark" href="/de-DE/"><img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32"><span class="brand-copy"><strong class="brand-copy-full">Awesome Design MD Galerie</strong><strong class="brand-copy-compact">ADMG</strong><small>Powered by HagiCode</small></span></a><nav class="site-nav site-nav-primary" aria-label="Primär"><a href="/de-DE/" class="site-nav-link"><span class="site-nav-link-label site-nav-link-label-full">Galerie</span><span class="site-nav-link-label site-nav-link-label-compact">Galerie</span></a></nav><nav class="site-nav site-nav-repo" aria-label="Repository-Links"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link" target="_blank" rel="noopener"><span class="site-nav-link-label site-nav-link-label-full">Website-Repo</span></a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link" target="_blank" rel="noopener noreferrer"><span class="site-nav-link-label site-nav-link-label-full">Quell-Repo</span></a></nav><div class="header-actions"><div class="language-select-shell"><select class="language-select" name="locale" aria-label="Sprachauswahl" data-language-select><option value="/designs/clay/" lang="en">English</option><option value="/zh-CN/designs/clay/" lang="zh-CN">简体中文</option><option value="/zh-Hant/designs/clay/" lang="zh-Hant">繁體中文</option><option value="/ja-JP/designs/clay/" lang="ja-JP">日本語</option><option value="/ko-KR/designs/clay/" lang="ko-KR">한국어</option><option value="/de-DE/designs/clay/" selected lang="de-DE">Deutsch</option><option value="/fr-FR/designs/clay/" lang="fr-FR">Français</option><option value="/es-ES/designs/clay/" lang="es-ES">Español</option><option value="/pt-BR/designs/clay/" lang="pt-BR">Português</option><option value="/ru-RU/designs/clay/" lang="ru-RU">Русский</option></select><span class="language-select-icon" aria-hidden="true">▾</span></div><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(function(){let e=async e=>{await(await e())()};(self.Astro||(self.Astro={})).load=e,window.dispatchEvent(new Event(`astro:load`))})();</script><script>(function(){function e(t){"@babel/helpers - typeof";return e=typeof Symbol==`function`&&typeof Symbol.iterator==`symbol`?function(e){return typeof e}:function(e){return e&&typeof Symbol==`function`&&e.constructor===Symbol&&e!==Symbol.prototype?`symbol`:typeof e},e(t)}function t(t,n){if(e(t)!=`object`||!t)return t;var r=t[Symbol.toPrimitive];if(r!==void 0){var i=r.call(t,n||`default`);if(e(i)!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(t)}function n(n){var r=t(n,`string`);return e(r)==`symbol`?r:r+``}function r(e,t,r){return(t=n(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}let i=/* @__PURE__ */ new Set([`__proto__`,`constructor`,`prototype`]);{let e={0:e=>a(e),1:e=>n(e),2:e=>new RegExp(e),3:e=>new Date(e),4:e=>new Map(n(e)),5:e=>new Set(n(e)),6:e=>BigInt(e),7:e=>new URL(e),8:e=>new Uint8Array(e),9:e=>new Uint16Array(e),10:e=>new Uint32Array(e),11:e=>1/0*e},t=t=>{let[n,r]=t;return n in e?e[n](r):void 0},n=e=>e.map(t),a=e=>typeof e!=`object`||!e?e:Object.fromEntries(Object.entries(e).map(([e,n])=>[e,t(n)]));class o extends HTMLElement{constructor(...e){super(...e),r(this,`Component`,void 0),r(this,`hydrator`,void 0),r(this,`hydrate`,async()=>{var e;if(!this.hydrator||!this.isConnected)return;let t=(e=this.parentElement)==null?void 0:e.closest(`astro-island[ssr]`);if(t){t.addEventListener(`astro:hydrate`,this.hydrate,{once:!0});return}let n=this.querySelectorAll(`astro-slot`),r={},i=this.querySelectorAll(`template[data-astro-template]`);for(let e of i){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`data-astro-template`)||`default`]=e.innerHTML,e.remove())}for(let e of n){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`name`)||`default`]=e.innerHTML)}let o;try{o=this.hasAttribute(`props`)?a(JSON.parse(this.getAttribute(`props`))):{}}catch(e){let t=this.getAttribute(`component-url`)||`<unknown>`,n=this.getAttribute(`component-export`);throw n&&(t+=` (export ${n})`),console.error(`[hydrate] Error parsing props for component ${t}`,this.getAttribute(`props`),e),e}await this.hydrator(this)(this.Component,o,r,{client:this.getAttribute(`client`)}),this.removeAttribute(`ssr`),this.dispatchEvent(new CustomEvent(`astro:hydrate`))}),r(this,`unmount`,()=>{this.isConnected||this.dispatchEvent(new CustomEvent(`astro:unmount`))})}disconnectedCallback(){document.removeEventListener(`astro:after-swap`,this.unmount),document.addEventListener(`astro:after-swap`,this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute(`await-children`)||document.readyState===`interactive`||document.readyState===`complete`)this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener(`DOMContentLoaded`,e),t.disconnect(),this.childrenConnectedCallback()},t=new MutationObserver(()=>{var t;((t=this.lastChild)==null?void 0:t.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue===`astro:end`&&(this.lastChild.remove(),e())});t.observe(this,{childList:!0}),document.addEventListener(`DOMContentLoaded`,e)}}async childrenConnectedCallback(){let e=this.getAttribute(`before-hydration-url`);e&&await import(e),this.start()}getRetryImportUrl(e){let t=new URL(e,document.baseURI);return t.searchParams.set(`astro-retry`,Date.now().toString()),t.toString()}async importWithRetry(e){try{return await import(e)}catch(t){return await new Promise(e=>setTimeout(e,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let t=this.getAttribute(`component-url`),n=new CustomEvent(`astro:hydration-error`,{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:t}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${t}`,e)}async start(){let e=JSON.parse(this.getAttribute(`opts`)),t=this.getAttribute(`client`);if(Astro[t]===void 0){window.addEventListener(`astro:${t}`,()=>this.start(),{once:!0});return}try{await Astro[t](async()=>{let e=this.getAttribute(`renderer-url`);try{let[t,{default:n}]=await Promise.all([this.importWithRetry(this.getAttribute(`component-url`)),e?this.importWithRetry(e):Promise.resolve({default:()=>()=>{}})]),r=this.getAttribute(`component-export`)||`default`;if(r.includes(`.`)){this.Component=t;for(let e of r.split(`.`)){if(i.has(e)||!this.Component||typeof this.Component!=`object`&&typeof this.Component!=`function`||!Object.hasOwn(this.Component,e))throw Error(`Invalid component export path: ${r}`);this.Component=this.Component[e]}}else{if(i.has(r))throw Error(`Invalid component export path: ${r}`);this.Component=t[r]}return this.hydrator=n,this.hydrate}catch(e){return this.handleHydrationError(e),()=>{}}},e,this)}catch(e){this.handleHydrationError(e)}}attributeChangedCallback(){this.hydrate()}}r(o,`observedAttributes`,[`props`]),customElements.get(`astro-island`)||customElements.define(`astro-island`,o)}})();</script><astro-island uid="2wd27J" prefix="r3" component-url="/_astro/ThemeToggle.BU4lQzY7.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;de-DE&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="theme-toggle" data-theme-toggle="true" aria-label="In den hellen Modus wechseln"><span class="theme-toggle-label theme-toggle-label-full">Dunkel</span><span class="theme-toggle-label theme-toggle-label-compact">DK</span><span class="theme-toggle-glyph" aria-hidden="true">◐</span></button><!--astro:end--></astro-island></div><details class="header-utility"><summary class="header-utility-trigger" aria-label="Repository-Links"><span class="header-utility-trigger-label" aria-hidden="true">≡</span></summary><div class="header-utility-surface" aria-label="Repository-Links"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link header-utility-link" target="_blank" rel="noopener">Website-Repo</a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link header-utility-link" target="_blank" rel="noopener noreferrer">Quell-Repo</a></div></details></div></header><script>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script><main id="main"><section class="container detail-shell"><div class="detail-header shell-panel"><div class="detail-header-bar"><a class="detail-back-link" href="/de-DE/">Zurück zur Galerie</a><div class="segmented detail-layout-toggle" role="group" aria-label="Arbeitsbereich-Layout"><button type="button" class="preview-toggle is-active" data-detail-layout="split" aria-pressed="true">Geteilt</button><button type="button" class="preview-toggle" data-detail-layout="preview" aria-pressed="false">Vorschau</button><button type="button" class="preview-toggle" data-detail-layout="docs" aria-pressed="false">Doku</button></div></div><div class="detail-header-copy"><h1>Clay</h1><p class="detail-summary">DESIGN.md extracted from the public Clay website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it&#39;s a good starting point for building something similar.</p></div></div><div class="detail-grid" data-detail-grid data-layout="split"><script>
+        // Restore the saved layout before first paint so the grid does not jump.
+        try {
+          const saved = localStorage.getItem('adms-detail-layout');
+          if (saved === 'preview' || saved === 'docs') {
+            document.currentScript.parentElement.dataset.layout = saved;
+          }
+        } catch {}
+      </script><section class="preview-switcher shell-panel" data-preview-switcher data-light-url="/previews/clay/light.html" data-dark-url="/previews/clay/dark.html" data-images="{&quot;light&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/clay/light-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:5118},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/clay/light-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:5549},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/clay/light-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:6714},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/clay/light-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}},&quot;dark&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/clay/dark-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:5118},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/clay/dark-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:5549},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/clay/dark-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:6714},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/clay/dark-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}}}" data-alt-template="Clay {{variant}} Vorschau, Breite {{viewport}}" data-labels="{&quot;light&quot;:&quot;Hell&quot;,&quot;dark&quot;:&quot;Dunkel&quot;,&quot;fit&quot;:&quot;Einpassen&quot;,&quot;tablet&quot;:&quot;Tablet&quot;,&quot;mobile&quot;:&quot;Mobil&quot;}"><div class="preview-switcher-head"><h2>Themefähiger Vorschau-Frame</h2><div class="preview-switcher-tools"><div class="segmented" role="group" aria-label="Vorschau-Theme"><button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-pressed="true">Hell</button><button type="button" class="preview-toggle" data-preview-variant="dark" aria-pressed="false" title="Dunkle Vorschau öffnen">Dunkel</button></div><div class="segmented preview-viewport-group" role="group" aria-label="Vorschaubreite"><button type="button" class="preview-toggle is-active" data-preview-viewport="fit" aria-pressed="true">Einpassen</button><button type="button" class="preview-toggle" data-preview-viewport="tablet" aria-pressed="false">Tablet</button><button type="button" class="preview-toggle" data-preview-viewport="mobile" aria-pressed="false">Mobil</button></div><a class="preview-open" data-preview-open href="/previews/clay/light.html" target="_blank" rel="noopener" aria-label="Vorschau in neuem Tab öffnen" title="Vorschau in neuem Tab öffnen"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M6 3H3v10h10v-3"></path><path d="M9 2.5h4.5V7"></path><path d="M13.5 2.5 7.5 8.5"></path></svg></a></div></div><div class="preview-stage" data-preview-stage data-state="loading" aria-busy="true"><img class="detail-preview-image" data-preview-image src="/preview-images/clay/light-fit.avif" width="1440" height="5118" alt="Clay Hell Vorschau, Breite Einpassen" decoding="async"><p class="preview-error" data-preview-error hidden><span>Die gerenderte Vorschau konnte nicht geladen werden.</span><a data-preview-live href="/previews/clay/light.html" target="_blank" rel="noopener">Live-HTML-Vorschau öffnen</a></p></div><p class="preview-switcher-foot"><span class="preview-switcher-note">Helle und dunkle Vorschau-Assets sind verfügbar.</span><output class="preview-width-readout" data-preview-width aria-hidden="true"></output></p></section><script type="module">function e(e,t,n){e.forEach(e=>{let r=e.getAttribute(t)===n;e.classList.toggle(`is-active`,r),e.setAttribute(`aria-pressed`,r?`true`:`false`)})}function t(e){return`${Math.round(e)} px`}function n(e){if(e)try{return JSON.parse(e)}catch{return}}function r(e,t,n){return e[t][n]}function i(e,t,n){return e.replace(`{{variant}}`,t).replace(`{{viewport}}`,n)}function a(a=document){a.querySelectorAll(`[data-preview-switcher]`).forEach(o=>{let s=o.querySelector(`[data-preview-image]`),c=o.querySelector(`[data-preview-stage]`),l=o.querySelector(`[data-preview-error]`),u=o.querySelector(`[data-preview-live]`),d=Array.from(o.querySelectorAll(`[data-preview-variant]`)),f=Array.from(o.querySelectorAll(`[data-preview-viewport]`)),p=o.querySelector(`[data-preview-open]`),m=o.querySelector(`[data-preview-width]`),h=n(o.dataset.images),g=o.dataset.lightUrl??``,_=o.dataset.darkUrl||g,v=o.dataset.altTemplate??``,y=JSON.parse(o.dataset.labels??`{}`),b=`light`,x=`fit`;if(!s||!c||!h||d.length===0)return;let S=()=>{s.hidden=!1,c.dataset.state=`ready`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!0)},C=()=>{c.dataset.state=`loading`,c.setAttribute(`aria-busy`,`true`)},w=()=>{s.hidden=!0,c.dataset.state=`error`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!1)},T=()=>{let e=r(h,b,x),t=i(v,y[b]??b,y[x]??x);s.alt=t,s.width=e.width,s.height=e.height,s.getAttribute(`src`)===e.url?s.complete&&(s.naturalWidth>0?S():w()):(C(),s.src=e.url)},E=()=>{let t=b===`dark`?_:g;p&&(p.href=t),u&&(u.href=t),o.dataset.viewport=x,e(d,`data-preview-variant`,b),e(f,`data-preview-viewport`,x),T()};s.addEventListener(`load`,S),s.addEventListener(`error`,w),m&&typeof ResizeObserver<`u`&&new ResizeObserver(([e])=>{e&&(m.textContent=t(e.contentRect.width))}).observe(c),d.forEach(e=>{e.addEventListener(`click`,()=>{b=e.dataset.previewVariant===`dark`?`dark`:`light`,E()})}),f.forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.previewViewport;x=t===`tablet`||t===`mobile`?t:`fit`,E()})}),b=a.documentElement.dataset.theme===`dark`?`dark`:`light`,E()})}a();</script><section class="detail-documents" data-document-tabs data-design-slug="clay" data-copy-design-label="DESIGN.md kopieren" data-copied-label="Kopiert" data-copy-failed-label="Kopieren fehlgeschlagen"><h2 class="visually-hidden">README und DESIGN an einem Ort</h2><div class="detail-documents-bar shell-panel" data-doc-bar><div class="detail-documents-head"><div class="segmented detail-tab-list" role="tablist" aria-label="Dokumentenansicht"><button type="button" role="tab" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">README</button><button type="button" role="tab" class="detail-tab" data-doc-tab="design" aria-selected="false">DESIGN</button></div><div class="detail-doc-controls"><button type="button" class="detail-copy-button" data-copy-design disabled aria-disabled="true" title="Rohes DESIGN.md Markdown kopieren">DESIGN.md kopieren</button><a class="detail-copy-button" data-download-design href="/designs/clay/DESIGN.md" download="DESIGN.md" title="Die kanonische DESIGN.md-Datei herunterladen" aria-hidden="true" tabindex="-1">DESIGN.md herunterladen</a></div></div><nav class="detail-outline" data-doc-outline aria-label="Zu Abschnitt springen" hidden></nav></div><div class="detail-doc-panels"><section class="detail-doc-panel is-active" data-doc-panel="readme"><div class="markdown-shell document-copy"><h2 id="clay-inspired-design-system">Clay Inspired Design System</h2>
+<p><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/clay/DESIGN.md">DESIGN.md</a> extracted from the public <a href="https://clay.com/">Clay</a> website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it's a good starting point for building something similar.</p>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIGN.md</code></td>
+<td>Complete design system documentation (9 sections)</td>
+</tr>
+<tr>
+<td><code>preview.html</code></td>
+<td>Interactive design token catalog (light)</td>
+</tr>
+<tr>
+<td><code>preview-dark.html</code></td>
+<td>Interactive design token catalog (dark)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/clay/DESIGN.md">DESIGN.md</a> to use as a reference for AI agents (Claude, Cursor, Stitch) to generate UI that looks like the Clay design language.</p>
+<h2 id="preview">Preview</h2>
+<p>A sample landing page built with DESIGN.md. It shows the actual colors, typography, buttons, cards, spacing, and elevation, all in one page.</p>
+<h3 id="dark-mode">Dark Mode</h3>
+<p><img src="/preview-images/clay/dark-fit.avif" alt="Clay Design System — Dark Mode" loading="lazy" decoding="async"></p>
+<h3 id="light-mode">Light Mode</h3>
+<p><img src="/preview-images/clay/light-fit.avif" alt="Clay Design System — Light Mode" loading="lazy" decoding="async"></p></div></section><section class="detail-doc-panel" data-doc-panel="design" hidden><div class="markdown-shell document-copy"><h2 id="design-system-inspiration-of-clay">Design System Inspiration of Clay</h2>
+<h2 id="1-visual-theme--atmosphere">1. Visual Theme &#x26; Atmosphere</h2>
+<p>Clay's website is a warm, playful celebration of color that treats B2B data enrichment like a craft rather than an enterprise chore. The design language is built on a foundation of warm cream backgrounds (<code>#faf9f7</code>) and oat-toned borders (<code>#dad4c8</code>, <code>#eee9df</code>) that give every surface the tactile quality of handmade paper. Against this artisanal canvas, a vivid swatch palette explodes with personality — Matcha green, Slushie cyan, Lemon gold, Ube purple, Pomegranate pink, Blueberry navy, and Dragonfruit magenta — each named like flavors at a juice bar, not colors in an enterprise UI kit.</p>
+<p>The typography is anchored by Roobert, a geometric sans-serif with character, loaded with an extensive set of OpenType stylistic sets (<code>"ss01"</code>, <code>"ss03"</code>, <code>"ss10"</code>, <code>"ss11"</code>, <code>"ss12"</code>) that give the text a distinctive, slightly quirky personality. At display scale (80px, weight 600), Roobert uses aggressive negative letter-spacing (-3.2px) that compresses headlines into punchy, billboard-like statements. Space Mono serves as the monospace companion for code and technical labels, completing the craft-meets-tech duality.</p>
+<p>What makes Clay truly distinctive is its hover micro-animations: buttons on hover rotate slightly (<code>rotateZ(-8deg)</code>), translate upward (<code>translateY(-80%)</code>), change background to a contrasting swatch color, and cast a hard offset shadow (<code>rgb(0,0,0) -7px 7px</code>). This playful hover behavior — where a button literally tilts and jumps on interaction — creates a sense of physical delight that's rare in B2B software. Combined with generously rounded containers (24px–40px radius), dashed borders alongside solid ones, and a multi-layer shadow system that includes inset highlights, Clay feels like a design system that was made by people who genuinely enjoy making things.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Warm cream canvas (<code>#faf9f7</code>) with oat-toned borders (<code>#dad4c8</code>) — artisanal, not clinical</li>
+<li>Named swatch palette: Matcha, Slushie, Lemon, Ube, Pomegranate, Blueberry, Dragonfruit</li>
+<li>Roobert font with 5 OpenType stylistic sets — quirky geometric character</li>
+<li>Playful hover animations: rotateZ(-8deg) + translateY(-80%) + hard offset shadow</li>
+<li>Space Mono for code and technical labels</li>
+<li>Generous border radius: 24px cards, 40px sections, 1584px pills</li>
+<li>Mixed border styles: solid + dashed in the same interface</li>
+<li>Multi-layer shadow with inset highlight: <code>0px 1px 1px</code> + <code>-1px inset</code> + <code>-0.5px</code></li>
+</ul>
+<h2 id="2-color-palette--roles">2. Color Palette &#x26; Roles</h2>
+<h3 id="primary">Primary</h3>
+<ul>
+<li><strong>Clay Black</strong> (<code>#000000</code>): Text, headings, pricing card text, <code>--_theme--pricing-cards---text</code></li>
+<li><strong>Pure White</strong> (<code>#ffffff</code>): Card backgrounds, button backgrounds, inverse text</li>
+<li><strong>Warm Cream</strong> (<code>#faf9f7</code>): Page background — the warm, paper-like canvas</li>
+</ul>
+<h3 id="swatch-palette--named-colors">Swatch Palette — Named Colors</h3>
+<p><strong>Matcha (Green)</strong></p>
+<ul>
+<li><strong>Matcha 300</strong> (<code>#84e7a5</code>): <code>--_swatches---color--matcha-300</code>, light green accent</li>
+<li><strong>Matcha 600</strong> (<code>#078a52</code>): <code>--_swatches---color--matcha-600</code>, mid green</li>
+<li><strong>Matcha 800</strong> (<code>#02492a</code>): <code>--_swatches---color--matcha-800</code>, deep green for dark sections</li>
+</ul>
+<p><strong>Slushie (Cyan)</strong></p>
+<ul>
+<li><strong>Slushie 500</strong> (<code>#3bd3fd</code>): <code>--_swatches---color--slushie-500</code>, bright cyan accent</li>
+<li><strong>Slushie 800</strong> (<code>#0089ad</code>): <code>--_swatches---color--slushie-800</code>, deep teal</li>
+</ul>
+<p><strong>Lemon (Gold)</strong></p>
+<ul>
+<li><strong>Lemon 400</strong> (<code>#f8cc65</code>): <code>--_swatches---color--lemon-400</code>, warm pale gold</li>
+<li><strong>Lemon 500</strong> (<code>#fbbd41</code>): <code>--_swatches---color--lemon-500</code>, primary gold</li>
+<li><strong>Lemon 700</strong> (<code>#d08a11</code>): <code>--_swatches---color--lemon-700</code>, deep amber</li>
+<li><strong>Lemon 800</strong> (<code>#9d6a09</code>): <code>--_swatches---color--lemon-800</code>, dark amber</li>
+</ul>
+<p><strong>Ube (Purple)</strong></p>
+<ul>
+<li><strong>Ube 300</strong> (<code>#c1b0ff</code>): <code>--_swatches---color--ube-300</code>, soft lavender</li>
+<li><strong>Ube 800</strong> (<code>#43089f</code>): <code>--_swatches---color--ube-800</code>, deep purple</li>
+<li><strong>Ube 900</strong> (<code>#32037d</code>): <code>--_swatches---color--ube-900</code>, darkest purple</li>
+</ul>
+<p><strong>Pomegranate (Pink/Red)</strong></p>
+<ul>
+<li><strong>Pomegranate 400</strong> (<code>#fc7981</code>): <code>--_swatches---color--pomegranate-400</code>, warm coral-pink</li>
+</ul>
+<p><strong>Blueberry (Navy Blue)</strong></p>
+<ul>
+<li><strong>Blueberry 800</strong> (<code>#01418d</code>): <code>--_swatches---color--blueberry-800</code>, deep navy</li>
+</ul>
+<h3 id="neutral-scale-warm">Neutral Scale (Warm)</h3>
+<ul>
+<li><strong>Warm Silver</strong> (<code>#9f9b93</code>): Secondary/muted text, footer links</li>
+<li><strong>Warm Charcoal</strong> (<code>#55534e</code>): Tertiary text, dark muted links</li>
+<li><strong>Dark Charcoal</strong> (<code>#333333</code>): Link text on light backgrounds</li>
+</ul>
+<h3 id="surface--border">Surface &#x26; Border</h3>
+<ul>
+<li><strong>Oat Border</strong> (<code>#dad4c8</code>): Primary border — warm, cream-toned structural lines</li>
+<li><strong>Oat Light</strong> (<code>#eee9df</code>): Secondary lighter border</li>
+<li><strong>Cool Border</strong> (<code>#e6e8ec</code>): Cool-toned border for contrast sections</li>
+<li><strong>Dark Border</strong> (<code>#525a69</code>): Border on dark sections</li>
+<li><strong>Light Frost</strong> (<code>#eff1f3</code>): Subtle button background (at 0% opacity on hover)</li>
+</ul>
+<h3 id="badges">Badges</h3>
+<ul>
+<li><strong>Badge Blue Bg</strong> (<code>#f0f8ff</code>): Blue-tinted badge surface</li>
+<li><strong>Badge Blue Text</strong> (<code>#3859f9</code>): Vivid blue badge text</li>
+<li><strong>Focus Ring</strong> (<code>rgb(20, 110, 245) solid 2px</code>): Accessibility focus indicator</li>
+</ul>
+<h3 id="shadows">Shadows</h3>
+<ul>
+<li><strong>Clay Shadow</strong> (<code>rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px</code>): Multi-layer with inset highlight — the signature</li>
+<li><strong>Hard Offset</strong> (<code>rgb(0,0,0) -7px 7px</code>): Hover state — playful hard shadow</li>
+</ul>
+<h2 id="3-typography-rules">3. Typography Rules</h2>
+<h3 id="font-families">Font Families</h3>
+<ul>
+<li><strong>Primary</strong>: <code>Roobert</code>, fallback: <code>Arial</code></li>
+<li><strong>Monospace</strong>: <code>Space Mono</code></li>
+<li><strong>OpenType Features</strong>: <code>"ss01"</code>, <code>"ss03"</code>, <code>"ss10"</code>, <code>"ss11"</code>, <code>"ss12"</code> on all Roobert text (display uses all 5; body/UI uses <code>"ss03"</code>, <code>"ss10"</code>, <code>"ss11"</code>, <code>"ss12"</code>)</li>
+</ul>
+<h3 id="hierarchy">Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Font</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line Height</th>
+<th>Letter Spacing</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display Hero</td>
+<td>Roobert</td>
+<td>80px (5.00rem)</td>
+<td>600</td>
+<td>1.00 (tight)</td>
+<td>-3.2px</td>
+<td>All 5 stylistic sets</td>
+</tr>
+<tr>
+<td>Display Secondary</td>
+<td>Roobert</td>
+<td>60px (3.75rem)</td>
+<td>600</td>
+<td>1.00 (tight)</td>
+<td>-2.4px</td>
+<td>All 5 stylistic sets</td>
+</tr>
+<tr>
+<td>Section Heading</td>
+<td>Roobert</td>
+<td>44px (2.75rem)</td>
+<td>600</td>
+<td>1.10 (tight)</td>
+<td>-0.88px to -1.32px</td>
+<td>All 5 stylistic sets</td>
+</tr>
+<tr>
+<td>Card Heading</td>
+<td>Roobert</td>
+<td>32px (2.00rem)</td>
+<td>600</td>
+<td>1.10 (tight)</td>
+<td>-0.64px</td>
+<td>All 5 stylistic sets</td>
+</tr>
+<tr>
+<td>Feature Title</td>
+<td>Roobert</td>
+<td>20px (1.25rem)</td>
+<td>600</td>
+<td>1.40</td>
+<td>-0.4px</td>
+<td>All 5 stylistic sets</td>
+</tr>
+<tr>
+<td>Sub-heading</td>
+<td>Roobert</td>
+<td>20px (1.25rem)</td>
+<td>500</td>
+<td>1.50</td>
+<td>-0.16px</td>
+<td>4 stylistic sets (no ss01)</td>
+</tr>
+<tr>
+<td>Body Large</td>
+<td>Roobert</td>
+<td>20px (1.25rem)</td>
+<td>400</td>
+<td>1.40</td>
+<td>normal</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Roobert</td>
+<td>18px (1.13rem)</td>
+<td>400</td>
+<td>1.60 (relaxed)</td>
+<td>-0.36px</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Body Standard</td>
+<td>Roobert</td>
+<td>16px (1.00rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Body Medium</td>
+<td>Roobert</td>
+<td>16px (1.00rem)</td>
+<td>500</td>
+<td>1.20–1.40</td>
+<td>-0.16px to -0.32px</td>
+<td>4–5 stylistic sets</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>Roobert</td>
+<td>16px (1.00rem)</td>
+<td>500</td>
+<td>1.50</td>
+<td>-0.16px</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Button Large</td>
+<td>Roobert</td>
+<td>24px (1.50rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Button Small</td>
+<td>Roobert</td>
+<td>12.8px (0.80rem)</td>
+<td>500</td>
+<td>1.50</td>
+<td>-0.128px</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Nav Link</td>
+<td>Roobert</td>
+<td>15px (0.94rem)</td>
+<td>500</td>
+<td>1.60 (relaxed)</td>
+<td>normal</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Caption</td>
+<td>Roobert</td>
+<td>14px (0.88rem)</td>
+<td>400</td>
+<td>1.50–1.60</td>
+<td>-0.14px</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Small</td>
+<td>Roobert</td>
+<td>12px (0.75rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+<td>4 stylistic sets</td>
+</tr>
+<tr>
+<td>Uppercase Label</td>
+<td>Roobert</td>
+<td>12px (0.75rem)</td>
+<td>600</td>
+<td>1.20 (tight)</td>
+<td>1.08px</td>
+<td><code>text-transform: uppercase</code>, 4 sets</td>
+</tr>
+<tr>
+<td>Badge</td>
+<td>Roobert</td>
+<td>9.6px</td>
+<td>600</td>
+<td>—</td>
+<td>—</td>
+<td>Pill badges</td>
+</tr>
+</tbody>
+</table>
+<h3 id="principles">Principles</h3>
+<ul>
+<li><strong>Five stylistic sets as identity</strong>: The combination of <code>"ss01"</code>, <code>"ss03"</code>, <code>"ss10"</code>, <code>"ss11"</code>, <code>"ss12"</code> on Roobert creates a distinctive typographic personality. <code>ss01</code> is reserved for headings and emphasis — body text omits it, creating a subtle hierarchy through glyph variation.</li>
+<li><strong>Aggressive display compression</strong>: -3.2px at 80px, -2.4px at 60px — the most compressed display tracking alongside the most generous body spacing (1.60 line-height), creating dramatic contrast.</li>
+<li><strong>Weight 600 for headings, 500 for UI, 400 for body</strong>: Clean three-tier system where each weight has a strict role.</li>
+<li><strong>Uppercase labels with positive tracking</strong>: 12px uppercase at 1.08px letter-spacing creates the systematic wayfinding pattern.</li>
+</ul>
+<h2 id="4-component-stylings">4. Component Stylings</h2>
+<h3 id="buttons">Buttons</h3>
+<p><strong>Primary (Transparent with Hover Animation)</strong></p>
+<ul>
+<li>Background: transparent (<code>rgba(239, 241, 243, 0)</code>)</li>
+<li>Text: <code>#000000</code></li>
+<li>Padding: 6.4px 12.8px</li>
+<li>Border: none (or <code>1px solid #717989</code> for outlined variant)</li>
+<li>Hover: background shifts to swatch color (e.g., <code>#434346</code>), text to white, <code>rotateZ(-8deg)</code>, <code>translateY(-80%)</code>, hard shadow <code>rgb(0,0,0) -7px 7px</code></li>
+<li>Focus: <code>rgb(20, 110, 245) solid 2px</code> outline</li>
+</ul>
+<p><strong>White Solid</strong></p>
+<ul>
+<li>Background: <code>#ffffff</code></li>
+<li>Text: <code>#000000</code></li>
+<li>Padding: 6.4px</li>
+<li>Hover: oat-200 swatch color, animated rotation + shadow</li>
+<li>Use: Primary CTA on colored sections</li>
+</ul>
+<p><strong>Ghost Outlined</strong></p>
+<ul>
+<li>Background: transparent</li>
+<li>Text: <code>#000000</code></li>
+<li>Padding: 8px</li>
+<li>Border: <code>1px solid #717989</code></li>
+<li>Radius: 4px</li>
+<li>Hover: dragonfruit swatch color, white text, animated rotation</li>
+</ul>
+<h3 id="cards--containers">Cards &#x26; Containers</h3>
+<ul>
+<li>Background: <code>#ffffff</code> on cream canvas</li>
+<li>Border: <code>1px solid #dad4c8</code> (warm oat) or <code>1px dashed #dad4c8</code></li>
+<li>Radius: 12px (standard cards), 24px (feature cards/images), 40px (section containers/footer)</li>
+<li>Shadow: <code>rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px</code></li>
+<li>Colorful section backgrounds using swatch palette (matcha, slushie, ube, lemon)</li>
+</ul>
+<h3 id="inputs--forms">Inputs &#x26; Forms</h3>
+<ul>
+<li>Text: <code>#000000</code></li>
+<li>Border: <code>1px solid #717989</code></li>
+<li>Radius: 4px</li>
+<li>Focus: <code>rgb(20, 110, 245) solid 2px</code> outline</li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li>Sticky top nav on cream background</li>
+<li>Roobert 15px weight 500 for nav links</li>
+<li>Clay logo left-aligned</li>
+<li>CTA buttons right-aligned with pill radius</li>
+<li>Border bottom: <code>1px solid #dad4c8</code></li>
+<li>Mobile: hamburger collapse at 767px</li>
+</ul>
+<h3 id="image-treatment">Image Treatment</h3>
+<ul>
+<li>Product screenshots in white cards with oat borders</li>
+<li>Colorful illustrated sections with swatch background colors</li>
+<li>8px–24px radius on images</li>
+<li>Full-width colorful section backgrounds</li>
+</ul>
+<h3 id="distinctive-components">Distinctive Components</h3>
+<p><strong>Swatch Color Sections</strong></p>
+<ul>
+<li>Full-width sections with swatch-colored backgrounds (matcha green, slushie cyan, ube purple, lemon gold)</li>
+<li>White text on dark swatches, black text on light swatches</li>
+<li>Each section tells a distinct product story through its color</li>
+</ul>
+<p><strong>Playful Hover Buttons</strong></p>
+<ul>
+<li>Rotate -8deg + translate upward on hover</li>
+<li>Hard offset shadow (<code>-7px 7px</code>) instead of soft blur</li>
+<li>Background transitions to contrasting swatch color</li>
+<li>Creates a physical, toy-like interaction quality</li>
+</ul>
+<p><strong>Dashed Border Elements</strong></p>
+<ul>
+<li>Dashed borders (<code>1px dashed #dad4c8</code>) alongside solid borders</li>
+<li>Used for secondary containers and decorative elements</li>
+<li>Adds a hand-drawn, craft-like quality</li>
+</ul>
+<h2 id="5-layout-principles">5. Layout Principles</h2>
+<h3 id="spacing-system">Spacing System</h3>
+<ul>
+<li>Base unit: 8px</li>
+<li>Scale: 1px, 2px, 4px, 6.4px, 8px, 12px, 12.8px, 16px, 18px, 20px, 24px</li>
+</ul>
+<h3 id="grid--container">Grid &#x26; Container</h3>
+<ul>
+<li>Max content width centered</li>
+<li>Feature sections alternate between white cards and colorful swatch backgrounds</li>
+<li>Card grids: 2–3 columns on desktop</li>
+<li>Full-width colorful sections break the grid</li>
+<li>Footer with generous 40px radius container</li>
+</ul>
+<h3 id="whitespace-philosophy">Whitespace Philosophy</h3>
+<ul>
+<li><strong>Warm, generous breathing</strong>: The cream background provides a warm rest between content blocks. Spacing is generous but not austere — it feels inviting, like a well-set table.</li>
+<li><strong>Color as spatial rhythm</strong>: The alternating swatch-colored sections create visual rhythm through hue rather than just whitespace. Each color section is its own "room."</li>
+<li><strong>Craft-like density inside cards</strong>: Within cards, content is compact and well-organized, contrasting with the generous outer spacing.</li>
+</ul>
+<h3 id="border-radius-scale">Border Radius Scale</h3>
+<ul>
+<li>Sharp (4px): Ghost buttons, inputs</li>
+<li>Standard (8px): Small cards, images, links</li>
+<li>Badge (11px): Tag badges</li>
+<li>Card (12px): Standard cards, buttons</li>
+<li>Feature (24px): Feature cards, images, panels</li>
+<li>Section (40px): Large sections, footer, containers</li>
+<li>Pill (1584px): CTAs, pill-shaped buttons</li>
+</ul>
+<h2 id="6-depth--elevation">6. Depth &#x26; Elevation</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Treatment</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat (Level 0)</td>
+<td>No shadow, cream canvas</td>
+<td>Page background</td>
+</tr>
+<tr>
+<td>Clay Shadow (Level 1)</td>
+<td><code>rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px inset, rgba(0,0,0,0.05) 0px -0.5px</code></td>
+<td>Cards, buttons — multi-layer with inset highlight</td>
+</tr>
+<tr>
+<td>Hover Hard (Level 2)</td>
+<td><code>rgb(0,0,0) -7px 7px</code></td>
+<td>Hover state — playful hard offset shadow</td>
+</tr>
+<tr>
+<td>Focus (Level 3)</td>
+<td><code>rgb(20, 110, 245) solid 2px</code></td>
+<td>Keyboard focus ring</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shadow Philosophy</strong>: Clay's shadow system is uniquely three-layered: a downward cast (<code>0px 1px 1px</code>), an upward inset highlight (<code>0px -1px 1px inset</code>), and a subtle edge (<code>0px -0.5px 1px</code>). This creates a "pressed into clay" quality where elements feel both raised AND embedded — like a clay tablet where content is stamped into the surface. The hover hard shadow (<code>-7px 7px</code>) is deliberately retro-graphic, referencing print-era drop shadows and adding physical playfulness.</p>
+<h3 id="decorative-depth">Decorative Depth</h3>
+<ul>
+<li>Full-width swatch-colored sections create dramatic depth through color contrast</li>
+<li>Dashed borders add visual texture alongside solid borders</li>
+<li>Product illustrations with warm, organic art style</li>
+</ul>
+<h2 id="7-dos-and-donts">7. Do's and Don'ts</h2>
+<h3 id="do">Do</h3>
+<ul>
+<li>Use warm cream (<code>#faf9f7</code>) as the page background — the warmth is the identity</li>
+<li>Apply all 5 OpenType stylistic sets on Roobert headings: <code>"ss01", "ss03", "ss10", "ss11", "ss12"</code></li>
+<li>Use the named swatch palette (Matcha, Slushie, Lemon, Ube, Pomegranate, Blueberry) for section backgrounds</li>
+<li>Apply the playful hover animation: <code>rotateZ(-8deg)</code>, <code>translateY(-80%)</code>, hard shadow <code>-7px 7px</code></li>
+<li>Use warm oat borders (<code>#dad4c8</code>) — not neutral gray</li>
+<li>Mix solid and dashed borders for visual variety</li>
+<li>Use generous radius: 24px for cards, 40px for sections</li>
+<li>Use weight 600 exclusively for headings, 500 for UI, 400 for body</li>
+</ul>
+<h3 id="dont">Don't</h3>
+<ul>
+<li>Don't use cool gray backgrounds — the warm cream (<code>#faf9f7</code>) is non-negotiable</li>
+<li>Don't use neutral gray borders (<code>#ccc</code>, <code>#ddd</code>) — always use the warm oat tones</li>
+<li>Don't mix more than 2 swatch colors in the same section</li>
+<li>Don't skip the OpenType stylistic sets — they define Roobert's character</li>
+<li>Don't use subtle hover effects — the rotation + hard shadow is the signature interaction</li>
+<li>Don't use small border radius (&#x3C;12px) on feature cards — the generous rounding is structural</li>
+<li>Don't use standard shadows (blur-based) — Clay uses hard offset and multi-layer inset</li>
+<li>Don't forget the uppercase labels with 1.08px tracking — they're the wayfinding system</li>
+</ul>
+<h2 id="8-responsive-behavior">8. Responsive Behavior</h2>
+<h3 id="breakpoints">Breakpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Width</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile Small</td>
+<td>&#x3C;479px</td>
+<td>Single column, tight padding</td>
+</tr>
+<tr>
+<td>Mobile</td>
+<td>479–767px</td>
+<td>Standard mobile, stacked layout</td>
+</tr>
+<tr>
+<td>Tablet</td>
+<td>768–991px</td>
+<td>2-column grids, condensed nav</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>992px+</td>
+<td>Full layout, 3-column grids, expanded sections</td>
+</tr>
+</tbody>
+</table>
+<h3 id="touch-targets">Touch Targets</h3>
+<ul>
+<li>Buttons: minimum 6.4px + 12.8px padding for adequate touch area</li>
+<li>Nav links: 15px font with generous spacing</li>
+<li>Mobile: full-width buttons for easy tapping</li>
+</ul>
+<h3 id="collapsing-strategy">Collapsing Strategy</h3>
+<ul>
+<li>Hero: 80px → 60px → smaller display text</li>
+<li>Navigation: horizontal → hamburger at 767px</li>
+<li>Feature sections: multi-column → stacked</li>
+<li>Colorful sections: maintain full-width but compress padding</li>
+<li>Card grids: 3-column → 2-column → single column</li>
+</ul>
+<h3 id="image-behavior">Image Behavior</h3>
+<ul>
+<li>Product screenshots scale proportionally</li>
+<li>Colorful section illustrations adapt to viewport width</li>
+<li>Rounded corners maintained across breakpoints</li>
+</ul>
+<h2 id="9-agent-prompt-guide">9. Agent Prompt Guide</h2>
+<h3 id="quick-color-reference">Quick Color Reference</h3>
+<ul>
+<li>Background: Warm Cream (<code>#faf9f7</code>)</li>
+<li>Text: Clay Black (<code>#000000</code>)</li>
+<li>Secondary text: Warm Silver (<code>#9f9b93</code>)</li>
+<li>Border: Oat Border (<code>#dad4c8</code>)</li>
+<li>Green accent: Matcha 600 (<code>#078a52</code>)</li>
+<li>Cyan accent: Slushie 500 (<code>#3bd3fd</code>)</li>
+<li>Gold accent: Lemon 500 (<code>#fbbd41</code>)</li>
+<li>Purple accent: Ube 800 (<code>#43089f</code>)</li>
+<li>Pink accent: Pomegranate 400 (<code>#fc7981</code>)</li>
+</ul>
+<h3 id="example-component-prompts">Example Component Prompts</h3>
+<ul>
+<li>"Create a hero on warm cream (#faf9f7) background. Headline at 80px Roobert weight 600, line-height 1.00, letter-spacing -3.2px, OpenType 'ss01 ss03 ss10 ss11 ss12', black text. Subtitle at 20px weight 400, line-height 1.40, #9f9b93 text. Two buttons: white solid pill (12px radius) and ghost outlined (4px radius, 1px solid #717989)."</li>
+<li>"Design a colorful section with Matcha 800 (#02492a) background. Heading at 44px Roobert weight 600, letter-spacing -1.32px, white text. Body at 18px weight 400, line-height 1.60, #84e7a5 text. White card inset with oat border (#dad4c8), 24px radius."</li>
+<li>"Build a button with playful hover: default transparent background, black text, 16px Roobert weight 500. On hover: background #434346, text white, transform rotateZ(-8deg) translateY(-80%), hard shadow rgb(0,0,0) -7px 7px."</li>
+<li>"Create a card: white background, 1px solid #dad4c8 border, 24px radius. Shadow: rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset. Title at 32px Roobert weight 600, letter-spacing -0.64px."</li>
+<li>"Design an uppercase label: 12px Roobert weight 600, text-transform uppercase, letter-spacing 1.08px, OpenType 'ss03 ss10 ss11 ss12'."</li>
+</ul>
+<h3 id="iteration-guide">Iteration Guide</h3>
+<ol>
+<li>Start with warm cream (#faf9f7) — never cool white</li>
+<li>Swatch colors are for full sections, not small accents — go bold with matcha, slushie, ube</li>
+<li>Oat borders (#dad4c8) everywhere — dashed variants for decoration</li>
+<li>OpenType stylistic sets are mandatory — they make Roobert look like Roobert</li>
+<li>Hover animations are the signature — rotation + hard shadow, not subtle fades</li>
+<li>Generous radius: 24px cards, 40px sections — nothing looks sharp or corporate</li>
+<li>Three weights: 600 (headings), 500 (UI), 400 (body) — strict roles</li>
+</ol></div></section></div><textarea hidden readonly data-design-markdown># Design System Inspiration of Clay
+
+## 1. Visual Theme &amp; Atmosphere
+
+Clay&#39;s website is a warm, playful celebration of color that treats B2B data enrichment like a craft rather than an enterprise chore. The design language is built on a foundation of warm cream backgrounds (`#faf9f7`) and oat-toned borders (`#dad4c8`, `#eee9df`) that give every surface the tactile quality of handmade paper. Against this artisanal canvas, a vivid swatch palette explodes with personality — Matcha green, Slushie cyan, Lemon gold, Ube purple, Pomegranate pink, Blueberry navy, and Dragonfruit magenta — each named like flavors at a juice bar, not colors in an enterprise UI kit.
+
+The typography is anchored by Roobert, a geometric sans-serif with character, loaded with an extensive set of OpenType stylistic sets (`&quot;ss01&quot;`, `&quot;ss03&quot;`, `&quot;ss10&quot;`, `&quot;ss11&quot;`, `&quot;ss12&quot;`) that give the text a distinctive, slightly quirky personality. At display scale (80px, weight 600), Roobert uses aggressive negative letter-spacing (-3.2px) that compresses headlines into punchy, billboard-like statements. Space Mono serves as the monospace companion for code and technical labels, completing the craft-meets-tech duality.
+
+What makes Clay truly distinctive is its hover micro-animations: buttons on hover rotate slightly (`rotateZ(-8deg)`), translate upward (`translateY(-80%)`), change background to a contrasting swatch color, and cast a hard offset shadow (`rgb(0,0,0) -7px 7px`). This playful hover behavior — where a button literally tilts and jumps on interaction — creates a sense of physical delight that&#39;s rare in B2B software. Combined with generously rounded containers (24px–40px radius), dashed borders alongside solid ones, and a multi-layer shadow system that includes inset highlights, Clay feels like a design system that was made by people who genuinely enjoy making things.
+
+**Key Characteristics:**
+- Warm cream canvas (`#faf9f7`) with oat-toned borders (`#dad4c8`) — artisanal, not clinical
+- Named swatch palette: Matcha, Slushie, Lemon, Ube, Pomegranate, Blueberry, Dragonfruit
+- Roobert font with 5 OpenType stylistic sets — quirky geometric character
+- Playful hover animations: rotateZ(-8deg) + translateY(-80%) + hard offset shadow
+- Space Mono for code and technical labels
+- Generous border radius: 24px cards, 40px sections, 1584px pills
+- Mixed border styles: solid + dashed in the same interface
+- Multi-layer shadow with inset highlight: `0px 1px 1px` + `-1px inset` + `-0.5px`
+
+## 2. Color Palette &amp; Roles
+
+### Primary
+- **Clay Black** (`#000000`): Text, headings, pricing card text, `--_theme--pricing-cards---text`
+- **Pure White** (`#ffffff`): Card backgrounds, button backgrounds, inverse text
+- **Warm Cream** (`#faf9f7`): Page background — the warm, paper-like canvas
+
+### Swatch Palette — Named Colors
+
+**Matcha (Green)**
+- **Matcha 300** (`#84e7a5`): `--_swatches---color--matcha-300`, light green accent
+- **Matcha 600** (`#078a52`): `--_swatches---color--matcha-600`, mid green
+- **Matcha 800** (`#02492a`): `--_swatches---color--matcha-800`, deep green for dark sections
+
+**Slushie (Cyan)**
+- **Slushie 500** (`#3bd3fd`): `--_swatches---color--slushie-500`, bright cyan accent
+- **Slushie 800** (`#0089ad`): `--_swatches---color--slushie-800`, deep teal
+
+**Lemon (Gold)**
+- **Lemon 400** (`#f8cc65`): `--_swatches---color--lemon-400`, warm pale gold
+- **Lemon 500** (`#fbbd41`): `--_swatches---color--lemon-500`, primary gold
+- **Lemon 700** (`#d08a11`): `--_swatches---color--lemon-700`, deep amber
+- **Lemon 800** (`#9d6a09`): `--_swatches---color--lemon-800`, dark amber
+
+**Ube (Purple)**
+- **Ube 300** (`#c1b0ff`): `--_swatches---color--ube-300`, soft lavender
+- **Ube 800** (`#43089f`): `--_swatches---color--ube-800`, deep purple
+- **Ube 900** (`#32037d`): `--_swatches---color--ube-900`, darkest purple
+
+**Pomegranate (Pink/Red)**
+- **Pomegranate 400** (`#fc7981`): `--_swatches---color--pomegranate-400`, warm coral-pink
+
+**Blueberry (Navy Blue)**
+- **Blueberry 800** (`#01418d`): `--_swatches---color--blueberry-800`, deep navy
+
+### Neutral Scale (Warm)
+- **Warm Silver** (`#9f9b93`): Secondary/muted text, footer links
+- **Warm Charcoal** (`#55534e`): Tertiary text, dark muted links
+- **Dark Charcoal** (`#333333`): Link text on light backgrounds
+
+### Surface &amp; Border
+- **Oat Border** (`#dad4c8`): Primary border — warm, cream-toned structural lines
+- **Oat Light** (`#eee9df`): Secondary lighter border
+- **Cool Border** (`#e6e8ec`): Cool-toned border for contrast sections
+- **Dark Border** (`#525a69`): Border on dark sections
+- **Light Frost** (`#eff1f3`): Subtle button background (at 0% opacity on hover)
+
+### Badges
+- **Badge Blue Bg** (`#f0f8ff`): Blue-tinted badge surface
+- **Badge Blue Text** (`#3859f9`): Vivid blue badge text
+- **Focus Ring** (`rgb(20, 110, 245) solid 2px`): Accessibility focus indicator
+
+### Shadows
+- **Clay Shadow** (`rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px`): Multi-layer with inset highlight — the signature
+- **Hard Offset** (`rgb(0,0,0) -7px 7px`): Hover state — playful hard shadow
+
+## 3. Typography Rules
+
+### Font Families
+- **Primary**: `Roobert`, fallback: `Arial`
+- **Monospace**: `Space Mono`
+- **OpenType Features**: `&quot;ss01&quot;`, `&quot;ss03&quot;`, `&quot;ss10&quot;`, `&quot;ss11&quot;`, `&quot;ss12&quot;` on all Roobert text (display uses all 5; body/UI uses `&quot;ss03&quot;`, `&quot;ss10&quot;`, `&quot;ss11&quot;`, `&quot;ss12&quot;`)
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
+|------|------|------|--------|-------------|----------------|-------|
+| Display Hero | Roobert | 80px (5.00rem) | 600 | 1.00 (tight) | -3.2px | All 5 stylistic sets |
+| Display Secondary | Roobert | 60px (3.75rem) | 600 | 1.00 (tight) | -2.4px | All 5 stylistic sets |
+| Section Heading | Roobert | 44px (2.75rem) | 600 | 1.10 (tight) | -0.88px to -1.32px | All 5 stylistic sets |
+| Card Heading | Roobert | 32px (2.00rem) | 600 | 1.10 (tight) | -0.64px | All 5 stylistic sets |
+| Feature Title | Roobert | 20px (1.25rem) | 600 | 1.40 | -0.4px | All 5 stylistic sets |
+| Sub-heading | Roobert | 20px (1.25rem) | 500 | 1.50 | -0.16px | 4 stylistic sets (no ss01) |
+| Body Large | Roobert | 20px (1.25rem) | 400 | 1.40 | normal | 4 stylistic sets |
+| Body | Roobert | 18px (1.13rem) | 400 | 1.60 (relaxed) | -0.36px | 4 stylistic sets |
+| Body Standard | Roobert | 16px (1.00rem) | 400 | 1.50 | normal | 4 stylistic sets |
+| Body Medium | Roobert | 16px (1.00rem) | 500 | 1.20–1.40 | -0.16px to -0.32px | 4–5 stylistic sets |
+| Button | Roobert | 16px (1.00rem) | 500 | 1.50 | -0.16px | 4 stylistic sets |
+| Button Large | Roobert | 24px (1.50rem) | 400 | 1.50 | normal | 4 stylistic sets |
+| Button Small | Roobert | 12.8px (0.80rem) | 500 | 1.50 | -0.128px | 4 stylistic sets |
+| Nav Link | Roobert | 15px (0.94rem) | 500 | 1.60 (relaxed) | normal | 4 stylistic sets |
+| Caption | Roobert | 14px (0.88rem) | 400 | 1.50–1.60 | -0.14px | 4 stylistic sets |
+| Small | Roobert | 12px (0.75rem) | 400 | 1.50 | normal | 4 stylistic sets |
+| Uppercase Label | Roobert | 12px (0.75rem) | 600 | 1.20 (tight) | 1.08px | `text-transform: uppercase`, 4 sets |
+| Badge | Roobert | 9.6px | 600 | — | — | Pill badges |
+
+### Principles
+- **Five stylistic sets as identity**: The combination of `&quot;ss01&quot;`, `&quot;ss03&quot;`, `&quot;ss10&quot;`, `&quot;ss11&quot;`, `&quot;ss12&quot;` on Roobert creates a distinctive typographic personality. `ss01` is reserved for headings and emphasis — body text omits it, creating a subtle hierarchy through glyph variation.
+- **Aggressive display compression**: -3.2px at 80px, -2.4px at 60px — the most compressed display tracking alongside the most generous body spacing (1.60 line-height), creating dramatic contrast.
+- **Weight 600 for headings, 500 for UI, 400 for body**: Clean three-tier system where each weight has a strict role.
+- **Uppercase labels with positive tracking**: 12px uppercase at 1.08px letter-spacing creates the systematic wayfinding pattern.
+
+## 4. Component Stylings
+
+### Buttons
+
+**Primary (Transparent with Hover Animation)**
+- Background: transparent (`rgba(239, 241, 243, 0)`)
+- Text: `#000000`
+- Padding: 6.4px 12.8px
+- Border: none (or `1px solid #717989` for outlined variant)
+- Hover: background shifts to swatch color (e.g., `#434346`), text to white, `rotateZ(-8deg)`, `translateY(-80%)`, hard shadow `rgb(0,0,0) -7px 7px`
+- Focus: `rgb(20, 110, 245) solid 2px` outline
+
+**White Solid**
+- Background: `#ffffff`
+- Text: `#000000`
+- Padding: 6.4px
+- Hover: oat-200 swatch color, animated rotation + shadow
+- Use: Primary CTA on colored sections
+
+**Ghost Outlined**
+- Background: transparent
+- Text: `#000000`
+- Padding: 8px
+- Border: `1px solid #717989`
+- Radius: 4px
+- Hover: dragonfruit swatch color, white text, animated rotation
+
+### Cards &amp; Containers
+- Background: `#ffffff` on cream canvas
+- Border: `1px solid #dad4c8` (warm oat) or `1px dashed #dad4c8`
+- Radius: 12px (standard cards), 24px (feature cards/images), 40px (section containers/footer)
+- Shadow: `rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset, rgba(0,0,0,0.05) 0px -0.5px 1px`
+- Colorful section backgrounds using swatch palette (matcha, slushie, ube, lemon)
+
+### Inputs &amp; Forms
+- Text: `#000000`
+- Border: `1px solid #717989`
+- Radius: 4px
+- Focus: `rgb(20, 110, 245) solid 2px` outline
+
+### Navigation
+- Sticky top nav on cream background
+- Roobert 15px weight 500 for nav links
+- Clay logo left-aligned
+- CTA buttons right-aligned with pill radius
+- Border bottom: `1px solid #dad4c8`
+- Mobile: hamburger collapse at 767px
+
+### Image Treatment
+- Product screenshots in white cards with oat borders
+- Colorful illustrated sections with swatch background colors
+- 8px–24px radius on images
+- Full-width colorful section backgrounds
+
+### Distinctive Components
+
+**Swatch Color Sections**
+- Full-width sections with swatch-colored backgrounds (matcha green, slushie cyan, ube purple, lemon gold)
+- White text on dark swatches, black text on light swatches
+- Each section tells a distinct product story through its color
+
+**Playful Hover Buttons**
+- Rotate -8deg + translate upward on hover
+- Hard offset shadow (`-7px 7px`) instead of soft blur
+- Background transitions to contrasting swatch color
+- Creates a physical, toy-like interaction quality
+
+**Dashed Border Elements**
+- Dashed borders (`1px dashed #dad4c8`) alongside solid borders
+- Used for secondary containers and decorative elements
+- Adds a hand-drawn, craft-like quality
+
+## 5. Layout Principles
+
+### Spacing System
+- Base unit: 8px
+- Scale: 1px, 2px, 4px, 6.4px, 8px, 12px, 12.8px, 16px, 18px, 20px, 24px
+
+### Grid &amp; Container
+- Max content width centered
+- Feature sections alternate between white cards and colorful swatch backgrounds
+- Card grids: 2–3 columns on desktop
+- Full-width colorful sections break the grid
+- Footer with generous 40px radius container
+
+### Whitespace Philosophy
+- **Warm, generous breathing**: The cream background provides a warm rest between content blocks. Spacing is generous but not austere — it feels inviting, like a well-set table.
+- **Color as spatial rhythm**: The alternating swatch-colored sections create visual rhythm through hue rather than just whitespace. Each color section is its own &quot;room.&quot;
+- **Craft-like density inside cards**: Within cards, content is compact and well-organized, contrasting with the generous outer spacing.
+
+### Border Radius Scale
+- Sharp (4px): Ghost buttons, inputs
+- Standard (8px): Small cards, images, links
+- Badge (11px): Tag badges
+- Card (12px): Standard cards, buttons
+- Feature (24px): Feature cards, images, panels
+- Section (40px): Large sections, footer, containers
+- Pill (1584px): CTAs, pill-shaped buttons
+
+## 6. Depth &amp; Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| Flat (Level 0) | No shadow, cream canvas | Page background |
+| Clay Shadow (Level 1) | `rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px inset, rgba(0,0,0,0.05) 0px -0.5px` | Cards, buttons — multi-layer with inset highlight |
+| Hover Hard (Level 2) | `rgb(0,0,0) -7px 7px` | Hover state — playful hard offset shadow |
+| Focus (Level 3) | `rgb(20, 110, 245) solid 2px` | Keyboard focus ring |
+
+**Shadow Philosophy**: Clay&#39;s shadow system is uniquely three-layered: a downward cast (`0px 1px 1px`), an upward inset highlight (`0px -1px 1px inset`), and a subtle edge (`0px -0.5px 1px`). This creates a &quot;pressed into clay&quot; quality where elements feel both raised AND embedded — like a clay tablet where content is stamped into the surface. The hover hard shadow (`-7px 7px`) is deliberately retro-graphic, referencing print-era drop shadows and adding physical playfulness.
+
+### Decorative Depth
+- Full-width swatch-colored sections create dramatic depth through color contrast
+- Dashed borders add visual texture alongside solid borders
+- Product illustrations with warm, organic art style
+
+## 7. Do&#39;s and Don&#39;ts
+
+### Do
+- Use warm cream (`#faf9f7`) as the page background — the warmth is the identity
+- Apply all 5 OpenType stylistic sets on Roobert headings: `&quot;ss01&quot;, &quot;ss03&quot;, &quot;ss10&quot;, &quot;ss11&quot;, &quot;ss12&quot;`
+- Use the named swatch palette (Matcha, Slushie, Lemon, Ube, Pomegranate, Blueberry) for section backgrounds
+- Apply the playful hover animation: `rotateZ(-8deg)`, `translateY(-80%)`, hard shadow `-7px 7px`
+- Use warm oat borders (`#dad4c8`) — not neutral gray
+- Mix solid and dashed borders for visual variety
+- Use generous radius: 24px for cards, 40px for sections
+- Use weight 600 exclusively for headings, 500 for UI, 400 for body
+
+### Don&#39;t
+- Don&#39;t use cool gray backgrounds — the warm cream (`#faf9f7`) is non-negotiable
+- Don&#39;t use neutral gray borders (`#ccc`, `#ddd`) — always use the warm oat tones
+- Don&#39;t mix more than 2 swatch colors in the same section
+- Don&#39;t skip the OpenType stylistic sets — they define Roobert&#39;s character
+- Don&#39;t use subtle hover effects — the rotation + hard shadow is the signature interaction
+- Don&#39;t use small border radius (&lt;12px) on feature cards — the generous rounding is structural
+- Don&#39;t use standard shadows (blur-based) — Clay uses hard offset and multi-layer inset
+- Don&#39;t forget the uppercase labels with 1.08px tracking — they&#39;re the wayfinding system
+
+## 8. Responsive Behavior
+
+### Breakpoints
+| Name | Width | Key Changes |
+|------|-------|-------------|
+| Mobile Small | &lt;479px | Single column, tight padding |
+| Mobile | 479–767px | Standard mobile, stacked layout |
+| Tablet | 768–991px | 2-column grids, condensed nav |
+| Desktop | 992px+ | Full layout, 3-column grids, expanded sections |
+
+### Touch Targets
+- Buttons: minimum 6.4px + 12.8px padding for adequate touch area
+- Nav links: 15px font with generous spacing
+- Mobile: full-width buttons for easy tapping
+
+### Collapsing Strategy
+- Hero: 80px → 60px → smaller display text
+- Navigation: horizontal → hamburger at 767px
+- Feature sections: multi-column → stacked
+- Colorful sections: maintain full-width but compress padding
+- Card grids: 3-column → 2-column → single column
+
+### Image Behavior
+- Product screenshots scale proportionally
+- Colorful section illustrations adapt to viewport width
+- Rounded corners maintained across breakpoints
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Background: Warm Cream (`#faf9f7`)
+- Text: Clay Black (`#000000`)
+- Secondary text: Warm Silver (`#9f9b93`)
+- Border: Oat Border (`#dad4c8`)
+- Green accent: Matcha 600 (`#078a52`)
+- Cyan accent: Slushie 500 (`#3bd3fd`)
+- Gold accent: Lemon 500 (`#fbbd41`)
+- Purple accent: Ube 800 (`#43089f`)
+- Pink accent: Pomegranate 400 (`#fc7981`)
+
+### Example Component Prompts
+- &quot;Create a hero on warm cream (#faf9f7) background. Headline at 80px Roobert weight 600, line-height 1.00, letter-spacing -3.2px, OpenType &#39;ss01 ss03 ss10 ss11 ss12&#39;, black text. Subtitle at 20px weight 400, line-height 1.40, #9f9b93 text. Two buttons: white solid pill (12px radius) and ghost outlined (4px radius, 1px solid #717989).&quot;
+- &quot;Design a colorful section with Matcha 800 (#02492a) background. Heading at 44px Roobert weight 600, letter-spacing -1.32px, white text. Body at 18px weight 400, line-height 1.60, #84e7a5 text. White card inset with oat border (#dad4c8), 24px radius.&quot;
+- &quot;Build a button with playful hover: default transparent background, black text, 16px Roobert weight 500. On hover: background #434346, text white, transform rotateZ(-8deg) translateY(-80%), hard shadow rgb(0,0,0) -7px 7px.&quot;
+- &quot;Create a card: white background, 1px solid #dad4c8 border, 24px radius. Shadow: rgba(0,0,0,0.1) 0px 1px 1px, rgba(0,0,0,0.04) 0px -1px 1px inset. Title at 32px Roobert weight 600, letter-spacing -0.64px.&quot;
+- &quot;Design an uppercase label: 12px Roobert weight 600, text-transform uppercase, letter-spacing 1.08px, OpenType &#39;ss03 ss10 ss11 ss12&#39;.&quot;
+
+### Iteration Guide
+1. Start with warm cream (#faf9f7) — never cool white
+2. Swatch colors are for full sections, not small accents — go bold with matcha, slushie, ube
+3. Oat borders (#dad4c8) everywhere — dashed variants for decoration
+4. OpenType stylistic sets are mandatory — they make Roobert look like Roobert
+5. Hover animations are the signature — rotation + hard shadow, not subtle fades
+6. Generous radius: 24px cards, 40px sections — nothing looks sharp or corporate
+7. Three weights: 600 (headings), 500 (UI), 400 (body) — strict roles
+</textarea></section><script type="module" src="/_astro/DocumentTabs.astro_astro_type_script_index_0_lang.CqDIfMN7.js"></script></div><nav class="detail-adjacent-nav" aria-label="Benachbarte Designs"><a class="detail-adjacent-link" href="/de-DE/designs/claude/" data-adjacent-link="previous" aria-keyshortcuts="ArrowLeft"><span><kbd aria-hidden="true">←</kbd>Vorherige</span><strong>Claude</strong></a><a class="detail-adjacent-link detail-adjacent-link-next" href="/de-DE/designs/clickhouse/" data-adjacent-link="next" aria-keyshortcuts="ArrowRight"><span>Nächste<kbd aria-hidden="true">→</kbd></span><strong>ClickHouse</strong></a></nav><astro-island uid="Z2v7fV7" prefix="r2" component-url="/_astro/HagiCodeShowcase.SrqTGUpG.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;de-DE&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;HagiCodeShowcase&quot;,&quot;value&quot;:true}" await-children><section class="gallery-showcase shell-panel" aria-label="Hagicode"><div class="gallery-showcase-content"><div class="gallery-showcase-head"><div><p class="gallery-meta-label">Mit HagiCode gebaut</p><h2>Hagicode</h2></div></div><div class="gallery-showcase-copy"><p>OpenSpec-Workflow, Multi-Agent-Ausführung und Hero-Szenario-Oberflächen sind Produktideen, die für diese Galerie-Shell wiederverwendet wurden.</p><p>Ideen werden mit einem intelligenteren, schnelleren und angenehmeren Agentic-Coding-Workflow zu ausgereifter, nutzbarer Software.</p></div><ul class="gallery-showcase-triad" aria-label="Hagicode"><li><strong>Smart</strong><span>OpenSpec verwandelt Absichten in einen ausführbaren Pfad von der Idee bis zur ausgelieferten Änderung.</span></li><li><strong>Efficient</strong><span>Multi-Agent-Workflows halten Recherche, Implementierung und Review parallel in Bewegung.</span></li><li><strong>Fun</strong><span>Hero-Scenario-Oberflächen machen lange Coding-Sessions anschaulich, kooperativ und lohnend.</span></li></ul><div class="gallery-showcase-actions"><a class="gallery-showcase-cta button-primary" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcasePrimary" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="HagiCode besuchen">HagiCode besuchen</a><a class="gallery-showcase-learn-more" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcaseLearnMore" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="Mehr erfahren">Mehr erfahren</a><span class="gallery-showcase-store" data-store-entry="gallery-hagicode" data-ga-category="download" data-ga-label="microsoftStore" data-ga-location="design_showcase"><ms-store-badge productid="9N3PM0N3SVDW" productname="HagiCode" window-mode="direct" theme="auto" size="small" language="de" animation="on" aria-label="Open HagiCode in Microsoft Store" title="Open HagiCode in Microsoft Store"></ms-store-badge></span></div></div><section class="gallery-video-promo" aria-labelledby="gallery-video-promo-title"><div class="gallery-video-promo-heading"><h3 id="gallery-video-promo-title">HagiCode-Promo</h3><p>So erweckt HagiCode Agentic Coding zum Leben.</p></div><div class="gallery-video-promo-featured"><span class="gallery-video-promo-platform">HagiCode-Überblick</span><div class="gallery-video-promo-frame"><iframe src="https://www.youtube.com/embed/AQ8oSTW6wNQ?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="HagiCode-Überblick" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin"></iframe></div><p>So erweckt HagiCode Agentic Coding zum Leben.</p><a href="https://www.youtube.com/watch?v=AQ8oSTW6wNQ" target="_blank" rel="noopener noreferrer">Auf YouTube ansehen</a></div><a class="gallery-video-promo-alternate" href="https://www.bilibili.com/video/BV1z4oWB3EpY/" target="_blank" rel="noopener noreferrer">HagiCode-Überblick auf Bilibili ansehen</a></section></section><!--astro:end--></astro-island></section></main><hagilight-promoto-banner class="hagilight-promoto" data-locale="de-DE" data-site-id="awesome-design-gallery" hidden="true"><section class="hagilight-promoto__shell" data-promoto-shell hidden aria-label="Featured promotion"><div class="hagilight-promoto__viewport"><div class="hagilight-promoto__track" data-promoto-track></div></div><nav class="hagilight-promoto__controls" data-promoto-controls aria-label="Promotion controls" hidden><button type="button" class="hagilight-promoto__control" data-promoto-previous aria-label="Previous promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="hagilight-promoto__count" data-promoto-count aria-label="Promotion progress"></span><button type="button" class="hagilight-promoto__control" data-promoto-next aria-label="Next promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="hagilight-promoto__control" data-promoto-pause aria-pressed="false" aria-label="Pause automatic promotion rotation"><svg class="hagilight-promoto__icon hagilight-promoto__icon--pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12"></path></svg><svg class="hagilight-promoto__icon hagilight-promoto__icon--play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z"></path></svg></button></nav><button type="button" class="hagilight-promoto__dismiss" data-promoto-dismiss aria-label="Dismiss promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></svg></button><span class="hagilight-promoto__progress" data-promoto-progress aria-hidden="true"></span><span class="hagilight-promoto__status" data-promoto-status aria-live="polite"></span></section></hagilight-promoto-banner><script type="module" src="/_astro/PromotoBanner.astro_astro_type_script_index_0_lang.DP3NpmJD.js"></script><footer class="hagilight-footer astro-w3irp4ng"><section class="hagilight-brand astro-wxz55yp2" lang="de-DE" aria-labelledby="hagilight-brand-title"><div class="hagilight-brand__lead astro-wxz55yp2"><div class="hagilight-brand__title astro-wxz55yp2"><picture class="hagilight-brand__avatar astro-wxz55yp2" data-random-fan="[&quot;cat-head-gallery/g002-ukiyo-e-01.avif&quot;,&quot;cat-head-gallery/g003-watercolor-wash-02.avif&quot;,&quot;cat-head-gallery/g004-pixel-art-03.avif&quot;,&quot;cat-head-gallery/g005-oil-impasto-06.avif&quot;,&quot;cat-head-gallery/g006-paper-cut-layers-07.avif&quot;,&quot;cat-head-gallery/g008-low-poly-07.avif&quot;,&quot;cat-head-gallery/g009-claymation-07.avif&quot;,&quot;cat-head-gallery/g010-neon-line-07.avif&quot;,&quot;cat-head-gallery/g016-bauhaus-geometry-06.avif&quot;,&quot;cat-head-gallery/g017-cyanotype-06.avif&quot;,&quot;cat-head-gallery/g020-origami-03.avif&quot;,&quot;cat-head-gallery/g022-blueprint-03.avif&quot;,&quot;cat-head-gallery/g023-chalk-pastel-10.avif&quot;,&quot;cat-head-gallery/g025-voxel-03.avif&quot;,&quot;cat-head-gallery/g031-illuminated-manuscript-04.avif&quot;,&quot;cat-head-gallery/g034-vaporwave-04.avif&quot;,&quot;cat-head-gallery/g035-synthwave-chrome-09.avif&quot;,&quot;cat-head-gallery/g038-frosted-glass-02.avif&quot;,&quot;cat-head-gallery/g039-needle-felt-09.avif&quot;,&quot;cat-head-gallery/g041-glossy-balloon-05.avif&quot;,&quot;cat-head-gallery/g042-blue-white-porcelain-05.avif&quot;,&quot;cat-head-gallery/g043-glazed-ceramic-06.avif&quot;,&quot;cat-head-gallery/g045-impressionist-08.avif&quot;,&quot;cat-head-gallery/g047-fauvist-09.avif&quot;,&quot;cat-head-gallery/g048-cubist-10.avif&quot;,&quot;cat-head-gallery/g051-naive-folk-art-07.avif&quot;,&quot;cat-head-gallery/g056-wax-print-fabric-07.avif&quot;,&quot;cat-head-gallery/g058-red-paper-cut-10.avif&quot;,&quot;cat-head-gallery/g060-kawaii-pastel-01.avif&quot;,&quot;cat-head-gallery/g061-retro-90s-anime-01.avif&quot;,&quot;cat-head-gallery/g062-shoujo-sparkle-08.avif&quot;,&quot;cat-head-gallery/g065-saturday-cartoon-09.avif&quot;,&quot;cat-head-gallery/g067-pixar-style-3d-03.avif&quot;,&quot;cat-head-gallery/g068-toon-shaded-3d-04.avif&quot;,&quot;cat-head-gallery/g069-ps1-lowpoly-06.avif&quot;,&quot;cat-head-gallery/g070-matte-clay-render-07.avif&quot;,&quot;cat-head-gallery/g071-y2k-chrome-08.avif&quot;,&quot;cat-head-gallery/g072-glossy-3d-icon-08.avif&quot;,&quot;cat-head-gallery/g073-marble-bust-08.avif&quot;,&quot;cat-head-gallery/g075-wood-carving-10.avif&quot;,&quot;cat-head-gallery/g076-carved-jade-10.avif&quot;,&quot;cat-head-gallery/g078-toy-brick-02.avif&quot;,&quot;cat-head-gallery/g079-designer-vinyl-toy-02.avif&quot;,&quot;cat-head-gallery/g081-patchwork-quilt-03.avif&quot;,&quot;cat-head-gallery/g083-warhol-silkscreen-04.avif&quot;,&quot;cat-head-gallery/g088-vintage-lithograph-02.avif&quot;,&quot;cat-head-gallery/g090-alcohol-marker-09.avif&quot;,&quot;cat-head-gallery/g091-painterly-concept-art-09.avif&quot;,&quot;cat-head-gallery/g092-gradient-minimal-09.avif&quot;,&quot;cat-head-gallery/g095-constellation-map-09.avif&quot;]"><source type="image/avif" srcset="/_astro/avatar.BPGAI8am.avif" class="astro-wxz55yp2"><source type="image/webp" srcset="/_astro/avatar.BBqcj7YN.webp" class="astro-wxz55yp2"><img src="/_astro/avatar.BBqcj7YN.webp" width="64" height="64" alt aria-hidden="true" loading="lazy" decoding="async" class="astro-wxz55yp2"></picture><h2 class="hagilight-brand__headline astro-wxz55yp2" id="hagilight-brand-title">Aus Ideen wird ausgelieferte Software.</h2></div><div class="hagilight-brand__body astro-wxz55yp2"><p class="hagilight-brand__summary astro-wxz55yp2">HagiCode ist ein agentischer Coding-Arbeitsplatz: OpenSpec-Workflows planen die Änderung, Multi-Agent-Ausführung setzt sie um, und Hero Scenario macht den langen Weg sichtbar, bis aus der Idee ausgelieferte Software wird.</p><div class="hagilight-brand__actions astro-wxz55yp2"><a class="hagilight-brand__primary astro-wxz55yp2" href="https://www.hagicode.com/de-DE/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer_brand" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer_brand"><span class="astro-wxz55yp2">HagiCode herunterladen</span><svg class="hagilight-brand__arrow astro-wxz55yp2" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="astro-wxz55yp2"></path></svg></a><a class="hagilight-brand__secondary astro-wxz55yp2" href="https://docs.hagicode.com/de-DE/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer_brand" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer_brand">Produktdokumentation</a></div></div></div><dl class="hagilight-brand__pillars astro-wxz55yp2"><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="smart" style="--hagilight-brand-i: 0"><dt class="astro-wxz55yp2">Intelligent</dt><dd class="astro-wxz55yp2">OpenSpec-Workflows machen aus einer Absicht einen Weg vom Vorschlag bis zur Auslieferung.</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="efficient" style="--hagilight-brand-i: 1"><dt class="astro-wxz55yp2">Effizient</dt><dd class="astro-wxz55yp2">Multi-Agent-Ausführung treibt Recherche, Umsetzung und Prüfung parallel voran.</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="fun" style="--hagilight-brand-i: 2"><dt class="astro-wxz55yp2">Unterhaltsam</dt><dd class="astro-wxz55yp2">UI-Interaktionen erleichtern Planung, Agent-Ausführung und Projektarbeit.</dd></div></dl><script type="module">var e=/^([a-z0-9][a-z0-9_-]*)\/[a-z0-9][a-z0-9_-]*\.avif$/u;function t(t){if(!Array.isArray(t)||t.length<12||t.length>200)throw TypeError(`Hagilight random pool must list 12 to 200 R2 objects.`);let n;for(let r of t){let t=typeof r==`string`?e.exec(r):null;if(!t)throw TypeError(`Hagilight random pool entry "${String(r)}" must be an <album>/<key>.avif object path.`);if(n??=t[1],t[1]!==n)throw TypeError(`Hagilight random pool entries must all come from one album.`)}if(new Set(t).size!==t.length)throw TypeError(`Hagilight random pool entries must be unique.`);return Object.freeze([...t])}function n(e){let t=e();return Number.isFinite(t)?Math.min(Math.max(t,0),1-2**-52):0}function r(e,t,r=Math.random){let i=[...e],a=Math.min(Math.max(Math.floor(t),0),i.length);for(let e=0;e<a;e+=1){let t=e+Math.floor(n(r)*(i.length-e));[i[e],i[t]]=[i[t],i[e]]}return i.slice(0,a)}function i(e){return`https://img-gen.hagicode.com/${e}`}function a(e,t={}){return new Promise(n=>{let r=t.setTimer??((e,t)=>setTimeout(e,t)),i=t.clearTimer??(e=>clearTimeout(e)),a,o=e=>{i(a),n(e)};try{let n=t.createImage?t.createImage():new Image;n.onload=()=>o(!0),n.onerror=()=>o(!1),a=r(()=>o(!1),3e3),n.src=e}catch{o(!1)}})}function o(){return(typeof navigator>`u`?void 0:navigator.connection)?.saveData===!0}function s(e,t,n=6){return((e-t)%n+n)%n}function c(){return typeof matchMedia==`function`&&matchMedia(`(prefers-reduced-motion: reduce)`).matches}function l(e,t){if(typeof IntersectionObserver!=`function`){t(!0);return}new IntersectionObserver(e=>t(e[e.length-1]?.isIntersecting===!0),{rootMargin:`0px 0px 160px 0px`}).observe(e)}function u(e,t,n,r){let i=e.ownerDocument.createElement(`span`);i.className=`hagilight-fan`;let a=n.slice(0,r).map(n=>{let r=t?t.cloneNode(!1):e.ownerDocument.createElement(`img`);return r.removeAttribute(`srcset`),r.removeAttribute(`sizes`),r.removeAttribute(`loading`),r.setAttribute(`class`,`hagilight-fan__card`),r.setAttribute(`src`,n),i.append(r),r});return e.append(i),e.offsetWidth,t?.setAttribute(`data-fan-out`,``),a.forEach((e,t)=>e.setAttribute(`data-slot`,String(t))),a}async function d(e,n){if(e.setAttribute(`data-random-state`,`default`),(n.saveData??o)())return!1;let d;try{d=t(JSON.parse(e.getAttribute(`data-random-fan`)??`null`))}catch{return!1}let f=!1,p,m=new Promise(e=>{p=e});(n.watch??l)(e,e=>{f=e,e&&p()}),await m;let h=n.random??Math.random,g=!(n.reducedMotion??c)(),_=r(d,g?6:3,h).map(i),v=(await Promise.all(_.map(async e=>await a(e,n)?e:``))).filter(Boolean);if(v.length<3)return!1;let y=g&&v.length===6,b=u(e,e.querySelector(`img`),v,y?6:3);if(e.setAttribute(`data-random-state`,`fan`),y){let t=0,r=()=>{};r=(n.every??((e,t)=>{let n=setInterval(e,t);return()=>clearInterval(n)}))(()=>{e.isConnected===!1?r():f&&!(n.tabHidden??(()=>typeof document<`u`&&document.hidden))()&&(t+=1,b.forEach((e,n)=>e.setAttribute(`data-slot`,String(s(n,t,b.length)))))},3600)}return!0}function f(e,t={}){return Array.from(e.querySelectorAll(`[data-random-fan]:not([data-random-state])`)).map(e=>d(e,t).catch(()=>!1))}f(document);</script></section><div class="hagilight-footer__sections astro-w3irp4ng"><div class="hagilight-cols astro-w3irp4ng"><nav class="hagilight-col astro-w3irp4ng" data-column="start" style="--hagilight-col-i: 0" aria-labelledby="hagilight-col-start"><h2 id="hagilight-col-start" class="astro-w3irp4ng">Loslegen</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/de-DE/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer" class="astro-w3irp4ng">HagiCode herunterladen</a></li><li class="astro-w3irp4ng"><a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" target="_blank" rel="noopener noreferrer" data-ga-category="store" data-ga-label="microsoftStore" data-ga-location="footer" class="astro-w3irp4ng">HagiCode für Windows herunterladen</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/de-DE/installation/docker-compose/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=dockerCompose&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="dockerCompose" data-ga-location="footer" class="astro-w3irp4ng">Docker-Compose-Installation</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/de-DE/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer" class="astro-w3irp4ng">Produktdokumentation</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/de-DE/about/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=about&amp;utm_content=footer" class="astro-w3irp4ng">Über HagiCode</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/de-DE/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagicode-main&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Hauptseite</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="learn" style="--hagilight-col-i: 1" aria-labelledby="hagilight-col-learn"><h2 id="hagilight-col-learn" class="astro-w3irp4ng">Lernen &amp; Doku</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/de-DE/blog/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=blogPosts&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="blogPosts" data-ga-location="footer" class="astro-w3irp4ng">Blogbeiträge</a></li><li class="astro-w3irp4ng"><a href="https://openspec.hagicode.com/de-DE/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=openspec-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">OpenSpec-Dokumentation</a></li><li class="astro-w3irp4ng"><a href="https://omniroute.hagicode.com/de-DE/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=omniroute-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">OmniRoute-Dokumentation</a></li><li class="astro-w3irp4ng"><a href="https://fullstack.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=fullstack-tutorial&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Fullstack</a></li><li class="astro-w3irp4ng"><a href="https://impeccable.hagicode.com/de-DE/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=impeccable-site&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Impeccable Commands</a></li><li class="astro-w3irp4ng"><a href="https://awesome.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=awesome-sites&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Awesome Sites</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="build" style="--hagilight-col-i: 2" aria-labelledby="hagilight-col-build"><h2 id="hagilight-col-build" class="astro-w3irp4ng">Tools &amp; Ressourcen</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://tasks.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagitask&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiTask</a></li><li class="astro-w3irp4ng"><a href="https://builder.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=compose-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Docker Compose Builder</a></li><li class="astro-w3irp4ng"><a href="https://soul.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=soul-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Soul Builder</a></li><li class="astro-w3irp4ng"><a href="https://trait.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=trait-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Trait Builder</a></li><li class="astro-w3irp4ng"><a href="https://cost.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=costCalculator&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Wird KI mich ersetzen?</a></li><li class="astro-w3irp4ng"><a href="https://gallery.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=gallery&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Gallery</a></li><li class="astro-w3irp4ng"><a href="https://index.hagicode.com/data/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=index-data&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Index Data Mirror</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="community" style="--hagilight-col-i: 3" aria-labelledby="hagilight-col-community"><h2 id="hagilight-col-community" class="astro-w3irp4ng">Community &amp; Support</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="github" data-ga-location="footer" class="astro-w3irp4ng">GitHub</a></li><li class="astro-w3irp4ng"><a href="https://discord.gg/qY662sJK" target="_blank" rel="noopener noreferrer" data-ga-category="community" data-ga-label="discord" data-ga-location="footer" class="astro-w3irp4ng">Discord</a></li><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site/issues" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="issueFeedback" data-ga-location="footer" class="astro-w3irp4ng">Probleme melden</a></li><li class="astro-w3irp4ng"><a href="mailto:support@hagicode.com" class="astro-w3irp4ng">Kontakt-E-Mail</a></li><li class="astro-w3irp4ng"><a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer" class="astro-w3irp4ng">QQ-Gruppe 610394020</a></li><li class="astro-w3irp4ng"><a href="https://newbe.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=newbe-blog&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">newbe</a></li><li class="astro-w3irp4ng"><a href="https://status.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=status-page&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Status</a></li></ul></nav></div></div><div class="hagilight-footer__base astro-w3irp4ng"><nav class="hagilight-footer__feeds astro-w3irp4ng" aria-label="Feeds und Sitemap"><a href="https://design.hagicode.com/rss.xml" class="astro-w3irp4ng">RSS-Feed</a><a href="https://design.hagicode.com/rss.de-DE.xml" class="astro-w3irp4ng">RSS der aktuellen Sprache</a><a href="/sitemap-index.xml" class="astro-w3irp4ng">Sitemap</a></nav><nav class="hagilight-footer__filings astro-w3irp4ng" aria-label="Registrierungsinformationen anzeigen"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="ICP-Registrierungsinformationen anzeigen" class="astro-w3irp4ng">ICP-Registrierung 闽ICP备2026004153号-1</a><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer" aria-label="Informationen zur Sicherheitsregistrierung anzeigen" class="astro-w3irp4ng">Sicherheitsregistrierung 闽公网安备35011102351148号</a></nav></div><p class="hagilight-footer__copyright astro-w3irp4ng"><span>© 2026 HagiCode</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="branch">Branch: main</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="commit" title="6d161862d30281253ed8c05b55200240fb019d04" data-build-commit="6d161862d30281253ed8c05b55200240fb019d04">Commit: 6d16186</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="builtAt">Built: <time datetime="2026-10-30T16:30:59Z" class="astro-w3irp4ng">2026-10-30T16:30:59Z</time></span></p></footer></div><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script>(function(){const siteId = "L6b88a5yK4h2Xnci";
+
+      LA.init({ id: siteId, ck: siteId, autoTrack: true, hashMode: true });
+    })();</script><script type="module" src="/_astro/Analytics51LA.astro_astro_type_script_index_0_lang.R1vpCc6_.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-EN03FMT2Q4"></script><script>window.dataLayer = window.dataLayer || [];
+window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.gtag('config', "G-EN03FMT2Q4");</script><script type="module" src="/_astro/GoogleAnalytics.astro_astro_type_script_index_0_lang.CWqY6pzt.js"></script></body></html><script type="module">var e=`adms-detail-layout`;function t(e){return e===`preview`||e===`docs`?e:`split`}function n(){try{return t(window.localStorage.getItem(e))}catch{return`split`}}function r(t){try{window.localStorage.setItem(e,t)}catch{}}function i(e){return e instanceof HTMLElement?e.isContentEditable||[`INPUT`,`TEXTAREA`,`SELECT`].includes(e.tagName):!1}function a(e=document){let a=e.querySelector(`[data-detail-grid]`),o=Array.from(e.querySelectorAll(`[data-detail-layout]`)),s=e.querySelector(`.site-header`),c=s&&typeof ResizeObserver<`u`?new ResizeObserver(()=>{e.documentElement.style.setProperty(`--site-header-height`,`${s.offsetHeight}px`)}):void 0;if(c?.observe(s),a&&o.length>0){let e=e=>{a.dataset.layout=e,o.forEach(t=>{let n=t.dataset.detailLayout===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-pressed`,n?`true`:`false`)})};o.forEach(n=>{n.addEventListener(`click`,()=>{let i=t(n.dataset.detailLayout);e(i),r(i)})}),e(n())}let l=t=>{if(t.defaultPrevented||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey||i(t.target))return;let n=t.key===`ArrowLeft`?`previous`:t.key===`ArrowRight`?`next`:null,r=n?e.querySelector(`[data-adjacent-link="${n}"]`):null;r&&(t.preventDefault(),r.click())};return e.addEventListener(`keydown`,l),()=>{c?.disconnect(),e.removeEventListener(`keydown`,l)}}a();</script>

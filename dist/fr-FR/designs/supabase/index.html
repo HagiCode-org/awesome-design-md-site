@@ -1,0 +1,788 @@
+<!DOCTYPE html><html lang="fr-FR" dir="ltr" data-theme="dark"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v7.3.8"><meta name="theme-color" content="#000000"><title>Supabase DESIGN.md • Galerie Awesome Design MD</title><meta name="description" content="Aperçu, README et documentation DESIGN pour Supabase."><meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1"><link rel="icon" type="image/x-icon" href="https://cdn.jsdelivr.net/npm/@hagicode/hagilight-core@0.5.0/favicon.ico"><link rel="stylesheet" href="/global.css"><script type="module" src="https://get.microsoft.com/badge/ms-store-badge.bundled.js"></script><link rel="canonical" href="https://design.hagicode.com/fr-FR/designs/supabase/"><link rel="alternate" hreflang="en" href="https://design.hagicode.com/designs/supabase/"><link rel="alternate" hreflang="zh-CN" href="https://design.hagicode.com/zh-CN/designs/supabase/"><link rel="alternate" hreflang="zh-Hant" href="https://design.hagicode.com/zh-Hant/designs/supabase/"><link rel="alternate" hreflang="ja-JP" href="https://design.hagicode.com/ja-JP/designs/supabase/"><link rel="alternate" hreflang="ko-KR" href="https://design.hagicode.com/ko-KR/designs/supabase/"><link rel="alternate" hreflang="de-DE" href="https://design.hagicode.com/de-DE/designs/supabase/"><link rel="alternate" hreflang="fr-FR" href="https://design.hagicode.com/fr-FR/designs/supabase/"><link rel="alternate" hreflang="es-ES" href="https://design.hagicode.com/es-ES/designs/supabase/"><link rel="alternate" hreflang="pt-BR" href="https://design.hagicode.com/pt-BR/designs/supabase/"><link rel="alternate" hreflang="ru-RU" href="https://design.hagicode.com/ru-RU/designs/supabase/"><link rel="alternate" hreflang="x-default" href="https://design.hagicode.com/designs/supabase/"><meta property="og:type" content="website"><meta property="og:title" content="Supabase DESIGN.md • Galerie Awesome Design MD"><meta property="og:description" content="Aperçu, README et documentation DESIGN pour Supabase."><meta property="og:url" content="https://design.hagicode.com/fr-FR/designs/supabase/"><meta property="og:site_name" content="Galerie Awesome Design MD"><meta property="og:locale" content="fr_FR"><meta property="og:locale:alternate" content="en_US"><meta property="og:locale:alternate" content="zh_CN"><meta property="og:locale:alternate" content="zh_TW"><meta property="og:locale:alternate" content="ja_JP"><meta property="og:locale:alternate" content="ko_KR"><meta property="og:locale:alternate" content="de_DE"><meta property="og:locale:alternate" content="es_ES"><meta property="og:locale:alternate" content="pt_BR"><meta property="og:locale:alternate" content="ru_RU"><meta property="og:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:secure_url" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta property="og:image:type" content="image/png"><meta property="og:image:width" content="3137"><meta property="og:image:height" content="1235"><meta property="og:image:alt" content="Supabase DESIGN.md • Galerie Awesome Design MD"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Supabase DESIGN.md • Galerie Awesome Design MD"><meta name="twitter:description" content="Aperçu, README et documentation DESIGN pour Supabase."><meta name="twitter:image" content="https://design.hagicode.com/img/hagicode/light-main.png"><meta name="twitter:image:alt" content="Supabase DESIGN.md • Galerie Awesome Design MD"><script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Supabase DESIGN.md • Galerie Awesome Design MD","description":"Aperçu, README et documentation DESIGN pour Supabase.","url":"https://design.hagicode.com/fr-FR/designs/supabase/","inLanguage":"fr-FR","image":"https://design.hagicode.com/img/hagicode/light-main.png","isPartOf":{"@type":"WebSite","name":"Galerie Awesome Design MD","url":"https://design.hagicode.com/"}}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Galerie Awesome Design MD","item":"https://design.hagicode.com/fr-FR/"},{"@type":"ListItem","position":2,"name":"Supabase","item":"https://design.hagicode.com/fr-FR/designs/supabase/"}]}</script><script>
+      (() => {
+        const stored = localStorage.getItem('adms-theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = stored || (systemDark ? 'dark' : 'light');
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script><script>
+      // Cross-document view transition: the gallery card preview grows into the detail preview
+      // (and back). Only the one clicked card is named, so no other card is captured.
+      (() => {
+        const NAME = 'design-preview';
+        const slugOf = (href) => {
+          try {
+            const match = new URL(href, location.href).pathname.match(/\/designs\/([^/]+)\/?$/);
+            return match ? decodeURIComponent(match[1]) : null;
+          } catch {
+            return null;
+          }
+        };
+        // On the way back the browser has not restored the scroll position yet when the page
+        // is revealed, so the returning card is named wherever it is, not only when in view.
+        const cardPreview = (slug, anywhere) => {
+          const card = Array.from(document.querySelectorAll('[data-design-card]')).find(
+            (item) => item.dataset.slug === slug,
+          );
+          const preview = card && card.querySelector('.design-card-preview');
+          if (!preview) return null;
+          const rect = preview.getBoundingClientRect();
+          return anywhere || (rect.bottom > 0 && rect.top < innerHeight) ? preview : null;
+        };
+        const name = async (element, transition) => {
+          if (!element) return;
+          element.style.viewTransitionName = NAME;
+          await transition.finished.catch(() => {});
+          element.style.viewTransitionName = '';
+        };
+
+        addEventListener('pageswap', (event) => {
+          if (!event.viewTransition || !event.activation || !event.activation.entry) return;
+          const to = slugOf(event.activation.entry.url);
+          const here = slugOf(location.href);
+          if (to && !here) name(cardPreview(to), event.viewTransition);
+          else if (!to && here) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+        });
+
+        addEventListener('pagereveal', (event) => {
+          if (!event.viewTransition) return;
+          const activation = window.navigation && window.navigation.activation;
+          if (!activation || !activation.from) return;
+          const from = slugOf(activation.from.url);
+          const here = slugOf(location.href);
+          if (here && !from) name(document.querySelector('[data-preview-stage]'), event.viewTransition);
+          else if (!here && from) name(cardPreview(from, true), event.viewTransition);
+        });
+      })();
+    </script><link rel="stylesheet" href="/_astro/BaseLayout.bD5iggdr.css"><script type="module" src="/_astro/page.KebScxdP.js"></script><script>(function(){document.head.insertAdjacentHTML('beforeend', '\u003cscript type="application/json" data-hagilight-analytics="posthog">{"apiKey":"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5","loader":"(() => {\\n  if (window.__hagilightPosthogInitialized) return;\\n  !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(\\".\\");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement(\\"script\\")).type=\\"text/javascript\\",p.crossOrigin=\\"anonymous\\",p.async=!0,p.src=s.api_host.replace(\\".i.posthog.com\\",\\"-assets.i.posthog.com\\")+\\"/static/array.js\\",(r=t.getElementsByTagName(\\"script\\")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a=\\"posthog\\",u.people=u.people||[],Object.defineProperty(u,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(t){var e=\\"posthog\\";return\\"posthog\\"!==a&&(e+=\\".\\"+a),t||(e+=\\" (stub)\\"),e}}),Object.defineProperty(u.people,\\"toString\\",{configurable:!0,enumerable:!0,writable:!0,value:function(){return u.toString(1)+\\".people (stub)\\"}}),o=\\"init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagResult isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey getNextSurveyStep identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug\\".split(\\" \\"),n=0;n\\u003co.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);\\n  posthog.init(\\"phc_qiVVihsL925ovhPYNdLJWz4k7aoKVMwYCevgZPE6PER5\\", {\\"api_host\\":\\"https://t.hagicode.com\\",\\"ui_host\\":\\"https://us.posthog.com\\",\\"defaults\\":\\"2026-05-30\\",\\"person_profiles\\":\\"identified_only\\",\\"capture_exceptions\\":true});\\n  (() => {\\n    const context = {\\"siteId\\":\\"design.hagicode.com\\",\\"framework\\":\\"astro\\",\\"version\\":\\"0.20.0\\"};\\n    const pageTypes = [\\"home\\",\\"docs\\",\\"blog\\",\\"compare\\",\\"404\\",\\"other\\"];\\n    const metaPageType = document.querySelector(\'meta[name=\\"hagilight:page-type\\"]\')?.getAttribute(\'content\');\\n    const superProperties = {\\n      site_id: context.siteId || window.location.hostname,\\n      site_framework: context.framework,\\n      hagilight_version: context.version,\\n      locale: document.documentElement.lang,\\n      page_type: [context.pageType, metaPageType].find((value) => pageTypes.includes(value)) ?? \'other\',\\n    };\\n    posthog.register(Object.fromEntries(Object.entries(superProperties).filter(([, value]) => typeof value === \'string\' && value !== \'\')));\\n  })();\\n  window.__hagilightPosthogInitialized = true;\\n})();"}\u003c/script>\u003cscript type="application/json" id="hagilight-consent-config">{"policyVersion":"1","privacyUrl":null,"providers":["posthog"],"locale":"en-US"}\u003c/script>');})();</script></head><body><a class="skip-link" href="#main">Aller au contenu</a><div class="page-shell"><header class="site-header"><div class="container shell-panel header-panel"><a class="brand-mark" href="/fr-FR/"><img class="brand-logo" src="/logo.png" alt="HagiCode" width="32" height="32"><span class="brand-copy"><strong class="brand-copy-full">Galerie Awesome Design MD</strong><strong class="brand-copy-compact">ADMG</strong><small>Powered by HagiCode</small></span></a><nav class="site-nav site-nav-primary" aria-label="Principal"><a href="/fr-FR/" class="site-nav-link"><span class="site-nav-link-label site-nav-link-label-full">Galerie</span><span class="site-nav-link-label site-nav-link-label-compact">Galerie</span></a></nav><nav class="site-nav site-nav-repo" aria-label="Liens de dépôt"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link" target="_blank" rel="noopener"><span class="site-nav-link-label site-nav-link-label-full">Dépôt du site</span></a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link" target="_blank" rel="noopener noreferrer"><span class="site-nav-link-label site-nav-link-label-full">Dépôt source</span></a></nav><div class="header-actions"><div class="language-select-shell"><select class="language-select" name="locale" aria-label="Sélecteur de langue" data-language-select><option value="/designs/supabase/" lang="en">English</option><option value="/zh-CN/designs/supabase/" lang="zh-CN">简体中文</option><option value="/zh-Hant/designs/supabase/" lang="zh-Hant">繁體中文</option><option value="/ja-JP/designs/supabase/" lang="ja-JP">日本語</option><option value="/ko-KR/designs/supabase/" lang="ko-KR">한국어</option><option value="/de-DE/designs/supabase/" lang="de-DE">Deutsch</option><option value="/fr-FR/designs/supabase/" selected lang="fr-FR">Français</option><option value="/es-ES/designs/supabase/" lang="es-ES">Español</option><option value="/pt-BR/designs/supabase/" lang="pt-BR">Português</option><option value="/ru-RU/designs/supabase/" lang="ru-RU">Русский</option></select><span class="language-select-icon" aria-hidden="true">▾</span></div><style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(function(){let e=async e=>{await(await e())()};(self.Astro||(self.Astro={})).load=e,window.dispatchEvent(new Event(`astro:load`))})();</script><script>(function(){function e(t){"@babel/helpers - typeof";return e=typeof Symbol==`function`&&typeof Symbol.iterator==`symbol`?function(e){return typeof e}:function(e){return e&&typeof Symbol==`function`&&e.constructor===Symbol&&e!==Symbol.prototype?`symbol`:typeof e},e(t)}function t(t,n){if(e(t)!=`object`||!t)return t;var r=t[Symbol.toPrimitive];if(r!==void 0){var i=r.call(t,n||`default`);if(e(i)!=`object`)return i;throw TypeError(`@@toPrimitive must return a primitive value.`)}return(n===`string`?String:Number)(t)}function n(n){var r=t(n,`string`);return e(r)==`symbol`?r:r+``}function r(e,t,r){return(t=n(t))in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}let i=/* @__PURE__ */ new Set([`__proto__`,`constructor`,`prototype`]);{let e={0:e=>a(e),1:e=>n(e),2:e=>new RegExp(e),3:e=>new Date(e),4:e=>new Map(n(e)),5:e=>new Set(n(e)),6:e=>BigInt(e),7:e=>new URL(e),8:e=>new Uint8Array(e),9:e=>new Uint16Array(e),10:e=>new Uint32Array(e),11:e=>1/0*e},t=t=>{let[n,r]=t;return n in e?e[n](r):void 0},n=e=>e.map(t),a=e=>typeof e!=`object`||!e?e:Object.fromEntries(Object.entries(e).map(([e,n])=>[e,t(n)]));class o extends HTMLElement{constructor(...e){super(...e),r(this,`Component`,void 0),r(this,`hydrator`,void 0),r(this,`hydrate`,async()=>{var e;if(!this.hydrator||!this.isConnected)return;let t=(e=this.parentElement)==null?void 0:e.closest(`astro-island[ssr]`);if(t){t.addEventListener(`astro:hydrate`,this.hydrate,{once:!0});return}let n=this.querySelectorAll(`astro-slot`),r={},i=this.querySelectorAll(`template[data-astro-template]`);for(let e of i){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`data-astro-template`)||`default`]=e.innerHTML,e.remove())}for(let e of n){let t=e.closest(this.tagName);t!=null&&t.isSameNode(this)&&(r[e.getAttribute(`name`)||`default`]=e.innerHTML)}let o;try{o=this.hasAttribute(`props`)?a(JSON.parse(this.getAttribute(`props`))):{}}catch(e){let t=this.getAttribute(`component-url`)||`<unknown>`,n=this.getAttribute(`component-export`);throw n&&(t+=` (export ${n})`),console.error(`[hydrate] Error parsing props for component ${t}`,this.getAttribute(`props`),e),e}await this.hydrator(this)(this.Component,o,r,{client:this.getAttribute(`client`)}),this.removeAttribute(`ssr`),this.dispatchEvent(new CustomEvent(`astro:hydrate`))}),r(this,`unmount`,()=>{this.isConnected||this.dispatchEvent(new CustomEvent(`astro:unmount`))})}disconnectedCallback(){document.removeEventListener(`astro:after-swap`,this.unmount),document.addEventListener(`astro:after-swap`,this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute(`await-children`)||document.readyState===`interactive`||document.readyState===`complete`)this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener(`DOMContentLoaded`,e),t.disconnect(),this.childrenConnectedCallback()},t=new MutationObserver(()=>{var t;((t=this.lastChild)==null?void 0:t.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue===`astro:end`&&(this.lastChild.remove(),e())});t.observe(this,{childList:!0}),document.addEventListener(`DOMContentLoaded`,e)}}async childrenConnectedCallback(){let e=this.getAttribute(`before-hydration-url`);e&&await import(e),this.start()}getRetryImportUrl(e){let t=new URL(e,document.baseURI);return t.searchParams.set(`astro-retry`,Date.now().toString()),t.toString()}async importWithRetry(e){try{return await import(e)}catch(t){return await new Promise(e=>setTimeout(e,1e3)),import(this.getRetryImportUrl(e))}}handleHydrationError(e){let t=this.getAttribute(`component-url`),n=new CustomEvent(`astro:hydration-error`,{cancelable:!0,bubbles:!0,composed:!0,detail:{error:e,componentUrl:t}});this.dispatchEvent(n)&&console.error(`[astro-island] Error hydrating ${t}`,e)}async start(){let e=JSON.parse(this.getAttribute(`opts`)),t=this.getAttribute(`client`);if(Astro[t]===void 0){window.addEventListener(`astro:${t}`,()=>this.start(),{once:!0});return}try{await Astro[t](async()=>{let e=this.getAttribute(`renderer-url`);try{let[t,{default:n}]=await Promise.all([this.importWithRetry(this.getAttribute(`component-url`)),e?this.importWithRetry(e):Promise.resolve({default:()=>()=>{}})]),r=this.getAttribute(`component-export`)||`default`;if(r.includes(`.`)){this.Component=t;for(let e of r.split(`.`)){if(i.has(e)||!this.Component||typeof this.Component!=`object`&&typeof this.Component!=`function`||!Object.hasOwn(this.Component,e))throw Error(`Invalid component export path: ${r}`);this.Component=this.Component[e]}}else{if(i.has(r))throw Error(`Invalid component export path: ${r}`);this.Component=t[r]}return this.hydrator=n,this.hydrate}catch(e){return this.handleHydrationError(e),()=>{}}},e,this)}catch(e){this.handleHydrationError(e)}}attributeChangedCallback(){this.hydrate()}}r(o,`observedAttributes`,[`props`]),customElements.get(`astro-island`)||customElements.define(`astro-island`,o)}})();</script><astro-island uid="ZjYu23" prefix="r3" component-url="/_astro/ThemeToggle.BU4lQzY7.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;fr-FR&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;ThemeToggle&quot;,&quot;value&quot;:true}" await-children><button type="button" class="theme-toggle" data-theme-toggle="true" aria-label="Passer au mode clair"><span class="theme-toggle-label theme-toggle-label-full">Sombre</span><span class="theme-toggle-label theme-toggle-label-compact">SM</span><span class="theme-toggle-glyph" aria-hidden="true">◐</span></button><!--astro:end--></astro-island></div><details class="header-utility"><summary class="header-utility-trigger" aria-label="Liens de dépôt"><span class="header-utility-trigger-label" aria-hidden="true">≡</span></summary><div class="header-utility-surface" aria-label="Liens de dépôt"><a href="https://github.com/HagiCode-org/awesome-design-md-site" class="site-nav-link header-utility-link" target="_blank" rel="noopener">Dépôt du site</a><a href="https://github.com/VoltAgent/awesome-design-md" class="site-nav-link header-utility-link" target="_blank" rel="noopener noreferrer">Dépôt source</a></div></details></div></header><script>
+  (() => {
+    document.querySelectorAll('[data-language-select]').forEach((element) => {
+      if (!(element instanceof HTMLSelectElement) || element.dataset.bound === 'true') {
+        return;
+      }
+
+      element.dataset.bound = 'true';
+      element.addEventListener('change', () => {
+        const href = element.value;
+        if (!href) {
+          return;
+        }
+
+        const current = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+        if (href !== current) {
+          window.location.assign(href);
+        }
+      });
+    });
+  })();
+</script><main id="main"><section class="container detail-shell"><div class="detail-header shell-panel"><div class="detail-header-bar"><a class="detail-back-link" href="/fr-FR/">Retour à la galerie</a><div class="segmented detail-layout-toggle" role="group" aria-label="Disposition de l’espace de travail"><button type="button" class="preview-toggle is-active" data-detail-layout="split" aria-pressed="true">Partagé</button><button type="button" class="preview-toggle" data-detail-layout="preview" aria-pressed="false">Aperçu</button><button type="button" class="preview-toggle" data-detail-layout="docs" aria-pressed="false">Docs</button></div></div><div class="detail-header-copy"><h1>Supabase</h1><p class="detail-summary">DESIGN.md extracted from the public Supabase website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it&#39;s a good starting point for building something similar.</p></div></div><div class="detail-grid" data-detail-grid data-layout="split"><script>
+        // Restore the saved layout before first paint so the grid does not jump.
+        try {
+          const saved = localStorage.getItem('adms-detail-layout');
+          if (saved === 'preview' || saved === 'docs') {
+            document.currentScript.parentElement.dataset.layout = saved;
+          }
+        } catch {}
+      </script><section class="preview-switcher shell-panel" data-preview-switcher data-light-url="/previews/supabase/light.html" data-dark-url="/previews/supabase/dark.html" data-images="{&quot;light&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/supabase/light-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:7646},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/supabase/light-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:8000},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/supabase/light-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:8000},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/supabase/light-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}},&quot;dark&quot;:{&quot;fit&quot;:{&quot;url&quot;:&quot;/preview-images/supabase/dark-fit.avif&quot;,&quot;width&quot;:1440,&quot;height&quot;:7674},&quot;tablet&quot;:{&quot;url&quot;:&quot;/preview-images/supabase/dark-tablet.avif&quot;,&quot;width&quot;:820,&quot;height&quot;:8000},&quot;mobile&quot;:{&quot;url&quot;:&quot;/preview-images/supabase/dark-mobile.avif&quot;,&quot;width&quot;:390,&quot;height&quot;:8000},&quot;thumb&quot;:{&quot;url&quot;:&quot;/preview-images/supabase/dark-thumb.avif&quot;,&quot;width&quot;:780,&quot;height&quot;:1131}}}" data-alt-template="Aperçu {{variant}} de Supabase, largeur {{viewport}}" data-labels="{&quot;light&quot;:&quot;Clair&quot;,&quot;dark&quot;:&quot;Sombre&quot;,&quot;fit&quot;:&quot;Ajusté&quot;,&quot;tablet&quot;:&quot;Tablette&quot;,&quot;mobile&quot;:&quot;Mobile&quot;}"><div class="preview-switcher-head"><h2>Cadre d’aperçu sensible au thème</h2><div class="preview-switcher-tools"><div class="segmented" role="group" aria-label="Thème d’aperçu"><button type="button" class="preview-toggle is-active" data-preview-variant="light" aria-pressed="true">Clair</button><button type="button" class="preview-toggle" data-preview-variant="dark" aria-pressed="false" title="Ouvrir l’aperçu sombre">Sombre</button></div><div class="segmented preview-viewport-group" role="group" aria-label="Largeur de l’aperçu"><button type="button" class="preview-toggle is-active" data-preview-viewport="fit" aria-pressed="true">Ajusté</button><button type="button" class="preview-toggle" data-preview-viewport="tablet" aria-pressed="false">Tablette</button><button type="button" class="preview-toggle" data-preview-viewport="mobile" aria-pressed="false">Mobile</button></div><a class="preview-open" data-preview-open href="/previews/supabase/light.html" target="_blank" rel="noopener" aria-label="Ouvrir l’aperçu dans un nouvel onglet" title="Ouvrir l’aperçu dans un nouvel onglet"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="square" aria-hidden="true"><path d="M6 3H3v10h10v-3"></path><path d="M9 2.5h4.5V7"></path><path d="M13.5 2.5 7.5 8.5"></path></svg></a></div></div><div class="preview-stage" data-preview-stage data-state="loading" aria-busy="true"><img class="detail-preview-image" data-preview-image src="/preview-images/supabase/light-fit.avif" width="1440" height="7646" alt="Aperçu Clair de Supabase, largeur Ajusté" decoding="async"><p class="preview-error" data-preview-error hidden><span>L’aperçu rendu n’a pas pu être chargé.</span><a data-preview-live href="/previews/supabase/light.html" target="_blank" rel="noopener">Ouvrir l’aperçu HTML en direct</a></p></div><p class="preview-switcher-foot"><span class="preview-switcher-note">Les aperçus clair et sombre sont disponibles.</span><output class="preview-width-readout" data-preview-width aria-hidden="true"></output></p></section><script type="module">function e(e,t,n){e.forEach(e=>{let r=e.getAttribute(t)===n;e.classList.toggle(`is-active`,r),e.setAttribute(`aria-pressed`,r?`true`:`false`)})}function t(e){return`${Math.round(e)} px`}function n(e){if(e)try{return JSON.parse(e)}catch{return}}function r(e,t,n){return e[t][n]}function i(e,t,n){return e.replace(`{{variant}}`,t).replace(`{{viewport}}`,n)}function a(a=document){a.querySelectorAll(`[data-preview-switcher]`).forEach(o=>{let s=o.querySelector(`[data-preview-image]`),c=o.querySelector(`[data-preview-stage]`),l=o.querySelector(`[data-preview-error]`),u=o.querySelector(`[data-preview-live]`),d=Array.from(o.querySelectorAll(`[data-preview-variant]`)),f=Array.from(o.querySelectorAll(`[data-preview-viewport]`)),p=o.querySelector(`[data-preview-open]`),m=o.querySelector(`[data-preview-width]`),h=n(o.dataset.images),g=o.dataset.lightUrl??``,_=o.dataset.darkUrl||g,v=o.dataset.altTemplate??``,y=JSON.parse(o.dataset.labels??`{}`),b=`light`,x=`fit`;if(!s||!c||!h||d.length===0)return;let S=()=>{s.hidden=!1,c.dataset.state=`ready`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!0)},C=()=>{c.dataset.state=`loading`,c.setAttribute(`aria-busy`,`true`)},w=()=>{s.hidden=!0,c.dataset.state=`error`,c.removeAttribute(`aria-busy`),l&&(l.hidden=!1)},T=()=>{let e=r(h,b,x),t=i(v,y[b]??b,y[x]??x);s.alt=t,s.width=e.width,s.height=e.height,s.getAttribute(`src`)===e.url?s.complete&&(s.naturalWidth>0?S():w()):(C(),s.src=e.url)},E=()=>{let t=b===`dark`?_:g;p&&(p.href=t),u&&(u.href=t),o.dataset.viewport=x,e(d,`data-preview-variant`,b),e(f,`data-preview-viewport`,x),T()};s.addEventListener(`load`,S),s.addEventListener(`error`,w),m&&typeof ResizeObserver<`u`&&new ResizeObserver(([e])=>{e&&(m.textContent=t(e.contentRect.width))}).observe(c),d.forEach(e=>{e.addEventListener(`click`,()=>{b=e.dataset.previewVariant===`dark`?`dark`:`light`,E()})}),f.forEach(e=>{e.addEventListener(`click`,()=>{let t=e.dataset.previewViewport;x=t===`tablet`||t===`mobile`?t:`fit`,E()})}),b=a.documentElement.dataset.theme===`dark`?`dark`:`light`,E()})}a();</script><section class="detail-documents" data-document-tabs data-design-slug="supabase" data-copy-design-label="Copier DESIGN.md" data-copied-label="Copié" data-copy-failed-label="Échec de copie"><h2 class="visually-hidden">README et DESIGN au même endroit</h2><div class="detail-documents-bar shell-panel" data-doc-bar><div class="detail-documents-head"><div class="segmented detail-tab-list" role="tablist" aria-label="Vue document"><button type="button" role="tab" class="detail-tab is-active" data-doc-tab="readme" aria-selected="true">README</button><button type="button" role="tab" class="detail-tab" data-doc-tab="design" aria-selected="false">DESIGN</button></div><div class="detail-doc-controls"><button type="button" class="detail-copy-button" data-copy-design disabled aria-disabled="true" title="Copier le Markdown DESIGN.md brut">Copier DESIGN.md</button><a class="detail-copy-button" data-download-design href="/designs/supabase/DESIGN.md" download="DESIGN.md" title="Télécharger le fichier DESIGN.md canonique" aria-hidden="true" tabindex="-1">Télécharger DESIGN.md</a></div></div><nav class="detail-outline" data-doc-outline aria-label="Aller à la section" hidden></nav></div><div class="detail-doc-panels"><section class="detail-doc-panel is-active" data-doc-panel="readme"><div class="markdown-shell document-copy"><h2 id="supabase-inspired-design-system">Supabase Inspired Design System</h2>
+<p><a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/supabase/DESIGN.md">DESIGN.md</a> extracted from the public <a href="https://supabase.com/">Supabase</a> website. This is not the official design system. Colors, fonts, and spacing may not be 100% accurate. But it's a good starting point for building something similar.</p>
+<h2 id="files">Files</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DESIGN.md</code></td>
+<td>Complete design system documentation (9 sections)</td>
+</tr>
+<tr>
+<td><code>preview.html</code></td>
+<td>Interactive design token catalog (light)</td>
+</tr>
+<tr>
+<td><code>preview-dark.html</code></td>
+<td>Interactive design token catalog (dark)</td>
+</tr>
+</tbody>
+</table>
+<p>Use <a href="https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/supabase/DESIGN.md">DESIGN.md</a> to use as a reference for AI agents (Claude, Cursor, Stitch) to generate UI that looks like the Supabase design language.</p>
+<h2 id="preview">Preview</h2>
+<p>A sample landing page built with DESIGN.md. It shows the actual colors, typography, buttons, cards, spacing, and elevation, all in one page.</p>
+<h3 id="dark-mode">Dark Mode</h3>
+<p><img src="/preview-images/supabase/dark-fit.avif" alt="Supabase Design System — Dark Mode" loading="lazy" decoding="async"></p>
+<h3 id="light-mode">Light Mode</h3>
+<p><img src="/preview-images/supabase/light-fit.avif" alt="Supabase Design System — Light Mode" loading="lazy" decoding="async"></p></div></section><section class="detail-doc-panel" data-doc-panel="design" hidden><div class="markdown-shell document-copy"><h2 id="design-system-inspiration-of-supabase">Design System Inspiration of Supabase</h2>
+<h2 id="1-visual-theme--atmosphere">1. Visual Theme &#x26; Atmosphere</h2>
+<p>Supabase's website is a dark-mode-native developer platform that channels the aesthetic of a premium code editor — deep black backgrounds (<code>#0f0f0f</code>, <code>#171717</code>) with emerald green accents (<code>#3ecf8e</code>, <code>#00c573</code>) that reference the brand's open-source, PostgreSQL-green identity. The design system feels like it was born in a terminal window and evolved into a sophisticated marketing surface without losing its developer soul.</p>
+<p>The typography is built on "Circular" — a geometric sans-serif with rounded terminals that softens the technical edge. At 72px with a 1.00 line-height, the hero text is compressed to its absolute minimum vertical space, creating dense, impactful statements that waste nothing. The monospace companion (Source Code Pro) appears sparingly for uppercase technical labels with 1.2px letter-spacing, creating the "developer console" markers that connect the marketing site to the product experience.</p>
+<p>What makes Supabase distinctive is its sophisticated HSL-based color token system. Rather than flat hex values, Supabase uses HSL with alpha channels for nearly every color (<code>--colors-crimson4</code>, <code>--colors-purple5</code>, <code>--colors-slateA12</code>), enabling a nuanced layering system where colors interact through transparency. This creates depth through translucency — borders at <code>rgba(46, 46, 46)</code>, surfaces at <code>rgba(41, 41, 41, 0.84)</code>, and accents at partial opacity all blend with the dark background to create a rich, dimensional palette from minimal color ingredients.</p>
+<p>The green accent (<code>#3ecf8e</code>) appears selectively — in the Supabase logo, in link colors (<code>#00c573</code>), and in border highlights (<code>rgba(62, 207, 142, 0.3)</code>) — always as a signal of "this is Supabase" rather than as a decorative element. Pill-shaped buttons (9999px radius) for primary CTAs contrast with standard 6px radius for secondary elements, creating a clear visual hierarchy of importance.</p>
+<p><strong>Key Characteristics:</strong></p>
+<ul>
+<li>Dark-mode-native: near-black backgrounds (<code>#0f0f0f</code>, <code>#171717</code>) — never pure black</li>
+<li>Emerald green brand accent (<code>#3ecf8e</code>, <code>#00c573</code>) used sparingly as identity marker</li>
+<li>Circular font — geometric sans-serif with rounded terminals</li>
+<li>Source Code Pro for uppercase technical labels (1.2px letter-spacing)</li>
+<li>HSL-based color token system with alpha channels for translucent layering</li>
+<li>Pill buttons (9999px) for primary CTAs, 6px radius for secondary</li>
+<li>Neutral gray scale from <code>#171717</code> through <code>#898989</code> to <code>#fafafa</code></li>
+<li>Border system using dark grays (<code>#2e2e2e</code>, <code>#363636</code>, <code>#393939</code>)</li>
+<li>Minimal shadows — depth through border contrast and transparency</li>
+<li>Radix color primitives (crimson, purple, violet, indigo, yellow, tomato, orange, slate)</li>
+</ul>
+<h2 id="2-color-palette--roles">2. Color Palette &#x26; Roles</h2>
+<h3 id="brand">Brand</h3>
+<ul>
+<li><strong>Supabase Green</strong> (<code>#3ecf8e</code>): Primary brand color, logo, accent borders</li>
+<li><strong>Green Link</strong> (<code>#00c573</code>): Interactive green for links and actions</li>
+<li><strong>Green Border</strong> (<code>rgba(62, 207, 142, 0.3)</code>): Subtle green border accent</li>
+</ul>
+<h3 id="neutral-scale-dark-mode">Neutral Scale (Dark Mode)</h3>
+<ul>
+<li><strong>Near Black</strong> (<code>#0f0f0f</code>): Primary button background, deepest surface</li>
+<li><strong>Dark</strong> (<code>#171717</code>): Page background, primary canvas</li>
+<li><strong>Dark Border</strong> (<code>#242424</code>): Horizontal rule, section dividers</li>
+<li><strong>Border Dark</strong> (<code>#2e2e2e</code>): Card borders, tab borders</li>
+<li><strong>Mid Border</strong> (<code>#363636</code>): Button borders, dividers</li>
+<li><strong>Border Light</strong> (<code>#393939</code>): Secondary borders</li>
+<li><strong>Charcoal</strong> (<code>#434343</code>): Tertiary borders, dark accents</li>
+<li><strong>Dark Gray</strong> (<code>#4d4d4d</code>): Heavy secondary text</li>
+<li><strong>Mid Gray</strong> (<code>#898989</code>): Muted text, link color</li>
+<li><strong>Light Gray</strong> (<code>#b4b4b4</code>): Secondary link text</li>
+<li><strong>Near White</strong> (<code>#efefef</code>): Light border, subtle surface</li>
+<li><strong>Off White</strong> (<code>#fafafa</code>): Primary text, button text</li>
+</ul>
+<h3 id="radix-color-tokens-hsl-based">Radix Color Tokens (HSL-based)</h3>
+<ul>
+<li><strong>Slate Scale</strong>: <code>--colors-slate5</code> through <code>--colors-slateA12</code> — neutral progression</li>
+<li><strong>Purple</strong>: <code>--colors-purple4</code>, <code>--colors-purple5</code>, <code>--colors-purpleA7</code> — accent spectrum</li>
+<li><strong>Violet</strong>: <code>--colors-violet10</code> (<code>hsl(251, 63.2%, 63.2%)</code>) — vibrant accent</li>
+<li><strong>Crimson</strong>: <code>--colors-crimson4</code>, <code>--colors-crimsonA9</code> — warm accent / alert</li>
+<li><strong>Indigo</strong>: <code>--colors-indigoA2</code> — subtle blue wash</li>
+<li><strong>Yellow</strong>: <code>--colors-yellowA7</code> — attention/warning</li>
+<li><strong>Tomato</strong>: <code>--colors-tomatoA4</code> — error accent</li>
+<li><strong>Orange</strong>: <code>--colors-orange6</code> — warm accent</li>
+</ul>
+<h3 id="surface--overlay">Surface &#x26; Overlay</h3>
+<ul>
+<li><strong>Glass Dark</strong> (<code>rgba(41, 41, 41, 0.84)</code>): Translucent dark overlay</li>
+<li><strong>Slate Alpha</strong> (<code>hsla(210, 87.8%, 16.1%, 0.031)</code>): Ultra-subtle blue wash</li>
+<li><strong>Fixed Scale Alpha</strong> (<code>hsla(200, 90.3%, 93.4%, 0.109)</code>): Light frost overlay</li>
+</ul>
+<h3 id="shadows">Shadows</h3>
+<ul>
+<li>Supabase uses <strong>almost no shadows</strong> in its dark theme. Depth is created through border contrast and surface color differences rather than box-shadows. Focus states use <code>rgba(0, 0, 0, 0.1) 0px 4px 12px</code> — minimal, functional.</li>
+</ul>
+<h2 id="3-typography-rules">3. Typography Rules</h2>
+<h3 id="font-families">Font Families</h3>
+<ul>
+<li><strong>Primary</strong>: <code>Circular</code>, with fallbacks: <code>custom-font, Helvetica Neue, Helvetica, Arial</code></li>
+<li><strong>Monospace</strong>: <code>Source Code Pro</code>, with fallbacks: <code>Office Code Pro, Menlo</code></li>
+</ul>
+<h3 id="hierarchy">Hierarchy</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Font</th>
+<th>Size</th>
+<th>Weight</th>
+<th>Line Height</th>
+<th>Letter Spacing</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Display Hero</td>
+<td>Circular</td>
+<td>72px (4.50rem)</td>
+<td>400</td>
+<td>1.00 (tight)</td>
+<td>normal</td>
+<td>Maximum density, zero waste</td>
+</tr>
+<tr>
+<td>Section Heading</td>
+<td>Circular</td>
+<td>36px (2.25rem)</td>
+<td>400</td>
+<td>1.25 (tight)</td>
+<td>normal</td>
+<td>Feature section titles</td>
+</tr>
+<tr>
+<td>Card Title</td>
+<td>Circular</td>
+<td>24px (1.50rem)</td>
+<td>400</td>
+<td>1.33</td>
+<td>-0.16px</td>
+<td>Slight negative tracking</td>
+</tr>
+<tr>
+<td>Sub-heading</td>
+<td>Circular</td>
+<td>18px (1.13rem)</td>
+<td>400</td>
+<td>1.56</td>
+<td>normal</td>
+<td>Secondary headings</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Circular</td>
+<td>16px (1.00rem)</td>
+<td>400</td>
+<td>1.50</td>
+<td>normal</td>
+<td>Standard body text</td>
+</tr>
+<tr>
+<td>Nav Link</td>
+<td>Circular</td>
+<td>14px (0.88rem)</td>
+<td>500</td>
+<td>1.00–1.43</td>
+<td>normal</td>
+<td>Navigation items</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>Circular</td>
+<td>14px (0.88rem)</td>
+<td>500</td>
+<td>1.14 (tight)</td>
+<td>normal</td>
+<td>Button labels</td>
+</tr>
+<tr>
+<td>Caption</td>
+<td>Circular</td>
+<td>14px (0.88rem)</td>
+<td>400–500</td>
+<td>1.43</td>
+<td>normal</td>
+<td>Metadata, tags</td>
+</tr>
+<tr>
+<td>Small</td>
+<td>Circular</td>
+<td>12px (0.75rem)</td>
+<td>400</td>
+<td>1.33</td>
+<td>normal</td>
+<td>Fine print, footer links</td>
+</tr>
+<tr>
+<td>Code Label</td>
+<td>Source Code Pro</td>
+<td>12px (0.75rem)</td>
+<td>400</td>
+<td>1.33</td>
+<td>1.2px</td>
+<td><code>text-transform: uppercase</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="principles">Principles</h3>
+<ul>
+<li><strong>Weight restraint</strong>: Nearly all text uses weight 400 (regular/book). Weight 500 appears only for navigation links and button labels. There is no bold (700) in the detected system — hierarchy is created through size, not weight.</li>
+<li><strong>1.00 hero line-height</strong>: The hero text is compressed to absolute zero leading. This is the defining typographic gesture — text that feels like a terminal command: dense, efficient, no wasted vertical space.</li>
+<li><strong>Negative tracking on cards</strong>: Card titles use -0.16px letter-spacing, a subtle tightening that differentiates them from body text without being obvious.</li>
+<li><strong>Monospace as ritual</strong>: Source Code Pro in uppercase with 1.2px letter-spacing is the "developer console" voice — used sparingly for technical labels that connect to the product experience.</li>
+<li><strong>Geometric personality</strong>: Circular's rounded terminals create warmth in what could otherwise be a cold, technical interface. The font is the humanizing element.</li>
+</ul>
+<h2 id="4-component-stylings">4. Component Stylings</h2>
+<h3 id="buttons">Buttons</h3>
+<p><strong>Primary Pill (Dark)</strong></p>
+<ul>
+<li>Background: <code>#0f0f0f</code></li>
+<li>Text: <code>#fafafa</code></li>
+<li>Padding: 8px 32px</li>
+<li>Radius: 9999px (full pill)</li>
+<li>Border: <code>1px solid #fafafa</code> (white border on dark)</li>
+<li>Focus shadow: <code>rgba(0, 0, 0, 0.1) 0px 4px 12px</code></li>
+<li>Use: Primary CTA ("Start your project")</li>
+</ul>
+<p><strong>Secondary Pill (Dark, Muted)</strong></p>
+<ul>
+<li>Background: <code>#0f0f0f</code></li>
+<li>Text: <code>#fafafa</code></li>
+<li>Padding: 8px 32px</li>
+<li>Radius: 9999px</li>
+<li>Border: <code>1px solid #2e2e2e</code> (dark border)</li>
+<li>Opacity: 0.8</li>
+<li>Use: Secondary CTA alongside primary</li>
+</ul>
+<p><strong>Ghost Button</strong></p>
+<ul>
+<li>Background: transparent</li>
+<li>Text: <code>#fafafa</code></li>
+<li>Padding: 8px</li>
+<li>Radius: 6px</li>
+<li>Border: <code>1px solid transparent</code></li>
+<li>Use: Tertiary actions, icon buttons</li>
+</ul>
+<h3 id="cards--containers">Cards &#x26; Containers</h3>
+<ul>
+<li>Background: dark surfaces (<code>#171717</code> or slightly lighter)</li>
+<li>Border: <code>1px solid #2e2e2e</code> or <code>#363636</code></li>
+<li>Radius: 8px–16px</li>
+<li>No visible shadows — borders define edges</li>
+<li>Internal padding: 16px–24px</li>
+</ul>
+<h3 id="tabs">Tabs</h3>
+<ul>
+<li>Border: <code>1px solid #2e2e2e</code></li>
+<li>Radius: 9999px (pill tabs)</li>
+<li>Active: green accent or lighter surface</li>
+<li>Inactive: dark, muted</li>
+</ul>
+<h3 id="links">Links</h3>
+<ul>
+<li><strong>Green</strong>: <code>#00c573</code> — Supabase-branded links</li>
+<li><strong>Primary Light</strong>: <code>#fafafa</code> — standard links on dark</li>
+<li><strong>Secondary</strong>: <code>#b4b4b4</code> — muted links</li>
+<li><strong>Muted</strong>: <code>#898989</code> — tertiary links, footer</li>
+</ul>
+<h3 id="navigation">Navigation</h3>
+<ul>
+<li>Dark background matching page (<code>#171717</code>)</li>
+<li>Supabase logo with green icon</li>
+<li>Circular 14px weight 500 for nav links</li>
+<li>Clean horizontal layout with product dropdown</li>
+<li>Green "Start your project" CTA pill button</li>
+<li>Sticky header behavior</li>
+</ul>
+<h2 id="5-layout-principles">5. Layout Principles</h2>
+<h3 id="spacing-system">Spacing System</h3>
+<ul>
+<li>Base unit: 8px</li>
+<li>Scale: 1px, 4px, 6px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px, 90px, 96px, 128px</li>
+<li>Notable large jumps: 48px → 90px → 96px → 128px for major section spacing</li>
+</ul>
+<h3 id="grid--container">Grid &#x26; Container</h3>
+<ul>
+<li>Centered content with generous max-width</li>
+<li>Full-width dark sections with constrained inner content</li>
+<li>Feature grids: icon-based grids with consistent card sizes</li>
+<li>Logo grids for "Trusted by" sections</li>
+<li>Footer: multi-column on dark background</li>
+</ul>
+<h3 id="breakpoints">Breakpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Width</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile</td>
+<td>&#x3C;600px</td>
+<td>Single column, stacked layout</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>>600px</td>
+<td>Multi-column grids, expanded layout</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: Supabase uses a notably minimal breakpoint system — primarily a single 600px breakpoint, suggesting a mobile-first approach with progressive enhancement.</em></p>
+<h3 id="whitespace-philosophy">Whitespace Philosophy</h3>
+<ul>
+<li><strong>Dramatic section spacing</strong>: 90px–128px between major sections creates a cinematic pacing — each section is its own scene in the dark void.</li>
+<li><strong>Dense content blocks</strong>: Within sections, spacing is tight (16px–24px), creating concentrated information clusters.</li>
+<li><strong>Border-defined space</strong>: Instead of whitespace + shadows for separation, Supabase uses thin borders on dark backgrounds — separation through line, not gap.</li>
+</ul>
+<h3 id="border-radius-scale">Border Radius Scale</h3>
+<ul>
+<li>Standard (6px): Ghost buttons, small elements</li>
+<li>Comfortable (8px): Cards, containers</li>
+<li>Medium (11px–12px): Mid-size panels</li>
+<li>Large (16px): Feature cards, major containers</li>
+<li>Pill (9999px): Primary buttons, tab indicators</li>
+</ul>
+<h2 id="6-depth--elevation">6. Depth &#x26; Elevation</h2>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Treatment</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Flat (Level 0)</td>
+<td>No shadow, border <code>#2e2e2e</code></td>
+<td>Default state, most surfaces</td>
+</tr>
+<tr>
+<td>Subtle Border (Level 1)</td>
+<td>Border <code>#363636</code> or <code>#393939</code></td>
+<td>Interactive elements, hover</td>
+</tr>
+<tr>
+<td>Focus (Level 2)</td>
+<td><code>rgba(0, 0, 0, 0.1) 0px 4px 12px</code></td>
+<td>Focus states only</td>
+</tr>
+<tr>
+<td>Green Accent (Level 3)</td>
+<td>Border <code>rgba(62, 207, 142, 0.3)</code></td>
+<td>Brand-highlighted elements</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shadow Philosophy</strong>: Supabase deliberately avoids shadows. In a dark-mode-native design, shadows are nearly invisible and serve no purpose. Instead, depth is communicated through a sophisticated border hierarchy — from <code>#242424</code> (barely visible) through <code>#2e2e2e</code> (standard) to <code>#393939</code> (prominent). The green accent border (<code>rgba(62, 207, 142, 0.3)</code>) at 30% opacity is the "elevated" state — the brand color itself becomes the depth signal.</p>
+<h2 id="7-dos-and-donts">7. Do's and Don'ts</h2>
+<h3 id="do">Do</h3>
+<ul>
+<li>Use near-black backgrounds (<code>#0f0f0f</code>, <code>#171717</code>) — depth comes from the gray border hierarchy</li>
+<li>Apply Supabase green (<code>#3ecf8e</code>, <code>#00c573</code>) sparingly — it's an identity marker, not a decoration</li>
+<li>Use Circular at weight 400 for nearly everything — 500 only for buttons and nav</li>
+<li>Set hero text to 1.00 line-height — the zero-leading is the typographic signature</li>
+<li>Create depth through border color differences (<code>#242424</code> → <code>#2e2e2e</code> → <code>#363636</code>)</li>
+<li>Use pill shape (9999px) exclusively for primary CTAs and tabs</li>
+<li>Employ HSL-based colors with alpha for translucent layering effects</li>
+<li>Use Source Code Pro uppercase labels for developer-context markers</li>
+</ul>
+<h3 id="dont">Don't</h3>
+<ul>
+<li>Don't add box-shadows — they're invisible on dark backgrounds and break the border-defined depth system</li>
+<li>Don't use bold (700) text weight — the system uses 400 and 500 only</li>
+<li>Don't apply green to backgrounds or large surfaces — it's for borders, links, and small accents</li>
+<li>Don't use warm colors (crimson, orange) as primary design elements — they exist as semantic tokens for states</li>
+<li>Don't increase hero line-height above 1.00 — the density is intentional</li>
+<li>Don't use large border radius (16px+) on buttons — pills (9999px) or standard (6px), nothing in between</li>
+<li>Don't lighten the background above <code>#171717</code> for primary surfaces — the darkness is structural</li>
+<li>Don't forget the translucent borders — <code>rgba</code> border colors are the layering mechanism</li>
+</ul>
+<h2 id="8-responsive-behavior">8. Responsive Behavior</h2>
+<h3 id="breakpoints-1">Breakpoints</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Width</th>
+<th>Key Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mobile</td>
+<td>&#x3C;600px</td>
+<td>Single column, stacked features, condensed nav</td>
+</tr>
+<tr>
+<td>Desktop</td>
+<td>>600px</td>
+<td>Multi-column grids, full nav, expanded sections</td>
+</tr>
+</tbody>
+</table>
+<h3 id="collapsing-strategy">Collapsing Strategy</h3>
+<ul>
+<li>Hero: 72px → scales down proportionally</li>
+<li>Feature grids: multi-column → single column stacked</li>
+<li>Logo row: horizontal → wrapped grid</li>
+<li>Navigation: full → hamburger</li>
+<li>Section spacing: 90–128px → 48–64px</li>
+<li>Buttons: inline → full-width stacked</li>
+</ul>
+<h2 id="9-agent-prompt-guide">9. Agent Prompt Guide</h2>
+<h3 id="quick-color-reference">Quick Color Reference</h3>
+<ul>
+<li>Background: <code>#0f0f0f</code> (button), <code>#171717</code> (page)</li>
+<li>Text: <code>#fafafa</code> (primary), <code>#b4b4b4</code> (secondary), <code>#898989</code> (muted)</li>
+<li>Brand green: <code>#3ecf8e</code> (brand), <code>#00c573</code> (links)</li>
+<li>Borders: <code>#242424</code> (subtle), <code>#2e2e2e</code> (standard), <code>#363636</code> (prominent)</li>
+<li>Green border: <code>rgba(62, 207, 142, 0.3)</code> (accent)</li>
+</ul>
+<h3 id="example-component-prompts">Example Component Prompts</h3>
+<ul>
+<li>"Create a hero section on #171717 background. Headline at 72px Circular weight 400, line-height 1.00, #fafafa text. Sub-text at 16px Circular weight 400, line-height 1.50, #b4b4b4. Pill CTA button (#0f0f0f bg, #fafafa text, 9999px radius, 8px 32px padding, 1px solid #fafafa border)."</li>
+<li>"Design a feature card: #171717 background, 1px solid #2e2e2e border, 16px radius. Title at 24px Circular weight 400, letter-spacing -0.16px. Body at 14px weight 400, #898989 text."</li>
+<li>"Build navigation bar: #171717 background. Circular 14px weight 500 for links, #fafafa text. Supabase logo with green icon left-aligned. Green pill CTA 'Start your project' right-aligned."</li>
+<li>"Create a technical label: Source Code Pro 12px, uppercase, letter-spacing 1.2px, #898989 text."</li>
+<li>"Design a framework logo grid: 6-column layout on dark, grayscale logos at 60% opacity, 1px solid #2e2e2e border between sections."</li>
+</ul>
+<h3 id="iteration-guide">Iteration Guide</h3>
+<ol>
+<li>Start with #171717 background — everything is dark-mode-native</li>
+<li>Green is the brand identity marker — use it for links, logo, and accent borders only</li>
+<li>Depth comes from borders (#242424 → #2e2e2e → #363636), not shadows</li>
+<li>Weight 400 is the default for everything — 500 only for interactive elements</li>
+<li>Hero line-height of 1.00 is the signature typographic move</li>
+<li>Pill (9999px) for primary actions, 6px for secondary, 8-16px for cards</li>
+<li>HSL with alpha channels creates the sophisticated translucent layering</li>
+</ol></div></section></div><textarea hidden readonly data-design-markdown># Design System Inspiration of Supabase
+
+## 1. Visual Theme &amp; Atmosphere
+
+Supabase&#39;s website is a dark-mode-native developer platform that channels the aesthetic of a premium code editor — deep black backgrounds (`#0f0f0f`, `#171717`) with emerald green accents (`#3ecf8e`, `#00c573`) that reference the brand&#39;s open-source, PostgreSQL-green identity. The design system feels like it was born in a terminal window and evolved into a sophisticated marketing surface without losing its developer soul.
+
+The typography is built on &quot;Circular&quot; — a geometric sans-serif with rounded terminals that softens the technical edge. At 72px with a 1.00 line-height, the hero text is compressed to its absolute minimum vertical space, creating dense, impactful statements that waste nothing. The monospace companion (Source Code Pro) appears sparingly for uppercase technical labels with 1.2px letter-spacing, creating the &quot;developer console&quot; markers that connect the marketing site to the product experience.
+
+What makes Supabase distinctive is its sophisticated HSL-based color token system. Rather than flat hex values, Supabase uses HSL with alpha channels for nearly every color (`--colors-crimson4`, `--colors-purple5`, `--colors-slateA12`), enabling a nuanced layering system where colors interact through transparency. This creates depth through translucency — borders at `rgba(46, 46, 46)`, surfaces at `rgba(41, 41, 41, 0.84)`, and accents at partial opacity all blend with the dark background to create a rich, dimensional palette from minimal color ingredients.
+
+The green accent (`#3ecf8e`) appears selectively — in the Supabase logo, in link colors (`#00c573`), and in border highlights (`rgba(62, 207, 142, 0.3)`) — always as a signal of &quot;this is Supabase&quot; rather than as a decorative element. Pill-shaped buttons (9999px radius) for primary CTAs contrast with standard 6px radius for secondary elements, creating a clear visual hierarchy of importance.
+
+**Key Characteristics:**
+- Dark-mode-native: near-black backgrounds (`#0f0f0f`, `#171717`) — never pure black
+- Emerald green brand accent (`#3ecf8e`, `#00c573`) used sparingly as identity marker
+- Circular font — geometric sans-serif with rounded terminals
+- Source Code Pro for uppercase technical labels (1.2px letter-spacing)
+- HSL-based color token system with alpha channels for translucent layering
+- Pill buttons (9999px) for primary CTAs, 6px radius for secondary
+- Neutral gray scale from `#171717` through `#898989` to `#fafafa`
+- Border system using dark grays (`#2e2e2e`, `#363636`, `#393939`)
+- Minimal shadows — depth through border contrast and transparency
+- Radix color primitives (crimson, purple, violet, indigo, yellow, tomato, orange, slate)
+
+## 2. Color Palette &amp; Roles
+
+### Brand
+- **Supabase Green** (`#3ecf8e`): Primary brand color, logo, accent borders
+- **Green Link** (`#00c573`): Interactive green for links and actions
+- **Green Border** (`rgba(62, 207, 142, 0.3)`): Subtle green border accent
+
+### Neutral Scale (Dark Mode)
+- **Near Black** (`#0f0f0f`): Primary button background, deepest surface
+- **Dark** (`#171717`): Page background, primary canvas
+- **Dark Border** (`#242424`): Horizontal rule, section dividers
+- **Border Dark** (`#2e2e2e`): Card borders, tab borders
+- **Mid Border** (`#363636`): Button borders, dividers
+- **Border Light** (`#393939`): Secondary borders
+- **Charcoal** (`#434343`): Tertiary borders, dark accents
+- **Dark Gray** (`#4d4d4d`): Heavy secondary text
+- **Mid Gray** (`#898989`): Muted text, link color
+- **Light Gray** (`#b4b4b4`): Secondary link text
+- **Near White** (`#efefef`): Light border, subtle surface
+- **Off White** (`#fafafa`): Primary text, button text
+
+### Radix Color Tokens (HSL-based)
+- **Slate Scale**: `--colors-slate5` through `--colors-slateA12` — neutral progression
+- **Purple**: `--colors-purple4`, `--colors-purple5`, `--colors-purpleA7` — accent spectrum
+- **Violet**: `--colors-violet10` (`hsl(251, 63.2%, 63.2%)`) — vibrant accent
+- **Crimson**: `--colors-crimson4`, `--colors-crimsonA9` — warm accent / alert
+- **Indigo**: `--colors-indigoA2` — subtle blue wash
+- **Yellow**: `--colors-yellowA7` — attention/warning
+- **Tomato**: `--colors-tomatoA4` — error accent
+- **Orange**: `--colors-orange6` — warm accent
+
+### Surface &amp; Overlay
+- **Glass Dark** (`rgba(41, 41, 41, 0.84)`): Translucent dark overlay
+- **Slate Alpha** (`hsla(210, 87.8%, 16.1%, 0.031)`): Ultra-subtle blue wash
+- **Fixed Scale Alpha** (`hsla(200, 90.3%, 93.4%, 0.109)`): Light frost overlay
+
+### Shadows
+- Supabase uses **almost no shadows** in its dark theme. Depth is created through border contrast and surface color differences rather than box-shadows. Focus states use `rgba(0, 0, 0, 0.1) 0px 4px 12px` — minimal, functional.
+
+## 3. Typography Rules
+
+### Font Families
+- **Primary**: `Circular`, with fallbacks: `custom-font, Helvetica Neue, Helvetica, Arial`
+- **Monospace**: `Source Code Pro`, with fallbacks: `Office Code Pro, Menlo`
+
+### Hierarchy
+
+| Role | Font | Size | Weight | Line Height | Letter Spacing | Notes |
+|------|------|------|--------|-------------|----------------|-------|
+| Display Hero | Circular | 72px (4.50rem) | 400 | 1.00 (tight) | normal | Maximum density, zero waste |
+| Section Heading | Circular | 36px (2.25rem) | 400 | 1.25 (tight) | normal | Feature section titles |
+| Card Title | Circular | 24px (1.50rem) | 400 | 1.33 | -0.16px | Slight negative tracking |
+| Sub-heading | Circular | 18px (1.13rem) | 400 | 1.56 | normal | Secondary headings |
+| Body | Circular | 16px (1.00rem) | 400 | 1.50 | normal | Standard body text |
+| Nav Link | Circular | 14px (0.88rem) | 500 | 1.00–1.43 | normal | Navigation items |
+| Button | Circular | 14px (0.88rem) | 500 | 1.14 (tight) | normal | Button labels |
+| Caption | Circular | 14px (0.88rem) | 400–500 | 1.43 | normal | Metadata, tags |
+| Small | Circular | 12px (0.75rem) | 400 | 1.33 | normal | Fine print, footer links |
+| Code Label | Source Code Pro | 12px (0.75rem) | 400 | 1.33 | 1.2px | `text-transform: uppercase` |
+
+### Principles
+- **Weight restraint**: Nearly all text uses weight 400 (regular/book). Weight 500 appears only for navigation links and button labels. There is no bold (700) in the detected system — hierarchy is created through size, not weight.
+- **1.00 hero line-height**: The hero text is compressed to absolute zero leading. This is the defining typographic gesture — text that feels like a terminal command: dense, efficient, no wasted vertical space.
+- **Negative tracking on cards**: Card titles use -0.16px letter-spacing, a subtle tightening that differentiates them from body text without being obvious.
+- **Monospace as ritual**: Source Code Pro in uppercase with 1.2px letter-spacing is the &quot;developer console&quot; voice — used sparingly for technical labels that connect to the product experience.
+- **Geometric personality**: Circular&#39;s rounded terminals create warmth in what could otherwise be a cold, technical interface. The font is the humanizing element.
+
+## 4. Component Stylings
+
+### Buttons
+
+**Primary Pill (Dark)**
+- Background: `#0f0f0f`
+- Text: `#fafafa`
+- Padding: 8px 32px
+- Radius: 9999px (full pill)
+- Border: `1px solid #fafafa` (white border on dark)
+- Focus shadow: `rgba(0, 0, 0, 0.1) 0px 4px 12px`
+- Use: Primary CTA (&quot;Start your project&quot;)
+
+**Secondary Pill (Dark, Muted)**
+- Background: `#0f0f0f`
+- Text: `#fafafa`
+- Padding: 8px 32px
+- Radius: 9999px
+- Border: `1px solid #2e2e2e` (dark border)
+- Opacity: 0.8
+- Use: Secondary CTA alongside primary
+
+**Ghost Button**
+- Background: transparent
+- Text: `#fafafa`
+- Padding: 8px
+- Radius: 6px
+- Border: `1px solid transparent`
+- Use: Tertiary actions, icon buttons
+
+### Cards &amp; Containers
+- Background: dark surfaces (`#171717` or slightly lighter)
+- Border: `1px solid #2e2e2e` or `#363636`
+- Radius: 8px–16px
+- No visible shadows — borders define edges
+- Internal padding: 16px–24px
+
+### Tabs
+- Border: `1px solid #2e2e2e`
+- Radius: 9999px (pill tabs)
+- Active: green accent or lighter surface
+- Inactive: dark, muted
+
+### Links
+- **Green**: `#00c573` — Supabase-branded links
+- **Primary Light**: `#fafafa` — standard links on dark
+- **Secondary**: `#b4b4b4` — muted links
+- **Muted**: `#898989` — tertiary links, footer
+
+### Navigation
+- Dark background matching page (`#171717`)
+- Supabase logo with green icon
+- Circular 14px weight 500 for nav links
+- Clean horizontal layout with product dropdown
+- Green &quot;Start your project&quot; CTA pill button
+- Sticky header behavior
+
+## 5. Layout Principles
+
+### Spacing System
+- Base unit: 8px
+- Scale: 1px, 4px, 6px, 8px, 12px, 16px, 20px, 24px, 32px, 40px, 48px, 90px, 96px, 128px
+- Notable large jumps: 48px → 90px → 96px → 128px for major section spacing
+
+### Grid &amp; Container
+- Centered content with generous max-width
+- Full-width dark sections with constrained inner content
+- Feature grids: icon-based grids with consistent card sizes
+- Logo grids for &quot;Trusted by&quot; sections
+- Footer: multi-column on dark background
+
+### Breakpoints
+| Name | Width | Key Changes |
+|------|-------|-------------|
+| Mobile | &lt;600px | Single column, stacked layout |
+| Desktop | &gt;600px | Multi-column grids, expanded layout |
+
+*Note: Supabase uses a notably minimal breakpoint system — primarily a single 600px breakpoint, suggesting a mobile-first approach with progressive enhancement.*
+
+### Whitespace Philosophy
+- **Dramatic section spacing**: 90px–128px between major sections creates a cinematic pacing — each section is its own scene in the dark void.
+- **Dense content blocks**: Within sections, spacing is tight (16px–24px), creating concentrated information clusters.
+- **Border-defined space**: Instead of whitespace + shadows for separation, Supabase uses thin borders on dark backgrounds — separation through line, not gap.
+
+### Border Radius Scale
+- Standard (6px): Ghost buttons, small elements
+- Comfortable (8px): Cards, containers
+- Medium (11px–12px): Mid-size panels
+- Large (16px): Feature cards, major containers
+- Pill (9999px): Primary buttons, tab indicators
+
+## 6. Depth &amp; Elevation
+
+| Level | Treatment | Use |
+|-------|-----------|-----|
+| Flat (Level 0) | No shadow, border `#2e2e2e` | Default state, most surfaces |
+| Subtle Border (Level 1) | Border `#363636` or `#393939` | Interactive elements, hover |
+| Focus (Level 2) | `rgba(0, 0, 0, 0.1) 0px 4px 12px` | Focus states only |
+| Green Accent (Level 3) | Border `rgba(62, 207, 142, 0.3)` | Brand-highlighted elements |
+
+**Shadow Philosophy**: Supabase deliberately avoids shadows. In a dark-mode-native design, shadows are nearly invisible and serve no purpose. Instead, depth is communicated through a sophisticated border hierarchy — from `#242424` (barely visible) through `#2e2e2e` (standard) to `#393939` (prominent). The green accent border (`rgba(62, 207, 142, 0.3)`) at 30% opacity is the &quot;elevated&quot; state — the brand color itself becomes the depth signal.
+
+## 7. Do&#39;s and Don&#39;ts
+
+### Do
+- Use near-black backgrounds (`#0f0f0f`, `#171717`) — depth comes from the gray border hierarchy
+- Apply Supabase green (`#3ecf8e`, `#00c573`) sparingly — it&#39;s an identity marker, not a decoration
+- Use Circular at weight 400 for nearly everything — 500 only for buttons and nav
+- Set hero text to 1.00 line-height — the zero-leading is the typographic signature
+- Create depth through border color differences (`#242424` → `#2e2e2e` → `#363636`)
+- Use pill shape (9999px) exclusively for primary CTAs and tabs
+- Employ HSL-based colors with alpha for translucent layering effects
+- Use Source Code Pro uppercase labels for developer-context markers
+
+### Don&#39;t
+- Don&#39;t add box-shadows — they&#39;re invisible on dark backgrounds and break the border-defined depth system
+- Don&#39;t use bold (700) text weight — the system uses 400 and 500 only
+- Don&#39;t apply green to backgrounds or large surfaces — it&#39;s for borders, links, and small accents
+- Don&#39;t use warm colors (crimson, orange) as primary design elements — they exist as semantic tokens for states
+- Don&#39;t increase hero line-height above 1.00 — the density is intentional
+- Don&#39;t use large border radius (16px+) on buttons — pills (9999px) or standard (6px), nothing in between
+- Don&#39;t lighten the background above `#171717` for primary surfaces — the darkness is structural
+- Don&#39;t forget the translucent borders — `rgba` border colors are the layering mechanism
+
+## 8. Responsive Behavior
+
+### Breakpoints
+| Name | Width | Key Changes |
+|------|-------|-------------|
+| Mobile | &lt;600px | Single column, stacked features, condensed nav |
+| Desktop | &gt;600px | Multi-column grids, full nav, expanded sections |
+
+### Collapsing Strategy
+- Hero: 72px → scales down proportionally
+- Feature grids: multi-column → single column stacked
+- Logo row: horizontal → wrapped grid
+- Navigation: full → hamburger
+- Section spacing: 90–128px → 48–64px
+- Buttons: inline → full-width stacked
+
+## 9. Agent Prompt Guide
+
+### Quick Color Reference
+- Background: `#0f0f0f` (button), `#171717` (page)
+- Text: `#fafafa` (primary), `#b4b4b4` (secondary), `#898989` (muted)
+- Brand green: `#3ecf8e` (brand), `#00c573` (links)
+- Borders: `#242424` (subtle), `#2e2e2e` (standard), `#363636` (prominent)
+- Green border: `rgba(62, 207, 142, 0.3)` (accent)
+
+### Example Component Prompts
+- &quot;Create a hero section on #171717 background. Headline at 72px Circular weight 400, line-height 1.00, #fafafa text. Sub-text at 16px Circular weight 400, line-height 1.50, #b4b4b4. Pill CTA button (#0f0f0f bg, #fafafa text, 9999px radius, 8px 32px padding, 1px solid #fafafa border).&quot;
+- &quot;Design a feature card: #171717 background, 1px solid #2e2e2e border, 16px radius. Title at 24px Circular weight 400, letter-spacing -0.16px. Body at 14px weight 400, #898989 text.&quot;
+- &quot;Build navigation bar: #171717 background. Circular 14px weight 500 for links, #fafafa text. Supabase logo with green icon left-aligned. Green pill CTA &#39;Start your project&#39; right-aligned.&quot;
+- &quot;Create a technical label: Source Code Pro 12px, uppercase, letter-spacing 1.2px, #898989 text.&quot;
+- &quot;Design a framework logo grid: 6-column layout on dark, grayscale logos at 60% opacity, 1px solid #2e2e2e border between sections.&quot;
+
+### Iteration Guide
+1. Start with #171717 background — everything is dark-mode-native
+2. Green is the brand identity marker — use it for links, logo, and accent borders only
+3. Depth comes from borders (#242424 → #2e2e2e → #363636), not shadows
+4. Weight 400 is the default for everything — 500 only for interactive elements
+5. Hero line-height of 1.00 is the signature typographic move
+6. Pill (9999px) for primary actions, 6px for secondary, 8-16px for cards
+7. HSL with alpha channels creates the sophisticated translucent layering
+</textarea></section><script type="module" src="/_astro/DocumentTabs.astro_astro_type_script_index_0_lang.CqDIfMN7.js"></script></div><nav class="detail-adjacent-nav" aria-label="Designs adjacents"><a class="detail-adjacent-link" href="/fr-FR/designs/stripe/" data-adjacent-link="previous" aria-keyshortcuts="ArrowLeft"><span><kbd aria-hidden="true">←</kbd>Précédent</span><strong>Stripe</strong></a><a class="detail-adjacent-link detail-adjacent-link-next" href="/fr-FR/designs/superhuman/" data-adjacent-link="next" aria-keyshortcuts="ArrowRight"><span>Suivant<kbd aria-hidden="true">→</kbd></span><strong>Superhuman</strong></a></nav><astro-island uid="TdySD" prefix="r2" component-url="/_astro/HagiCodeShowcase.SrqTGUpG.js" component-export="default" renderer-url="/_astro/client.DVqO3zAs.js" props="{&quot;locale&quot;:[0,&quot;fr-FR&quot;]}" ssr client="load" opts="{&quot;name&quot;:&quot;HagiCodeShowcase&quot;,&quot;value&quot;:true}" await-children><section class="gallery-showcase shell-panel" aria-label="Hagicode"><div class="gallery-showcase-content"><div class="gallery-showcase-head"><div><p class="gallery-meta-label">Construit avec HagiCode</p><h2>Hagicode</h2></div></div><div class="gallery-showcase-copy"><p>Le workflow OpenSpec, l’exécution multi-agent et les interfaces Hero Scénario sont les idées réutilisées pour cette enveloppe de galerie.</p><p>Transformez vos idées en logiciels aboutis et utilisables grâce à un workflow de codage agentique plus intelligent, plus rapide et plus agréable.</p></div><ul class="gallery-showcase-triad" aria-label="Hagicode"><li><strong>Smart</strong><span>OpenSpec transforme l&#x27;intention en un parcours exécutable, de l&#x27;idée jusqu&#x27;au changement livré.</span></li><li><strong>Efficient</strong><span>Les workflows multi-agents font avancer en parallèle la recherche, l&#x27;implémentation et la revue.</span></li><li><strong>Fun</strong><span>Les interfaces Hero Scenario rendent les longues sessions de codage visuelles, collaboratives et gratifiantes.</span></li></ul><div class="gallery-showcase-actions"><a class="gallery-showcase-cta button-primary" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcasePrimary" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="Visiter HagiCode">Visiter HagiCode</a><a class="gallery-showcase-learn-more" href="https://www.hagicode.com" data-ga-category="navigation" data-ga-label="showcaseLearnMore" data-ga-location="design_showcase" target="_blank" rel="noopener" aria-label="En savoir plus">En savoir plus</a><span class="gallery-showcase-store" data-store-entry="gallery-hagicode" data-ga-category="download" data-ga-label="microsoftStore" data-ga-location="design_showcase"><ms-store-badge productid="9N3PM0N3SVDW" productname="HagiCode" window-mode="direct" theme="auto" size="small" language="fr" animation="on" aria-label="Open HagiCode in Microsoft Store" title="Open HagiCode in Microsoft Store"></ms-store-badge></span></div></div><section class="gallery-video-promo" aria-labelledby="gallery-video-promo-title"><div class="gallery-video-promo-heading"><h3 id="gallery-video-promo-title">Vidéo promo HagiCode</h3><p>Découvrez comment HagiCode donne vie au codage agentique.</p></div><div class="gallery-video-promo-featured"><span class="gallery-video-promo-platform">Présentation de HagiCode</span><div class="gallery-video-promo-frame"><iframe src="https://www.youtube.com/embed/AQ8oSTW6wNQ?autoplay=1&amp;mute=1&amp;playsinline=1&amp;rel=0" title="Présentation de HagiCode" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen="" referrerPolicy="strict-origin-when-cross-origin"></iframe></div><p>Découvrez comment HagiCode donne vie au codage agentique.</p><a href="https://www.youtube.com/watch?v=AQ8oSTW6wNQ" target="_blank" rel="noopener noreferrer">Regarder sur YouTube</a></div><a class="gallery-video-promo-alternate" href="https://www.bilibili.com/video/BV1z4oWB3EpY/" target="_blank" rel="noopener noreferrer">Regarder la présentation de HagiCode sur Bilibili</a></section></section><!--astro:end--></astro-island></section></main><hagilight-promoto-banner class="hagilight-promoto" data-locale="fr-FR" data-site-id="awesome-design-gallery" hidden="true"><section class="hagilight-promoto__shell" data-promoto-shell hidden aria-label="Featured promotion"><div class="hagilight-promoto__viewport"><div class="hagilight-promoto__track" data-promoto-track></div></div><nav class="hagilight-promoto__controls" data-promoto-controls aria-label="Promotion controls" hidden><button type="button" class="hagilight-promoto__control" data-promoto-previous aria-label="Previous promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 6l-6 6 6 6"></path></svg></button><span class="hagilight-promoto__count" data-promoto-count aria-label="Promotion progress"></span><button type="button" class="hagilight-promoto__control" data-promoto-next aria-label="Next promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6l6 6-6 6"></path></svg></button><button type="button" class="hagilight-promoto__control" data-promoto-pause aria-pressed="false" aria-label="Pause automatic promotion rotation"><svg class="hagilight-promoto__icon hagilight-promoto__icon--pause" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 6v12M15 6v12"></path></svg><svg class="hagilight-promoto__icon hagilight-promoto__icon--play" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 5.5v13l11-6.5z"></path></svg></button></nav><button type="button" class="hagilight-promoto__dismiss" data-promoto-dismiss aria-label="Dismiss promotion"><svg class="hagilight-promoto__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 6.5l11 11M17.5 6.5l-11 11"></path></svg></button><span class="hagilight-promoto__progress" data-promoto-progress aria-hidden="true"></span><span class="hagilight-promoto__status" data-promoto-status aria-live="polite"></span></section></hagilight-promoto-banner><script type="module" src="/_astro/PromotoBanner.astro_astro_type_script_index_0_lang.DP3NpmJD.js"></script><footer class="hagilight-footer astro-w3irp4ng"><section class="hagilight-brand astro-wxz55yp2" lang="fr-FR" aria-labelledby="hagilight-brand-title"><div class="hagilight-brand__lead astro-wxz55yp2"><div class="hagilight-brand__title astro-wxz55yp2"><picture class="hagilight-brand__avatar astro-wxz55yp2" data-random-fan="[&quot;cat-head-gallery/g002-ukiyo-e-01.avif&quot;,&quot;cat-head-gallery/g003-watercolor-wash-02.avif&quot;,&quot;cat-head-gallery/g004-pixel-art-03.avif&quot;,&quot;cat-head-gallery/g005-oil-impasto-06.avif&quot;,&quot;cat-head-gallery/g006-paper-cut-layers-07.avif&quot;,&quot;cat-head-gallery/g008-low-poly-07.avif&quot;,&quot;cat-head-gallery/g009-claymation-07.avif&quot;,&quot;cat-head-gallery/g010-neon-line-07.avif&quot;,&quot;cat-head-gallery/g016-bauhaus-geometry-06.avif&quot;,&quot;cat-head-gallery/g017-cyanotype-06.avif&quot;,&quot;cat-head-gallery/g020-origami-03.avif&quot;,&quot;cat-head-gallery/g022-blueprint-03.avif&quot;,&quot;cat-head-gallery/g023-chalk-pastel-10.avif&quot;,&quot;cat-head-gallery/g025-voxel-03.avif&quot;,&quot;cat-head-gallery/g031-illuminated-manuscript-04.avif&quot;,&quot;cat-head-gallery/g034-vaporwave-04.avif&quot;,&quot;cat-head-gallery/g035-synthwave-chrome-09.avif&quot;,&quot;cat-head-gallery/g038-frosted-glass-02.avif&quot;,&quot;cat-head-gallery/g039-needle-felt-09.avif&quot;,&quot;cat-head-gallery/g041-glossy-balloon-05.avif&quot;,&quot;cat-head-gallery/g042-blue-white-porcelain-05.avif&quot;,&quot;cat-head-gallery/g043-glazed-ceramic-06.avif&quot;,&quot;cat-head-gallery/g045-impressionist-08.avif&quot;,&quot;cat-head-gallery/g047-fauvist-09.avif&quot;,&quot;cat-head-gallery/g048-cubist-10.avif&quot;,&quot;cat-head-gallery/g051-naive-folk-art-07.avif&quot;,&quot;cat-head-gallery/g056-wax-print-fabric-07.avif&quot;,&quot;cat-head-gallery/g058-red-paper-cut-10.avif&quot;,&quot;cat-head-gallery/g060-kawaii-pastel-01.avif&quot;,&quot;cat-head-gallery/g061-retro-90s-anime-01.avif&quot;,&quot;cat-head-gallery/g062-shoujo-sparkle-08.avif&quot;,&quot;cat-head-gallery/g065-saturday-cartoon-09.avif&quot;,&quot;cat-head-gallery/g067-pixar-style-3d-03.avif&quot;,&quot;cat-head-gallery/g068-toon-shaded-3d-04.avif&quot;,&quot;cat-head-gallery/g069-ps1-lowpoly-06.avif&quot;,&quot;cat-head-gallery/g070-matte-clay-render-07.avif&quot;,&quot;cat-head-gallery/g071-y2k-chrome-08.avif&quot;,&quot;cat-head-gallery/g072-glossy-3d-icon-08.avif&quot;,&quot;cat-head-gallery/g073-marble-bust-08.avif&quot;,&quot;cat-head-gallery/g075-wood-carving-10.avif&quot;,&quot;cat-head-gallery/g076-carved-jade-10.avif&quot;,&quot;cat-head-gallery/g078-toy-brick-02.avif&quot;,&quot;cat-head-gallery/g079-designer-vinyl-toy-02.avif&quot;,&quot;cat-head-gallery/g081-patchwork-quilt-03.avif&quot;,&quot;cat-head-gallery/g083-warhol-silkscreen-04.avif&quot;,&quot;cat-head-gallery/g088-vintage-lithograph-02.avif&quot;,&quot;cat-head-gallery/g090-alcohol-marker-09.avif&quot;,&quot;cat-head-gallery/g091-painterly-concept-art-09.avif&quot;,&quot;cat-head-gallery/g092-gradient-minimal-09.avif&quot;,&quot;cat-head-gallery/g095-constellation-map-09.avif&quot;]"><source type="image/avif" srcset="/_astro/avatar.BPGAI8am.avif" class="astro-wxz55yp2"><source type="image/webp" srcset="/_astro/avatar.BBqcj7YN.webp" class="astro-wxz55yp2"><img src="/_astro/avatar.BBqcj7YN.webp" width="64" height="64" alt aria-hidden="true" loading="lazy" decoding="async" class="astro-wxz55yp2"></picture><h2 class="hagilight-brand__headline astro-wxz55yp2" id="hagilight-brand-title">Transformez vos idées en logiciels livrés.</h2></div><div class="hagilight-brand__body astro-wxz55yp2"><p class="hagilight-brand__summary astro-wxz55yp2">HagiCode est un espace de développement agentique : les workflows OpenSpec planifient le changement, l’exécution multi-agent le réalise et Hero Scenario rend le long parcours visible, pour transformer vos idées en logiciels livrés.</p><div class="hagilight-brand__actions astro-wxz55yp2"><a class="hagilight-brand__primary astro-wxz55yp2" href="https://www.hagicode.com/fr-FR/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer_brand" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer_brand"><span class="astro-wxz55yp2">Télécharger HagiCode</span><svg class="hagilight-brand__arrow astro-wxz55yp2" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true" focusable="false"><path d="M2.5 8h10M8.5 3.5 13 8l-4.5 4.5" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="astro-wxz55yp2"></path></svg></a><a class="hagilight-brand__secondary astro-wxz55yp2" href="https://docs.hagicode.com/fr-FR/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer_brand" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer_brand">Documentation produit</a></div></div></div><dl class="hagilight-brand__pillars astro-wxz55yp2"><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="smart" style="--hagilight-brand-i: 0"><dt class="astro-wxz55yp2">Intelligent</dt><dd class="astro-wxz55yp2">Les workflows OpenSpec transforment une intention en parcours, de la proposition à la livraison.</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="efficient" style="--hagilight-brand-i: 1"><dt class="astro-wxz55yp2">Efficace</dt><dd class="astro-wxz55yp2">L’exécution multi-agent mène recherche, réalisation et revue en parallèle.</dd></div><div class="hagilight-brand__pillar astro-wxz55yp2" data-pillar="fun" style="--hagilight-brand-i: 2"><dt class="astro-wxz55yp2">Ludique</dt><dd class="astro-wxz55yp2">Les interactions d’interface facilitent la planification, l’exécution des agents et les projets.</dd></div></dl><script type="module">var e=/^([a-z0-9][a-z0-9_-]*)\/[a-z0-9][a-z0-9_-]*\.avif$/u;function t(t){if(!Array.isArray(t)||t.length<12||t.length>200)throw TypeError(`Hagilight random pool must list 12 to 200 R2 objects.`);let n;for(let r of t){let t=typeof r==`string`?e.exec(r):null;if(!t)throw TypeError(`Hagilight random pool entry "${String(r)}" must be an <album>/<key>.avif object path.`);if(n??=t[1],t[1]!==n)throw TypeError(`Hagilight random pool entries must all come from one album.`)}if(new Set(t).size!==t.length)throw TypeError(`Hagilight random pool entries must be unique.`);return Object.freeze([...t])}function n(e){let t=e();return Number.isFinite(t)?Math.min(Math.max(t,0),1-2**-52):0}function r(e,t,r=Math.random){let i=[...e],a=Math.min(Math.max(Math.floor(t),0),i.length);for(let e=0;e<a;e+=1){let t=e+Math.floor(n(r)*(i.length-e));[i[e],i[t]]=[i[t],i[e]]}return i.slice(0,a)}function i(e){return`https://img-gen.hagicode.com/${e}`}function a(e,t={}){return new Promise(n=>{let r=t.setTimer??((e,t)=>setTimeout(e,t)),i=t.clearTimer??(e=>clearTimeout(e)),a,o=e=>{i(a),n(e)};try{let n=t.createImage?t.createImage():new Image;n.onload=()=>o(!0),n.onerror=()=>o(!1),a=r(()=>o(!1),3e3),n.src=e}catch{o(!1)}})}function o(){return(typeof navigator>`u`?void 0:navigator.connection)?.saveData===!0}function s(e,t,n=6){return((e-t)%n+n)%n}function c(){return typeof matchMedia==`function`&&matchMedia(`(prefers-reduced-motion: reduce)`).matches}function l(e,t){if(typeof IntersectionObserver!=`function`){t(!0);return}new IntersectionObserver(e=>t(e[e.length-1]?.isIntersecting===!0),{rootMargin:`0px 0px 160px 0px`}).observe(e)}function u(e,t,n,r){let i=e.ownerDocument.createElement(`span`);i.className=`hagilight-fan`;let a=n.slice(0,r).map(n=>{let r=t?t.cloneNode(!1):e.ownerDocument.createElement(`img`);return r.removeAttribute(`srcset`),r.removeAttribute(`sizes`),r.removeAttribute(`loading`),r.setAttribute(`class`,`hagilight-fan__card`),r.setAttribute(`src`,n),i.append(r),r});return e.append(i),e.offsetWidth,t?.setAttribute(`data-fan-out`,``),a.forEach((e,t)=>e.setAttribute(`data-slot`,String(t))),a}async function d(e,n){if(e.setAttribute(`data-random-state`,`default`),(n.saveData??o)())return!1;let d;try{d=t(JSON.parse(e.getAttribute(`data-random-fan`)??`null`))}catch{return!1}let f=!1,p,m=new Promise(e=>{p=e});(n.watch??l)(e,e=>{f=e,e&&p()}),await m;let h=n.random??Math.random,g=!(n.reducedMotion??c)(),_=r(d,g?6:3,h).map(i),v=(await Promise.all(_.map(async e=>await a(e,n)?e:``))).filter(Boolean);if(v.length<3)return!1;let y=g&&v.length===6,b=u(e,e.querySelector(`img`),v,y?6:3);if(e.setAttribute(`data-random-state`,`fan`),y){let t=0,r=()=>{};r=(n.every??((e,t)=>{let n=setInterval(e,t);return()=>clearInterval(n)}))(()=>{e.isConnected===!1?r():f&&!(n.tabHidden??(()=>typeof document<`u`&&document.hidden))()&&(t+=1,b.forEach((e,n)=>e.setAttribute(`data-slot`,String(s(n,t,b.length)))))},3600)}return!0}function f(e,t={}){return Array.from(e.querySelectorAll(`[data-random-fan]:not([data-random-state])`)).map(e=>d(e,t).catch(()=>!1))}f(document);</script></section><div class="hagilight-footer__sections astro-w3irp4ng"><div class="hagilight-cols astro-w3irp4ng"><nav class="hagilight-col astro-w3irp4ng" data-column="start" style="--hagilight-col-i: 0" aria-labelledby="hagilight-col-start"><h2 id="hagilight-col-start" class="astro-w3irp4ng">Démarrer</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/fr-FR/desktop/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=downloadClient&amp;utm_content=footer" data-ga-category="download" data-ga-label="downloadClient" data-ga-location="footer" class="astro-w3irp4ng">Télécharger HagiCode</a></li><li class="astro-w3irp4ng"><a href="https://apps.microsoft.com/detail/9N3PM0N3SVDW" target="_blank" rel="noopener noreferrer" data-ga-category="store" data-ga-label="microsoftStore" data-ga-location="footer" class="astro-w3irp4ng">Télécharger HagiCode pour Windows</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/fr-FR/installation/docker-compose/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=dockerCompose&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="dockerCompose" data-ga-location="footer" class="astro-w3irp4ng">Installation de Docker Compose</a></li><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/fr-FR/product-overview/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=productDocs&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="productDocs" data-ga-location="footer" class="astro-w3irp4ng">Documentation produit</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/fr-FR/about/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=about&amp;utm_content=footer" class="astro-w3irp4ng">À propos de HagiCode</a></li><li class="astro-w3irp4ng"><a href="https://www.hagicode.com/fr-FR/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagicode-main&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Site principal HagiCode</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="learn" style="--hagilight-col-i: 1" aria-labelledby="hagilight-col-learn"><h2 id="hagilight-col-learn" class="astro-w3irp4ng">Apprendre &amp; docs</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://docs.hagicode.com/fr-FR/blog/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=blogPosts&amp;utm_content=footer" data-ga-category="navigation" data-ga-label="blogPosts" data-ga-location="footer" class="astro-w3irp4ng">Articles du blog</a></li><li class="astro-w3irp4ng"><a href="https://openspec.hagicode.com/fr-FR/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=openspec-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Documentation OpenSpec</a></li><li class="astro-w3irp4ng"><a href="https://omniroute.hagicode.com/fr-FR/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=omniroute-docs&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Documentation OmniRoute</a></li><li class="astro-w3irp4ng"><a href="https://fullstack.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=fullstack-tutorial&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Fullstack</a></li><li class="astro-w3irp4ng"><a href="https://impeccable.hagicode.com/fr-FR/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=impeccable-site&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Impeccable Commands</a></li><li class="astro-w3irp4ng"><a href="https://awesome.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=awesome-sites&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Awesome Sites</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="build" style="--hagilight-col-i: 2" aria-labelledby="hagilight-col-build"><h2 id="hagilight-col-build" class="astro-w3irp4ng">Outils &amp; ressources</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://tasks.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=hagitask&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiTask</a></li><li class="astro-w3irp4ng"><a href="https://builder.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=compose-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Docker Compose Builder</a></li><li class="astro-w3irp4ng"><a href="https://soul.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=soul-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Soul Builder</a></li><li class="astro-w3irp4ng"><a href="https://trait.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=trait-builder&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Trait Builder</a></li><li class="astro-w3irp4ng"><a href="https://cost.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=costCalculator&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">L&#39;IA va-t-elle me remplacer ?</a></li><li class="astro-w3irp4ng"><a href="https://gallery.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=gallery&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Gallery</a></li><li class="astro-w3irp4ng"><a href="https://index.hagicode.com/data/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=index-data&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">Index Data Mirror</a></li></ul></nav><nav class="hagilight-col astro-w3irp4ng" data-column="community" style="--hagilight-col-i: 3" aria-labelledby="hagilight-col-community"><h2 id="hagilight-col-community" class="astro-w3irp4ng">Communauté &amp; assistance</h2><ul class="astro-w3irp4ng"><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="github" data-ga-location="footer" class="astro-w3irp4ng">GitHub</a></li><li class="astro-w3irp4ng"><a href="https://discord.gg/qY662sJK" target="_blank" rel="noopener noreferrer" data-ga-category="community" data-ga-label="discord" data-ga-location="footer" class="astro-w3irp4ng">Discord</a></li><li class="astro-w3irp4ng"><a href="https://github.com/HagiCode-org/site/issues" target="_blank" rel="noopener" data-ga-category="community" data-ga-label="issueFeedback" data-ga-location="footer" class="astro-w3irp4ng">Signaler un problème</a></li><li class="astro-w3irp4ng"><a href="mailto:support@hagicode.com" class="astro-w3irp4ng">E-mail de contact</a></li><li class="astro-w3irp4ng"><a href="https://qm.qq.com/q/Fwb0o094kw" target="_blank" rel="noopener noreferrer" class="astro-w3irp4ng">Groupe QQ 610394020</a></li><li class="astro-w3irp4ng"><a href="https://newbe.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=newbe-blog&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">newbe</a></li><li class="astro-w3irp4ng"><a href="https://status.hagicode.com/?utm_source=awesome-design-gallery&amp;utm_medium=footer&amp;utm_campaign=status-page&amp;utm_content=footer" target="_blank" rel="noopener" class="astro-w3irp4ng">HagiCode Status</a></li></ul></nav></div></div><div class="hagilight-footer__base astro-w3irp4ng"><nav class="hagilight-footer__feeds astro-w3irp4ng" aria-label="Flux et plan du site"><a href="https://design.hagicode.com/rss.xml" class="astro-w3irp4ng">Flux RSS</a><a href="https://design.hagicode.com/rss.fr-FR.xml" class="astro-w3irp4ng">Flux RSS de la langue actuelle</a><a href="/sitemap-index.xml" class="astro-w3irp4ng">Plan du site</a></nav><nav class="hagilight-footer__filings astro-w3irp4ng" aria-label="Voir les informations de dépôt"><a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer" aria-label="Voir les informations de dépôt ICP" class="astro-w3irp4ng">Dépôt ICP 闽ICP备2026004153号-1</a><a href="http://www.beian.gov.cn/portal/registerSystemInfo" target="_blank" rel="noopener noreferrer" aria-label="Voir les informations de dépôt de sécurité publique" class="astro-w3irp4ng">Dépôt de sécurité publique 闽公网安备35011102351148号</a></nav></div><p class="hagilight-footer__copyright astro-w3irp4ng"><span>© 2026 HagiCode</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="branch">Branch: main</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="commit" title="6d161862d30281253ed8c05b55200240fb019d04" data-build-commit="6d161862d30281253ed8c05b55200240fb019d04">Commit: 6d16186</span> | <span class="hagilight-footer__build astro-w3irp4ng" data-build-field="builtAt">Built: <time datetime="2026-10-30T16:30:59Z" class="astro-w3irp4ng">2026-10-30T16:30:59Z</time></span></p></footer></div><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script>(function(){const siteId = "L6b88a5yK4h2Xnci";
+
+      LA.init({ id: siteId, ck: siteId, autoTrack: true, hashMode: true });
+    })();</script><script type="module" src="/_astro/Analytics51LA.astro_astro_type_script_index_0_lang.R1vpCc6_.js"></script><script async src="https://www.googletagmanager.com/gtag/js?id=G-EN03FMT2Q4"></script><script>window.dataLayer = window.dataLayer || [];
+window.gtag = function gtag(){ window.dataLayer.push(arguments); };
+window.gtag('js', new Date());
+window.gtag('config', "G-EN03FMT2Q4");</script><script type="module" src="/_astro/GoogleAnalytics.astro_astro_type_script_index_0_lang.CWqY6pzt.js"></script></body></html><script type="module">var e=`adms-detail-layout`;function t(e){return e===`preview`||e===`docs`?e:`split`}function n(){try{return t(window.localStorage.getItem(e))}catch{return`split`}}function r(t){try{window.localStorage.setItem(e,t)}catch{}}function i(e){return e instanceof HTMLElement?e.isContentEditable||[`INPUT`,`TEXTAREA`,`SELECT`].includes(e.tagName):!1}function a(e=document){let a=e.querySelector(`[data-detail-grid]`),o=Array.from(e.querySelectorAll(`[data-detail-layout]`)),s=e.querySelector(`.site-header`),c=s&&typeof ResizeObserver<`u`?new ResizeObserver(()=>{e.documentElement.style.setProperty(`--site-header-height`,`${s.offsetHeight}px`)}):void 0;if(c?.observe(s),a&&o.length>0){let e=e=>{a.dataset.layout=e,o.forEach(t=>{let n=t.dataset.detailLayout===e;t.classList.toggle(`is-active`,n),t.setAttribute(`aria-pressed`,n?`true`:`false`)})};o.forEach(n=>{n.addEventListener(`click`,()=>{let i=t(n.dataset.detailLayout);e(i),r(i)})}),e(n())}let l=t=>{if(t.defaultPrevented||t.altKey||t.ctrlKey||t.metaKey||t.shiftKey||i(t.target))return;let n=t.key===`ArrowLeft`?`previous`:t.key===`ArrowRight`?`next`:null,r=n?e.querySelector(`[data-adjacent-link="${n}"]`):null;r&&(t.preventDefault(),r.click())};return e.addEventListener(`keydown`,l),()=>{c?.disconnect(),e.removeEventListener(`keydown`,l)}}a();</script>
