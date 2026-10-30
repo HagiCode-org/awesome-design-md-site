@@ -444,7 +444,7 @@ const runtime = {
           ],
           "showcaseLearnMoreLabel": "了解更多",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
+          "videoPromoTitle": "HagiCode 宣传片",
           "videoPromoDescription": "看看 HagiCode 如何让 Agentic Coding 真正运转起来。",
           "videoPromoProviders": {
             "youtube": {
@@ -776,7 +776,7 @@ const runtime = {
           ],
           "showcaseLearnMoreLabel": "了解更多",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
+          "videoPromoTitle": "HagiCode 宣傳片",
           "videoPromoDescription": "看看 HagiCode 如何讓 Agentic Coding 真正運轉起來。",
           "videoPromoProviders": {
             "youtube": {
@@ -1091,39 +1091,39 @@ const runtime = {
           "emptyKicker": "デザインがありません",
           "emptyTitle": "ギャラリーは準備済みですが、ソースコンテンツがありません。",
           "emptyCopy": "`git submodule update --init --recursive` でサブモジュールを初期化し、サイトを再ビルドしてください。",
-          "showcaseSubHeadline": "Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.",
+          "showcaseSubHeadline": "よりスマートで高速、そして楽しいエージェンティックコーディングのワークフローで、アイデアを洗練された使えるソフトウェアに変えます。",
           "showcaseTriad": [
             {
               "label": "Smart",
-              "description": "OpenSpec turns intent into an executable path from idea to shipped change."
+              "description": "OpenSpec は意図を、アイデアから出荷までの実行可能な道筋に変えます。"
             },
             {
               "label": "Efficient",
-              "description": "Multi-agent workflows keep research, implementation, and review moving in parallel."
+              "description": "マルチエージェントのワークフローにより、調査・実装・レビューが並行して進みます。"
             },
             {
               "label": "Fun",
-              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario のインターフェースが、長時間のコーディングセッションを視覚的で協調的、そして達成感のあるものにします。"
             }
           ],
-          "showcaseLearnMoreLabel": "Learn more",
+          "showcaseLearnMoreLabel": "詳しく見る",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
-          "videoPromoDescription": "See how HagiCode brings agentic coding to life.",
+          "videoPromoTitle": "HagiCode プロモーション",
+          "videoPromoDescription": "HagiCode がエージェンティックコーディングをどう実現するかご覧ください。",
           "videoPromoProviders": {
             "youtube": {
               "embedId": "AQ8oSTW6wNQ",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "HagiCode 概要",
+              "description": "HagiCode がエージェンティックコーディングをどう実現するかご覧ください。",
               "watchUrl": "https://www.youtube.com/watch?v=AQ8oSTW6wNQ",
-              "ctaLabel": "Watch on YouTube"
+              "ctaLabel": "YouTube で見る"
             },
             "bilibili": {
               "embedId": "BV1z4oWB3EpY",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "HagiCode 概要",
+              "description": "HagiCode がエージェンティックコーディングをどう実現するかご覧ください。",
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
-              "ctaLabel": "Watch the HagiCode overview on Bilibili"
+              "ctaLabel": "Bilibili で HagiCode 概要を見る"
             }
           },
           "fusion": {
@@ -1423,39 +1423,39 @@ const runtime = {
           "emptyKicker": "사용 가능한 디자인 없음",
           "emptyTitle": "갤러리는 준비되었지만 소스 콘텐츠가 없습니다.",
           "emptyCopy": "`git submodule update --init --recursive`로 서브모듈을 초기화한 뒤 사이트를 다시 빌드하세요.",
-          "showcaseSubHeadline": "Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.",
+          "showcaseSubHeadline": "더 똑똑하고 빠르며 즐거운 에이전틱 코딩 워크플로로 아이디어를 완성도 높고 쓸모 있는 소프트웨어로 만드세요.",
           "showcaseTriad": [
             {
               "label": "Smart",
-              "description": "OpenSpec turns intent into an executable path from idea to shipped change."
+              "description": "OpenSpec은 의도를 아이디어에서 배포된 변경까지 이어지는 실행 가능한 경로로 바꿉니다."
             },
             {
               "label": "Efficient",
-              "description": "Multi-agent workflows keep research, implementation, and review moving in parallel."
+              "description": "멀티 에이전트 워크플로가 조사, 구현, 리뷰를 병렬로 진행합니다."
             },
             {
               "label": "Fun",
-              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero Scenario 인터페이스는 긴 코딩 세션을 시각적이고 협업적이며 보람 있게 만듭니다."
             }
           ],
-          "showcaseLearnMoreLabel": "Learn more",
+          "showcaseLearnMoreLabel": "자세히 보기",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
-          "videoPromoDescription": "See how HagiCode brings agentic coding to life.",
+          "videoPromoTitle": "HagiCode 홍보 영상",
+          "videoPromoDescription": "HagiCode가 에이전틱 코딩을 어떻게 현실로 만드는지 확인해 보세요.",
           "videoPromoProviders": {
             "youtube": {
               "embedId": "AQ8oSTW6wNQ",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "HagiCode 개요",
+              "description": "HagiCode가 에이전틱 코딩을 어떻게 현실로 만드는지 확인해 보세요.",
               "watchUrl": "https://www.youtube.com/watch?v=AQ8oSTW6wNQ",
-              "ctaLabel": "Watch on YouTube"
+              "ctaLabel": "YouTube에서 보기"
             },
             "bilibili": {
               "embedId": "BV1z4oWB3EpY",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "HagiCode 개요",
+              "description": "HagiCode가 에이전틱 코딩을 어떻게 현실로 만드는지 확인해 보세요.",
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
-              "ctaLabel": "Watch the HagiCode overview on Bilibili"
+              "ctaLabel": "Bilibili에서 HagiCode 개요 보기"
             }
           },
           "fusion": {
@@ -1669,8 +1669,8 @@ const runtime = {
         "galleryLabel": "Galerie",
         "galleryCtaLabel": "Galerie ansehen",
         "galleryCompactLabel": "Galerie",
-        "siteRepoLabel": "Site Repo",
-        "sourceRepoLabel": "Source Repo",
+        "siteRepoLabel": "Website-Repo",
+        "sourceRepoLabel": "Quell-Repo",
         "utilityLabel": "Repository-Links",
         "primaryNavigationLabel": "Primär",
         "languageSwitcherLabel": "Sprachauswahl",
@@ -1755,39 +1755,39 @@ const runtime = {
           "emptyKicker": "Keine Designs verfügbar",
           "emptyTitle": "Die Galerie ist bereit, aber der Quellinhalt fehlt.",
           "emptyCopy": "Initialisiere das Submodul mit `git submodule update --init --recursive` und baue die Site erneut.",
-          "showcaseSubHeadline": "Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.",
+          "showcaseSubHeadline": "Ideen werden mit einem intelligenteren, schnelleren und angenehmeren Agentic-Coding-Workflow zu ausgereifter, nutzbarer Software.",
           "showcaseTriad": [
             {
               "label": "Smart",
-              "description": "OpenSpec turns intent into an executable path from idea to shipped change."
+              "description": "OpenSpec verwandelt Absichten in einen ausführbaren Pfad von der Idee bis zur ausgelieferten Änderung."
             },
             {
               "label": "Efficient",
-              "description": "Multi-agent workflows keep research, implementation, and review moving in parallel."
+              "description": "Multi-Agent-Workflows halten Recherche, Implementierung und Review parallel in Bewegung."
             },
             {
               "label": "Fun",
-              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Hero-Scenario-Oberflächen machen lange Coding-Sessions anschaulich, kooperativ und lohnend."
             }
           ],
-          "showcaseLearnMoreLabel": "Learn more",
+          "showcaseLearnMoreLabel": "Mehr erfahren",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
-          "videoPromoDescription": "See how HagiCode brings agentic coding to life.",
+          "videoPromoTitle": "HagiCode-Promo",
+          "videoPromoDescription": "So erweckt HagiCode Agentic Coding zum Leben.",
           "videoPromoProviders": {
             "youtube": {
               "embedId": "AQ8oSTW6wNQ",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "HagiCode-Überblick",
+              "description": "So erweckt HagiCode Agentic Coding zum Leben.",
               "watchUrl": "https://www.youtube.com/watch?v=AQ8oSTW6wNQ",
-              "ctaLabel": "Watch on YouTube"
+              "ctaLabel": "Auf YouTube ansehen"
             },
             "bilibili": {
               "embedId": "BV1z4oWB3EpY",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "HagiCode-Überblick",
+              "description": "So erweckt HagiCode Agentic Coding zum Leben.",
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
-              "ctaLabel": "Watch the HagiCode overview on Bilibili"
+              "ctaLabel": "HagiCode-Überblick auf Bilibili ansehen"
             }
           },
           "fusion": {
@@ -2087,39 +2087,39 @@ const runtime = {
           "emptyKicker": "Aucun design disponible",
           "emptyTitle": "La galerie est prête, mais le contenu source manque.",
           "emptyCopy": "Initialisez le sous-module avec `git submodule update --init --recursive`, puis reconstruisez le site.",
-          "showcaseSubHeadline": "Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.",
+          "showcaseSubHeadline": "Transformez vos idées en logiciels aboutis et utilisables grâce à un workflow de codage agentique plus intelligent, plus rapide et plus agréable.",
           "showcaseTriad": [
             {
               "label": "Smart",
-              "description": "OpenSpec turns intent into an executable path from idea to shipped change."
+              "description": "OpenSpec transforme l'intention en un parcours exécutable, de l'idée jusqu'au changement livré."
             },
             {
               "label": "Efficient",
-              "description": "Multi-agent workflows keep research, implementation, and review moving in parallel."
+              "description": "Les workflows multi-agents font avancer en parallèle la recherche, l'implémentation et la revue."
             },
             {
               "label": "Fun",
-              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Les interfaces Hero Scenario rendent les longues sessions de codage visuelles, collaboratives et gratifiantes."
             }
           ],
-          "showcaseLearnMoreLabel": "Learn more",
+          "showcaseLearnMoreLabel": "En savoir plus",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
-          "videoPromoDescription": "See how HagiCode brings agentic coding to life.",
+          "videoPromoTitle": "Vidéo promo HagiCode",
+          "videoPromoDescription": "Découvrez comment HagiCode donne vie au codage agentique.",
           "videoPromoProviders": {
             "youtube": {
               "embedId": "AQ8oSTW6wNQ",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "Présentation de HagiCode",
+              "description": "Découvrez comment HagiCode donne vie au codage agentique.",
               "watchUrl": "https://www.youtube.com/watch?v=AQ8oSTW6wNQ",
-              "ctaLabel": "Watch on YouTube"
+              "ctaLabel": "Regarder sur YouTube"
             },
             "bilibili": {
               "embedId": "BV1z4oWB3EpY",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "Présentation de HagiCode",
+              "description": "Découvrez comment HagiCode donne vie au codage agentique.",
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
-              "ctaLabel": "Watch the HagiCode overview on Bilibili"
+              "ctaLabel": "Regarder la présentation de HagiCode sur Bilibili"
             }
           },
           "fusion": {
@@ -2419,39 +2419,39 @@ const runtime = {
           "emptyKicker": "No hay diseños disponibles",
           "emptyTitle": "La galería está lista, pero falta el contenido fuente.",
           "emptyCopy": "Inicializa el submódulo con `git submodule update --init --recursive` y vuelve a compilar el sitio.",
-          "showcaseSubHeadline": "Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.",
+          "showcaseSubHeadline": "Convierte tus ideas en software pulido y útil con un flujo de codificación agéntica más inteligente, rápido y agradable.",
           "showcaseTriad": [
             {
               "label": "Smart",
-              "description": "OpenSpec turns intent into an executable path from idea to shipped change."
+              "description": "OpenSpec convierte la intención en un camino ejecutable desde la idea hasta el cambio entregado."
             },
             {
               "label": "Efficient",
-              "description": "Multi-agent workflows keep research, implementation, and review moving in parallel."
+              "description": "Los flujos multiagente mantienen en paralelo la investigación, la implementación y la revisión."
             },
             {
               "label": "Fun",
-              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Las interfaces Hero Scenario hacen que las sesiones largas de programación sean visuales, colaborativas y gratificantes."
             }
           ],
-          "showcaseLearnMoreLabel": "Learn more",
+          "showcaseLearnMoreLabel": "Más información",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
-          "videoPromoDescription": "See how HagiCode brings agentic coding to life.",
+          "videoPromoTitle": "Vídeo promocional de HagiCode",
+          "videoPromoDescription": "Descubre cómo HagiCode da vida a la codificación agéntica.",
           "videoPromoProviders": {
             "youtube": {
               "embedId": "AQ8oSTW6wNQ",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "Descripción general de HagiCode",
+              "description": "Descubre cómo HagiCode da vida a la codificación agéntica.",
               "watchUrl": "https://www.youtube.com/watch?v=AQ8oSTW6wNQ",
-              "ctaLabel": "Watch on YouTube"
+              "ctaLabel": "Ver en YouTube"
             },
             "bilibili": {
               "embedId": "BV1z4oWB3EpY",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "Descripción general de HagiCode",
+              "description": "Descubre cómo HagiCode da vida a la codificación agéntica.",
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
-              "ctaLabel": "Watch the HagiCode overview on Bilibili"
+              "ctaLabel": "Ver la descripción general de HagiCode en Bilibili"
             }
           },
           "fusion": {
@@ -2751,39 +2751,39 @@ const runtime = {
           "emptyKicker": "Nenhum design disponível",
           "emptyTitle": "A galeria está pronta, mas o conteúdo fonte está ausente.",
           "emptyCopy": "Inicialize o submódulo com `git submodule update --init --recursive` e reconstrua o site.",
-          "showcaseSubHeadline": "Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.",
+          "showcaseSubHeadline": "Transforme ideias em software refinado e utilizável com um fluxo de codificação agêntica mais inteligente, rápido e agradável.",
           "showcaseTriad": [
             {
               "label": "Smart",
-              "description": "OpenSpec turns intent into an executable path from idea to shipped change."
+              "description": "O OpenSpec transforma a intenção em um caminho executável da ideia até a mudança entregue."
             },
             {
               "label": "Efficient",
-              "description": "Multi-agent workflows keep research, implementation, and review moving in parallel."
+              "description": "Fluxos multiagente mantêm pesquisa, implementação e revisão andando em paralelo."
             },
             {
               "label": "Fun",
-              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "As interfaces Hero Scenario tornam as sessões longas de programação visuais, colaborativas e recompensadoras."
             }
           ],
-          "showcaseLearnMoreLabel": "Learn more",
+          "showcaseLearnMoreLabel": "Saiba mais",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
-          "videoPromoDescription": "See how HagiCode brings agentic coding to life.",
+          "videoPromoTitle": "Vídeo promocional do HagiCode",
+          "videoPromoDescription": "Veja como o HagiCode dá vida à codificação agêntica.",
           "videoPromoProviders": {
             "youtube": {
               "embedId": "AQ8oSTW6wNQ",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "Visão geral do HagiCode",
+              "description": "Veja como o HagiCode dá vida à codificação agêntica.",
               "watchUrl": "https://www.youtube.com/watch?v=AQ8oSTW6wNQ",
-              "ctaLabel": "Watch on YouTube"
+              "ctaLabel": "Assistir no YouTube"
             },
             "bilibili": {
               "embedId": "BV1z4oWB3EpY",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "Visão geral do HagiCode",
+              "description": "Veja como o HagiCode dá vida à codificação agêntica.",
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
-              "ctaLabel": "Watch the HagiCode overview on Bilibili"
+              "ctaLabel": "Assistir à visão geral do HagiCode no Bilibili"
             }
           },
           "fusion": {
@@ -3062,19 +3062,19 @@ const runtime = {
           "showcaseJumpLabel": "Перейти к слайду",
           "showcaseSlides": [
             {
-              "title": "OpenSpec workflow",
+              "title": "Рабочий процесс OpenSpec",
               "description": "Идеи, proposal, design, tasks, implementation и archive объединяются в один непрерывный трек.",
               "imageSrc": "/img/hagicode/light-main.png",
               "imageAlt": "Скриншот главного интерфейса HagiCode в светлой теме"
             },
             {
-              "title": "Multi-agent workspace",
+              "title": "Мультиагентное рабочее пространство",
               "description": "Разные агенты могут параллельно писать, исправлять и ревьюить без ожидания одного потока.",
               "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
               "imageAlt": "Иллюстрация multi-agent workspace HagiCode"
             },
             {
-              "title": "Hero Scenario view",
+              "title": "Вид Hero Scenario",
               "description": "Сценарии, captains и визуальные рабочие пространства помогают координировать долгие AI coding sessions.",
               "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
               "imageAlt": "Иллюстрация Hero Scenario workspace HagiCode"
@@ -3083,39 +3083,39 @@ const runtime = {
           "emptyKicker": "Нет доступных дизайнов",
           "emptyTitle": "Галерея готова, но исходный контент отсутствует.",
           "emptyCopy": "Инициализируйте submodule командой `git submodule update --init --recursive`, затем пересоберите сайт.",
-          "showcaseSubHeadline": "Turn ideas into polished, usable software with a smarter, faster, and more enjoyable agentic coding workflow.",
+          "showcaseSubHeadline": "Превращайте идеи в отточенное, удобное в использовании ПО с более умным, быстрым и приятным агентным процессом разработки.",
           "showcaseTriad": [
             {
               "label": "Smart",
-              "description": "OpenSpec turns intent into an executable path from idea to shipped change."
+              "description": "OpenSpec превращает замысел в исполняемый путь от идеи до выпущенного изменения."
             },
             {
               "label": "Efficient",
-              "description": "Multi-agent workflows keep research, implementation, and review moving in parallel."
+              "description": "Мультиагентные рабочие процессы позволяют вести исследование, реализацию и ревью параллельно."
             },
             {
               "label": "Fun",
-              "description": "Hero Scenario interfaces make long coding sessions visual, collaborative, and rewarding."
+              "description": "Интерфейсы Hero Scenario делают долгие сессии программирования наглядными, совместными и приносящими удовлетворение."
             }
           ],
-          "showcaseLearnMoreLabel": "Learn more",
+          "showcaseLearnMoreLabel": "Подробнее",
           "showcaseLearnMoreHref": "https://www.hagicode.com",
-          "videoPromoTitle": "HagiCode promo",
-          "videoPromoDescription": "See how HagiCode brings agentic coding to life.",
+          "videoPromoTitle": "Промо HagiCode",
+          "videoPromoDescription": "Узнайте, как HagiCode воплощает агентную разработку в жизнь.",
           "videoPromoProviders": {
             "youtube": {
               "embedId": "AQ8oSTW6wNQ",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "Обзор HagiCode",
+              "description": "Узнайте, как HagiCode воплощает агентную разработку в жизнь.",
               "watchUrl": "https://www.youtube.com/watch?v=AQ8oSTW6wNQ",
-              "ctaLabel": "Watch on YouTube"
+              "ctaLabel": "Смотреть на YouTube"
             },
             "bilibili": {
               "embedId": "BV1z4oWB3EpY",
-              "title": "HagiCode overview",
-              "description": "See how HagiCode brings agentic coding to life.",
+              "title": "Обзор HagiCode",
+              "description": "Узнайте, как HagiCode воплощает агентную разработку в жизнь.",
               "watchUrl": "https://www.bilibili.com/video/BV1z4oWB3EpY/",
-              "ctaLabel": "Watch the HagiCode overview on Bilibili"
+              "ctaLabel": "Смотреть обзор HagiCode на Bilibili"
             }
           },
           "fusion": {
@@ -3178,7 +3178,7 @@ const runtime = {
           "layoutDocs": "Документы"
         },
         "preview": {
-          "kicker": "Live preview",
+          "kicker": "Живое превью",
           "heading": "Preview frame с поддержкой темы",
           "light": "Светлая",
           "dark": "Тёмная",
