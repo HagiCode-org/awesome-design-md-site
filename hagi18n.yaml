@@ -11,6 +11,131 @@ targetLocales:
   - es-ES
   - pt-BR
   - ru-RU
+# 与英文基线相同、且在各语言里本就应当相同的值(品牌名、URL、技术标识、通用借词等),按「文件 → 键」逐条精确列出,每条写理由。
+# 名单对所有目标语言生效:只有在所有仍与英文相同的语言里英文写法都正确时才加入;其余一律翻译。
+auditIdenticalAllowlist:
+  chrome.yml:
+    - brandSubtitle # 品牌标语
+    - mobileBrandLabel # 品牌缩写
+    - themeDarkCompact # 德语缩写Dunkel
+  common.yml:
+    - site.shortName # 品牌缩写
+    - site.repository # URL
+    - site.sourceRepository # URL
+    - site.hagicodeWebsite # URL
+    - site.defaultSocialImagePath # 资源路径
+  gallery.yml:
+    - home.heroTitle # 品牌名
+    - home.heroReadmeExcerpts.0.excerpt # 上游README原文引用
+    - home.heroReadmeExcerpts.1.excerpt # 上游README原文引用
+    - home.heroReadmeExcerpts.2.excerpt # 上游README原文引用
+    - home.showcaseTitle # 品牌名
+    - home.showcaseCtaHref # URL
+    - home.showcaseSlides.0.imageSrc # 资源路径
+    - home.showcaseSlides.1.imageSrc # 资源路径
+    - home.showcaseSlides.2.imageSrc # 资源路径
+    - home.showcaseTriad.0.label # 品牌标语
+    - home.showcaseTriad.1.label # 品牌标语
+    - home.showcaseTriad.2.label # 品牌标语
+    - home.showcaseLearnMoreHref # URL
+    - home.videoPromoProviders.youtube.embedId # 视频ID
+    - home.videoPromoProviders.youtube.watchUrl # URL
+    - home.videoPromoProviders.bilibili.embedId # 视频ID
+    - home.videoPromoProviders.bilibili.watchUrl # URL
+    - home.fusion.steps.0 # 文件名
+    - documents.readme # 文件名
+    - documents.design # 文件名
+    - detail.slugPrefix # 技术术语slug
+    - preview.viewportTablet # 各语言通用借词
+    - home.fusion.steps.3 # 法语同形词
+    - search.indexedNounSingular # 各语言通用借词
+    - search.indexedNounPlural # 各语言通用借词
+    - detail.layoutDocs # 各语言通用借词
+    - preview.viewportMobile # 法语同形词
+    - documents.kicker # 法语同形词
+    - card.preview # 各语言通用借词
+    - detail.layoutPreview # 各语言通用借词
+  metadata.yml:
+    - locales.en.routeLocale # 语言配置标识
+    - locales.en.sourceLocale # 语言配置标识
+    - locales.en.label # 语言配置标识
+    - locales.en.compactLabel # 语言配置标识
+    - locales.en.hreflang # 语言配置标识
+    - locales.en.ogLocale # 语言配置标识
+    - locales.en.htmlLang # 语言配置标识
+    - locales.en.direction # 语言配置标识
+    - locales.zh-CN.routeLocale # 语言配置标识
+    - locales.zh-CN.sourceLocale # 语言配置标识
+    - locales.zh-CN.label # 语言配置标识
+    - locales.zh-CN.compactLabel # 语言配置标识
+    - locales.zh-CN.hreflang # 语言配置标识
+    - locales.zh-CN.ogLocale # 语言配置标识
+    - locales.zh-CN.htmlLang # 语言配置标识
+    - locales.zh-CN.direction # 语言配置标识
+    - locales.zh-Hant.routeLocale # 语言配置标识
+    - locales.zh-Hant.sourceLocale # 语言配置标识
+    - locales.zh-Hant.label # 语言配置标识
+    - locales.zh-Hant.compactLabel # 语言配置标识
+    - locales.zh-Hant.hreflang # 语言配置标识
+    - locales.zh-Hant.ogLocale # 语言配置标识
+    - locales.zh-Hant.htmlLang # 语言配置标识
+    - locales.zh-Hant.direction # 语言配置标识
+    - locales.ja-JP.routeLocale # 语言配置标识
+    - locales.ja-JP.sourceLocale # 语言配置标识
+    - locales.ja-JP.label # 语言配置标识
+    - locales.ja-JP.compactLabel # 语言配置标识
+    - locales.ja-JP.hreflang # 语言配置标识
+    - locales.ja-JP.ogLocale # 语言配置标识
+    - locales.ja-JP.htmlLang # 语言配置标识
+    - locales.ja-JP.direction # 语言配置标识
+    - locales.ko-KR.routeLocale # 语言配置标识
+    - locales.ko-KR.sourceLocale # 语言配置标识
+    - locales.ko-KR.label # 语言配置标识
+    - locales.ko-KR.compactLabel # 语言配置标识
+    - locales.ko-KR.hreflang # 语言配置标识
+    - locales.ko-KR.ogLocale # 语言配置标识
+    - locales.ko-KR.htmlLang # 语言配置标识
+    - locales.ko-KR.direction # 语言配置标识
+    - locales.de-DE.routeLocale # 语言配置标识
+    - locales.de-DE.sourceLocale # 语言配置标识
+    - locales.de-DE.label # 语言配置标识
+    - locales.de-DE.compactLabel # 语言配置标识
+    - locales.de-DE.hreflang # 语言配置标识
+    - locales.de-DE.ogLocale # 语言配置标识
+    - locales.de-DE.htmlLang # 语言配置标识
+    - locales.de-DE.direction # 语言配置标识
+    - locales.fr-FR.routeLocale # 语言配置标识
+    - locales.fr-FR.sourceLocale # 语言配置标识
+    - locales.fr-FR.label # 语言配置标识
+    - locales.fr-FR.compactLabel # 语言配置标识
+    - locales.fr-FR.hreflang # 语言配置标识
+    - locales.fr-FR.ogLocale # 语言配置标识
+    - locales.fr-FR.htmlLang # 语言配置标识
+    - locales.fr-FR.direction # 语言配置标识
+    - locales.es-ES.routeLocale # 语言配置标识
+    - locales.es-ES.sourceLocale # 语言配置标识
+    - locales.es-ES.label # 语言配置标识
+    - locales.es-ES.compactLabel # 语言配置标识
+    - locales.es-ES.hreflang # 语言配置标识
+    - locales.es-ES.ogLocale # 语言配置标识
+    - locales.es-ES.htmlLang # 语言配置标识
+    - locales.es-ES.direction # 语言配置标识
+    - locales.pt-BR.routeLocale # 语言配置标识
+    - locales.pt-BR.sourceLocale # 语言配置标识
+    - locales.pt-BR.label # 语言配置标识
+    - locales.pt-BR.compactLabel # 语言配置标识
+    - locales.pt-BR.hreflang # 语言配置标识
+    - locales.pt-BR.ogLocale # 语言配置标识
+    - locales.pt-BR.htmlLang # 语言配置标识
+    - locales.pt-BR.direction # 语言配置标识
+    - locales.ru-RU.routeLocale # 语言配置标识
+    - locales.ru-RU.sourceLocale # 语言配置标识
+    - locales.ru-RU.label # 语言配置标识
+    - locales.ru-RU.compactLabel # 语言配置标识
+    - locales.ru-RU.hreflang # 语言配置标识
+    - locales.ru-RU.ogLocale # 语言配置标识
+    - locales.ru-RU.htmlLang # 语言配置标识
+    - locales.ru-RU.direction # 语言配置标识
 doctor:
   excludedDirectories:
     - .astro
