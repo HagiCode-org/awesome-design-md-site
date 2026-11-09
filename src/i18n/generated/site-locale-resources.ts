@@ -29,7 +29,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "Related sites"
@@ -361,7 +361,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "相关站点"
@@ -693,7 +693,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "相關站點"
@@ -1025,7 +1025,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "関連サイト"
@@ -1357,7 +1357,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "관련 사이트"
@@ -1689,7 +1689,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "Verwandte Sites"
@@ -2021,7 +2021,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "Sites associés"
@@ -2353,7 +2353,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "Sitios relacionados"
@@ -2685,7 +2685,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "Sites relacionados"
@@ -3017,7 +3017,7 @@ const runtime = {
           "repository": "https://github.com/HagiCode-org/awesome-design-md-site",
           "sourceRepository": "https://github.com/VoltAgent/awesome-design-md",
           "hagicodeWebsite": "https://hagicode.com",
-          "defaultSocialImagePath": "/img/hagicode/light-main.png"
+          "defaultSocialImagePath": "/logo.png"
         },
         "footer": {
           "relatedSites": "Связанные сайты"
