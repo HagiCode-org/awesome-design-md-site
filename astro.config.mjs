@@ -9,6 +9,10 @@ export default defineConfig({
   site: siteUrl,
   base: '/',
   output: 'static',
+  // The hagilight footer links English visitors to `/en-US/`; this site's English is the unprefixed root.
+  redirects: {
+    '/en-US': '/',
+  },
   i18n: {
     defaultLocale: 'en',
     locales: supportedLocales,
