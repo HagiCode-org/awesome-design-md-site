@@ -31,9 +31,6 @@ auditIdenticalAllowlist:
     - home.heroReadmeExcerpts.2.excerpt # 上游README原文引用
     - home.showcaseTitle # 品牌名
     - home.showcaseCtaHref # URL
-    - home.showcaseSlides.0.imageSrc # 资源路径
-    - home.showcaseSlides.1.imageSrc # 资源路径
-    - home.showcaseSlides.2.imageSrc # 资源路径
     - home.showcaseTriad.0.label # 品牌标语
     - home.showcaseTriad.1.label # 品牌标语
     - home.showcaseTriad.2.label # 品牌标语

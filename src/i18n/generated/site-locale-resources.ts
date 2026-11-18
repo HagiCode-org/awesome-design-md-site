@@ -69,29 +69,6 @@ const runtime = {
           "showcaseLead": "HagiCode is an agentic coding workspace: OpenSpec workflows, multi-agent execution, and Hero Scenario views turn ideas into shipped software.",
           "showcaseCtaLabel": "Visit HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "Previous slide",
-          "showcaseNext": "Next slide",
-          "showcaseJumpLabel": "Go to slide",
-          "showcaseSlides": [
-            {
-              "title": "OpenSpec workflow",
-              "description": "Turn ideas into proposal, design, tasks, implementation, and archive in one continuous track.",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "HagiCode light theme main interface screenshot"
-            },
-            {
-              "title": "Multi-agent workspace",
-              "description": "Different agents can draft, fix, and review in parallel instead of waiting on one serial thread.",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "HagiCode multi-agent workspace illustration"
-            },
-            {
-              "title": "Hero Scenario view",
-              "description": "Scenarios, captains, and visual workspaces make long-running AI coding sessions easier to coordinate.",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "HagiCode Hero Scenario workspace illustration"
-            }
-          ],
           "emptyKicker": "No designs available",
           "emptyTitle": "The gallery is ready, but the source content is missing.",
           "emptyCopy": "Initialize the submodule with `git submodule update --init --recursive`, then rebuild the site.",
@@ -401,29 +378,6 @@ const runtime = {
           "showcaseLead": "HagiCode 是一套智能体编码工作台：OpenSpec 工作流、多 Agent 并行执行与 Hero 场景视图，把想法变成真正交付的软件。",
           "showcaseCtaLabel": "访问 HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "上一张",
-          "showcaseNext": "下一张",
-          "showcaseJumpLabel": "跳转到第",
-          "showcaseSlides": [
-            {
-              "title": "OpenSpec 工作流",
-              "description": "把想法、提案、设计、任务、实现与归档放进同一条连续链路里。",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "HagiCode 浅色主题主界面截图"
-            },
-            {
-              "title": "多 Agent 工作台",
-              "description": "不同 Agent 可并行起草、修复与审阅，不再被单线程串行等待卡住。",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "HagiCode 多 Agent 工作台插画"
-            },
-            {
-              "title": "Hero 场景视图",
-              "description": "用场景、队长与可视化工作台组织长时间运行的 AI 编码协作。",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "HagiCode Hero 场景工作台插画"
-            }
-          ],
           "emptyKicker": "暂无可用设计",
           "emptyTitle": "画廊壳层已就绪，但上游内容尚未初始化。",
           "emptyCopy": "先执行 `git submodule update --init --recursive` 初始化子模块，再重新构建站点。",
@@ -733,29 +687,6 @@ const runtime = {
           "showcaseLead": "OpenSpec 工作流、多 Agent 執行與 Hero 場景介面，是用來打造這個畫廊外殼的產品概念。",
           "showcaseCtaLabel": "造訪 HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "上一張",
-          "showcaseNext": "下一張",
-          "showcaseJumpLabel": "前往投影片",
-          "showcaseSlides": [
-            {
-              "title": "OpenSpec 工作流",
-              "description": "把想法、提案、設計、任務、實作與歸檔放在一條連續軌道中。",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "HagiCode 淺色主介面截圖"
-            },
-            {
-              "title": "多 Agent 工作區",
-              "description": "不同 Agent 可並行草擬、修復與審閱，而不是等待單一序列流程。",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "HagiCode 多 Agent 工作區插圖"
-            },
-            {
-              "title": "Hero 場景視圖",
-              "description": "用場景、隊長與視覺化工作區協調長時間 AI 編碼工作。",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "HagiCode Hero 場景工作區插圖"
-            }
-          ],
           "emptyKicker": "暫無設計",
           "emptyTitle": "畫廊已就緒，但來源內容尚未初始化。",
           "emptyCopy": "請先執行 `git submodule update --init --recursive` 初始化子模組，然後重新建置站點。",
@@ -1065,29 +996,6 @@ const runtime = {
           "showcaseLead": "OpenSpec ワークフロー、マルチエージェント実行、Hero シナリオ インターフェイスの考え方をこのギャラリーシェルに再利用しています。",
           "showcaseCtaLabel": "HagiCode を見る",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "前のスライド",
-          "showcaseNext": "次のスライド",
-          "showcaseJumpLabel": "スライドへ移動",
-          "showcaseSlides": [
-            {
-              "title": "OpenSpec ワークフロー",
-              "description": "アイデア、提案、設計、タスク、実装、アーカイブをひとつの流れにまとめます。",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "HagiCode ライトテーマのメイン画面"
-            },
-            {
-              "title": "マルチエージェントワークスペース",
-              "description": "複数の Agent が下書き、修正、レビューを並行し、直列待ちを減らします。",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "HagiCode マルチエージェントワークスペースの図"
-            },
-            {
-              "title": "Hero シナリオ ビュー",
-              "description": "シナリオ、キャプテン、視覚的な作業場で長時間の AI コーディングセッションを調整します。",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "HagiCode Hero シナリオ ワークスペースの図"
-            }
-          ],
           "emptyKicker": "デザインがありません",
           "emptyTitle": "ギャラリーは準備済みですが、ソースコンテンツがありません。",
           "emptyCopy": "`git submodule update --init --recursive` でサブモジュールを初期化し、サイトを再ビルドしてください。",
@@ -1397,29 +1305,6 @@ const runtime = {
           "showcaseLead": "OpenSpec 워크플로, 멀티 에이전트 실행, Hero 시나리오 인터페이스 아이디어가 이 갤러리 셸에 재사용되었습니다.",
           "showcaseCtaLabel": "HagiCode 방문",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "이전 슬라이드",
-          "showcaseNext": "다음 슬라이드",
-          "showcaseJumpLabel": "슬라이드로 이동",
-          "showcaseSlides": [
-            {
-              "title": "OpenSpec 워크플로",
-              "description": "아이디어, 제안, 설계, 작업, 구현, 보관을 하나의 흐름으로 연결합니다.",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "HagiCode 라이트 테마 메인 인터페이스 스크린샷"
-            },
-            {
-              "title": "멀티 에이전트 작업 공간",
-              "description": "여러 Agent가 초안, 수정, 검토를 병렬로 처리해 직렬 대기 시간을 줄입니다.",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "HagiCode 멀티 에이전트 작업 공간 그림"
-            },
-            {
-              "title": "Hero 시나리오 보기",
-              "description": "시나리오, 캡틴, 시각적 작업 공간으로 장시간 AI 코딩 세션을 조율합니다.",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "HagiCode Hero 시나리오 작업 공간 그림"
-            }
-          ],
           "emptyKicker": "사용 가능한 디자인 없음",
           "emptyTitle": "갤러리는 준비되었지만 소스 콘텐츠가 없습니다.",
           "emptyCopy": "`git submodule update --init --recursive`로 서브모듈을 초기화한 뒤 사이트를 다시 빌드하세요.",
@@ -1729,29 +1614,6 @@ const runtime = {
           "showcaseLead": "OpenSpec-Workflow, Multi-Agent-Ausführung und Hero-Szenario-Oberflächen sind Produktideen, die für diese Galerie-Shell wiederverwendet wurden.",
           "showcaseCtaLabel": "HagiCode besuchen",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "Vorherige Folie",
-          "showcaseNext": "Nächste Folie",
-          "showcaseJumpLabel": "Zur Folie gehen",
-          "showcaseSlides": [
-            {
-              "title": "OpenSpec-Workflow",
-              "description": "Ideen, Proposal, Design, Aufgaben, Implementierung und Archivierung in einer durchgehenden Spur.",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "HagiCode Hauptoberfläche im hellen Theme"
-            },
-            {
-              "title": "Multi-Agent-Arbeitsbereich",
-              "description": "Verschiedene Agents können parallel entwerfen, reparieren und prüfen, statt seriell zu warten.",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "HagiCode Multi-Agent-Arbeitsbereich Illustration"
-            },
-            {
-              "title": "Hero Szenario Ansicht",
-              "description": "Szenarien, Captains und visuelle Arbeitsbereiche koordinieren lange AI-Coding-Sessions.",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "HagiCode Hero Szenario Arbeitsbereich Illustration"
-            }
-          ],
           "emptyKicker": "Keine Designs verfügbar",
           "emptyTitle": "Die Galerie ist bereit, aber der Quellinhalt fehlt.",
           "emptyCopy": "Initialisiere das Submodul mit `git submodule update --init --recursive` und baue die Site erneut.",
@@ -2061,29 +1923,6 @@ const runtime = {
           "showcaseLead": "Le workflow OpenSpec, l’exécution multi-agent et les interfaces Hero Scénario sont les idées réutilisées pour cette enveloppe de galerie.",
           "showcaseCtaLabel": "Visiter HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "Diapositive précédente",
-          "showcaseNext": "Diapositive suivante",
-          "showcaseJumpLabel": "Aller à la diapositive",
-          "showcaseSlides": [
-            {
-              "title": "Workflow OpenSpec",
-              "description": "Transformer idées, proposition, design, tâches, implémentation et archive en un parcours continu.",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "Capture de l’interface principale HagiCode en thème clair"
-            },
-            {
-              "title": "Espace multi-agent",
-              "description": "Plusieurs agents peuvent rédiger, corriger et relire en parallèle au lieu d’attendre un fil unique.",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "Illustration de l’espace multi-agent HagiCode"
-            },
-            {
-              "title": "Vue Hero Scénario",
-              "description": "Scénarios, capitaines et espaces visuels coordonnent les longues sessions de codage IA.",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "Illustration de l’espace Hero Scénario HagiCode"
-            }
-          ],
           "emptyKicker": "Aucun design disponible",
           "emptyTitle": "La galerie est prête, mais le contenu source manque.",
           "emptyCopy": "Initialisez le sous-module avec `git submodule update --init --recursive`, puis reconstruisez le site.",
@@ -2393,29 +2232,6 @@ const runtime = {
           "showcaseLead": "El flujo OpenSpec, la ejecución multiagente y las interfaces Hero Escenario son ideas reutilizadas para construir esta galería.",
           "showcaseCtaLabel": "Visitar HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "Diapositiva anterior",
-          "showcaseNext": "Diapositiva siguiente",
-          "showcaseJumpLabel": "Ir a la diapositiva",
-          "showcaseSlides": [
-            {
-              "title": "Flujo OpenSpec",
-              "description": "Convierte ideas, propuesta, diseño, tareas, implementación y archivo en una pista continua.",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "Captura de la interfaz principal de HagiCode en tema claro"
-            },
-            {
-              "title": "Espacio multiagente",
-              "description": "Distintos agentes pueden redactar, corregir y revisar en paralelo sin esperar a un hilo serial.",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "Ilustración del espacio multiagente de HagiCode"
-            },
-            {
-              "title": "Vista Hero Escenario",
-              "description": "Escenarios, capitanes y espacios visuales coordinan sesiones largas de codificación con IA.",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "Ilustración del espacio Hero Escenario de HagiCode"
-            }
-          ],
           "emptyKicker": "No hay diseños disponibles",
           "emptyTitle": "La galería está lista, pero falta el contenido fuente.",
           "emptyCopy": "Inicializa el submódulo con `git submodule update --init --recursive` y vuelve a compilar el sitio.",
@@ -2725,29 +2541,6 @@ const runtime = {
           "showcaseLead": "Workflow OpenSpec, execução multiagente e interfaces Hero Cenário são ideias reutilizadas para criar esta galeria.",
           "showcaseCtaLabel": "Visitar HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "Slide anterior",
-          "showcaseNext": "Próximo slide",
-          "showcaseJumpLabel": "Ir para o slide",
-          "showcaseSlides": [
-            {
-              "title": "Workflow OpenSpec",
-              "description": "Transforme ideias, proposta, design, tarefas, implementação e arquivo em uma trilha contínua.",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "Captura da interface principal do HagiCode em tema claro"
-            },
-            {
-              "title": "Workspace multiagente",
-              "description": "Agentes diferentes podem rascunhar, corrigir e revisar em paralelo em vez de esperar uma única fila.",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "Ilustração do workspace multiagente HagiCode"
-            },
-            {
-              "title": "Visão Hero Cenário",
-              "description": "Cenários, capitães e workspaces visuais coordenam sessões longas de codificação com IA.",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "Ilustração do workspace Hero Cenário HagiCode"
-            }
-          ],
           "emptyKicker": "Nenhum design disponível",
           "emptyTitle": "A galeria está pronta, mas o conteúdo fonte está ausente.",
           "emptyCopy": "Inicialize o submódulo com `git submodule update --init --recursive` e reconstrua o site.",
@@ -3057,29 +2850,6 @@ const runtime = {
           "showcaseLead": "OpenSpec workflow, multi-agent execution и интерфейсы Hero Scenario стали идеями, использованными в оболочке этой галереи.",
           "showcaseCtaLabel": "Посетить HagiCode",
           "showcaseCtaHref": "https://www.hagicode.com",
-          "showcasePrev": "Предыдущий слайд",
-          "showcaseNext": "Следующий слайд",
-          "showcaseJumpLabel": "Перейти к слайду",
-          "showcaseSlides": [
-            {
-              "title": "Рабочий процесс OpenSpec",
-              "description": "Идеи, proposal, design, tasks, implementation и archive объединяются в один непрерывный трек.",
-              "imageSrc": "/img/hagicode/light-main.png",
-              "imageAlt": "Скриншот главного интерфейса HagiCode в светлой теме"
-            },
-            {
-              "title": "Мультиагентное рабочее пространство",
-              "description": "Разные агенты могут параллельно писать, исправлять и ревьюить без ожидания одного потока.",
-              "imageSrc": "/img/hagicode/multi-agent-workspace.svg",
-              "imageAlt": "Иллюстрация multi-agent workspace HagiCode"
-            },
-            {
-              "title": "Вид Hero Scenario",
-              "description": "Сценарии, captains и визуальные рабочие пространства помогают координировать долгие AI coding sessions.",
-              "imageSrc": "/img/hagicode/hero-scenario-workspace.svg",
-              "imageAlt": "Иллюстрация Hero Scenario workspace HagiCode"
-            }
-          ],
           "emptyKicker": "Нет доступных дизайнов",
           "emptyTitle": "Галерея готова, но исходный контент отсутствует.",
           "emptyCopy": "Инициализируйте submodule командой `git submodule update --init --recursive`, затем пересоберите сайт.",

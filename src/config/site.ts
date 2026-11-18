@@ -46,13 +46,6 @@ export interface LanguageLink extends NavItem {
   htmlLang: string;
 }
 
-export interface ShowcaseSlide {
-  title: string;
-  description: string;
-  imageSrc: string;
-  imageAlt: string;
-}
-
 export interface HeroReadmeExcerpt {
   excerpt: string;
   translation: string;
