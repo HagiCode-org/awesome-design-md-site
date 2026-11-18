@@ -16,9 +16,9 @@ describe('HagiCodeShowcase', () => {
     expect(screen.getByText('Hagicode')).toBeInTheDocument();
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'HagiCode を見る' })).toHaveAttribute('href', 'https://www.hagicode.com');
-    expect(screen.getByRole('link', { name: 'Learn more' })).toHaveAttribute('target', '_blank');
-    expect(screen.getByTitle('HagiCode overview')).toHaveAttribute('src', expect.stringContaining('youtube.com/embed'));
-    expect(screen.getByRole('link', { name: 'Watch on YouTube' })).toHaveAttribute('target', '_blank');
+    expect(screen.getByRole('link', { name: '詳しく見る' })).toHaveAttribute('target', '_blank');
+    expect(screen.getByTitle('HagiCode 概要')).toHaveAttribute('src', expect.stringContaining('youtube.com/embed'));
+    expect(screen.getByRole('link', { name: 'YouTube で見る' })).toHaveAttribute('target', '_blank');
   });
 
   it('tags the HagiCode links with stable GA click attributes', () => {

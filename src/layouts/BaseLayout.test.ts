@@ -92,9 +92,9 @@ describe('BaseLayout promoto integration', () => {
   it('keeps the shared footer keyboard-visible and single-column at narrow widths', async () => {
     const footer = await readFile(footerPath, 'utf8');
 
-    expect(footer).toContain('aria-label={resolvedLinks.labels.navigation.quickLinks}');
+    expect(footer).toContain('aria-labelledby={`hagilight-col-${column.id}`}');
     expect(footer).toContain('.hagilight-footer a:focus-visible');
-    expect(footer).toContain('@media (max-width: 40rem)');
-    expect(footer).toContain('grid-template-columns: 1fr');
+    expect(footer).toContain('@container hagilight-cols (max-width: 19rem)');
+    expect(footer).toContain('.hagilight-cols { grid-template-columns: minmax(0, 1fr); }');
   });
 });
