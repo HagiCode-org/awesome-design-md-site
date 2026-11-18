@@ -37,16 +37,16 @@ const FORBIDDEN_KEYS: ReadonlySet<string> = new Set([
 // Replace the entries below for each site. Keys are snake_case event names (object before action).
 export const SITE_POSTHOG_EVENTS: SiteEventTable = Object.freeze({
   design_doc_tab_changed: Object.freeze({
-    tab: { kind: 'enum', values: ['readme', 'design'] },
+    tab: { kind: 'enum' as const, values: ['readme', 'design'] },
   }),
   design_md_copied: Object.freeze({
-    slug: { kind: 'string' },
+    slug: { kind: 'string' as const },
   }),
   design_md_downloaded: Object.freeze({
-    slug: { kind: 'string' },
+    slug: { kind: 'string' as const },
   }),
   design_search_used: Object.freeze({
-    results_count: { kind: 'count' },
+    results_count: { kind: 'count' as const },
   }),
 });
 
