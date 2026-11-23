@@ -219,8 +219,8 @@ importers:
         specifier: 5.3.0
         version: 5.3.0
       '@hagicode/hagi18n':
-        specifier: ^0.3.0
-        version: 0.3.0
+        specifier: ^0.3.1
+        version: 0.3.1
       '@testing-library/jest-dom':
         specifier: ^6.9.1
         version: 6.9.1
@@ -808,8 +808,8 @@ packages:
   '@fontsource/commit-mono@5.3.0':
     resolution: {integrity: sha512-Bs+zlEWHDgk/cCVWEMJJaA7LbBU3Ixi5Zums+SSwMKdm2N7RJ4P7jCJTwsMHRt5WFiXYB0tu0q9HMfkn0YsLsQ==}
 
-  '@hagicode/hagi18n@0.3.0':
-    resolution: {integrity: sha512-b3Adlxire3/IRulQJRobDzAGvGYXtR2Pw/Gbrzg+tFptgawWInqstIWNk2a4gp19FYrEbS+qjEz7MmDBfEEEtQ==}
+  '@hagicode/hagi18n@0.3.1':
+    resolution: {integrity: sha512-t0L5r7j3jqA/ImnNJTwbLk1glFVyV4j5Uo6/qOX+LK3RnvNT7++zS/bYno6w+ZIyck5uOz6HZHfmkMXFOF3tkA==}
     engines: {node: '>=24.0.0'}
     hasBin: true
 
@@ -3459,7 +3459,7 @@ snapshots:
 
   '@fontsource/commit-mono@5.3.0': {}
 
-  '@hagicode/hagi18n@0.3.0':
+  '@hagicode/hagi18n@0.3.1':
     dependencies:
       '@types/js-yaml': 4.0.9
       commander: 14.0.3
